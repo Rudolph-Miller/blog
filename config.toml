@@ -12,7 +12,6 @@ copyright = "&copy; 2015 - 2016 Rudolph Miller"
   avatar = "/images/logo.png"
   bio = "Common Lisp Player."
   wishlist = "A3RNOUU855C76"
-  disqusshortname = "rudolph-miller"
 [permalinks]
   post = "/:year/:month/:day/:slug/"
   slide = "/slide/:year/:month/:day/:slug/"
