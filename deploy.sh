@@ -1,8 +1,8 @@
 git clean -f
-git pull
+git fetch
 git checkout gh-pages
 git clean -f
-git rebase origin master
+git rebase master
 sh build.sh
 cd public
 git add . -f
