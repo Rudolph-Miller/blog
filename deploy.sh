@@ -5,6 +5,7 @@ git checkout gh-pages
 git merge origin/master --ff --no-edit
 hugo
 mv public/* ./
+cp -rf public/* ./
 git add -A
 git commit -m "Update $(date +%s). [ci skip]"
 git push origin gh-pages
