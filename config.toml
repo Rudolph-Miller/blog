@@ -1,5 +1,5 @@
 theme = "vienna"
-baseurl = "https://blog.rudolph-miller.com/"
+baseurl = "http://blog.rudolph-miller.com/"
 languageCode = "ja-JP"
 title = "(rudolph-miller)"
 # Copyright notice. This is displayer in the footer.
