@@ -6,7 +6,7 @@ general:
 dependencies:
   pre:
     - go get -v github.com/spf13/hugo
-    - git clone https://github.com/keichi/vienna themes/vienna
+    - git clone https://github.com/Rudolph-Miller/vienna themes/vienna
 
 test:
   override:
