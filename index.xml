@@ -7,8 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Sun, 05 Jul 2015 19:58:50 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2015 22:58:36 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>second</title>
+      <link>http://blog.rudolph-miller.com/post/second/</link>
+      <pubDate>Sun, 05 Jul 2015 22:58:36 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/post/second/</guid>
+      <description>
+
+&lt;h1 id=&#34;my-second-post:9f7936f9b5c071ae81db818b80a44a0d&#34;&gt;My Second Post&lt;/h1&gt;
+
+&lt;p&gt;Hi.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>My First Post</title>
