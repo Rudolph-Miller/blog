@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" How To Setup PiTFT. &middot;  (rudolph-miller)" />
+  
+  <meta property="og:site_name" content="(rudolph-miller)" />
+  <meta property="og:url" content="http://blog.rudolph-miller.com/post/how-to-setup-pitft/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2015-07-05T23:14:29&#43;09:00" />
+  
+  <meta property="og:article:tag" content="Raspberry Pi" />
+  
+  <meta property="og:article:tag" content="PiTFT" />
+  
+  
+
+  <title>
+     How To Setup PiTFT. &middot;  (rudolph-miller)
+  </title>
+
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/main.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://blog.rudolph-miller.com/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://blog.rudolph-miller.com/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://blog.rudolph-miller.com/">(rudolph-miller)</a></h1>
+      
+      <div class="tag-line">
+        think, think and think.
+      </div>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+</div>
+
+      
+      <a href="http://blog.rudolph-miller.com/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">How To Setup PiTFT.</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2015-07-05T23:14:29&#43;09:00">
+          Jul 5, 2015
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/raspberry-pi">#Raspberry Pi</a></span>
+        
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/pitft">#PiTFT</a></span>
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<hr />
+
+<h1 id="pitft-mini-kitのセット方法:1de7dfbdd9379a00999dfd73b9160672">PiTFT Mini Kitのセット方法</h1>
+
+<hr />
+
+<p><img src="/images/20150705/pitft.jpg" alt="" /></p>
+
+<ol>
+<li><a href="#pos1">What is PiTFT Mini Lit</a></li>
+<li><a href="#pos2">Get PiTFT</a></li>
+<li><a href="#pos3">Assemble PiTFT</a></li>
+<li><a href="#pos4">Set PiTFT</a></li>
+</ol>
+
+<p><a id="pos1"></a></p>
+
+<h2 id="1-pitft-mini-kitとは:1de7dfbdd9379a00999dfd73b9160672">1. PiTFT Mini Kitとは</h2>
+
+<ul>
+<li>PiTFT Mini Kitは販売元の<a href="https://www.adafruit.com/products/1601">adafruit</a>から引用すると
+&gt;Is this not the cutest little display for the Raspberry Pi? It features a 2.8&rdquo; display with 320x240 16-bit color pixels and a resistive touch overlay.</li>
+</ul>
+
+<p>で、つまりRaspberry Pi用の2.8インチのカラータッチディスプレイのことです。</p>
+
+<ul>
+<li>adafruit industriesはNew Yorkの電子部品、電子工作の何でも屋。</li>
+<li>Raspberry Pi持っている方は上の写真をどこかしらで見かけたことがあるはず。</li>
+<li>ただ海外から注文だし、作り方とかむずかしそうっ手思っている方は意外と簡単にできるので、この記事を参考にしてみてください。</li>
+</ul>
+
+<p><a id="pos2"></a></p>
+
+<h2 id="2-pitftを手に入れる:1de7dfbdd9379a00999dfd73b9160672">2. PiTFTを手に入れる。</h2>
+
+<ul>
+<li>まずadafruitでの注文の仕方からはじめます。
+adafruitのアカウントを持っておられない方はまずアカウントを取得して下さい。</li>
+<li><a href="http://www.adafruit.com/">サイト</a>右上のlog inからNew? Please Provide Your Billing Informationを埋めてSUBMIT</li>
+<li>取得したアカウントでログインして、<a href="https://www.adafruit.com/products/1601">商品ページ</a>に飛びます。adafruitから直接でもいいし、サイト内検索ボックスでPiTFTでもでできます。</li>
+<li><a href="https://www.adafruit.com/products/1601">商品ページ</a>の右側のAdd to Cart:<input type="test" size="5" value="1"></input>のボックスを必要な個数にして、<button>ADD TO CART</button>します。</li>
+<li>カートの中身を確認して<button>CHECK OUT</button>します。</li>
+<li>配送方法を選択。</li>
+<li>支払い方法を選択。</li>
+<li>内容を確認してokなら<button>CONFIRM</button>します。</li>
+<li>Adafruit Industries <a href="mailto:support@adafruit.com">support@adafruit.com</a>から確認のメールが来るので確認します。</li>
+<li>あとはまっていたら届きます。</li>
+<li>入力がめんどうなだけで、ほとんど国内サイトでの買い物と同様で購入することができます。</li>
+<li>Tips: _Google自動入力_で英語で名前と住所を登録しておくと自動で入力補完してくれるので便利です。</li>
+</ul>
+
+<p><a id="pos3"></a></p>
+
+<h2 id="3-pitftの組み立て方:1de7dfbdd9379a00999dfd73b9160672">3. PiTFTの組み立て方</h2>
+
+<blockquote>
+<p><a href="http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/assembly">adafruit tutorials</a></p>
+</blockquote>
+
+<ul>
+<li>必要なもの</li>
+<li>半田ごて</li>
+<li>半田</li>
+<li>作業場所</li>
+<li>小さいものなので机の上でも十分可能。ただし半田ごての際はまわりに気をつけて。</li>
+<li>作業場所にPiTFT Mini KitとRaspberry Pi(<strong>絶対に電源は抜いておいて下さい。</strong>)と半田ごて、半田を用意します。
+<img src="/images/20150705/raspberry_pi_parts.jpg" alt="" /></li>
+<li>写真右下のGPIOピンソケット(female header)をRaspberry Piの黒いとげとげ(GPIO port)に差し込みます。
+<img src="/images/20150705/raspberry_pi_tallheader.jpg" alt="" /></li>
+<li>その上にPiTFT本体を、画面を上にしてピンがコネクター全部を通るよう差し込みます。</li>
+<li>あとはすべてのピンを半田付けしていくだけです。<br />
+<img src="/images/20150705/raspberry_pi_solder1.jpg" alt="" />
+<img src="/images/20150705/raspberry_pi_solder2.jpg" alt="" />
+<div style="clear: both;"> </div></li>
+<li>すべて半田付けできたら、ディスプレイ裏のシールをはがして、基盤にはりつけます。</li>
+<li>これで組み立ては完成です。</li>
+</ul>
+
+<p><a id="pos4"></a></p>
+
+<h2 id="4-ソフトのインストールと設定:1de7dfbdd9379a00999dfd73b9160672">4. ソフトのインストールと設定</h2>
+
+<ul>
+<li>これに一番手間取りました。
+&gt;参考: <a href="http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/software-installation">adafruit tutorials</a></li>
+<li>まずはじめにこのソフトはRaspbianで動くようになっているのですが、最新版のRaspbianでは動かないようです。なので推奨されている<a href="http://downloads.raspberrypi.org/raspbian/images/raspbian-2013-09-27/2013-09-25-wheezy-raspbian.zip">September 2013</a>をダウンロード、解凍してSDに焼いて準備(<code>$ sudo raspe-config</code>や<code>$ sudo apt-get updare</code>、さらにモニターに繋ぐかSSHで接続)します。</li>
+<li>まずカレントディレクトリに必要なファイルをダウンロードします。</li>
+</ul>
+
+<pre><code class="language-sh">$ cd ~
+$ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi-bin-adafruit.deb
+$ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi-dev-adafruit.deb
+$ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi-doc-adafruit.deb
+$ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi0-adafruit.deb
+$ wget http://adafruit-download.s3.amazonaws.com/raspberrypi-bootloader-adafruit-112613.deb
+</code></pre>
+
+<ul>
+<li>次にそれらをインストールします。</li>
+</ul>
+
+<pre><code class="language-sh">$ sudo dpkg -i -B *.deb
+</code></pre>
+
+<ul>
+<li>再起動します。(PiTFTをすでにセットしている場合は</li>
+</ul>
+
+<pre><code class="language-sh">$ sudo reboot
+</code></pre>
+
+<p>まだの場合は</p>
+
+<pre><code class="language-sh">$ sudo shutdown -h now
+</code></pre>
+
+<p>で電源を切ったあとで、PiTFTをセットして起動して下さい。)
+* ドライバをインストールします。</p>
+
+<pre><code class="language-sh">$ sudo modprobe spi-bcm2708
+$ sudo modprobe fbtft_device name=adafruitts rotate=90
+</code></pre>
+
+<ul>
+<li>PiTFTの画面が白から黒に変わったと思います。(代わりが無ければもう一度実行。)</li>
+<li>PiTFTでXserverを走らせて見ます。</li>
+</ul>
+
+<pre><code class="language-sh">$ export FRAMEBUFFER=/dev/fb1
+$ startx
+</code></pre>
+
+<ul>
+<li>PiTFTにデスクトップが映っていれば成功です。Ctrl-cか、デスクトップをマウス操作してログアウトします。</li>
+<li>次に起動時にこれらのモジュールが自動でロードされるようにします。</li>
+<li>ここからのコマンドはVimが入っている前提で、エディタはVimで実行していきます。なぜなら<strong>Vimmerだから</strong>。</li>
+<li><code>$ sudo vim /etc/modules</code>でmodulesを開き、以下の2行を加え保存します。</li>
+</ul>
+
+<pre><code>spi-bcm2708
+fbtft_device
+</code></pre>
+
+<ul>
+<li>次に設定ファイルを作ります。
+<code>$ sudo vim /etc/modprobe.d/adafruit.conf</code>で、次を書き込み保存します。</li>
+</ul>
+
+<pre><code>options fbtft_device name=adafruitts rotate=90 frequency=32000000
+</code></pre>
+
+<p>※rotateの値は画面の傾きです。0でadafruitのロゴが下で、そこから時計回りです。
+* 再起動してみて、コンソールの表示が以下のようになっているかみます。
+<img src="/images/20150705/raspberry_pi_dmesgdetect.png" alt="" />
+* 次にタッチスクリーンの設定をします。</p>
+
+<pre><code class="language-sh">$ sudo mkdir /etc/X11/xorg.conf.d
+$ sudo vim /etc/X11/xorg.conf.d/99-calibration.conf
+</code></pre>
+
+<p>でファイルを作成して以下を書き込み保存します。</p>
+
+<pre><code>Section         &quot;InputClass&quot;
+Identifier      &quot;calibration&quot;
+MatchProduct    &quot;stmpe-ts&quot;
+Option          &quot;Calibration&quot;   &quot;3800 200 200 3800&quot;
+Option          &quot;SwapAxes&quot;      &quot;1&quot;
+EndSection
+</code></pre>
+
+<p><img src="/images/20150705/raspberry_pi_xorgconf.png" alt="" />
+* 動作するか確認します。</p>
+
+<pre><code class="language-sh">FRAMEBUFFER=/dev/fb1 startx
+</code></pre>
+
+<ul>
+<li><code>FRAMEBUFFER=</code>を毎回入力するのが面倒な場合は、
+<code>$ sudo vim ~/.profile</code>に以下を上の方に追加して保存し、再起動して反映させます。</li>
+</ul>
+
+<pre><code>export FRAMEBUFFER=/dev/fb1
+</code></pre>
+
+<ul>
+<li><p>タッチスクリーンの調整を行います。
+&gt; <a href="http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/touchscreen-install-and-calibrate">adafruit tutorials</a></p></li>
+
+<li><p>コンソールを表示させます。</p></li>
+
+<li><p>boot configulationファイルを更新して、起動時にHDMI/TV出力の/dev/fb0の変わりにPiTFTの/dev/fb1を使用するようにします。
+<code>$ sudo vim /boot/cmdline.txt</code>開いて、_rootwait_という文字列を探し、そのすぐ後に</p></li>
+</ul>
+
+<pre><code>fbcon=map:10 fbcon=font:VGA8x8
+</code></pre>
+
+<p>と書き込んで保存します。
+<img src="/images/20150705/raspberry_pi_fbcon.png" alt="" />
+* 次の起動からPiTFTにコンソールが表示されるはずです。
+<img src="/images/20150705/raspberry_pi_1601console_LRG.jpg" alt="" /></p>
+
+<ul>
+<li><p>あといくつかPiTFTでの遊び方や設定、アドバンスド名トピックが公式の<a href="http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/overview">tutolials</a>では扱われています。</p></li>
+
+<li><p>長かったですがお疲れ様でした。PiTFTを使用したlike Hackingなideaがありましたらぜひ教え下さい。</p></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+        <img alt="Author Avatar" src="/images/logo.png" />
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        <h1 class="author-name text-primary">Rudolph Miller</h1>
+        
+        
+        <div class="author-bio">Common Lisp Player.</div>
+        
+      </div>
+      
+      <div class="author-contact col-md-4">
+        <a href="mailto:lisper@rudolph-miller.com">
+          <i class="fa fa-envelope-o"></i>
+          &nbsp;Contact me
+        </a>
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; Copyright 2015 Rudolph Miller
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <script src="http://blog.rudolph-miller.com/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  
+</body>
+</html>
+
