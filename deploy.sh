@@ -2,7 +2,7 @@ git clean -f
 git fetch origin gh-pages
 git reset --hard FETCH_HEAD
 git checkout gh-pages
-git rebase master
+git rebase origin master
 hugo
 cd public
 git add . -f
