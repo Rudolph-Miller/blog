@@ -1,3 +1,4 @@
+theme = "vienna"
 baseurl = "https://blog.rudolph-miller.com/"
 languageCode = "ja-JP"
 title = "(rudolph-miller)"
