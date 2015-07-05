@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/post/</link>
+    <link>http://blog.rudolph-miller.com/post/</link>
     <description>Recent content in Posts on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
     <lastBuildDate>Sun, 05 Jul 2015 19:58:50 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>My First Post</title>
-      <link>https://blog.rudolph-miller.com/post/first/</link>
+      <link>http://blog.rudolph-miller.com/post/first/</link>
       <pubDate>Sun, 05 Jul 2015 19:58:50 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/post/first/</guid>
+      <guid>http://blog.rudolph-miller.com/post/first/</guid>
       <description>
 
 &lt;h1 id=&#34;this-is-my-first-post:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;This is my first post.&lt;/h1&gt;
