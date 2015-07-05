@@ -3,6 +3,15 @@ general:
     ignore:
       - gh-pages
 
+dependencies:
+  pre:
+    - go get -v github.com/spf13/hugo
+    - git clone https://github.com/keichi/vienna themes/vienna
+
+test:
+  override:
+    - hugo
+
 deployment:
   deployment:
      branch: master
