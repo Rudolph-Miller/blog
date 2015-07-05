@@ -1,10 +1,11 @@
 git clean -f
-git fetch
+git fetch origin gh-pages
+git reset --hard FETCH_HEAD
 git checkout gh-pages
-git clean -f
-git rebase master
-sh build.sh
-cd public
-git add . -f
+git merge origin/master --ff --no-edit
+hugo
+mv public/* ./
+git add .
 git commit -m "Update $(date +%s). [ci skip]"
 git push origin gh-pages
+git checkout master
