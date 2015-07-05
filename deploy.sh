@@ -1,5 +1,5 @@
 git clean -f
-git fetch
+git pull origin gh-pages
 git checkout gh-pages
 git clean -f
 git rebase master
