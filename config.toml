@@ -8,8 +8,7 @@ copyright = "&copy; Copyright 2015 Rudolph Miller"
 [params]
   twitter = "Rudolph_Miller"
   github = "Rudolph-Miller"
-  # Google Analytics API key.
-  # ga_api_key = "Your Google Analytics tracking id"
+  ga_api_key = "UA-47602577-2"
   author = "Rudolph Miller"
   avatar = "/images/logo.png"
   contact = "mailto:lisper@rudolph-miller.com"
