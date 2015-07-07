@@ -246,3 +246,12 @@ article section img {
     margin: 13px auto;
 }
 
+.social-buttons {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 15px 0px;
+}
+
+.social-button {
+    float: left;
+    margin-left: 15px;
+}
