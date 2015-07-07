@@ -16,5 +16,6 @@ copyright = "&copy; Copyright 2015 Rudolph Miller"
   subtitle = "think, think and think."
   wishlist = "A3RNOUU855C76"
   # themecolor = "#hexcolor"
+  disqusshortname = "rudolph-miller"
 [permalinks]
   post = "/:year/:month/:day/:slug/"
