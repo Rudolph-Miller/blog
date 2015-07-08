@@ -1,6 +1,6 @@
 +++
 Description = "Introduction of Dyna."
-Tags = ["Common Lisp", "Library", "Dyna", "AWS"]
+Tags = ["Common Lisp", "Library", "Dyna", "AWS", "mine"]
 date = "2015-07-08T22:22:11+09:00"
 title = "Introducton of Dyna"
 draft = true
@@ -10,6 +10,11 @@ draft = true
 自作LibraryのDynaを紹介.
 
 <!--more-->
+
+1. [What Dyna is.]({{< relref "#what-dyna-is" >}})
+2. [What DynamoDB is.]({{< relref "#what-dynamodb-is" >}})
+3. [Why DyanmoDB.]({{< relref "#why-dynamodb" >}})
+
 
 What Dyna is.
 ---
@@ -45,6 +50,7 @@ What DynamoDB is.
 ざっくり書くとこんな感じなのだが、詳しくは[Amazon DynamoDB](http://aws.amazon.com/jp/dynamodb/)を参照.
 
 ポイントは__スケールが簡単__で__SSD__.
+
 
 Why DynamoDB.
 ---
