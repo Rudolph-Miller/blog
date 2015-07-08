@@ -13,13 +13,13 @@ PiTFTの入手、取り付け、設定について解説.
 ![](/images/20150705/pitft.jpg)
 
 
-1. <a href="#pos1">What is PiTFT Mini Lit</a>
-2. <a href="#pos2">Get PiTFT</a>
-3. <a href="#pos3">Assemble PiTFT</a>
-4. <a href="#pos4">Set PiTFT</a>
+1. [What PiTFT Mini Kit is.]({{< relref "#what-pitft-mini-kit-is"  >}})
+2. [Get PiTFT]({{< relref "#get-pitft" >}})
+3. [Assemble PiTFT]({{< relref "#assemble-pitft" >}})
+4. [Setup PiTFT]({{< relref "#setup-pitft" >}})
 
-<a id="pos1"></a>
-1. PiTFT Mini Kitとは
+
+What PiTFT Mini Kit is.
 ---
 
 * PiTFT Mini Kitは販売元の[adafruit](https://www.adafruit.com/products/1601)から引用すると
@@ -31,8 +31,8 @@ PiTFTの入手、取り付け、設定について解説.
 * Raspberry Pi持っている方は上の写真をどこかしらで見かけたことがあるはず。
 * ただ海外から注文だし、作り方とかむずかしそうっ手思っている方は意外と簡単にできるので、この記事を参考にしてみてください。
 
-<a id="pos2"></a>
-2. PiTFTを手に入れる。
+
+Get PiTFT.
 ---
 
 * まずadafruitでの注文の仕方からはじめます。
@@ -49,10 +49,11 @@ adafruitのアカウントを持っておられない方はまずアカウント
 * 入力がめんどうなだけで、ほとんど国内サイトでの買い物と同様で購入することができます。
 * Tips: _Google自動入力_で英語で名前と住所を登録しておくと自動で入力補完してくれるので便利です。
 
-<a id="pos3"></a>
-3. PiTFTの組み立て方
+
+Assemble PiTFT.
 ---
->[adafruit tutorials](http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/assembly)
+
+> [adafruit tutorials](http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/assembly)
 
 * 必要なもの
 1. 半田ごて
@@ -71,11 +72,11 @@ adafruitのアカウントを持っておられない方はまずアカウント
 * すべて半田付けできたら、ディスプレイ裏のシールをはがして、基盤にはりつけます。
 * これで組み立ては完成です。
 
-<a id="pos4"></a>
-4. ソフトのインストールと設定
+
+Setup PiTFT.
 ---
-* これに一番手間取りました。
->参考: [adafruit tutorials](http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/software-installation)
+
+> 参考: [adafruit tutorials](http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/software-installation)
 * まずはじめにこのソフトはRaspbianで動くようになっているのですが、最新版のRaspbianでは動かないようです。なので推奨されている[September 2013]( http://downloads.raspberrypi.org/raspbian/images/raspbian-2013-09-27/2013-09-25-wheezy-raspbian.zip)をダウンロード、解凍してSDに焼いて準備(`$ sudo raspe-config`や`$ sudo apt-get updare`、さらにモニターに繋ぐかSSHで接続)します。
 * まずカレントディレクトリに必要なファイルをダウンロードします。
 ```sh
