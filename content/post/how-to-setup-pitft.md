@@ -3,15 +3,13 @@ Description = "How to setup PiTFT."
 Tags = ["Raspberry Pi", "PiTFT"]
 date = "2015-07-05T23:14:29+09:00"
 title = "How To Setup PiTFT"
-
 +++
 
 
-***
-PiTFT Mini Kitのセット方法
-===
+PiTFTの入手、取り付け、設定について解説.
 
-***
+<!--more-->
+
 ![](/images/20150705/pitft.jpg)
 
 
