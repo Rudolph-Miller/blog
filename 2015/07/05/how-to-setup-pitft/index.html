@@ -109,15 +109,13 @@
 <p><img src="/images/20150705/pitft.jpg" alt="" /></p>
 
 <ol>
-<li><a href="#pos1">What is PiTFT Mini Lit</a></li>
-<li><a href="#pos2">Get PiTFT</a></li>
-<li><a href="#pos3">Assemble PiTFT</a></li>
-<li><a href="#pos4">Set PiTFT</a></li>
+<li><a href="#what-pitft-mini-kit-is:1de7dfbdd9379a00999dfd73b9160672">What PiTFT Mini Kit is.</a></li>
+<li><a href="#get-pitft:1de7dfbdd9379a00999dfd73b9160672">Get PiTFT</a></li>
+<li><a href="#assemble-pitft:1de7dfbdd9379a00999dfd73b9160672">Assemble PiTFT</a></li>
+<li><a href="#setup-pitft:1de7dfbdd9379a00999dfd73b9160672">Setup PiTFT</a></li>
 </ol>
 
-<p><a id="pos1"></a></p>
-
-<h2 id="1-pitft-mini-kitとは:1de7dfbdd9379a00999dfd73b9160672">1. PiTFT Mini Kitとは</h2>
+<h2 id="what-pitft-mini-kit-is:1de7dfbdd9379a00999dfd73b9160672">What PiTFT Mini Kit is.</h2>
 
 <ul>
 <li>PiTFT Mini Kitは販売元の<a href="https://www.adafruit.com/products/1601">adafruit</a>から引用すると
@@ -132,9 +130,7 @@
 <li>ただ海外から注文だし、作り方とかむずかしそうっ手思っている方は意外と簡単にできるので、この記事を参考にしてみてください。</li>
 </ul>
 
-<p><a id="pos2"></a></p>
-
-<h2 id="2-pitftを手に入れる:1de7dfbdd9379a00999dfd73b9160672">2. PiTFTを手に入れる。</h2>
+<h2 id="get-pitft:1de7dfbdd9379a00999dfd73b9160672">Get PiTFT.</h2>
 
 <ul>
 <li>まずadafruitでの注文の仕方からはじめます。
@@ -152,9 +148,7 @@ adafruitのアカウントを持っておられない方はまずアカウント
 <li>Tips: _Google自動入力_で英語で名前と住所を登録しておくと自動で入力補完してくれるので便利です。</li>
 </ul>
 
-<p><a id="pos3"></a></p>
-
-<h2 id="3-pitftの組み立て方:1de7dfbdd9379a00999dfd73b9160672">3. PiTFTの組み立て方</h2>
+<h2 id="assemble-pitft:1de7dfbdd9379a00999dfd73b9160672">Assemble PiTFT.</h2>
 
 <blockquote>
 <p><a href="http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/assembly">adafruit tutorials</a></p>
@@ -179,16 +173,13 @@ adafruitのアカウントを持っておられない方はまずアカウント
 <li>これで組み立ては完成です。</li>
 </ul>
 
-<p><a id="pos4"></a></p>
+<h2 id="setup-pitft:1de7dfbdd9379a00999dfd73b9160672">Setup PiTFT.</h2>
 
-<h2 id="4-ソフトのインストールと設定:1de7dfbdd9379a00999dfd73b9160672">4. ソフトのインストールと設定</h2>
-
-<ul>
-<li>これに一番手間取りました。
-&gt;参考: <a href="http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/software-installation">adafruit tutorials</a></li>
-<li>まずはじめにこのソフトはRaspbianで動くようになっているのですが、最新版のRaspbianでは動かないようです。なので推奨されている<a href="http://downloads.raspberrypi.org/raspbian/images/raspbian-2013-09-27/2013-09-25-wheezy-raspbian.zip">September 2013</a>をダウンロード、解凍してSDに焼いて準備(<code>$ sudo raspe-config</code>や<code>$ sudo apt-get updare</code>、さらにモニターに繋ぐかSSHで接続)します。</li>
-<li>まずカレントディレクトリに必要なファイルをダウンロードします。</li>
-</ul>
+<blockquote>
+<p>参考: <a href="http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/software-installation">adafruit tutorials</a>
+* まずはじめにこのソフトはRaspbianで動くようになっているのですが、最新版のRaspbianでは動かないようです。なので推奨されている<a href="http://downloads.raspberrypi.org/raspbian/images/raspbian-2013-09-27/2013-09-25-wheezy-raspbian.zip">September 2013</a>をダウンロード、解凍してSDに焼いて準備(<code>$ sudo raspe-config</code>や<code>$ sudo apt-get updare</code>、さらにモニターに繋ぐかSSHで接続)します。
+* まずカレントディレクトリに必要なファイルをダウンロードします。</p>
+</blockquote>
 
 <pre><code class="language-sh">$ cd ~
 $ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi-bin-adafruit.deb

@@ -23,15 +23,13 @@
 &lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/pitft.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#pos1&#34;&gt;What is PiTFT Mini Lit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#pos2&#34;&gt;Get PiTFT&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#pos3&#34;&gt;Assemble PiTFT&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#pos4&#34;&gt;Set PiTFT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#what-pitft-mini-kit-is:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;What PiTFT Mini Kit is.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#get-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Get PiTFT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#assemble-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Assemble PiTFT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#setup-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Setup PiTFT&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;a id=&#34;pos1&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;1-pitft-mini-kitとは:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;1. PiTFT Mini Kitとは&lt;/h2&gt;
+&lt;h2 id=&#34;what-pitft-mini-kit-is:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;What PiTFT Mini Kit is.&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;PiTFT Mini Kitは販売元の&lt;a href=&#34;https://www.adafruit.com/products/1601&#34;&gt;adafruit&lt;/a&gt;から引用すると
@@ -46,9 +44,7 @@
 &lt;li&gt;ただ海外から注文だし、作り方とかむずかしそうっ手思っている方は意外と簡単にできるので、この記事を参考にしてみてください。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a id=&#34;pos2&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;2-pitftを手に入れる:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;2. PiTFTを手に入れる。&lt;/h2&gt;
+&lt;h2 id=&#34;get-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Get PiTFT.&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;まずadafruitでの注文の仕方からはじめます。
@@ -66,9 +62,7 @@ adafruitのアカウントを持っておられない方はまずアカウント
 &lt;li&gt;Tips: _Google自動入力_で英語で名前と住所を登録しておくと自動で入力補完してくれるので便利です。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a id=&#34;pos3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;3-pitftの組み立て方:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;3. PiTFTの組み立て方&lt;/h2&gt;
+&lt;h2 id=&#34;assemble-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Assemble PiTFT.&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/assembly&#34;&gt;adafruit tutorials&lt;/a&gt;&lt;/p&gt;
@@ -93,16 +87,13 @@ adafruitのアカウントを持っておられない方はまずアカウント
 &lt;li&gt;これで組み立ては完成です。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a id=&#34;pos4&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;setup-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Setup PiTFT.&lt;/h2&gt;
 
-&lt;h2 id=&#34;4-ソフトのインストールと設定:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;4. ソフトのインストールと設定&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;これに一番手間取りました。
-&amp;gt;参考: &lt;a href=&#34;http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/software-installation&#34;&gt;adafruit tutorials&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;まずはじめにこのソフトはRaspbianで動くようになっているのですが、最新版のRaspbianでは動かないようです。なので推奨されている&lt;a href=&#34;http://downloads.raspberrypi.org/raspbian/images/raspbian-2013-09-27/2013-09-25-wheezy-raspbian.zip&#34;&gt;September 2013&lt;/a&gt;をダウンロード、解凍してSDに焼いて準備(&lt;code&gt;$ sudo raspe-config&lt;/code&gt;や&lt;code&gt;$ sudo apt-get updare&lt;/code&gt;、さらにモニターに繋ぐかSSHで接続)します。&lt;/li&gt;
-&lt;li&gt;まずカレントディレクトリに必要なファイルをダウンロードします。&lt;/li&gt;
-&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考: &lt;a href=&#34;http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/software-installation&#34;&gt;adafruit tutorials&lt;/a&gt;
+* まずはじめにこのソフトはRaspbianで動くようになっているのですが、最新版のRaspbianでは動かないようです。なので推奨されている&lt;a href=&#34;http://downloads.raspberrypi.org/raspbian/images/raspbian-2013-09-27/2013-09-25-wheezy-raspbian.zip&#34;&gt;September 2013&lt;/a&gt;をダウンロード、解凍してSDに焼いて準備(&lt;code&gt;$ sudo raspe-config&lt;/code&gt;や&lt;code&gt;$ sudo apt-get updare&lt;/code&gt;、さらにモニターに繋ぐかSSHで接続)します。
+* まずカレントディレクトリに必要なファイルをダウンロードします。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ cd ~
 $ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi-bin-adafruit.deb
