@@ -124,3 +124,11 @@ Date: <Date>
 以前、Common LispはまだAWSを使い倒すLibraryがそろって無いって言ったのもあって、無いなら自分でそろえて行くかと.
 
 だから作った.
+
+
+Usage
+---
+
+
+Way to DAO.
+---
