@@ -14,6 +14,8 @@ draft = true
 1. [What Dyna is.]({{< relref "#what-dyna-is" >}})
 2. [What DynamoDB is.]({{< relref "#what-dynamodb-is" >}})
 3. [Why DyanmoDB.]({{< relref "#why-dynamodb" >}})
+4. [Usage.]({{< relref "#usage" >}})
+5. [Way to DAO.]({{< relref "#way-to-dao" >}})
 
 
 What Dyna is.
