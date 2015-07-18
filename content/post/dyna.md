@@ -57,8 +57,8 @@ What DynamoDB is.
 Why DynamoDB.
 ---
 
-一見便利そうなDynamoDBですが、大きな問題があって、__Common LispにSDKが無い__.
-HTTP APIがあって、そこで全て操作できるんですが、ちょっと使ってみるには[Signing Process](http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)も
+一見便利そうなDynamoDBだが、__Common LispにSDKが無い__.
+HTTP APIがあって、そこで全て操作できるが、ちょっと使ってみるには[Signing Process](http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)も
 [JSON Data Format](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataFormat.html)も面倒い.
 
 たとえば[Query](http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html)してみたいとすると、
