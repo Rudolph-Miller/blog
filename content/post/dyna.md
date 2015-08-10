@@ -2,12 +2,12 @@
 Description = "Introduction of Dyna."
 Tags = ["Common Lisp", "Library", "Dyna", "AWS", "mine"]
 date = "2015-07-08T22:22:11+09:00"
-title = "Introducton of Dyna"
+title = "Introduction of Dyna"
 draft = true
 +++
 
 
-自作LibraryのDynaを紹介.
+拙作のDynaを紹介.
 
 <!--more-->
 
