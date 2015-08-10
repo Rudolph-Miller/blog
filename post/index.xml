@@ -7,212 +7,172 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Sun, 05 Jul 2015 23:14:29 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2015 13:53:10 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>How To Setup PiTFT</title>
-      <link>http://blog.rudolph-miller.com/2015/07/05/how-to-setup-pitft/</link>
-      <pubDate>Sun, 05 Jul 2015 23:14:29 +0900</pubDate>
+      <title>Introduction to Clipper</title>
+      <link>http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</link>
+      <pubDate>Mon, 10 Aug 2015 13:53:10 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/07/05/how-to-setup-pitft/</guid>
-      <description>
+      <guid>http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</guid>
+      <description>&lt;p&gt;稚作のClipperを紹介.&lt;/p&gt;
 
-&lt;p&gt;PiTFTの入手、取り付け、設定について解説.&lt;/p&gt;
+&lt;p&gt;例えばMicro Blogサービスを作るとしよう.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/pitft.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(defpackage sample.models
+  (:use :cl
+        :integral))
+(in-package :sample.models)
 
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#what-pitft-mini-kit-is:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;What PiTFT Mini Kit is.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#get-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Get PiTFT&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#assemble-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Assemble PiTFT&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#setup-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Setup PiTFT&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+(defclass user ()
+  ((id :type integer
+       :primary-key t
+       :auto-increment t
+       :not-null t
+       :reader user-id)
+   (name :col-type (:varchar 255)
+         :initarg :name
+         :accessor user-name))
+  (:metaclass &amp;lt;dao-table-class&amp;gt;))
 
-&lt;h2 id=&#34;what-pitft-mini-kit-is:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;What PiTFT Mini Kit is.&lt;/h2&gt;
+(defclass post ()
+  ((id :type (:integer 11)
+       :primary-key t
+       :auto-increment t
+       :not-null t
+       :reader post-id)
+   (content :type string
+            :col-type (:varchar 255)
+            :initarg :content
+            :accessor post-content)
+   (user-id :type integer
+            :initarg :user-id
+            :accessor post-user-id))
+  (:metaclass &amp;lt;dao-table-class&amp;gt;))
 
-&lt;ul&gt;
-&lt;li&gt;PiTFT Mini Kitは販売元の&lt;a href=&#34;https://www.adafruit.com/products/1601&#34;&gt;adafruit&lt;/a&gt;から引用すると
-&amp;gt;Is this not the cutest little display for the Raspberry Pi? It features a 2.8&amp;rdquo; display with 320x240 16-bit color pixels and a resistive touch overlay.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;で、つまりRaspberry Pi用の2.8インチのカラータッチディスプレイのことです。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;adafruit industriesはNew Yorkの電子部品、電子工作の何でも屋。&lt;/li&gt;
-&lt;li&gt;Raspberry Pi持っている方は上の写真をどこかしらで見かけたことがあるはず。&lt;/li&gt;
-&lt;li&gt;ただ海外から注文だし、作り方とかむずかしそうっ手思っている方は意外と簡単にできるので、この記事を参考にしてみてください。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;get-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Get PiTFT.&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;まずadafruitでの注文の仕方からはじめます。
-adafruitのアカウントを持っておられない方はまずアカウントを取得して下さい。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.adafruit.com/&#34;&gt;サイト&lt;/a&gt;右上のlog inからNew? Please Provide Your Billing Informationを埋めてSUBMIT&lt;/li&gt;
-&lt;li&gt;取得したアカウントでログインして、&lt;a href=&#34;https://www.adafruit.com/products/1601&#34;&gt;商品ページ&lt;/a&gt;に飛びます。adafruitから直接でもいいし、サイト内検索ボックスでPiTFTでもでできます。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.adafruit.com/products/1601&#34;&gt;商品ページ&lt;/a&gt;の右側のAdd to Cart:&lt;input type=&#34;test&#34; size=&#34;5&#34; value=&#34;1&#34;&gt;&lt;/input&gt;のボックスを必要な個数にして、&lt;button&gt;ADD TO CART&lt;/button&gt;します。&lt;/li&gt;
-&lt;li&gt;カートの中身を確認して&lt;button&gt;CHECK OUT&lt;/button&gt;します。&lt;/li&gt;
-&lt;li&gt;配送方法を選択。&lt;/li&gt;
-&lt;li&gt;支払い方法を選択。&lt;/li&gt;
-&lt;li&gt;内容を確認してokなら&lt;button&gt;CONFIRM&lt;/button&gt;します。&lt;/li&gt;
-&lt;li&gt;Adafruit Industries &lt;a href=&#34;mailto:support@adafruit.com&#34;&gt;support@adafruit.com&lt;/a&gt;から確認のメールが来るので確認します。&lt;/li&gt;
-&lt;li&gt;あとはまっていたら届きます。&lt;/li&gt;
-&lt;li&gt;入力がめんどうなだけで、ほとんど国内サイトでの買い物と同様で購入することができます。&lt;/li&gt;
-&lt;li&gt;Tips: _Google自動入力_で英語で名前と住所を登録しておくと自動で入力補完してくれるので便利です。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;assemble-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Assemble PiTFT.&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/assembly&#34;&gt;adafruit tutorials&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-&lt;li&gt;必要なもの&lt;/li&gt;
-&lt;li&gt;半田ごて&lt;/li&gt;
-&lt;li&gt;半田&lt;/li&gt;
-&lt;li&gt;作業場所&lt;/li&gt;
-&lt;li&gt;小さいものなので机の上でも十分可能。ただし半田ごての際はまわりに気をつけて。&lt;/li&gt;
-&lt;li&gt;作業場所にPiTFT Mini KitとRaspberry Pi(&lt;strong&gt;絶対に電源は抜いておいて下さい。&lt;/strong&gt;)と半田ごて、半田を用意します。
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/raspberry_pi_parts.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;写真右下のGPIOピンソケット(female header)をRaspberry Piの黒いとげとげ(GPIO port)に差し込みます。
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/raspberry_pi_tallheader.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;その上にPiTFT本体を、画面を上にしてピンがコネクター全部を通るよう差し込みます。&lt;/li&gt;
-&lt;li&gt;あとはすべてのピンを半田付けしていくだけです。&lt;br /&gt;
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/raspberry_pi_solder1.jpg&#34; alt=&#34;&#34; /&gt;
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/raspberry_pi_solder2.jpg&#34; alt=&#34;&#34; /&gt;
-&lt;div style=&#34;clear: both;&#34;&gt; &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;すべて半田付けできたら、ディスプレイ裏のシールをはがして、基盤にはりつけます。&lt;/li&gt;
-&lt;li&gt;これで組み立ては完成です。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;setup-pitft:1de7dfbdd9379a00999dfd73b9160672&#34;&gt;Setup PiTFT.&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;参考: &lt;a href=&#34;http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/software-installation&#34;&gt;adafruit tutorials&lt;/a&gt;
-* まずはじめにこのソフトはRaspbianで動くようになっているのですが、最新版のRaspbianでは動かないようです。なので推奨されている&lt;a href=&#34;http://downloads.raspberrypi.org/raspbian/images/raspbian-2013-09-27/2013-09-25-wheezy-raspbian.zip&#34;&gt;September 2013&lt;/a&gt;をダウンロード、解凍してSDに焼いて準備(&lt;code&gt;$ sudo raspe-config&lt;/code&gt;や&lt;code&gt;$ sudo apt-get updare&lt;/code&gt;、さらにモニターに繋ぐかSSHで接続)します。
-* まずカレントディレクトリに必要なファイルをダウンロードします。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ cd ~
-$ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi-bin-adafruit.deb
-$ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi-dev-adafruit.deb
-$ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi-doc-adafruit.deb
-$ wget http://adafruit-download.s3.amazonaws.com/libraspberrypi0-adafruit.deb
-$ wget http://adafruit-download.s3.amazonaws.com/raspberrypi-bootloader-adafruit-112613.deb
+(defun user-posts (user)
+  (check-type user user)
+  (select-dao &#39;post (where (:= :user_id (user-id user)))))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ul&gt;
-&lt;li&gt;次にそれらをインストールします。&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;こんな感じに&lt;a href=&#34;https://github.com/fukamachi/integral&#34;&gt;Integral&lt;/a&gt;を使用しModelとして&lt;code&gt;user&lt;/code&gt;と&lt;code&gt;post&lt;/code&gt;を定義する.
+とりあえずこれで&lt;code&gt;user&lt;/code&gt;に紐づく&lt;code&gt;post&lt;/code&gt;の投稿と&lt;code&gt;post&lt;/code&gt;の一覧機能ができる.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo dpkg -i -B *.deb
+&lt;p&gt;次に&lt;code&gt;user&lt;/code&gt;が名前の表示だけじゃ物足りなく感じ、Iconを設定できるようにしてみる.
+Iconを設定するためにはImage Filesを保存、管理しなくてはならない.&lt;/p&gt;
+
+&lt;p&gt;開発を進めて行く内に、
+「開発時はBrowserで確認するため&lt;code&gt;static/images/icons&lt;/code&gt;に保存し、
+test時は開発環境を壊したくないため&lt;code&gt;t/images/icons&lt;/code&gt;に保存したい.
+その上、productionではS3のBucketに保存したい.」
+となるのは当然だと思う.
+(少なくとも僕はそれが必要になった.)&lt;/p&gt;
+
+&lt;p&gt;これらの切り替えを簡単にするのが&lt;a href=&#34;https://github.com/Rudolph-Miller/clipper&#34;&gt;Clipper&lt;/a&gt;だ.&lt;/p&gt;
+
+&lt;p&gt;とりあえずIconのModelとして&lt;code&gt;icon&lt;/code&gt;を用意して、&lt;code&gt;user&lt;/code&gt;と紐づける.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(defclass icon ()
+  ((id :type integer
+       :primary-key t
+       :auto-increment t
+       :not-null t
+       :initarg :id)
+   (user-id :type integer)
+   (image-file-name :col-type (:varchar 255)
+                    :initarg :image-file-name)
+   (image-content-type :col-type (:varchar 255)
+                       :initarg :image-content-type)
+   (image-file-size :col-type (:integer 11)
+                    :initarg :image-file-size)
+   (url :type string
+        :initarg :url))
+  (:metaclass &amp;lt;dao-table-class&amp;gt;))
+
+
+(defun user-icon (user)
+  (check-type user user)
+  (car
+   (select-dao &#39;icon
+               (where (:= :user_id (user-id user)))
+               (limit 1))))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ul&gt;
-&lt;li&gt;再起動します。(PiTFTをすでにセットしている場合は&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;環境変数でのconfigの切り替えに&lt;a href=&#34;https://github.com/fukamachi/envy&#34;&gt;Envy&lt;/a&gt;を使用し、
+&lt;code&gt;clipper:setup-clipper&lt;/code&gt;の引数をenvごとに管理する.
+又、切り替えのための&lt;code&gt;sample.models::setup-clipper&lt;/code&gt;も定義しておく.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo reboot
+&lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(defpackage sample.config
+  (:use :cl)
+  (:import-from :envy
+                :config-env-var
+                :defconfig))
+(in-package :sample.config)
+
+(setf (config-env-var) &amp;quot;APP_ENV&amp;quot;)
+
+(defconfig |development|
+    `(:clipper (:store-type :local
+                :image-directory #P&amp;quot;/home/user/app/images/icons&amp;quot;
+                :relative #P&amp;quot;/home/user/app/&amp;quot;
+                :prefix &amp;quot;http://localhost:3000/&amp;quot;
+                :format &amp;quot;:ID/:FILE-NAME.:EXTENSION&amp;quot;)))
+
+(defconfig |production|
+    `(:clipper (:store-type :s3
+                :aws-access-key (uiop:getenv &amp;quot;AWS_ACCESS_KEY&amp;quot;)
+                :aws-secret-key (uiop:getenv &amp;quot;AWS_SECRET_KEY&amp;quot;)
+                :s3-endpoint &amp;quot;s3-ap-northeast-1.amazonaws.com&amp;quot;
+                :s3-bucket-name &amp;quot;sample-app&amp;quot;
+                :format &amp;quot;:ID/:FILE-NAME.:EXTENSION&amp;quot;)))
+
+(defun config ()
+  (envy:config #.(package-name *package*)))
+
+
+(in-package :sample.models)
+
+(defun setup-clipper ()
+  (apply #&#39;clipper:setup-clipper
+         (append (list :clipper-class (find-class &#39;icon))
+                 (getf (sample.config::config) :clipper))))
+
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;まだの場合は&lt;/p&gt;
+&lt;p&gt;すると環境変数&lt;code&gt;APP_ENV&lt;/code&gt;によってImage Filesの保存先を切り替えられる.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo shutdown -h now
+&lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(in-package :sample.models)
+
+(ql:quickload :osicat)
+
+(defvar *url* &amp;quot;http://www.lisperati.com/lisplogo_alien_256.png&amp;quot;)
+
+;; APP_ENV=development
+(setf (osicat:environment-variable &amp;quot;APP_ENV&amp;quot;) &amp;quot;development&amp;quot;)
+(setup-clipper)
+
+(let* ((user (create-dao &#39;user :name &amp;quot;Rudolph&amp;quot;))
+       (icon (create-dao &#39;icon :user-id (user-id user))))
+  (save-dao (clipper:attach-image icon :url *url*))
+  (clipper:image-url icon))
+
+;; =&amp;gt; &amp;quot;http://localhost:3000/images/icons/1/lisplogo_alien_256.png&amp;quot;
+
+
+;; APP_ENV=production
+(setf (osicat:environment-variable &amp;quot;APP_ENV&amp;quot;) &amp;quot;production&amp;quot;)
+(setup-clipper)
+
+(let* ((user (create-dao &#39;user :name &amp;quot;John&amp;quot;))
+       (icon (create-dao &#39;icon :user-id (user-id user))))
+  (save-dao (clipper:attach-image icon :url *url*))
+  (clipper:image-url icon))
+
+;; =&amp;gt; &amp;quot;https://s3-ap-northeast-1.amazonaws.com/sample-app/2/lisplogo_alien_256.png&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;で電源を切ったあとで、PiTFTをセットして起動して下さい。)
-* ドライバをインストールします。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo modprobe spi-bcm2708
-$ sudo modprobe fbtft_device name=adafruitts rotate=90
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;PiTFTの画面が白から黒に変わったと思います。(代わりが無ければもう一度実行。)&lt;/li&gt;
-&lt;li&gt;PiTFTでXserverを走らせて見ます。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ export FRAMEBUFFER=/dev/fb1
-$ startx
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;PiTFTにデスクトップが映っていれば成功です。Ctrl-cか、デスクトップをマウス操作してログアウトします。&lt;/li&gt;
-&lt;li&gt;次に起動時にこれらのモジュールが自動でロードされるようにします。&lt;/li&gt;
-&lt;li&gt;ここからのコマンドはVimが入っている前提で、エディタはVimで実行していきます。なぜなら&lt;strong&gt;Vimmerだから&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;$ sudo vim /etc/modules&lt;/code&gt;でmodulesを開き、以下の2行を加え保存します。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;spi-bcm2708
-fbtft_device
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;次に設定ファイルを作ります。
-&lt;code&gt;$ sudo vim /etc/modprobe.d/adafruit.conf&lt;/code&gt;で、次を書き込み保存します。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;options fbtft_device name=adafruitts rotate=90 frequency=32000000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;※rotateの値は画面の傾きです。0でadafruitのロゴが下で、そこから時計回りです。
-* 再起動してみて、コンソールの表示が以下のようになっているかみます。
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/raspberry_pi_dmesgdetect.png&#34; alt=&#34;&#34; /&gt;
-* 次にタッチスクリーンの設定をします。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo mkdir /etc/X11/xorg.conf.d
-$ sudo vim /etc/X11/xorg.conf.d/99-calibration.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でファイルを作成して以下を書き込み保存します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Section         &amp;quot;InputClass&amp;quot;
-Identifier      &amp;quot;calibration&amp;quot;
-MatchProduct    &amp;quot;stmpe-ts&amp;quot;
-Option          &amp;quot;Calibration&amp;quot;   &amp;quot;3800 200 200 3800&amp;quot;
-Option          &amp;quot;SwapAxes&amp;quot;      &amp;quot;1&amp;quot;
-EndSection
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/raspberry_pi_xorgconf.png&#34; alt=&#34;&#34; /&gt;
-* 動作するか確認します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FRAMEBUFFER=/dev/fb1 startx
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;FRAMEBUFFER=&lt;/code&gt;を毎回入力するのが面倒な場合は、
-&lt;code&gt;$ sudo vim ~/.profile&lt;/code&gt;に以下を上の方に追加して保存し、再起動して反映させます。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;export FRAMEBUFFER=/dev/fb1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;タッチスクリーンの調整を行います。
-&amp;gt; &lt;a href=&#34;http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/touchscreen-install-and-calibrate&#34;&gt;adafruit tutorials&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;コンソールを表示させます。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;boot configulationファイルを更新して、起動時にHDMI/TV出力の/dev/fb0の変わりにPiTFTの/dev/fb1を使用するようにします。
-&lt;code&gt;$ sudo vim /boot/cmdline.txt&lt;/code&gt;開いて、_rootwait_という文字列を探し、そのすぐ後に&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;fbcon=map:10 fbcon=font:VGA8x8
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;と書き込んで保存します。
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/raspberry_pi_fbcon.png&#34; alt=&#34;&#34; /&gt;
-* 次の起動からPiTFTにコンソールが表示されるはずです。
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150705/raspberry_pi_1601console_LRG.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;あといくつかPiTFTでの遊び方や設定、アドバンスド名トピックが公式の&lt;a href=&#34;http://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/overview&#34;&gt;tutolials&lt;/a&gt;では扱われています。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;長かったですがお疲れ様でした。PiTFTを使用したlike Hackingなideaがありましたらぜひ教え下さい。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;便利.&lt;/p&gt;
 </description>
     </item>
     
