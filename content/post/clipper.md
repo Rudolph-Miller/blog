@@ -168,3 +168,12 @@ test時は開発環境を壊したくないため`t/images/icons`に保存した
 ```
 
 便利.
+
+## See Also
+
+- [Document](http://rudolph-miller.github.io/clipper/overview.html)
+- [Quickdocs](http://quickdocs.org/clipper/)
+- [GitHub](https://github.com/Rudolph-Miller/clipper)
+- [Integral](https://github.com/fukamachi/integral) - An object relational mapper for Common Lisp.
+- [Envy](https://github.com/fukamachi/envy) - Configuration switcher by an environment variable inspired by Config::ENV.
+- [ZS3](http://xach.com/lisp/zs3/) - Amazon S3 and CloudFront from Common Lisp.
