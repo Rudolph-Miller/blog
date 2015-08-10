@@ -1,8 +1,8 @@
 +++
-Description = "Introduction of Dyna."
+Description = "Introduction to Dyna."
 Tags = ["Common Lisp", "Library", "Dyna", "AWS", "mine"]
 date = "2015-07-08T22:22:11+09:00"
-title = "Introduction of Dyna"
+title = "Introduction to Dyna"
 draft = true
 +++
 
