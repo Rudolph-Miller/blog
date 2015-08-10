@@ -95,7 +95,7 @@ test時は開発環境を壊したくないため`t/images/icons`に保存した
 
 環境変数でのconfigの切り替えに[Envy](https://github.com/fukamachi/envy)を使用し、
 `clipper:setup-clipper`の引数をenvごとに管理する.
-又、切り替えのためのfunctionも定義しておく.
+又、切り替えのための`sample.models::setup-clipper`も定義しておく.
 
 ```Common-Lisp
 (defpackage sample.config
@@ -135,7 +135,7 @@ test時は開発環境を壊したくないため`t/images/icons`に保存した
 
 ```
 
-すると環境変数`APP_ENV`によってImage Fileの保存先を切り替えられる.
+すると環境変数`APP_ENV`によってImage Filesの保存先を切り替えられる.
 
 ```Common-Lisp
 (in-package :sample.models)
