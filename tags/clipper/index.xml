@@ -20,6 +20,13 @@
 
 &lt;p&gt;稚作のClipperを紹介.&lt;/p&gt;
 
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#clipper:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;Clipper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;clipper:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;Clipper&lt;/h2&gt;
+
 &lt;p&gt;例えばMicro Blogサービスを作るとしよう.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(defpackage sample.models
