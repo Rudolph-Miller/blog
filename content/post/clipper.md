@@ -3,7 +3,6 @@ Description = "Introduction to Clipper."
 Tags = ["Common Lisp", "Library", "Clipper", "mine"]
 date = "2015-08-10T13:53:10+09:00"
 title = "Introduction to Clipper"
-draft = true
 +++
 
 稚作のClipperを紹介.
