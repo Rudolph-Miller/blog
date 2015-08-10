@@ -9,6 +9,13 @@ title = "Introduction to Clipper"
 
 <!--more-->
 
+1. [Clipper]({{< relref "#clipper" >}})
+2. [See Also]({{< relref "#see-also" >}})
+
+
+Clipper
+---
+
 例えばMicro Blogサービスを作るとしよう.
 
 ```Common-Lisp
@@ -169,7 +176,9 @@ test時は開発環境を壊したくないため`t/images/icons`に保存した
 
 便利.
 
-## See Also
+
+See Also
+---
 
 - [Document](http://rudolph-miller.github.io/clipper/overview.html)
 - [Quickdocs](http://quickdocs.org/clipper/)
