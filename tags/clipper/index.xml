@@ -16,7 +16,9 @@
       <pubDate>Mon, 10 Aug 2015 13:53:10 +0900</pubDate>
       
       <guid>http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</guid>
-      <description>&lt;p&gt;稚作のClipperを紹介.&lt;/p&gt;
+      <description>
+
+&lt;p&gt;稚作のClipperを紹介.&lt;/p&gt;
 
 &lt;p&gt;例えばMicro Blogサービスを作るとしよう.&lt;/p&gt;
 
@@ -173,6 +175,17 @@ test時は開発環境を壊したくないため&lt;code&gt;t/images/icons&lt;/
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;便利.&lt;/p&gt;
+
+&lt;h2 id=&#34;see-also:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;See Also&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://rudolph-miller.github.io/clipper/overview.html&#34;&gt;Document&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://quickdocs.org/clipper/&#34;&gt;Quickdocs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/clipper&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/integral&#34;&gt;Integral&lt;/a&gt; - An object relational mapper for Common Lisp.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/envy&#34;&gt;Envy&lt;/a&gt; - Configuration switcher by an environment variable inspired by Config::ENV.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://xach.com/lisp/zs3/&#34;&gt;ZS3&lt;/a&gt; - Amazon S3 and CloudFront from Common Lisp.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
