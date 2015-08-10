@@ -3,6 +3,12 @@ main {
     word-wrap: break-word;
 }
 
+/* Body */
+
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'Hiragino Kaku Gothic Pro', 'Meiryo', 'MS PGothic', sans-serif;
+}
+
 /* Header */
 
 .global-header {
@@ -234,10 +240,6 @@ pre code {
 
 blockquote {
      font-style:italic;
-}
-
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: "Source Sans Pro", "Kozuka Gothic Pr6N", Meiryo, sans-serif !important;
 }
 
 article section img {
