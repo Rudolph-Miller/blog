@@ -10,6 +10,7 @@ Common Lisp
 ---
 
 - Clipper
+  - [Introduce to Clipper](/2015/08/10/introduction-to-clipper/)
 - Cl-Gists
 - Cl-Annot-Prove
 - Jonathan
