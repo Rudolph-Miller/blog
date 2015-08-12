@@ -9,7 +9,7 @@ draft = true
 Common Lisp
 ---
 
-- Clipper
+- [Clipper](https://github.com/Rudolph-Miller/clipper)
   - [Introduce to Clipper](/2015/08/10/introduction-to-clipper/)
 - Cl-Gists
 - Cl-Annot-Prove
