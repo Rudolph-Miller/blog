@@ -1,6 +1,6 @@
 +++
 Description = "Introduction to Itamae."
-Tags = []
+Tags = ["Library", "Ruby", "Itamae"]
 date = "2015-08-18T22:19:36+09:00"
 title = "Introduction to Itamae"
 +++
