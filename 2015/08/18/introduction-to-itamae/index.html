@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="Introduction to Itamae - (rudolph-miller)" />
+  
+  <meta property="og:site_name" content="(rudolph-miller)" />
+  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2015-08-18T22:19:36&#43;09:00" />
+  
+  
+
+  <title>
+    Introduction to Itamae - (rudolph-miller)
+  </title>
+
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/main.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/github.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/highlight-lisp/themes/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://blog.rudolph-miller.com/images/favicon.png" />
+  <link rel="icon" href="http://blog.rudolph-miller.com/images/favicon.png" />
+  <link rel="apple-touch-icon" href="http://blog.rudolph-miller.com/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://blog.rudolph-miller.com/">(rudolph-miller)</a></h1>
+      
+      <div class="tag-line">
+        NO LISP, NO LIFE.
+      </div>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://blog.rudolph-miller.com/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Introduction to Itamae</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2015-08-18T22:19:36&#43;09:00">
+          Aug 18, 2015
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>Itamaeを紹介.</p>
+
+<ol>
+<li><a href="#what-itamae-is:b72d2926b7f180a7f91b4f672ac3b1c6">What Itamae is.</a></li>
+<li><a href="#how-to-use-itamae:b72d2926b7f180a7f91b4f672ac3b1c6">How to use Itamae.</a></li>
+<li><a href="#see-also:b72d2926b7f180a7f91b4f672ac3b1c6">See Also</a></li>
+</ol>
+
+<h2 id="what-itamae-is:b72d2926b7f180a7f91b4f672ac3b1c6">What Itamae is.</h2>
+
+<ul>
+<li><a href="https://github.com/itamae-kitchen/itamae">Itamae</a>はサーバーの構成管理ツールの一つ.</li>
+<li>Ruby DSLが使えるが、Chefほど色々覚えなくて良い.</li>
+<li>レシピをGemに閉じ込めることが可能.</li>
+</ul>
+
+<p>本当に簡単に使え、Bundlerで依存管理が可能で、使い勝手が良かったので紹介する.</p>
+
+<h2 id="how-to-use-itamae:b72d2926b7f180a7f91b4f672ac3b1c6">How to use Itamae.</h2>
+
+<pre><code class="language-sh">gem install itamae
+</code></pre>
+
+<p>でitamaeをinstallし、</p>
+
+<pre><code class="language-ruby">package 'sl' do
+  action :install
+end
+</code></pre>
+
+<p>と<code>sl.rb</code>に書き込む.</p>
+
+<pre><code class="language-sh">itamae local sl.rb
+</code></pre>
+
+<p>でlocalに<code>sl</code>をinstallできる.</p>
+
+<pre><code class="language-sh">gem install 'docker-api'
+itamae docker --image centos sl.rb
+</code></pre>
+
+<p>で<code>centos</code>をBaseに<code>sl</code>コマンド入りのDocker imageを作成できる.<br />
+と言いたいとこだが、<code>No package sl available.</code>だ.<br />
+仕方ないので、<code>centos</code>ではSourceからmakeするよう<code>sl.rb</code>を変更する.</p>
+
+<pre><code class="language-ruby">case node[:platform]
+when 'darwin'
+  package 'sl'
+when 'redhat'
+  %w( git gcc make ncurses-devel ).each do |package|
+    package package do
+      action :install
+    end
+  end
+
+  git '/usr/local/src/sl' do
+    repository 'https://github.com/mtoyoda/sl'
+  end
+
+  execute 'install sl' do
+    cwd '/usr/local/src/sl'
+    command &lt;&lt;-&quot;EOS&quot;
+    make
+    cp ./sl /usr/local/bin/sl
+    EOS
+  end
+end
+</code></pre>
+
+<p><code>node[:platform]</code>で分岐して<code>redhat</code>なら<a href="https://github.com/mtoyoda/sl">Source</a>をからbuildする.</p>
+
+<pre><code class="language-sh">$ itamae docker --image centos sl.rb
+ INFO : Starting Itamae...
+ INFO : Recipe: /Users/tomoya/ruby/sample.rb
+ INFO :   package[git] installed will change from 'false' to 'true'
+ INFO :   package[gcc] installed will change from 'false' to 'true'
+ INFO :   package[make] installed will change from 'false' to 'true'
+ INFO :   package[ncurses-devel] installed will change from 'false' to 'true'
+ INFO :   git[/usr/local/src/sl] exist will change from 'false' to 'true'
+ INFO :   execute[install sl] executed will change from 'false' to 'true'
+ INFO : Image created: 7534d8550ce218cc9d111e92a28e1c56549730bf52d5e6c83363f8a9b2042825
+$ docker run -it 7534d8550ce218cc9d111e92a28e1c56549730bf52d5e6c83363f8a9b2042825 sl
+</code></pre>
+
+<p>でdocker containerでSLが走る.</p>
+
+<p>GemとしてpublishされているRecipeを使用するのも簡単だ.</p>
+
+<pre><code class="language-sh">gem install itamae-plugin-recipe-nginx
+</code></pre>
+
+<p>と<code>nginx</code>のRecipeをinstallし、
+(登録されていないので実際にはinstallできない.)</p>
+
+<pre><code class="language-ruby"># To include recipe at lib/itamae/plugin/recipe/nginx.rb
+include_recipe 'nginx'
+
+# To include recipe at lib/itamae/plugin/recipe/nginx/debug.rb
+include_recipe 'nginx::debug'
+</code></pre>
+
+<p>と書くだけでRecipeのincludeができる.</p>
+
+<h2 id="see-also:b72d2926b7f180a7f91b4f672ac3b1c6">See Also</h2>
+
+<ul>
+<li><a href="https://github.com/itamae-kitchen/itamae">Itamae GitHub</a></li>
+<li><a href="https://speakerdeck.com/ryotarai/itamae-infra-as-code-xian-zhuang-que-ren-hui">Itamae - Infra as Code 現状確認会</a></li>
+<li><a href="https://github.com/mizzy/specinfra">Specinfra</a></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+        <img alt="Author Avatar" src="/images/logo.png" />
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        <h1 class="author-name text-primary">Rudolph Miller</h1>
+        
+        
+        <div class="author-bio">Common Lisp Player.</div>
+        
+      </div>
+      
+      <div class="author-contact col-md-4">
+        <a href="mailto:lisper@rudolph-miller.com">
+          <i class="fa fa-envelope-o"></i>
+          &nbsp;Contact me
+        </a>
+      </div>
+      
+    </section>
+    <section class="social-buttons row">
+      
+      <div class="social-button">
+        <a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true" data-count="vertical">Tweet</a>
+      </div>
+
+      
+      <div class="social-button">
+        <a class='hatena-bookmark-button' data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en" expr:data-hatena-bookmark-title="data:post.title" expr:href='"http://b.hatena.ne.jp/entry/" + data:post.canonicalUrl' title='このエントリーをはてなブックマークに追加'>
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
+        </a>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/"></div>
+      </div>
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      
+      var disqus_shortname = 'rudolph-miller';
+      (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })()
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+    
+    <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
+
+    
+    <script type='text/javascript' src='http://b.st-hatena.com/js/bookmark_button.js' charset='utf-8' async='async'></script>
+
+    
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>
+      {lang: "ja"}
+    </script>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; Copyright 2015 Rudolph Miller
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://blog.rudolph-miller.com/js/highlight.pack.js"></script>
+  <script src="http://blog.rudolph-miller.com/highlight-lisp/highlight-lisp.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    HighlightLisp.highlight_auto({className: "language-common-lisp"});
+    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-47602577-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+
