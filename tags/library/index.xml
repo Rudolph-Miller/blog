@@ -126,7 +126,7 @@ include_recipe &#39;nginx::debug&#39;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/itamae-kitchen/itamae&#34;&gt;Itamae GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://speakerdeck.com/ryotarai/itamae-infra-as-code-xian-zhuang-que-ren-hui&#34;&gt;Itamae - Infra as Code 現状確認会&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/mizzy/specinfra&#34;&gt;Specinfra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/mizzy/specinfra&#34;&gt;Specinfra GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
