@@ -126,4 +126,4 @@ See Also
 
 - [Itamae GitHub](https://github.com/itamae-kitchen/itamae)
 - [Itamae - Infra as Code 現状確認会](https://speakerdeck.com/ryotarai/itamae-infra-as-code-xian-zhuang-que-ren-hui)
-- [Specinfra](https://github.com/mizzy/specinfra)
+- [Specinfra GitHub](https://github.com/mizzy/specinfra)
