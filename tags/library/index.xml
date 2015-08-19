@@ -11,11 +11,11 @@
     <atom:link href="http://blog.rudolph-miller.com/tags/library/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Introduction to Itamae</title>
-      <link>http://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/</link>
+      <title>Itamae</title>
+      <link>http://blog.rudolph-miller.com/2015/08/18/itamae/</link>
       <pubDate>Tue, 18 Aug 2015 22:19:36 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/</guid>
+      <guid>http://blog.rudolph-miller.com/2015/08/18/itamae/</guid>
       <description>
 
 &lt;p&gt;Itamaeを紹介.&lt;/p&gt;
@@ -132,11 +132,11 @@ include_recipe &#39;nginx::debug&#39;
     </item>
     
     <item>
-      <title>Introduction to Clipper</title>
-      <link>http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</link>
+      <title>Clipper</title>
+      <link>http://blog.rudolph-miller.com/2015/08/10/clipper/</link>
       <pubDate>Mon, 10 Aug 2015 13:53:10 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</guid>
+      <guid>http://blog.rudolph-miller.com/2015/08/10/clipper/</guid>
       <description>
 
 &lt;p&gt;稚作のClipperを紹介.&lt;/p&gt;
