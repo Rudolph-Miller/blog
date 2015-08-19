@@ -40,7 +40,7 @@ MAINTAINER Rudolph Miller
 ADD app.lisp /usr/local/src/clack-test/
 
 CMD woo --port 5000 /usr/local/src/clack-test/app.lisp
-EXPOSE 80
+EXPOSE 5000
 ```
 
 Dockerfileでやっているのは上の`app.lisp`を配置して、
