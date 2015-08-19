@@ -39,7 +39,7 @@ MAINTAINER Rudolph Miller
 
 ADD app.lisp /usr/local/src/clack-test/
 
-ENTRYPOINT ["woo", "--port", "80", "/usr/local/src/clack-test/app.lisp"]
+CMD woo --port 5000 /usr/local/src/clack-test/app.lisp
 EXPOSE 80
 ```
 
