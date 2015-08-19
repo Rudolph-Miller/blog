@@ -48,8 +48,8 @@ Dockerfileでやっているのは上の`app.lisp`を配置して、
 後はDockerで`build`して`run`するとClack Applicationが動く.
 
 ```sh
-docker build -t rudolphm/clack-sample ./
-docker run -it -p 5000:5000 rudolphm/clack-sample
+docker build -t clack-sample ./
+docker run -d -p 5000:5000 clack-sample
 ```
 
 Common Lispもようやくここまで来たかって所感.
