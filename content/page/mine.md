@@ -10,13 +10,15 @@ Common Lisp
 ---
 
 - [Clipper](https://github.com/Rudolph-Miller/clipper)
-  - [Introduce to Clipper](/2015/08/10/introduction-to-clipper/)
+  - [Clipper](/2015/08/10/introduction-to-clipper/)
 - [Cl-Gists](https://github.com/Rudolph-Miller/cl-gists)
 - [Cl-Annot-Prove](https://github.com/Rudolph-Miller/cl-annot-prove)
 - [Jonathan](https://github.com/Rudolph-Miller/jonathan)
 - [Elb-Log](https://github.com/Rudolph-Miller/elb-log)
 - [Dyna](https://github.com/Rudolph-Miller/dyna)
 - [Dockerfile-Clack](https://github.com/Rudolph-Miller/dockerfile-clack)
+  - [Docker image for Clack Application](/2015/08/20/docker-image-for-clack-application/)
+- [Integral-Rest](https://github.com/Rudolph-Miller/integral-rest)
 
 
 React.js
