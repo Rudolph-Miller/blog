@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on (rudolph-miller)</title>
+    <link>http://blog.rudolph-miller.com/tags/docker/</link>
+    <description>Recent content in Docker on (rudolph-miller)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
+    <lastBuildDate>Thu, 20 Aug 2015 10:10:48 +0900</lastBuildDate>
+    <atom:link href="http://blog.rudolph-miller.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Docker image for Clack Application</title>
+      <link>http://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</link>
+      <pubDate>Thu, 20 Aug 2015 10:10:48 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</guid>
+      <description>
+
+&lt;p&gt;Clack Application用のDocker base imageを作成したので紹介.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#how-to-use:cea2b2dc75a3d671d3ebef79d9a355b3&#34;&gt;How to use.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:cea2b2dc75a3d671d3ebef79d9a355b3&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;how-to-use:cea2b2dc75a3d671d3ebef79d9a355b3&#34;&gt;How to use.&lt;/h2&gt;
+
+&lt;p&gt;簡単な&lt;code&gt;app.lisp&lt;/code&gt;を用意する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defvar *app*
+  (lambda (env)
+    (declare (ignore env))
+    &#39;(200 (:content-type &amp;quot;text/plain&amp;quot;) (&amp;quot;Hello, World&amp;quot;))))
+
+(lack:builder
+ :session
+ *app*)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;FROM&lt;/code&gt;として&lt;code&gt;rudolphm/clack&lt;/code&gt;を指定してDockerfileを用意する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FROM rudolphm/clack:latest
+MAINTAINER Rudolph Miller
+
+
+ADD app.lisp /usr/local/src/clack-test/
+
+CMD woo --port 5000 /usr/local/src/clack-test/app.lisp
+EXPOSE 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dockerfileでやっているのは上の&lt;code&gt;app.lisp&lt;/code&gt;を配置して、
+&lt;code&gt;ENTRYPOINT&lt;/code&gt;として&lt;code&gt;woo --port 500 app.lisp&lt;/code&gt;を指定しているだけだ.
+後はDockerで&lt;code&gt;build&lt;/code&gt;して&lt;code&gt;run&lt;/code&gt;するとClack Applicationが動く.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker build -t clack-sample ./
+docker run -d -p 5000:5000 clack-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Common Lispもようやくここまで来たかって所感.&lt;/p&gt;
+
+&lt;h2 id=&#34;see-also:cea2b2dc75a3d671d3ebef79d9a355b3&#34;&gt;See Also&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/dockerfile-clack&#34;&gt;Dockerfile-Clack GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/clack&#34;&gt;Clack GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/woo&#34;&gt;Woo GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/snmsts/roswell&#34;&gt;Roswell GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
