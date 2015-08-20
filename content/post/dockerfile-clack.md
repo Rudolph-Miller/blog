@@ -1,9 +1,9 @@
 +++
 Description = "Introduction to Docker image for Clack Application."
-Tags = ["Common Lisp", "Library", "Clack", "Docker", "mine"]
-date = "2015-08-13T12:14:52+09:00"
-title = "Docker image for Clack Application"
+Tags = ["Common Lisp","Library","Clack","Docker","mine"]
+date = "2015-08-20T10:09:23+09:00"
 draft = true
+title = "Docker image for Clack Application"
 +++
 
 Clack Application用のDocker base imageを作成したので紹介.
