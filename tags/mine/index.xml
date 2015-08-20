@@ -47,12 +47,12 @@ MAINTAINER Rudolph Miller
 
 ADD app.lisp /usr/local/src/clack-test/
 
-CMD woo --port 5000 /usr/local/src/clack-test/app.lisp
+CMD clackup --port 5000 --server woo /usr/local/src/clack-test/app.lisp
 EXPOSE 5000
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Dockerfileでやっているのは上の&lt;code&gt;app.lisp&lt;/code&gt;を配置して、
-&lt;code&gt;ENTRYPOINT&lt;/code&gt;として&lt;code&gt;woo --port 500 app.lisp&lt;/code&gt;を指定しているだけだ.
+&lt;code&gt;ENTRYPOINT&lt;/code&gt;として&lt;code&gt;clackup --port 5000 --server woo app.lisp&lt;/code&gt;を指定しているだけだ.
 後はDockerで&lt;code&gt;build&lt;/code&gt;して&lt;code&gt;run&lt;/code&gt;するとClack Applicationが動く.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker build -t clack-sample ./
