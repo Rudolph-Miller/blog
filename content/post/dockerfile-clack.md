@@ -1,8 +1,8 @@
 +++
 Description = "Introduction to Docker image for Clack Application."
 Tags = ["Common Lisp","Library","Clack","Docker","mine"]
-date = "2015-08-20T10:09:23+09:00"
-draft = true
+date = "2015-08-20T10:10:48+09:00"
+draft = false
 title = "Docker image for Clack Application"
 +++
 
