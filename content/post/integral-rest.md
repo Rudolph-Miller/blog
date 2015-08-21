@@ -90,6 +90,6 @@ Integral-RestはIntegralのDAO tableからREST APIを簡単に作るLibrary.
 See Also
 ---
 
-- [Integral-Rest GitHub](https://github.com/Rudolph-Miller/integral-resnt)
+- [Integral-Rest GitHub](https://github.com/Rudolph-Miller/integral-rest)
 - [Integral GitHub](https://github.com/fukamachi/integral)
 - [Clack GitHub](https://github.com/fukamachi/clack)
