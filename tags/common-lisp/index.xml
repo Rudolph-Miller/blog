@@ -7,8 +7,101 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Thu, 20 Aug 2015 10:10:48 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2015 11:20:54 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/tags/common-lisp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Integral-Rest</title>
+      <link>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</link>
+      <pubDate>Fri, 21 Aug 2015 11:20:54 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</guid>
+      <description>
+
+&lt;p&gt;稚拙のIntegral-Restを紹介.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#integral-rest:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;Integral-Rest&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;integral-rest:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;Integral-Rest&lt;/h2&gt;
+
+&lt;p&gt;Integral-RestはIntegralのDAO tableからREST APIを簡単に作るLibrary.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defpackage sample
+  (:use :cl
+        :integral
+        :integral-rest))
+(in-package :sample)
+
+(connect-toplevel :sqlite3 :database-name &amp;quot;:memory:&amp;quot;)
+
+(defclass user ()
+  ((id :initarg :id
+       :type integer
+       :primary-key t
+       :accessor user-id)
+   (name :initarg :name
+         :type string
+         :accessor user-name))
+  (:metaclass integral:&amp;lt;dao-table-class&amp;gt;))
+
+(ensure-table-exists (find-class &#39;user))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;:metaclass&lt;/code&gt;として&lt;code&gt;integral:&amp;lt;dao-table-class&amp;gt;&lt;/code&gt;を指定し、&lt;code&gt;user&lt;/code&gt;を&lt;code&gt;defclass&lt;/code&gt;する.&lt;br /&gt;
+後は&lt;code&gt;(set-rest-app)&lt;/code&gt;をすると&lt;code&gt;*rest-app*&lt;/code&gt;がREST API appに束縛されので、&lt;br /&gt;
+&lt;code&gt;*rest-app*&lt;/code&gt;は&lt;code&gt;ningle:&amp;lt;app&amp;gt;&lt;/code&gt;の&lt;code&gt;instance&lt;/code&gt;なので、これをそのまま&lt;code&gt;clack:clackup&lt;/code&gt;できる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(set-rest-app)
+
+(clack:clackup *rest-app*)
+;; =&amp;gt; Listening on localhost:5000.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これだけでREST API ServerがPort 5000で立ち上がる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(create-dao &#39;user :name &amp;quot;Rudolph&amp;quot;)
+;; =&amp;gt; #&amp;lt;USER id: 1&amp;gt;
+
+(dex:get &amp;quot;http://localhost:5000/api/users&amp;quot;)
+;; =&amp;gt; &amp;quot;[{\&amp;quot;id\&amp;quot;:1,\&amp;quot;name\&amp;quot;:\&amp;quot;Rudolph\&amp;quot;}]&amp;quot;
+
+(dex:get &amp;quot;http://localhost:5000/api/users/1&amp;quot;)
+;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:1,\&amp;quot;name\&amp;quot;:\&amp;quot;Rudolph\&amp;quot;}&amp;quot;
+
+(dex:post &amp;quot;http://localhost:5000/api/users&amp;quot; :contest &#39;((&amp;quot;name&amp;quot; . &amp;quot;Miller&amp;quot;)))
+;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Miller\&amp;quot;}&amp;quot;
+
+(find-dao &#39;user 2)
+;; =&amp;gt; #&amp;lt;USER id: 2 name: &amp;quot;Miller&amp;quot;&amp;gt;
+
+(dex:put &amp;quot;http://localhost:5000/api/users/2&amp;quot; :contest &#39;((&amp;quot;name&amp;quot; . &amp;quot;Tom&amp;quot;)))
+;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Tom\&amp;quot;}&amp;quot;
+
+(find-dao &#39;user 2)
+;; =&amp;gt; #&amp;lt;USER id: 2 name: &amp;quot;Tom&amp;quot;&amp;gt;
+
+(dex:delete &amp;quot;http://localhost:5000/api/users/2&amp;quot;)
+;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Tom\&amp;quot;}&amp;quot;
+
+(find-dao &#39;user 2)
+;; =&amp;gt; NIL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちょっとしたAPI Serverだと&lt;code&gt;app.lisp&lt;/code&gt;に十数行で書ける.&lt;/p&gt;
+
+&lt;h2 id=&#34;see-also:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;See Also&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/integral-rest&#34;&gt;Integral-Rest GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://rudolph-miller.github.io/integral-rest/overview.html&#34;&gt;Integral-Rest Document&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/integral&#34;&gt;Integral GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/clack&#34;&gt;Clack GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Docker image for Clack Application</title>
