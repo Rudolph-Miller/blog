@@ -2,6 +2,7 @@ require 'toml'
 
 def edit_metadata
   title = ENV['TITLE']
+  abort 'Please specify TITLE.' unless title
   filename = "content/post/#{title}.md"
   if File.exists?(filename)
     content = File.open(filename, 'r').read

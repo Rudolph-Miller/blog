@@ -1,8 +1,8 @@
 +++
 Description = "Introduction to Integral-Rest."
 Tags = ["Common Lisp","Library","Integral","Integral-Rest","mine"]
-date = "2015-08-21T06:37:46+09:00"
-draft = true
+date = "2015-08-21T11:20:54+09:00"
+draft = false
 title = "Integral-Rest"
 +++
 
