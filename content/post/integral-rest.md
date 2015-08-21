@@ -91,5 +91,6 @@ See Also
 ---
 
 - [Integral-Rest GitHub](https://github.com/Rudolph-Miller/integral-rest)
+- [Integral-Rest Document](http://rudolph-miller.github.io/integral-rest/overview.html)
 - [Integral GitHub](https://github.com/fukamachi/integral)
 - [Clack GitHub](https://github.com/fukamachi/clack)
