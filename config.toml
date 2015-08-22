@@ -1,8 +1,6 @@
-theme = "vienna"
 baseurl = "http://blog.rudolph-miller.com/"
 languageCode = "ja-JP"
 title = "(rudolph-miller)"
-# Copyright notice. This is displayer in the footer.
 copyright = "&copy; Copyright 2015 Rudolph Miller"
 
 [params]
@@ -15,7 +13,6 @@ copyright = "&copy; Copyright 2015 Rudolph Miller"
   bio = "Common Lisp Player."
   subtitle = "NO LISP, NO LIFE."
   wishlist = "A3RNOUU855C76"
-  # themecolor = "#hexcolor"
   disqusshortname = "rudolph-miller"
 [permalinks]
   post = "/:year/:month/:day/:slug/"
