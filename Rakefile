@@ -13,9 +13,9 @@ def edit_metadata
   if File.exists?(filename)
     content = File.open(filename, 'r').read
     metadata = (/^\++\n(?<metadata>[\s\S]*)\n\++\n/).match(content)[:metadata]
-    hash = TOML::Parser.new(metadata).parsed
+    hash = TOML.parse(metadata)
     yield hash
-    edited_metadata = TOML::Generator.new(hash).body
+    edited_metadata = TOML.dump(hash)
     edited_metadata = "+++\n#{edited_metadata}+++\n"
     content = content.gsub(/^\++\n([\s\S]*)\n\++\n/, edited_metadata)
     File.open(filename, 'w').write(content)
@@ -40,4 +40,5 @@ end
 task :post do
   title = extract_title ARGV
   sh "hugo new post/#{title}.md"
+  Rake::Task['unpublish'].invoke(title)
 end
