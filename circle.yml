@@ -6,7 +6,11 @@ general:
 dependencies:
   pre:
     - go get -v github.com/spf13/hugo
-    - git clone --recursive https://github.com/Rudolph-Miller/vienna themes/vienna
+
+checkout:
+  post:
+    - git submodule init
+    - git submodule update
 
 test:
   override:
