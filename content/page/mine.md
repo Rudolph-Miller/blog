@@ -19,6 +19,7 @@ Common Lisp
 - [Dockerfile-Clack](https://github.com/Rudolph-Miller/dockerfile-clack)
   - [Docker image for Clack Application](/2015/08/20/docker-image-for-clack-application/)
 - [Integral-Rest](https://github.com/Rudolph-Miller/integral-rest)
+  - [Integral-Rest](/2015/08/21/integral-rest/)
 
 
 React.js
