@@ -1,8 +1,14 @@
 require 'toml'
 
+def extract_title(argv)
+  title = argv.last
+  abort 'Please specify TITLE.' unless title and argv.length >= 2
+  argv.slice(1,argv.size).each{|v| task v.to_sym do; end}
+  title
+end
+
 def edit_metadata
-  title = ENV['TITLE']
-  abort 'Please specify TITLE.' unless title
+  title = extract_title ARGV
   filename = "content/post/#{title}.md"
   if File.exists?(filename)
     content = File.open(filename, 'r').read
@@ -29,4 +35,9 @@ task :unpublish do
   edit_metadata do |hash|
     hash['draft'] = true
   end
+end
+
+task :post do
+  title = extract_title ARGV
+  sh "hugo new post/#{title}.md"
 end
