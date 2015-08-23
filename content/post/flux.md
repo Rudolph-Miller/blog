@@ -7,6 +7,6 @@ slug = "flux"
 title = "Comparing Flux Frameworks"
 +++
 
-Flux Frameworksを比較.
+乱立するFlux Frameworksを比較.
 
 <!--more-->
