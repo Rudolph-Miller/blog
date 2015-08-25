@@ -11,8 +11,8 @@ title = "Comparing Flux Frameworks"
 
 <!--more-->
 
-以下の5つに絞って比較する.
-他のFrameworkの要望があれば、[Twitter](https://twitter.com/Rudolph_Miller)にmention.
+以下の5つに絞って比較する.  
+他のFrameworkの要望があれば、[Twitter](https://twitter.com/Rudolph_Miller)にmention.  
 Sourceは[GitHub](https://github.com/Rudolph-Miller/flux-frameworks).
 
 1. [Flux]({{< relref "#flux" >}})
