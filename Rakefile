@@ -10,18 +10,15 @@ end
 def edit_metadata
   title = extract_title ARGV
   filename = "content/post/#{title}.md"
-  if File.exists?(filename)
-    content = File.open(filename, 'r').read
-    metadata = (/^\++\n(?<metadata>[\s\S]*)\n\++\n/).match(content)[:metadata]
-    hash = TOML.parse(metadata)
-    yield hash
-    edited_metadata = TOML.dump(hash)
-    edited_metadata = "+++\n#{edited_metadata}+++\n"
-    content = content.gsub(/^\++\n([\s\S]*)\n\++\n/, edited_metadata)
-    File.open(filename, 'w').write(content)
-  else
-    abort "No such file: #{filename}."
-  end
+  abort "No such file: #{filename}." unless File.exists?(filename)
+  content = File.open(filename, 'r').read
+  metadata = (/^\++\n(?<metadata>[\s\S]*)\n\++\n/).match(content)[:metadata]
+  hash = TOML.parse(metadata)
+  yield hash
+  edited_metadata = TOML.dump(hash)
+  edited_metadata = "+++\n#{edited_metadata}+++\n"
+  content = content.gsub(/^\++\n([\s\S]*)\n\++\n/, edited_metadata)
+  File.open(filename, 'w').write(content)
 end
 
 task :publish do
@@ -41,4 +38,20 @@ task :post do
   title = extract_title ARGV
   sh "hugo new post/#{title}.md"
   Rake::Task['unpublish'].invoke(title)
+end
+
+task edit: :emacs
+
+task :vim do
+  title = extract_title ARGV
+  filename = "content/post/#{title}.md"
+  abort "No such file: #{filename}." unless File.exists?(filename)
+  sh "vim #{filename}"
+end
+
+task :emacs do
+  title = extract_title ARGV
+  filename = "content/post/#{title}.md"
+  abort "No such file: #{filename}." unless File.exists?(filename)
+  sh "emacs #{filename}"
 end
