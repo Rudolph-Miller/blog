@@ -43,14 +43,14 @@ Reactive Data Bindings
 ---
 
 ```html
-@ app/main/views/index.html
+<!-- @ app/main/views/index.html -->
 <:Body>
   <button e-click="incr_counter" class="btn btn-default">Click</button>
   <div>{{ page._counter }}</div>
 ```
 
 ```ruby
-@ app/main/controllers/main_controller.rb
+# @ app/main/controllers/main_controller.rb
 module Main
   class MainController < Volt::ModelController
     def incr_counter
@@ -64,7 +64,7 @@ end
 ボタンをclickすると`page._counter`をインクリメントするように`View`と`Controller`を書く.
 
 ```diff
-@ app/main/views/index.html
+ <!-- @ app/main/views/index.html -->
  <:Body>
    <button e-click="incr_counter" class="btn btn-default">Click</button>
    <div>{{ page._counter }}</div>
@@ -72,23 +72,23 @@ end
 ```
 
 ```diff
-@ app/main/controllers/main_controller.rb
-module Main
+ # @ app/main/controllers/main_controller.rb
  module Main
-   class MainController < Volt::ModelController
-     def incr_counter
-       page._counter ||= 0
-       page._counter += 1
-     end
+  module Main
+    class MainController < Volt::ModelController
+      def incr_counter
+        page._counter ||= 0
+        page._counter += 1
+      end
 +
-+    def cool?
-+      page._counter && page._counter >= 10
-+    end
-   end
- end
++     def cool?
++       page._counter && page._counter >= 10
++     end
+    end
+  end
 ```
 
-`star`10回で`Cool!`と表示を宣言的に記述するだけ.
+`star`が10以上で`Cool!`と表示を宣言的に記述するだけ.
 
 
 See Also
