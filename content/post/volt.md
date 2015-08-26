@@ -12,11 +12,15 @@ Isomorphic in RubyなFramework [Volt](https://github.com/voltrb/volt/)を紹介.
 <!--more-->
 
 1. [Getting Started]({{< relref "#getting-started" >}})
-1. [Reactive Data Bindings ]({{< relref "#reactive-data-bindings" >}})
+1. [Same code runs on the client and the server]({{< relref "#same-code-runs-on-the-client-and-the-server" >}})
+1. [Automatic Data Syncing]({{< relref "#automatic-data-syncing" >}})
+1. [Reactive Data Bindings]({{< relref "#reactive-data-bindings" >}})
+1. [Components]({{< relref "#components" >}})
 1. [See Also]({{< relref "#see-also" >}})
 
 __Keywords__
 
+- Same code runs on the client and the server
 - Automatic Data Syncing
 - Reactive Data Bindings
 - Components
@@ -37,6 +41,17 @@ bundle exec volt server
 
 Clientとのほとんどの通信をWebSocketかそれと同等のSocket通信で行い.
 初回のページ読み込み以外では、クライアントとのデータの同期にHTTPを利用しない.
+
+
+Same code runs on the client and the server
+---
+
+
+Automatic Data Syncing
+---
+
+ある1つのクライアント上でデータが更新されたときには、
+データベース、および他のリスニング中のクライアント上でも更新が行われます。
 
 
 Reactive Data Bindings
@@ -89,6 +104,10 @@ end
 ```
 
 `star`が10以上で`Cool!`と表示を宣言的に記述するだけ.
+
+
+Components
+---
 
 
 See Also
