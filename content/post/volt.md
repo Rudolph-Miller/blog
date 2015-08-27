@@ -102,7 +102,7 @@ end
 - Voltは複数形の属性を自動的に空の`Volt::ArrayModel`に初期化する.
 - `Volt::ArrayModel`にハッシュを追加した場合、自動的にVoltのモデルに変換される.
 
-これだけで`memo: `のText Inputに入力してEnterすると、MemoのListが増える.
+これだけで`memo: `のText Inputに入力してEnterすると、Memoの追加ができる.
 
 これを複数Clientsで操作をするとリアルタイムで同期しているのが確認できる.
 
