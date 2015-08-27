@@ -102,13 +102,18 @@ end
 - Voltは複数形の属性を自動的に空の`Volt::ArrayModel`に初期化する.
 - `Volt::ArrayModel`にハッシュを追加した場合、自動的にVoltのモデルに変換される.
 
-これだけで`memo: `のText Inputに入力してEnterすると、MemoのListが増える.
+これだけで`memo: `のText Inputに入力してEnterすると、Memoの追加ができる.
 
 これを複数Clientsで操作をするとリアルタイムで同期しているのが確認できる.
 
 
 Reactive Data Bindings
 ---
+
+DOM (および値が変更されたことを検知したい他のすべてのコード)に対して、
+自動的に、かつ正確に変更を伝えるために、データフロー／リアクティブプログラミングを利用する.
+
+DOMに何らかの変更があった場合に、Voltは変更が必要なノードだけを更新する.
 
 ```diff
  <!-- @ app/main/views/index.html -->
