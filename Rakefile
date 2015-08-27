@@ -12,12 +12,14 @@ def edit_metadata
   filename = "content/post/#{title}.md"
   abort "No such file: #{filename}." unless File.exists?(filename)
   content = File.open(filename, 'r').read
-  metadata = (/^\++\n(?<metadata>[\s\S]*)\n\++\n/).match(content)[:metadata]
+  metadata_regex = /^\+\+\+\n(?<metadata>[\s\S]*)\n\+\+\+\n/
+  metadata = metadata_regex.match(content)[:metadata]
   hash = TOML.parse(metadata)
   yield hash
   edited_metadata = TOML.dump(hash)
   edited_metadata = "+++\n#{edited_metadata}+++\n"
-  content = content.gsub(/^\++\n([\s\S]*)\n\++\n/, edited_metadata)
+  content_regex = /^\+\+\+\n([\s\S]*)\n\+\+\+\n/
+  content = content.gsub(content_regex , edited_metadata)
   File.open(filename, 'w').write(content)
 end
 

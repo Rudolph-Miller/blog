@@ -1,10 +1,10 @@
 +++
 Description = "Volt - Isomorphic web application framework in Ruby."
 Tags = ["Ruby", "Library", "Opal", "Volt"]
-date = "2015-08-26T08:09:00+09:00"
-draft = true
-title = "Volt - Isomorphic in Ruby"
+date = "2015-08-27T11:32:17+09:00"
+draft = false
 slug = "volt"
+title = "Volt - Isomorphic in Ruby"
 +++
 
 Isomorphic in RubyなFramework [Volt](https://github.com/voltrb/volt/)を紹介.
