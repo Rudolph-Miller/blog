@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ruby on (rudolph-miller)</title>
-    <link>http://blog.rudolph-miller.com/tags/ruby/</link>
-    <description>Recent content in Ruby on (rudolph-miller)</description>
+    <title>Opal on (rudolph-miller)</title>
+    <link>http://blog.rudolph-miller.com/tags/opal/</link>
+    <description>Recent content in Opal on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
     <lastBuildDate>Thu, 27 Aug 2015 11:32:17 +0900</lastBuildDate>
-    <atom:link href="http://blog.rudolph-miller.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.rudolph-miller.com/tags/opal/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Volt - Isomorphic in Ruby</title>
@@ -186,127 +186,6 @@ end
 &lt;li&gt;&lt;a href=&#34;https://github.com/opal/opal&#34;&gt;Opal GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://fiveteesixone.lackland.io/2015/08/03/10-minutes-volt-chat-application-tutorial/&#34;&gt;Volt を使って10分でリアルタイムチャットアプリケーションを作るチュートリアル&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/todo_example_volt&#34;&gt;Todo-Example-Volt GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Itamae</title>
-      <link>http://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/</link>
-      <pubDate>Tue, 18 Aug 2015 22:19:36 +0900</pubDate>
-      
-      <guid>http://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/</guid>
-      <description>
-
-&lt;p&gt;Itamaeを紹介.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#what-itamae-is:b72d2926b7f180a7f91b4f672ac3b1c6&#34;&gt;What Itamae is.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#how-to-use-itamae:b72d2926b7f180a7f91b4f672ac3b1c6&#34;&gt;How to use Itamae.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:b72d2926b7f180a7f91b4f672ac3b1c6&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;what-itamae-is:b72d2926b7f180a7f91b4f672ac3b1c6&#34;&gt;What Itamae is.&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/itamae-kitchen/itamae&#34;&gt;Itamae&lt;/a&gt;はサーバーの構成管理ツールの一つ.&lt;/li&gt;
-&lt;li&gt;Ruby DSLが使えるが、Chefほど色々覚えなくて良い.&lt;/li&gt;
-&lt;li&gt;レシピをGemに閉じ込めることが可能.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本当に簡単に使え、Bundlerで依存管理が可能で、使い勝手が良かったので紹介する.&lt;/p&gt;
-
-&lt;h2 id=&#34;how-to-use-itamae:b72d2926b7f180a7f91b4f672ac3b1c6&#34;&gt;How to use Itamae.&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;gem install itamae
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でitamaeをinstallし、&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;package &#39;sl&#39; do
-  action :install
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;と&lt;code&gt;sl.rb&lt;/code&gt;に書き込む.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;itamae local sl.rb
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でlocalに&lt;code&gt;sl&lt;/code&gt;をinstallできる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;gem install &#39;docker-api&#39;
-itamae docker --image centos sl.rb
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;で&lt;code&gt;centos&lt;/code&gt;をBaseに&lt;code&gt;sl&lt;/code&gt;コマンド入りのDocker imageを作成できる.&lt;br /&gt;
-と言いたいとこだが、&lt;code&gt;No package sl available.&lt;/code&gt;だ.&lt;br /&gt;
-仕方ないので、&lt;code&gt;centos&lt;/code&gt;ではSourceからmakeするよう&lt;code&gt;sl.rb&lt;/code&gt;を変更する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;case node[:platform]
-when &#39;darwin&#39;
-  package &#39;sl&#39;
-when &#39;redhat&#39;
-  %w( git gcc make ncurses-devel ).each do |package|
-    package package do
-      action :install
-    end
-  end
-
-  git &#39;/usr/local/src/sl&#39; do
-    repository &#39;https://github.com/mtoyoda/sl&#39;
-  end
-
-  execute &#39;install sl&#39; do
-    cwd &#39;/usr/local/src/sl&#39;
-    command &amp;lt;&amp;lt;-&amp;quot;EOS&amp;quot;
-    make
-    cp ./sl /usr/local/bin/sl
-    EOS
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;node[:platform]&lt;/code&gt;で分岐して&lt;code&gt;redhat&lt;/code&gt;なら&lt;a href=&#34;https://github.com/mtoyoda/sl&#34;&gt;Source&lt;/a&gt;をからbuildする.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ itamae docker --image centos sl.rb
- INFO : Starting Itamae...
- INFO : Recipe: /Users/tomoya/ruby/sample.rb
- INFO :   package[git] installed will change from &#39;false&#39; to &#39;true&#39;
- INFO :   package[gcc] installed will change from &#39;false&#39; to &#39;true&#39;
- INFO :   package[make] installed will change from &#39;false&#39; to &#39;true&#39;
- INFO :   package[ncurses-devel] installed will change from &#39;false&#39; to &#39;true&#39;
- INFO :   git[/usr/local/src/sl] exist will change from &#39;false&#39; to &#39;true&#39;
- INFO :   execute[install sl] executed will change from &#39;false&#39; to &#39;true&#39;
- INFO : Image created: 7534d8550ce218cc9d111e92a28e1c56549730bf52d5e6c83363f8a9b2042825
-$ docker run -it 7534d8550ce218cc9d111e92a28e1c56549730bf52d5e6c83363f8a9b2042825 sl
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でdocker containerでSLが走る.&lt;/p&gt;
-
-&lt;p&gt;GemとしてpublishされているRecipeを使用するのも簡単だ.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;gem install itamae-plugin-recipe-nginx
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;と&lt;code&gt;nginx&lt;/code&gt;のRecipeをinstallし、
-(登録されていないので実際にはinstallできない.)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# To include recipe at lib/itamae/plugin/recipe/nginx.rb
-include_recipe &#39;nginx&#39;
-
-# To include recipe at lib/itamae/plugin/recipe/nginx/debug.rb
-include_recipe &#39;nginx::debug&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;と書くだけでRecipeのincludeができる.&lt;/p&gt;
-
-&lt;h2 id=&#34;see-also:b72d2926b7f180a7f91b4f672ac3b1c6&#34;&gt;See Also&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/itamae-kitchen/itamae&#34;&gt;Itamae GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://speakerdeck.com/ryotarai/itamae-infra-as-code-xian-zhuang-que-ren-hui&#34;&gt;Itamae - Infra as Code 現状確認会&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/mizzy/specinfra&#34;&gt;Specinfra GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

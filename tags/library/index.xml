@@ -7,8 +7,188 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 21 Aug 2015 11:20:54 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2015 11:32:17 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/tags/library/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Volt - Isomorphic in Ruby</title>
+      <link>http://blog.rudolph-miller.com/2015/08/27/volt/</link>
+      <pubDate>Thu, 27 Aug 2015 11:32:17 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/08/27/volt/</guid>
+      <description>
+
+&lt;p&gt;Isomorphic in RubyなFramework &lt;a href=&#34;https://github.com/voltrb/volt/&#34;&gt;Volt&lt;/a&gt;を紹介.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Same code runs on the client and the server&lt;/li&gt;
+&lt;li&gt;Automatic Data Syncing&lt;/li&gt;
+&lt;li&gt;Reactive Data Bindings&lt;/li&gt;
+&lt;li&gt;Components&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;VoltはClient, Server共にRubyで記述する&lt;strong&gt;Isomorphic&lt;/strong&gt;で&lt;strong&gt;Reactive&lt;/strong&gt;なWeb Application Frameworkで上のような特徴を持つ.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#getting-started:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#same-code-runs-on-the-client-and-the-server:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Same code runs on the client and the server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#automatic-data-syncing:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Automatic Data Syncing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reactive-data-bindings:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Reactive Data Bindings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#components:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Components&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;getting-started:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Getting Started&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;gem install volt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;volt new sample_app
+cd sample_app
+bundle exec volt server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでServerが起動する.&lt;/p&gt;
+
+&lt;p&gt;ファイルが変更されたときには、Voltは自動的にそのファイルをreloadし、Clientに変更をpushする.&lt;/p&gt;
+
+&lt;h2 id=&#34;same-code-runs-on-the-client-and-the-server:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Same code runs on the client and the server&lt;/h2&gt;
+
+&lt;p&gt;ClientとServerをRubyでIsomorphicに書ける.&lt;/p&gt;
+
+&lt;p&gt;First RequestはServer Sideで実行されるが、それ以降はClient Sideで実行され、HTTP Requestが発生しない.&lt;/p&gt;
+
+&lt;p&gt;データはModelClassで表現され、それの同期はautomaticallyにWebSocketかそれと同等のSocket通信でなされる.&lt;/p&gt;
+
+&lt;h2 id=&#34;automatic-data-syncing:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Automatic Data Syncing&lt;/h2&gt;
+
+&lt;p&gt;ある1つのクライアント上でデータが更新されたときには、
+データベース、および他のリスニング中のクライアント上でも更新が行われる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!-- @ app/main/views/index.html --&amp;gt;
+&amp;lt;:Body&amp;gt;
+  {{ store._memos.each_with_index do |memo, index| }}
+    &amp;lt;div&amp;gt;
+      &amp;lt;label&amp;gt;{{ index + 1 }}&amp;lt;/label&amp;gt;
+      &amp;lt;span&amp;gt;{{ memo._text }}&amp;lt;/span&amp;gt;
+    &amp;lt;/div&amp;gt;
+  {{ end }}
+  &amp;lt;form e-submit=&amp;quot;add_memo&amp;quot;&amp;gt;
+    &amp;lt;label&amp;gt;memo: &amp;lt;/label&amp;gt;
+    &amp;lt;input type=&amp;quot;text&amp;quot; value=&amp;quot;{{ page._new_text }}&amp;quot; /&amp;gt;
+  &amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# @ app/main/controllers/main_controller.rb
+module Main
+  class MainController &amp;lt; Volt::ModelController
+    def add_memo
+      store._memos &amp;lt;&amp;lt; { text: page._new_text }
+      page._new_text = &#39;&#39;
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Viewでは&lt;code&gt;each&lt;/code&gt;バインディングでイテレーションができる.&lt;/li&gt;
+&lt;li&gt;Viewでは&lt;code&gt;e-{イベント名}&lt;/code&gt;の属性でイベントをバインドして、Controllerのメソッドを呼び出すことができる.&lt;/li&gt;
+&lt;li&gt;Viewでは&lt;code&gt;{{&lt;/code&gt;と&lt;code&gt;}}&lt;/code&gt;で囲った中のRubyのCodeを実行し、その返り血をrenderできる.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;self&lt;/code&gt;はControllerのインスタンスなので&lt;code&gt;{{ add_memo }}&lt;/code&gt;で&lt;code&gt;main_controller.rb&lt;/code&gt;の&lt;code&gt;add_memo&lt;/code&gt;が実行される.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_&lt;/code&gt;(&lt;strong&gt;Underscore Accessors&lt;/strong&gt;)によって事前に定義せずにPropertyにgetとsetができる.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;page&lt;/code&gt;は&lt;strong&gt;Page Collection&lt;/strong&gt;と呼ばれるもので、一時的にデータを保存するためのもの.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;value=&amp;quot;{{ page._new_text }}&amp;quot;&lt;/code&gt;で双方向バインドが可能.
+
+&lt;ul&gt;
+&lt;li&gt;Controllerでもpage._nex_textにget, setが可能.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;store&lt;/code&gt;は&lt;strong&gt;Store Collection&lt;/strong&gt;と呼ばれるもので、データベースにデータを保存するためのもの.&lt;/li&gt;
+&lt;li&gt;Voltは複数形の属性を自動的に空の&lt;code&gt;Volt::ArrayModel&lt;/code&gt;に初期化する.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Volt::ArrayModel&lt;/code&gt;にハッシュを追加した場合、自動的にVoltのモデルに変換される.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;これだけで&lt;code&gt;memo:&lt;/code&gt;のText Inputに入力してEnterすると、Memoの追加ができる.&lt;/p&gt;
+
+&lt;p&gt;これを複数Clientsで操作をするとリアルタイムで同期しているのが確認できる.&lt;/p&gt;
+
+&lt;h2 id=&#34;reactive-data-bindings:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Reactive Data Bindings&lt;/h2&gt;
+
+&lt;p&gt;DOM (および値が変更されたことを検知したい他のすべてのコード)に対して、
+自動的に、かつ正確に変更を伝えるために、データフロー／リアクティブプログラミングを利用する.&lt;/p&gt;
+
+&lt;p&gt;DOMに何らかの変更があった場合に、Voltは変更が必要なノードだけを更新する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; &amp;lt;!-- @ app/main/views/index.html --&amp;gt;
+ &amp;lt;:Body&amp;gt;
+   {{ store._memos.each_with_index do |memo, index| }}
+     &amp;lt;div&amp;gt;
+       &amp;lt;label&amp;gt;{{ index + 1 }}&amp;lt;/label&amp;gt;
+       &amp;lt;span&amp;gt;{{ memo._text }}&amp;lt;/span&amp;gt;
+     &amp;lt;/div&amp;gt;
+   {{ end }}
+   &amp;lt;form e-submit=&amp;quot;add_memo&amp;quot;&amp;gt;
+     &amp;lt;label&amp;gt;memo&amp;lt;/label&amp;gt;
+     &amp;lt;input type=&amp;quot;text&amp;quot; value=&amp;quot;{{ page._new_text }}&amp;quot; /&amp;gt;
+   &amp;lt;/form&amp;gt;
++  {{ if too_much_memos }}&amp;lt;div&amp;gt;Are you crazy??&amp;lt;/div&amp;gt;{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; # @ app/main/controllers/main_controller.rb
+ module Main
+   class MainController &amp;lt; Volt::ModelController
+     def add_memo
+       store._memos &amp;lt;&amp;lt; { text: page._new_text }
+       page._new_text = &#39;&#39;
+     end
++
++    def too_much_memos
++      store._memos.size.then do |size|
++        size &amp;gt; 10
++      end
++    end
+   end
+ end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;store&lt;/code&gt;の&lt;code&gt;ArrayModel&lt;/code&gt;に対するメソッド実行は&lt;code&gt;promise&lt;/code&gt;を返す.
+
+&lt;ul&gt;
+&lt;li&gt;結果を処理するときは&lt;code&gt;.then&lt;/code&gt;を使う.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://opalrb.org/blog/2014/05/07/promises-in-opal/&#34;&gt;Promises in Opal&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ロジックを&lt;strong&gt;宣言的に&lt;/strong&gt;記述すると、Userの操作に&lt;strong&gt;reactive&lt;/strong&gt;にDOMが更新される.&lt;/p&gt;
+
+&lt;h2 id=&#34;components:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Components&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ApplicationはComponentから成り立っている.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;app/&lt;/code&gt;以下のすべてのdirectoryはComponentである.&lt;/li&gt;
+&lt;li&gt;ComponentはGemにすることも可能.&lt;/li&gt;
+&lt;li&gt;Componentの依存が可能.&lt;/li&gt;
+&lt;li&gt;ClientとServerでコードを共有できることによって、Full StackなComponentの提供を実現する.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Componentに分割することにより、コードを再利用可能で疎結合でテストを容易なものにする.&lt;/p&gt;
+
+&lt;h2 id=&#34;see-also:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;See Also&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/voltrb/volt/&#34;&gt;Volt GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://voltframework.com/docs&#34;&gt;Volt Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/opal/opal&#34;&gt;Opal GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fiveteesixone.lackland.io/2015/08/03/10-minutes-volt-chat-application-tutorial/&#34;&gt;Volt を使って10分でリアルタイムチャットアプリケーションを作るチュートリアル&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/todo_example_volt&#34;&gt;Todo-Example-Volt GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Integral-Rest</title>
