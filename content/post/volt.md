@@ -1,6 +1,6 @@
 +++
 Description = "Volt - Isomorphic web application framework in Ruby."
-Tags = ["Ruby", "Library", "Opal", "volt"]
+Tags = ["Ruby", "Library", "Opal", "Volt"]
 date = "2015-08-26T08:09:00+09:00"
 draft = true
 title = "Volt - Isomorphic in Ruby"
