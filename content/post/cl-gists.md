@@ -11,7 +11,9 @@ title = "Cl-Gists"
 <!--more-->
 
 Cl-Gistsは[GistsのAPI](https://developer.github.com/v3/gists/)のWrapper.
-APIのVersionは3で一通り実装した.
+API Versionは3で一通り実装した.
+
+1. [See Also]({{< relref "#see-also" >}})
 
 See Also
 ---
