@@ -16,6 +16,8 @@ def edit_metadata
   metadata = metadata_regex.match(content)[:metadata]
   hash = TOML.parse(metadata)
   yield hash
+  hash['Description'] ||= 'WIP'
+  hash['Tags'] ||= ['WIP']
   edited_metadata = TOML.dump(hash)
   edited_metadata = "+++\n#{edited_metadata}+++\n"
   content_regex = /^\+\+\+\n([\s\S]*)\n\+\+\+\n/
