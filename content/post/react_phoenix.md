@@ -11,8 +11,8 @@ Phoenix Template Engine for ReactなReact Phoenixを紹介.
 
 <!--more-->
 
-React Phoenixはinspired by [react-rails](https://github.com/reactjs/react-rails)なPhoenixのTemplate Engineで  
-React.jsのServer Side Rendingをsupportしています.
+React Phoenixはinspired by [react-rails](https://github.com/reactjs/react-rails)で
+PhoenixでReact.jsのServer Side Rendingをsupportできます.
 
 1. [Why Phoenix]({{< relref "#why-phoenix">}})
 1. [See Also]({{< relref "#see-also">}})
