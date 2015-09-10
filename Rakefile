@@ -53,6 +53,8 @@ task :vim do
   sh "vim #{filename}"
 end
 
+task vi: :vim
+
 task :emacs do
   title = extract_title ARGV
   filename = "content/post/#{title}.md"
