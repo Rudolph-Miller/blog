@@ -61,3 +61,7 @@ task :emacs do
   abort "No such file: #{filename}." unless File.exists?(filename)
   sh "emacs #{filename}"
 end
+
+task :server do
+  sh 'hugo server -wD'
+end
