@@ -3,3 +3,4 @@ themes/
 !highlight-lisp/themes
 *~
 .*.swp
+.DS_Store
