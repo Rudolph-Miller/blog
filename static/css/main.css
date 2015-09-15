@@ -257,3 +257,7 @@ article section img {
     float: left;
     margin-left: 15px;
 }
+
+img {
+    display: block;
+}
