@@ -7,8 +7,169 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Thu, 27 Aug 2015 11:32:17 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2015 10:39:31 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Setup React Native for Android</title>
+      <link>http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</link>
+      <pubDate>Tue, 15 Sep 2015 10:39:31 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</guid>
+      <description>
+
+&lt;p&gt;OS XでのReact Native for Androidのセットアップを紹介.&lt;/p&gt;
+
+&lt;p&gt;ようやくReact Native for Androidが公開されたので、
+まずはOS Xでのセットアップを紹介.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#install-and-configure-sdk:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Install and configure SDK&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#install-and-run-android-stock-emulator:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Install and run Android stock emulator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#setup:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;install-and-configure-sdk:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Install and configure SDK&lt;/h2&gt;
+
+&lt;p&gt;SDKのインストールと設定をする.&lt;/p&gt;
+
+&lt;p&gt;まずは&lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&#34;&gt;JDK&lt;/a&gt;の最新版をインストール.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;android-sdk&lt;/code&gt;を&lt;code&gt;brew&lt;/code&gt;でインストールします.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;brew install android-sdk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次に&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;export ANDROID_HOME=/usr/local/opt/android-sdk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を&lt;code&gt;~/.zshrc&lt;/code&gt;又は&lt;code&gt;~/.bashrc&lt;/code&gt;に追加し再読み込み.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;source ~/.zshrc
+# source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Android SDK Manager&lt;/code&gt;を起動.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;android
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Android SDK Build-tools version 23.0.1&lt;/li&gt;
+&lt;li&gt;Android 6.0 (API 23)&lt;/li&gt;
+&lt;li&gt;Android Support Repository&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;にチェックを入れて&lt;code&gt;Install Packages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;install-and-run-android-stock-emulator:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Install and run Android stock emulator&lt;/h2&gt;
+
+&lt;p&gt;Android emulatorをインストールして起動する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;android
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で&lt;code&gt;Android SDK Manager&lt;/code&gt;を起動して&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Intel x86 Atom System Image (for Android 5.1.1 - API 22)
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Android 5.1.1 (API 22)&lt;/code&gt;のタブ中にあるので注意.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Intel x86 Emulator Accelerator (HAXM installer)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;にチェックを入れて&lt;code&gt;Install Packages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;configure-haxm:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Configure HAXM&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://developer.android.com/tools/devices/emulator.html#vm-mac&#34;&gt;HAXM&lt;/a&gt;の設定をする.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;open /usr/local/Cellar/android-sdk/24.3.4/extras/intel/Hardware_Accelerated_Execution_Manager/IntelHAXM_1.1.4.dmg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;IntelHAXM_1.1.4.mpkg&lt;/code&gt;をダブルクリックし、画面の指示に従ってインストールする.&lt;/p&gt;
+
+&lt;p&gt;インストール終了後、新しい&lt;code&gt;kernel extension&lt;/code&gt;が正しく処理されていることを確認するため、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;kextstat | grep intel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を実行し&lt;code&gt;com.intel.kext.intelhaxm&lt;/code&gt;が表示されることを確認する.&lt;/p&gt;
+
+&lt;p&gt;これでHAXMの設定は完了.&lt;/p&gt;
+
+&lt;h3 id=&#34;run-android-emulator:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Run Android emulator&lt;/h3&gt;
+
+&lt;p&gt;Android emulatorを起動する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;android avd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でAVD Managerを立ち上げ&lt;code&gt;Create...&lt;/code&gt;でAVDを作成し&lt;code&gt;Start...&lt;/code&gt;でEmulatorを立ち上げる.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150915/CreateAVD.png&#34; alt=&#34;Create AVD&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;又はすでに&lt;code&gt;~/.android/avd/&lt;/code&gt;に&lt;code&gt;.avd&lt;/code&gt;ファイルがあれば、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# ls ~/.android/avd/
+# =&amp;gt; Nexus_5_API_23_x86.avd Nexus_5_API_23_x86.ini
+emulator -avd Nexus_5_API_23_x86
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でファイル名を指定してEmulatorを起動できる.&lt;/p&gt;
+
+&lt;h2 id=&#34;setup:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;最後にReact Native本体のセットアップをする.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/creationix/nvm&#34;&gt;NVM&lt;/a&gt;や&lt;a href=&#34;https://github.com/wfarr/nodenv&#34;&gt;nodenv&lt;/a&gt;
+などで&lt;code&gt;io.js 1.0 or newer&lt;/code&gt;を準備する.&lt;br /&gt;
+(今回はnodenvとNode.js v4.0.0を使用.)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;nodenv install v4.0.0
+# nodenv global v4.0.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;npmでコマンドラインインターフェースの&lt;code&gt;react-native-cli&lt;/code&gt;をインストールする.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install -g react-native-cli
+# nodenv rehash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すると&lt;code&gt;react-native&lt;/code&gt;コマンドが使用可能になるので、適当なディレクトリで&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;react-native init AwesomeProject
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を実行すると、iOS用に&lt;code&gt;AwesomeProject/iOS/AwesomeProject.xcodeproj&lt;/code&gt;と&lt;br /&gt;
+Android用に&lt;code&gt;AwesomeProject/android/app&lt;/code&gt;とが生成される.&lt;/p&gt;
+
+&lt;p&gt;後は&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cd AwesomeProject
+react-native run-android
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でEmulator又は(接続してsetupしていれば)実機でApplicationが立ち上がる.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150915/welcome-to-react-native.png&#34; alt=&#34;Welcome to React Native&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;see-also:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;See Also&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/&#34;&gt;React Native&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/getting-started.html#content&#34;&gt;Getting Started - React Native&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/android-setup.html&#34;&gt;Android Setup - React Native&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/tutorial.html#content&#34;&gt;Tutorial - React Native&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.facebook.com/posts/1189117404435352&#34;&gt;React Native for Android: How we built the first cross-platform React Native app&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Volt - Isomorphic in Ruby</title>
