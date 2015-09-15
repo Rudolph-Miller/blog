@@ -1,10 +1,10 @@
 +++
 Description = "Setup React Native for Android"
-Tags = ["React.js","JavaScript","React Native","Android"]
-date = "2015-09-15T06:18:46+09:00"
-draft = true
-title = "Setup React Native for Android"
+Tags = ["React.js", "JavaScript", "React Native", "Android"]
+date = "2015-09-15T10:39:31+09:00"
+draft = false
 slug = "setup-react-native-for-android"
+title = "Setup React Native for Android"
 +++
 
 OS XでのReact Native for Androidのセットアップを紹介.
