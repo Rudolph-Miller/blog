@@ -7,8 +7,72 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Tue, 15 Sep 2015 10:39:31 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2015 10:06:16 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>React Native on Android device</title>
+      <link>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</link>
+      <pubDate>Wed, 16 Sep 2015 10:06:16 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</guid>
+      <description>
+
+&lt;p&gt;React Native for Androidを実機で動かす.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#run-on-device:60c6196952e7045685a1de9e62046e9b&#34;&gt;Run on device&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:60c6196952e7045685a1de9e62046e9b&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;run-on-device:60c6196952e7045685a1de9e62046e9b&#34;&gt;Run on device&lt;/h2&gt;
+
+&lt;p&gt;まずUSB Debugging ModeをONにする.&lt;/p&gt;
+
+&lt;p&gt;するとAndroid端末を開発機にUSBで接続して、&lt;code&gt;react-native run-android&lt;/code&gt;を実行すると、
+端末にApplicationのインストールが可能と起動が可能となる.&lt;/p&gt;
+
+&lt;p&gt;そしてこの真っ赤なエラー画面に遭遇して面食らう.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150916/error.png&#34; alt=&#34;Error on device&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;なにが起こっているか.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;index.android.bundle&lt;/code&gt;を&lt;code&gt;localhost:8081&lt;/code&gt;から取ってこようとして、接続できなくエラーとなっている.
+つまりbundleしたJavaScriptファイルを開発機から取ってこようとして失敗したと.&lt;/p&gt;
+
+&lt;p&gt;そのため開発サーバーに接続すれば良く、とりあえず2通りの方法がある.&lt;/p&gt;
+
+&lt;h3 id=&#34;using-adb-reverse:60c6196952e7045685a1de9e62046e9b&#34;&gt;Using adb reverse&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;adb reverse&lt;/code&gt;を使用して、端末の&lt;code&gt;tcp:8081&lt;/code&gt;で開発機の&lt;code&gt;tpc:8081&lt;/code&gt;を参照できるようにする.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;adb reverse tcp:8081 tcp:8081
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これだけで他の設定を変更することなく端末上で&lt;code&gt;Reload JS&lt;/code&gt;などの開発オプションが使用できるようになる.&lt;/p&gt;
+
+&lt;h3 id=&#34;configure-device-to-connect-to-the-dev-server-via-wi-fi:60c6196952e7045685a1de9e62046e9b&#34;&gt;Configure device to connect to the dev server via Wi-Fi&lt;/h3&gt;
+
+&lt;p&gt;端末の&lt;code&gt;Dev Settings&lt;/code&gt;で&lt;code&gt;Debug server host&lt;/code&gt;の設定を変更する.
+この方法で開発機に接続するためには端末と開発機が同じWi-Fiに接続している必要がある.&lt;/p&gt;
+
+&lt;p&gt;Applicationで&lt;code&gt;menu&lt;/code&gt;を表示する.
+(端末のメニューボタンを押すかApplicationを開いた状態で端末を振ると表示される.)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Dev Settings&lt;/code&gt;、&lt;code&gt;Debug server host for device&lt;/code&gt;と遷移し、開発機のIPアドレスを入力する.&lt;br /&gt;
+(OS XのIPアドレスは&lt;code&gt;システム環境設定&lt;/code&gt;、&lt;code&gt;ネットワーク&lt;/code&gt;と遷移して、接続中のネットワークのタブで確認できる.)&lt;/p&gt;
+
+&lt;p&gt;すると端末上で&lt;code&gt;Reload JS&lt;/code&gt;などの開発オプションが使用できるようになる.&lt;/p&gt;
+
+&lt;h2 id=&#34;see-also:60c6196952e7045685a1de9e62046e9b&#34;&gt;See Also&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/running-on-device-android.html&#34;&gt;Running On Device(Android)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://developer.android.com/tools/device.html&#34;&gt;Using Handware Devices&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Setup React Native for Android</title>

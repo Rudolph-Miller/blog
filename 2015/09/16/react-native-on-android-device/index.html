@@ -3,15 +3,15 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="Setup React Native for Android - (rudolph-miller)" />
+  <meta property="og:title" content="React Native on Android device - (rudolph-miller)" />
   
   <meta property="og:site_name" content="(rudolph-miller)" />
-  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/" />
+  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2015-09-15T10:39:31&#43;09:00" />
+  <meta property="og:article:published_time" content="2015-09-16T10:06:16&#43;09:00" />
   
   <meta property="og:article:tag" content="React.js" />
   
@@ -24,7 +24,7 @@
   
 
   <title>
-    Setup React Native for Android - (rudolph-miller)
+    React Native on Android device - (rudolph-miller)
   </title>
 
   <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/bootstrap.min.css" />
@@ -89,12 +89,12 @@
 
 <article>
   <header>
-    <h1 class="text-primary">Setup React Native for Android</h1>
+    <h1 class="text-primary">React Native on Android device</h1>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
-        <time datetime="2015-09-15T10:39:31&#43;09:00">
-          Sep 15, 2015
+        <time datetime="2015-09-16T10:06:16&#43;09:00">
+          Sep 16, 2015
         </time>
       </div>
       <div class="pull-right">
@@ -113,155 +113,58 @@
   <section>
     
 
-<p>OS XでのReact Native for Androidのセットアップを紹介.</p>
-
-<p>ようやくReact Native for Androidが公開されたので、
-まずはOS Xでのセットアップを紹介.</p>
+<p>React Native for Androidを実機で動かす.</p>
 
 <ol>
-<li><a href="#install-and-configure-sdk:f4f600c0da5570cdeafda90b8b2d1724">Install and configure SDK</a></li>
-<li><a href="#install-and-run-android-stock-emulator:f4f600c0da5570cdeafda90b8b2d1724">Install and run Android stock emulator</a></li>
-<li><a href="#setup:f4f600c0da5570cdeafda90b8b2d1724">Setup</a></li>
-<li><a href="#see-also:f4f600c0da5570cdeafda90b8b2d1724">See Also</a></li>
+<li><a href="#run-on-device:60c6196952e7045685a1de9e62046e9b">Run on device</a></li>
+<li><a href="#see-also:60c6196952e7045685a1de9e62046e9b">See Also</a></li>
 </ol>
 
-<h2 id="install-and-configure-sdk:f4f600c0da5570cdeafda90b8b2d1724">Install and configure SDK</h2>
+<h2 id="run-on-device:60c6196952e7045685a1de9e62046e9b">Run on device</h2>
 
-<p>SDKのインストールと設定をする.</p>
+<p>まずUSB Debugging ModeをONにする.</p>
 
-<p>まずは<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">JDK</a>の最新版をインストール.</p>
+<p>するとAndroid端末を開発機にUSBで接続して、<code>react-native run-android</code>を実行すると、
+端末にApplicationのインストールが可能と起動が可能となる.</p>
 
-<p><code>android-sdk</code>を<code>brew</code>でインストールします.</p>
+<p>そしてこの真っ赤なエラー画面に遭遇して面食らう.</p>
 
-<pre><code class="language-sh">brew install android-sdk
+<p><img src="/images/20150916/error.png" alt="Error on device" /></p>
+
+<p>なにが起こっているか.</p>
+
+<p><code>index.android.bundle</code>を<code>localhost:8081</code>から取ってこようとして、接続できなくエラーとなっている.
+つまりbundleしたJavaScriptファイルを開発機から取ってこようとして失敗したと.</p>
+
+<p>そのため開発サーバーに接続すれば良く、とりあえず2通りの方法がある.</p>
+
+<h3 id="using-adb-reverse:60c6196952e7045685a1de9e62046e9b">Using adb reverse</h3>
+
+<p><code>adb reverse</code>を使用して、端末の<code>tcp:8081</code>で開発機の<code>tpc:8081</code>を参照できるようにする.</p>
+
+<pre><code class="language-sh">adb reverse tcp:8081 tcp:8081
 </code></pre>
 
-<p>次に</p>
+<p>これだけで他の設定を変更することなく端末上で<code>Reload JS</code>などの開発オプションが使用できるようになる.</p>
 
-<pre><code class="language-sh">export ANDROID_HOME=/usr/local/opt/android-sdk
-</code></pre>
+<h3 id="configure-device-to-connect-to-the-dev-server-via-wi-fi:60c6196952e7045685a1de9e62046e9b">Configure device to connect to the dev server via Wi-Fi</h3>
 
-<p>を<code>~/.zshrc</code>又は<code>~/.bashrc</code>に追加し再読み込み.</p>
+<p>端末の<code>Dev Settings</code>で<code>Debug server host</code>の設定を変更する.
+この方法で開発機に接続するためには端末と開発機が同じWi-Fiに接続している必要がある.</p>
 
-<pre><code class="language-sh">source ~/.zshrc
-# source ~/.bashrc
-</code></pre>
+<p>Applicationで<code>menu</code>を表示する.
+(端末のメニューボタンを押すかApplicationを開いた状態で端末を振ると表示される.)</p>
 
-<p><code>Android SDK Manager</code>を起動.</p>
+<p><code>Dev Settings</code>、<code>Debug server host for device</code>と遷移し、開発機のIPアドレスを入力する.<br />
+(OS XのIPアドレスは<code>システム環境設定</code>、<code>ネットワーク</code>と遷移して、接続中のネットワークのタブで確認できる.)</p>
 
-<pre><code class="language-sh">android
-</code></pre>
+<p>すると端末上で<code>Reload JS</code>などの開発オプションが使用できるようになる.</p>
+
+<h2 id="see-also:60c6196952e7045685a1de9e62046e9b">See Also</h2>
 
 <ul>
-<li>Android SDK Build-tools version 23.0.1</li>
-<li>Android 6.0 (API 23)</li>
-<li>Android Support Repository</li>
-</ul>
-
-<p>にチェックを入れて<code>Install Packages</code>.</p>
-
-<h2 id="install-and-run-android-stock-emulator:f4f600c0da5570cdeafda90b8b2d1724">Install and run Android stock emulator</h2>
-
-<p>Android emulatorをインストールして起動する.</p>
-
-<pre><code class="language-sh">android
-</code></pre>
-
-<p>で<code>Android SDK Manager</code>を起動して</p>
-
-<ul>
-<li>Intel x86 Atom System Image (for Android 5.1.1 - API 22)
-
-<ul>
-<li><code>Android 5.1.1 (API 22)</code>のタブ中にあるので注意.</li>
-</ul></li>
-<li>Intel x86 Emulator Accelerator (HAXM installer)</li>
-</ul>
-
-<p>にチェックを入れて<code>Install Packages</code>.</p>
-
-<h3 id="configure-haxm:f4f600c0da5570cdeafda90b8b2d1724">Configure HAXM</h3>
-
-<p><a href="http://developer.android.com/tools/devices/emulator.html#vm-mac">HAXM</a>の設定をする.</p>
-
-<pre><code>open /usr/local/Cellar/android-sdk/24.3.4/extras/intel/Hardware_Accelerated_Execution_Manager/IntelHAXM_1.1.4.dmg
-</code></pre>
-
-<p><code>IntelHAXM_1.1.4.mpkg</code>をダブルクリックし、画面の指示に従ってインストールする.</p>
-
-<p>インストール終了後、新しい<code>kernel extension</code>が正しく処理されていることを確認するため、</p>
-
-<pre><code class="language-sh">kextstat | grep intel
-</code></pre>
-
-<p>を実行し<code>com.intel.kext.intelhaxm</code>が表示されることを確認する.</p>
-
-<p>これでHAXMの設定は完了.</p>
-
-<h3 id="run-android-emulator:f4f600c0da5570cdeafda90b8b2d1724">Run Android emulator</h3>
-
-<p>Android emulatorを起動する.</p>
-
-<pre><code class="language-sh">android avd
-</code></pre>
-
-<p>でAVD Managerを立ち上げ<code>Create...</code>でAVDを作成し<code>Start...</code>でEmulatorを立ち上げる.</p>
-
-<p><img src="/images/20150915/CreateAVD.png" alt="Create AVD" /></p>
-
-<p>又はすでに<code>~/.android/avd/</code>に<code>.avd</code>ファイルがあれば、</p>
-
-<pre><code class="language-sh"># ls ~/.android/avd/
-# =&gt; Nexus_5_API_23_x86.avd Nexus_5_API_23_x86.ini
-emulator -avd Nexus_5_API_23_x86
-</code></pre>
-
-<p>でファイル名を指定してEmulatorを起動できる.</p>
-
-<h2 id="setup:f4f600c0da5570cdeafda90b8b2d1724">Setup</h2>
-
-<p>最後にReact Native本体のセットアップをする.</p>
-
-<p><a href="https://github.com/creationix/nvm">NVM</a>や<a href="https://github.com/wfarr/nodenv">nodenv</a>
-などで<code>io.js 1.0 or newer</code>を準備する.<br />
-(今回はnodenvとNode.js v4.0.0を使用.)</p>
-
-<pre><code class="language-sh">nodenv install v4.0.0
-# nodenv global v4.0.0
-</code></pre>
-
-<p>npmでコマンドラインインターフェースの<code>react-native-cli</code>をインストールする.</p>
-
-<pre><code class="language-sh">npm install -g react-native-cli
-# nodenv rehash
-</code></pre>
-
-<p>すると<code>react-native</code>コマンドが使用可能になるので、適当なディレクトリで</p>
-
-<pre><code class="language-sh">react-native init AwesomeProject
-</code></pre>
-
-<p>を実行すると、iOS用に<code>AwesomeProject/iOS/AwesomeProject.xcodeproj</code>と<br />
-Android用に<code>AwesomeProject/android/app</code>とが生成される.</p>
-
-<p>後は</p>
-
-<pre><code class="language-sh">cd AwesomeProject
-react-native run-android
-</code></pre>
-
-<p>でEmulator又は(接続してsetupしていれば)実機でApplicationが立ち上がる.</p>
-
-<p><img src="/images/20150915/welcome-to-react-native.png" alt="Welcome to React Native" /></p>
-
-<h2 id="see-also:f4f600c0da5570cdeafda90b8b2d1724">See Also</h2>
-
-<ul>
-<li><a href="http://facebook.github.io/react-native/">React Native</a></li>
-<li><a href="http://facebook.github.io/react-native/docs/getting-started.html#content">Getting Started - React Native</a></li>
-<li><a href="http://facebook.github.io/react-native/docs/android-setup.html">Android Setup - React Native</a></li>
-<li><a href="http://facebook.github.io/react-native/docs/tutorial.html#content">Tutorial - React Native</a></li>
-<li><a href="https://code.facebook.com/posts/1189117404435352">React Native for Android: How we built the first cross-platform React Native app</a></li>
+<li><a href="http://facebook.github.io/react-native/docs/running-on-device-android.html">Running On Device(Android)</a></li>
+<li><a href="http://developer.android.com/tools/device.html">Using Handware Devices</a></li>
 </ul>
 
   </section>
@@ -304,20 +207,20 @@ react-native run-android
 
       
       <div class="social-button">
-        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
       </div>
 
       
       <div class="social-button">
-        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/"></div>
+        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/"></div>
       </div>
     </section>
     <ul class="pager">
       
-      <li class="previous"><a href="http://blog.rudolph-miller.com/2015/08/27/volt/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      <li class="previous"><a href="http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/"><span aria-hidden="true">&larr;</span> Older</a></li>
       
       
-      <li class="next"><a href="http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
       
     </ul>
     
