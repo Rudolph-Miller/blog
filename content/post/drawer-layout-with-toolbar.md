@@ -11,8 +11,18 @@ React Native for Androidで`Toolbar`から`DrawerLayout`の操作をする.
 
 <!--more-->
 
-`Toolbar`で`DrawerLayout`の開閉をしたかったが、
+`Toolbar`で`DrawerLayout`の開閉をしようと思ったが、
 [`DrawerLayout`のDocument](https://facebook.github.io/react-native/docs/drawerlayoutandroid.html)
 には`DrawerLayout`の開閉のAPIが載っていない.
 
 やってみたら簡単にできたので解説する.
+
+
+1. [See Also]({{< relref "#see-also" >}})
+
+
+See Also
+---
+
+- [`DrawerLayout` Document](https://facebook.github.io/react-native/docs/drawerlayoutandroid.html)
+- [`Toolbar` Document](https://facebook.github.io/react-native/docs/toolbarandroid.html)
