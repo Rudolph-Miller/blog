@@ -25,4 +25,5 @@ See Also
 ---
 
 - [`DrawerLayout` Document](https://facebook.github.io/react-native/docs/drawerlayoutandroid.html)
+- [DrawerLayoutAndroid.android.js](https://github.com/facebook/react-native/blob/master/Libraries/Components/DrawerAndroid/DrawerLayoutAndroid.android.js)
 - [`Toolbar` Document](https://facebook.github.io/react-native/docs/toolbarandroid.html)
