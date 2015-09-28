@@ -21,6 +21,10 @@ React Native for Androidで`Toolbar`から`DrawerLayout`の操作をする.
 1. [See Also]({{< relref "#see-also" >}})
 
 
+なにができるか.
+gif
+
+
 See Also
 ---
 
