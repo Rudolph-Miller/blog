@@ -63,7 +63,7 @@ def edit(argv, command)
     abort "No such file: #{filename}." unless File.exists?(filename)
     sh "#{command} #{filename}"
   else
-    sh "ls -t content/post | percol | pbcopy && #{command} content/post/`pbpaste`"
+    sh "ls -t content/post | peco | pbcopy && #{command} content/post/`pbpaste`"
   end
 end
 
