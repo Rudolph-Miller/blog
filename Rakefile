@@ -1,8 +1,14 @@
 require 'toml'
 
-def extract_title(argv)
+def extract_title(argv, options)
   title = argv.last
-  abort 'Please specify TITLE.' unless title and argv.length >= 2
+  unless title and argv.length >= 2
+    if options[:ignore_error]
+      return
+    else
+      abort 'Please specify TITLE.' 
+    end
+  end
   argv.slice(1,argv.size).each{|v| task v.to_sym do; end}
   title
 end
@@ -44,22 +50,31 @@ task :post do
   Rake::Task['unpublish'].invoke(title)
 end
 
+task :ls do
+  sh 'ls -t content/post'
+end
+
 task edit: :emacs
 
+def edit(argv, command)
+  title = extract_title argv, ignore_error: true
+  if title
+    filename = "content/post/#{title}.md"
+    abort "No such file: #{filename}." unless File.exists?(filename)
+    sh "#{command} #{filename}"
+  else
+    sh "ls -t content/post | percol | pbcopy && #{command} content/post/`pbpaste`"
+  end
+end
+
 task :vim do
-  title = extract_title ARGV
-  filename = "content/post/#{title}.md"
-  abort "No such file: #{filename}." unless File.exists?(filename)
-  sh "vim #{filename}"
+  edit ARGV, 'vim'
 end
 
 task vi: :vim
 
 task :emacs do
-  title = extract_title ARGV
-  filename = "content/post/#{title}.md"
-  abort "No such file: #{filename}." unless File.exists?(filename)
-  sh "emacs #{filename}"
+  edit ARGV, 'emacs'
 end
 
 task :server do
