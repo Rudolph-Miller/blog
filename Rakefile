@@ -59,6 +59,9 @@ task edit: :emacs
 def edit(argv, command)
   title = extract_title argv, ignore_error: true
   if title
+    if title == 'last'
+      title = `ls -t content/post | head -1 | cut -f 1 -d '.' | tr -d '\n'`
+    end
     filename = "content/post/#{title}.md"
     abort "No such file: #{filename}." unless File.exists?(filename)
     sh "#{command} #{filename}"
