@@ -1,6 +1,6 @@
 {{ partial "header.html" . }}
 <div class="article-list">
-  {{ range $index, $page := .Site.Pages }}
+  {{ range $index, $page := where .Site.Pages "Section" "post"}}
   {{ if ne $index 0 }}
   <hr/>
   {{ end }}
