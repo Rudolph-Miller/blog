@@ -12,6 +12,10 @@ layout: true
 class: center, middle, inverse
 ---
 
+# Kaizen Week #1
+
+---
+
 # @Rudolph-Miller
 
 ---
