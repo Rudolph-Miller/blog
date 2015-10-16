@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Slides on (rudolph-miller)</title>
-    <link>http://blog.rudolph-miller.com/slide/</link>
-    <description>Recent content in Slides on (rudolph-miller)</description>
+    <title>Ruby On Rails on (rudolph-miller)</title>
+    <link>http://blog.rudolph-miller.com/tags/ruby-on-rails/</link>
+    <description>Recent content in Ruby On Rails on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 16 Oct 2015 12:01:40 +0900</lastBuildDate>
-    <atom:link href="http://blog.rudolph-miller.com/slide/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.rudolph-miller.com/tags/ruby-on-rails/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>upgrade_rails</title>

@@ -7,393 +7,154 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 16 Oct 2015 00:20:28 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2015 12:01:40 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>sample</title>
-      <link>http://blog.rudolph-miller.com/slide/2015/10/16/sample/</link>
-      <pubDate>Fri, 16 Oct 2015 00:20:28 +0900</pubDate>
+      <title>upgrade_rails</title>
+      <link>http://blog.rudolph-miller.com/slide/2015/10/16/upgrade_ruby_on_rails/</link>
+      <pubDate>Fri, 16 Oct 2015 12:01:40 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/slide/2015/10/16/sample/</guid>
+      <guid>http://blog.rudolph-miller.com/slide/2015/10/16/upgrade_ruby_on_rails/</guid>
       <description>
 
 &lt;p&gt;name: inverse
 layout: true&lt;/p&gt;
 
-&lt;h2 id=&#34;class-center-middle-inverse:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;class: center, middle, inverse&lt;/h2&gt;
+&lt;h2 id=&#34;class-center-middle-inverse:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;class: center, middle, inverse&lt;/h2&gt;
 
-&lt;p&gt;#remark
-[ri-mahrk]&lt;/p&gt;
+&lt;h1 id=&#34;3-2-to-4-2:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;3.2 to 4.2&lt;/h1&gt;
 
-&lt;h2 id=&#34;footnote-go-directly-to-project-site-https-github-com-gnab-remark:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;.footnote[Go directly to &lt;a href=&#34;https://github.com/gnab/remark&#34;&gt;project site&lt;/a&gt;]&lt;/h2&gt;
+&lt;hr /&gt;
 
-&lt;h2 id=&#34;what-is-it-and-why-should-i-be-using-it:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;What is it and why should I be using it?&lt;/h2&gt;
+&lt;h1 id=&#34;upgrade-ruby-on-rails:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;Upgrade Ruby on Rails&lt;/h1&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;layout: false
-.left-column[
-  ## What is it?
-]
-.right-column[
-  A simple, in-browser, Markdown-driven slideshow tool targeted at people who know their way around HTML and CSS, featuring:&lt;/p&gt;
+.left-column[&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Markdown formatting, with smart extensions&lt;/p&gt;&lt;/li&gt;
+&lt;h1 id=&#34;手順:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;手順&lt;/h1&gt;
 
-&lt;li&gt;&lt;p&gt;Presenter mode, with cloned slideshow view&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;]&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;Syntax highlighting, supporting a range of languages&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Slide scaling, thus similar appearance on all devices / resolutions .red[*]&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Touch support for smart phones and pads, i.e. swipe to navigate slides&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;.footnote[.red[*] At least browsers try their best]&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_3:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
-
-&lt;p&gt;.left-column[
-  ## What is it?
-  ## Why use it?
-]
-.right-column[
-If your ideal slideshow creation workflow contains any of the following steps:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Just write what&amp;rsquo;s on your mind&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Do some basic styling&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Easily collaborate with others&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Share with and show to everyone&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Then remark might be perfect for your next.red[*] slideshow!&lt;/p&gt;
-
-&lt;p&gt;.footnote[.red[*] You probably want to convert existing slideshows as well]&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_4:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
-
-&lt;p&gt;.left-column[
-  ## What is it?
-  ## Why use it?
-]
-.right-column[
-As the slideshow is expressed using Markdown, you may:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Focus on the content, expressing yourself in next to plain text not worrying what flashy graphics and disturbing effects to put where&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;As the slideshow is actually an HTML document, you may:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Display it in any decent browser&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Style it using regular CSS, just like any other HTML content&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Use it offline!&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;As the slideshow is contained in a plain file, you may:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Store it wherever you like; on your computer, hosted from your Dropbox, hosted on Github Pages alongside the stuff you&amp;rsquo;re presenting&amp;hellip;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Easily collaborate with others, keeping track of changes using your favourite SCM tool, like Git or Mercurial&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_5:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
-
-&lt;p&gt;template: inverse&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;how-does-it-work-then:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;How does it work, then?&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;name: how&lt;/p&gt;
-
-&lt;p&gt;.left-column[
-  ## How does it work?&lt;/p&gt;
-
-&lt;h3 id=&#34;markdown:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;- Markdown&lt;/h3&gt;
-
-&lt;p&gt;]
-.right-column[
-A Markdown-formatted chunk of text is transformed into individual slides by JavaScript running in the browser:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-remark&#34;&gt;# Slide 1
-This is slide 1
-
----
-
-# Slide 2
-This is slide 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;.slides[
-  .first[
-  ### Slide 1
-  This is slide 1
-  ]
-  .second[
-  ### Slide 2
-  This is slide 2
-  ]
+&lt;p&gt;.right-column[
+1. リリースノート.
+  - リリースノートで変更を頭に入れておく.
+2. Gemのupgrade.
+  - RailsのUpgrade.
+  - 依存解決.
+3. 作業.
+  - 壊れたところを直す.
+4. 2 -&amp;gt; 3を繰り返す.
+  - RailsのVersionは徐々にあげる.
+  - 3.2 -&amp;gt; 4.0 -&amp;gt; 4.1 -&amp;gt; 4.2
 ]&lt;/p&gt;
 
-&lt;p&gt;Regular Markdown rules apply with only a single exception:&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;リリースノートはnew-railsの説明書:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;リリースノートはNew Railsの説明書&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;A line containing three dashes constitutes a new slide
-(not a horizontal rule, &lt;code&gt;&amp;amp;lt;hr /&amp;amp;gt;&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://railsguides.jp/4_0_release_notes.html&#34;&gt;Ruby on Rails 4.0 リリースノート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://railsguides.jp/4_1_release_notes.html&#34;&gt;Ruby on Rails 4.1 リリースノート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://railsguides.jp/4_2_release_notes.html&#34;&gt;Ruby on Rails 4.2 リリースノート&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Have a look at the &lt;a href=&#34;http://daringfireball.net/projects/markdown/&#34;&gt;Markdown website&lt;/a&gt; if you&amp;rsquo;re not familiar with Markdown formatting.&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;h2 id=&#34;toc_8:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
+&lt;p&gt;.left-column[&lt;/p&gt;
 
-&lt;p&gt;.left-column[
-  ## How does it work?
-  ### - Markdown
-  ### - Inside HTML
-]
-.right-column[
-A simple HTML document is needed for hosting the styles, Markdown and the generated slides themselves:&lt;/p&gt;
+&lt;h1 id=&#34;作業:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;作業&lt;/h1&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-  &amp;lt;head&amp;gt;
-    &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
-      /* Slideshow styles */
-    &amp;lt;/style&amp;gt;
-  &amp;lt;/head&amp;gt;
-  &amp;lt;body&amp;gt;
-*    &amp;lt;textarea id=&amp;quot;source&amp;quot;&amp;gt;
-      &amp;lt;!-- Slideshow Markdown --&amp;gt;
-    &amp;amp;lt;/textarea&amp;amp;gt;
-*    &amp;lt;script src=&amp;quot;remark.js&amp;quot;&amp;gt;
-    &amp;lt;/script&amp;gt;
-    &amp;lt;script&amp;gt;
-*      var slideshow = remark.create();
-    &amp;lt;/script&amp;gt;
-  &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;]&lt;/p&gt;
 
-&lt;p&gt;You may download remark to have your slideshow not depend on any online resources, or reference the &lt;a href=&#34;http://remarkjs.com/downloads/remark-latest.min.js&#34;&gt;latest version&lt;/a&gt; online directly.&lt;/p&gt;
+&lt;p&gt;.right-column[
+1. Railsのupdate.
+2. &lt;code&gt;bundle upgate rails&lt;/code&gt;
+  - 依存解決に失敗したら頑張る.
+  - &lt;code&gt;bundle update&lt;/code&gt;
+3. &lt;code&gt;bundle exec rake rails:update&lt;/code&gt;
+  - config fileのupdate.
+4. &lt;code&gt;bundle exec rake spec&lt;/code&gt;
+  - 起動するまで頑張る.
+  - 起動してからも頑張る.
+]&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_9:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;template: inverse&lt;/p&gt;
 
-&lt;h2 id=&#34;of-course-markdown-can-only-go-so-far:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;Of course, Markdown can only go so far.&lt;/h2&gt;
+&lt;h1 id=&#34;障害:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;障害&lt;/h1&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;.left-column[
-  ## Markdown extensions
-]
-.right-column[
-To help out with slide layout and formatting, a few Markdown extensions have been included:&lt;/p&gt;
+&lt;p&gt;.left-column[&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Slide properties, for naming, styling and templating slides&lt;/p&gt;&lt;/li&gt;
+&lt;h2 id=&#34;api変更:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;API変更&lt;/h2&gt;
 
-&lt;li&gt;&lt;p&gt;Content classes, for styling specific content&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;]&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;Syntax highlighting, supporting a range of languages
-]&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;.left-column[
-  ## Markdown extensions
-  ### - Slide properties
-]
-.right-column[
-Initial lines containing key-value pairs are extracted as slide properties:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-remark&#34;&gt;name: agenda
-class: middle, center
-
-# Agenda
-
-The name of this slide is {{ name }}.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Slide properties serve multiple purposes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Naming and styling slides using properties &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;class&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Using slides as templates using properties &lt;code&gt;template&lt;/code&gt; and &lt;code&gt;layout&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Expansion of &lt;code&gt;{{ property }}&lt;/code&gt; expressions to property values&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;See the &lt;a href=&#34;https://github.com/gnab/remark/wiki/Markdown#slide-properties&#34;&gt;complete list&lt;/a&gt; of slide properties.&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_11:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
-
-&lt;p&gt;.left-column[
-  ## Markdown extensions
-  ### - Slide properties
-  ### - Content classes
-]
-.right-column[
-Any occurences of one or more dotted CSS class names followed by square brackets are replaced with the contents of the brackets with the specified classes applied:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-remark&#34;&gt;.footnote[.red.bold[*] Important footnote]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Resulting HTML extract:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;span class=&amp;quot;footnote&amp;quot;&amp;gt;
-  &amp;lt;span class=&amp;quot;red bold&amp;quot;&amp;gt;*&amp;lt;/span&amp;gt; Important footnote
-&amp;lt;/span&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;toc_12:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
-
-&lt;p&gt;.left-column[
-  ## Markdown extensions
-  ### - Slide properties
-  ### - Content classes
-  ### - Syntax Highlighting
-]
-.right-column[
-Code blocks can be syntax highlighted by specifying a language from the set of &lt;a href=&#34;https://github.com/gnab/remark/wiki/Configuration#highlighting&#34;&gt;supported languages&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Using &lt;a href=&#34;http://github.github.com/github-flavored-markdown/&#34;&gt;GFM&lt;/a&gt; fenced code blocks you can easily specify highlighting language:&lt;/p&gt;
-
-&lt;p&gt;.pull-left[&lt;/p&gt;
-
-&lt;p&gt;&lt;pre&gt;&lt;code&gt;```javascript
-function add(a, b)
-  return a + b
-end&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&#34;&gt;]
-.pull-right[
-
-&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;```ruby
-def add(a, b)
-  a + b
-end
-```&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
-]
-
-A number of highlighting [styles](https://github.com/gnab/remark/wiki/Configuration#highlighting) are available, including several well-known themes from different editors and IDEs.
-
-]
----
-.left-column[
-  ## Presenter mode
-]
-.right-column[
-To help out with giving presentations, a presenter mode comprising the
-following features is provided:
-
-- Display of slide notes for the current slide, to help you remember
-  key points
-
-- Display of upcoming slide, to let you know what&#39;s coming
-
-- Cloning of slideshow for viewing on extended display
-]
----
-.left-column[
-  ## Presenter mode
-  ### - Inline notes
-]
-.right-column[
-Just like three dashes separate slides,
-three question marks separate slide content from slide notes:
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Slide 1 content&lt;/p&gt;
-
-&lt;p&gt;*???&lt;/p&gt;
-
-&lt;p&gt;Slide 1 notes&lt;/p&gt;
+&lt;p&gt;.right-column[
+- scopeの書き方.
+  - 心を無にして対応.
+- relationの定義のincludeがdeprecated.
+  - 心を無にして(ry.
+- joinsしてそのtableの条件を使用する時はreferencesを明示する.
+  - 心を(ry.
+]&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;Slide 2 content&lt;/p&gt;
+&lt;p&gt;.left-column[&lt;/p&gt;
 
-&lt;p&gt;*???&lt;/p&gt;
+&lt;h2 id=&#34;gem:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;Gem&lt;/h2&gt;
 
-&lt;p&gt;Slide 2 notes
-```&lt;/p&gt;
+&lt;p&gt;]&lt;/p&gt;
 
-&lt;p&gt;Slide notes are also treated as Markdown, and will be converted in the
-same manner slide content is.&lt;/p&gt;
+&lt;p&gt;.right-column[
+- メンテ停止したGem達.
+- 別Versionでの動作が保証されていないpatchが多数.
+]&lt;/p&gt;
 
-&lt;p&gt;Pressing &lt;strong&gt;P&lt;/strong&gt; will toggle presenter mode.
-]
-???
-Congratulations, you just toggled presenter mode!&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;h2 id=&#34;now-press-p-to-toggle-it-back-off:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;Now press &lt;strong&gt;P&lt;/strong&gt; to toggle it back off.&lt;/h2&gt;
+&lt;p&gt;.left-column[&lt;/p&gt;
 
-&lt;p&gt;.left-column[
-  ## Presenter mode
-  ### - Inline notes
-  ### - Cloned view
-]
-.right-column[
-Presenter mode of course makes no sense to the audience.&lt;/p&gt;
+&lt;h2 id=&#34;activerecord:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;ActiveRecord&lt;/h2&gt;
 
-&lt;p&gt;Creating a cloned view of your slideshow lets you:&lt;/p&gt;
+&lt;p&gt;]&lt;/p&gt;
+
+&lt;p&gt;.right-column[&lt;/p&gt;
+
+&lt;h3 id=&#34;失われた-bind-values:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;失われた&lt;code&gt;bind_values&lt;/code&gt;&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Move the cloned view to the extended display visible to the audience&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;ActiveRecordをUpgrade.
 
-&lt;li&gt;&lt;p&gt;Put the original slideshow in presenter mode&lt;/p&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;4.0 -&amp;gt; 4.1&lt;/li&gt;
+&lt;li&gt;4.1 -&amp;gt; 4.2&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;existsがbroken.
 
-&lt;li&gt;&lt;p&gt;Navigate as usual, and the cloned view will automatically keep up with the original&lt;/p&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;とはいえ相関subqueryのPerformanceは.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;INNER JOIN&lt;/code&gt;で書き直すか.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;subqueryがbroken.
+]&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Pressing &lt;strong&gt;C&lt;/strong&gt; will open a cloned view of the current slideshow in a new
-browser window.&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_14:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;template: inverse&lt;/p&gt;
 
-&lt;h2 id=&#34;it-s-time-to-get-started:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;It&amp;rsquo;s time to get started!&lt;/h2&gt;
+&lt;h1 id=&#34;結果:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;結果&lt;/h1&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;.left-column[
-  ## Getting started
-]
-.right-column[
-Getting up and running is done in only a few steps:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Visit the &lt;a href=&#34;http://github.com/gnab/remark&#34;&gt;project site&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Follow the steps in the Getting Started section&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;For more information on using remark, please check out the &lt;a href=&#34;https://github.com/gnab/remark/wiki&#34;&gt;wiki&lt;/a&gt; pages.&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_16:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;]&lt;/h2&gt;
-
-&lt;p&gt;name: last-page
-template: inverse&lt;/p&gt;
-
-&lt;h2 id=&#34;that-s-all-folks-for-now:7cce010dc015a937e6841b4e289c7b7d&#34;&gt;That&amp;rsquo;s all folks (for now)!&lt;/h2&gt;
-
-&lt;p&gt;Slideshow created using &lt;a href=&#34;http://github.com/gnab/remark&#34;&gt;remark&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;background-image: url(/images/20151016/to_be_continued.jpg)&lt;/p&gt;
 </description>
     </item>
     
