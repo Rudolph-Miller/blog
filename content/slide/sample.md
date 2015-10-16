@@ -1,7 +1,7 @@
 +++
 Description = "sample"
 date = "2015-10-16T00:20:28+09:00"
-draft = false
+draft = true
 title = "sample"
 slug = "sample"
 +++
