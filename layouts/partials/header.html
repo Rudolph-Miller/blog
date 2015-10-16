@@ -24,21 +24,6 @@
   {{ else }}
   <meta property="og:type" content="website" />
   {{ end }}
-  {{ if eq .Section "slide" }}
-  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
-  <style>
-    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
-
-    body { font-family: 'Droid Serif'; }
-    h1, h2, h3 {
-      font-family: 'Yanone Kaffeesatz';
-      font-weight: normal;
-    }
-    .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
-  </style>
-  {{ end }}
 
   <title>
     {{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}
