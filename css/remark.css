@@ -105,3 +105,17 @@ code {
   padding-top: 1em;
 }
 
+/* lisp */
+.lisp {
+  background-color: #81E285;
+  color: #777872;
+  text-shadow: 0 0 20px #333;
+}
+.lisp h1, .lisp h2 {
+  color: #f3f3f3;
+  line-height: 0.8em;
+}
+#slide-lisp .footnote {
+  bottom: 12px;
+  left: 20px;
+}
