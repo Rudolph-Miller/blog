@@ -41,7 +41,7 @@ layout: false
 
 ---
 
-# リリースノートはNew Railsの説明書
+## リリースノートはNew Railsの説明書
 
 - [Ruby on Rails 4.0 リリースノート](http://railsguides.jp/4_0_release_notes.html)
 - [Ruby on Rails 4.1 リリースノート](http://railsguides.jp/4_1_release_notes.html)
