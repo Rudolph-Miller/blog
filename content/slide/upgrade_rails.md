@@ -57,6 +57,12 @@ layout: false
 
 ---
 
+template: inverse
+
+# 説明書は読まないタイプ.
+
+---
+
 .left-column[
 # 作業
 ]
