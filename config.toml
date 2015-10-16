@@ -16,3 +16,4 @@ copyright = "&copy; Copyright 2015 Rudolph Miller"
   disqusshortname = "rudolph-miller"
 [permalinks]
   post = "/:year/:month/:day/:slug/"
+  slide = "/slide/:year/:month/:day/:slug/"

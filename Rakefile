@@ -1,6 +1,6 @@
 require 'toml'
 
-def extract_title(argv, options)
+def extract_title(argv, options = {})
   title = argv.last
   unless title and argv.length >= 2
     if options[:ignore_error]

@@ -2,5 +2,6 @@ public/
 themes/
 !highlight-lisp/themes
 *~
-.*.swp
+.*.sw[a-z]
+.sw[a-z]
 .DS_Store
