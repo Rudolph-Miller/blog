@@ -1,25 +1,14 @@
+{{ partial "raw_header.html" . }}
 {{ $baseurl := .Site.BaseURL }}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Title</title>
-    <meta charset="utf-8">
-    <style>
-      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
-    </style>
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/remark.css" />
-  </head>
-  <body>
-    <textarea id="source">
+<body>
+  <textarea id="source">
 {{ .RawContent }}
-    </textarea>
-    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
-    </script>
-    <script>
-      var slideshow = remark.create();
-    </script>
-  </body>
+  </textarea>
+  <script src="{{ .Site.BaseURL }}js/remark-latest.min.js">
+  </script>
+  <script>
+var slideshow = remark.create();
+  </script>
+</body>
 </html>

@@ -3,7 +3,7 @@ Description = "Ruby on Railsを3.2から4.2にUpgradeする話."
 Tags = ["Ruby on Rails"]
 date = "2015-10-16T12:01:40+09:00"
 draft = false
-title = "upgrade_rails"
+Title = "Upgrade Ruby on Rails"
 slug = "upgrade_ruby_on_rails"
 +++
 
