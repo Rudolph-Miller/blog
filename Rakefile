@@ -2,20 +2,30 @@ require 'toml'
 
 def extract_title(argv, options = {})
   title = argv.last
+  commands = argv.first.split(':')
+  if commands.length > 1
+    type = commands[1]
+  end
   unless title and argv.length >= 2
     if options[:ignore_error]
-      return
+      return [nil, type]
     else
       abort 'Please specify TITLE.' 
     end
   end
   argv.slice(1,argv.size).each{|v| task v.to_sym do; end}
-  title
+  [title, type]
 end
 
 def edit_metadata
-  title = extract_title ARGV
-  filename = "content/post/#{title}.md"
+  title, type = extract_title ARGV, ignore_error: true
+  if title
+    filename = "content/#{type}/#{title}.md"
+  else
+    filename = \
+      `ls -t content/#{type} | peco | pbcopy && \
+      echo content/#{type}/\`pbpaste\` | tr -d '\n'`
+  end
   abort "No such file: #{filename}." unless File.exists?(filename)
   content = File.open(filename, 'r').read
   metadata_regex = /^\+\+\+\n(?<metadata>[\s\S]*)\n\+\+\+\n/
@@ -38,46 +48,89 @@ task :publish do
   end
 end
 
+namespace :publish do
+  task :slide do
+    edit_metadata do |hash|
+      hash['date'] = Time.now.strftime('%FT%T%:z')
+      hash['draft'] = false
+    end
+  end
+end
+
 task :unpublish do
   edit_metadata do |hash|
     hash['draft'] = true
   end
 end
 
+namespace :unpublish do
+  task :slide do
+    edit_metadata do |hash|
+      hash['draft'] = true
+    end
+  end
+end
+
 task :post do
-  title = extract_title ARGV
+  title, _ = extract_title ARGV
   sh "hugo new post/#{title}.md"
   Rake::Task['unpublish'].invoke(title)
+end
+
+task :slide do
+  title, _ = extract_title ARGV
+  sh "huo new slide/#{title}.md"
+  Rake::Task['unpublish:slide'].invoke(title)
+end
+
+namespace :ls do
+  task :slide do
+    sh 'ls -t content/slide'
+  end
 end
 
 task :ls do
   sh 'ls -t content/post'
 end
 
-task edit: :emacs
+task edit: :vim
 
-def edit(argv, command)
-  title = extract_title argv, ignore_error: true
+def edit(argv, command, type='post')
+  title, _ = extract_title argv, ignore_error: true
+  command = command.to_s
+  type = type.to_s
   if title
     if title == 'last'
-      title = `ls -t content/post | head -1 | cut -f 1 -d '.' | tr -d '\n'`
+      title = `ls -t content/#{type} | head -1 | cut -f 1 -d '.' | tr -d '\n'`
     end
-    filename = "content/post/#{title}.md"
+    filename = "content/#{type}/#{title}.md"
     abort "No such file: #{filename}." unless File.exists?(filename)
     sh "#{command} #{filename}"
   else
-    sh "ls -t content/post | peco | pbcopy && #{command} content/post/`pbpaste`"
+    sh "ls -t content/#{type} | peco | pbcopy && #{command} content/#{type}/`pbpaste`"
   end
-end
-
-task :vim do
-  edit ARGV, 'vim'
 end
 
 task vi: :vim
 
+task :vim do
+  edit ARGV, :vim
+end
+
+namespace :vim do
+  task :slide do
+    edit ARGV, :vim, :slide
+  end
+end
+
 task :emacs do
-  edit ARGV, 'emacs'
+  edit ARGV, :emacs
+end
+
+namespace :emacs do
+  task :slide do
+    edit ARGV, :emacs, :slide
+  end
 end
 
 task :server do
