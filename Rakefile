@@ -50,34 +50,54 @@ task :post do
   Rake::Task['unpublish'].invoke(title)
 end
 
+namespace :ls do
+  task :slide do
+    sh 'ls -t content/slide'
+  end
+end
+
 task :ls do
   sh 'ls -t content/post'
 end
 
-task edit: :emacs
+task edit: :vim
 
-def edit(argv, command)
+def edit(argv, command, type='post')
   title = extract_title argv, ignore_error: true
+  command = command.to_s
+  type = type.to_s
   if title
     if title == 'last'
-      title = `ls -t content/post | head -1 | cut -f 1 -d '.' | tr -d '\n'`
+      title = `ls -t content/#{type} | head -1 | cut -f 1 -d '.' | tr -d '\n'`
     end
-    filename = "content/post/#{title}.md"
+    filename = "content/#{type}/#{title}.md"
     abort "No such file: #{filename}." unless File.exists?(filename)
     sh "#{command} #{filename}"
   else
-    sh "ls -t content/post | peco | pbcopy && #{command} content/post/`pbpaste`"
+    sh "ls -t content/#{type} | peco | pbcopy && #{command} content/#{type}/`pbpaste`"
   end
-end
-
-task :vim do
-  edit ARGV, 'vim'
 end
 
 task vi: :vim
 
+task :vim do
+  edit ARGV, :vim
+end
+
+namespace :vim do
+  task :slide do
+    edit ARGV, :vim, :slide
+  end
+end
+
 task :emacs do
-  edit ARGV, 'emacs'
+  edit ARGV, :emacs
+end
+
+namespace :emacs do
+  task :slide do
+    edit ARGV, :emacs, :slide
+  end
 end
 
 task :server do
