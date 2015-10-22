@@ -1,8 +1,8 @@
 +++
-Description = ""
+Description = "About me"
 Tags = []
 date = "2015-08-11T07:32:04+09:00"
-title = "me"
 draft = true
+title = "Abount me"
+slug = "about-me"
 +++
-
