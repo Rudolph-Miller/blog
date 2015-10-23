@@ -79,7 +79,7 @@ end
 
 task :slide do
   title, _ = extract_title ARGV
-  sh "huo new slide/#{title}.md"
+  sh "hugo new slide/#{title}.md"
   Rake::Task['unpublish:slide'].invoke(title)
 end
 
