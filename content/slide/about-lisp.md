@@ -6,3 +6,13 @@ draft = true
 title = "about lisp"
 +++
 
+name: lisp
+layout: true
+class: center, middle, lisp
+---
+
+# Tech Talk #4
+
+---
+
+# @Rudolph-Miller
