@@ -119,3 +119,8 @@ code {
   bottom: 12px;
   left: 20px;
 }
+
+/* break-word in code-line */
+.remark-code-line {
+  word-wrap: break-word;
+}
