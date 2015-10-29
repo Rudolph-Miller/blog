@@ -114,6 +114,12 @@ background-image: url( /images/20151029/lisp-alien.png )
 - Code is made up of first-class object
 ]
 
+--
+
+.right-column[
+- The whole language is always available.
+]
+
 ---
 
 template: lisp
@@ -200,6 +206,12 @@ background-image: url( /images/20151029/lisp-keyboard.jpg )
 
 ---
 
+template: lisp
+
+## S-expression is AST.
+
+---
+
 .left[
 ```bnf
 <S-exp> ::= <List> | <Atom> 
@@ -273,6 +285,12 @@ template: lisp
 
 template: lisp
 
+## The whole language is always available.
+
+---
+
+template: lisp
+
 ## You can compile or run code while reading, read or run code while compiling, and read or compile code at runtime.
 quated from "[What Made Lisp Different](http://www.paulgraham.com/diff.html)" by Paul Graham
 
@@ -341,23 +359,46 @@ quated from "[What Made Lisp Different](http://www.paulgraham.com/diff.html)" by
 
 template: lisp
 
-## The whole language always available.
+# Finally,
 
 ---
 
 template: lisp
 
-# What is S-expression for us??
+# Why S-expression??
 
 ---
 
 template: lisp
 
-## Need not think of how to express thought,
-## just express thought.
+# Because,
 
 ---
 
 template: lisp
 
-# S-expression is a method of salvation.
+# Simple and Coherence.
+
+---
+
+template: lisp
+
+# No Translation.
+
+---
+
+template: lisp
+
+# No Limitation.
+
+---
+
+template: lisp
+
+# Simple and Coherence.
+# No Translation.
+# No Limitation.
+
+---
+
+background-image: url( /images/20151029/the_end.jpg )
