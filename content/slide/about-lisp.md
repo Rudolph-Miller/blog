@@ -233,6 +233,16 @@ template: lisp
 
 ---
 
+.left[
+```lisp
+(if (or false true)
+  (print true)
+  (print false))
+```
+]
+
+---
+
 template: lisp
 
 # Code is made up of first-class object
