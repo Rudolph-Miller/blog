@@ -246,6 +246,17 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;.left[&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-lisp&#34;&gt;(if (or false true)
+  (print true)
+  (print false))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;]&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;p&gt;template: lisp&lt;/p&gt;
 
 &lt;h1 id=&#34;code-is-made-up-of-first-class-object:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Code is made up of first-class object&lt;/h1&gt;
