@@ -127,6 +127,12 @@ layout: true&lt;/p&gt;
 - Code is made up of first-class object
 ]&lt;/p&gt;
 
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+- The whole language is always available.
+]&lt;/p&gt;
+
 &lt;hr /&gt;
 
 &lt;p&gt;template: lisp&lt;/p&gt;
@@ -213,6 +219,12 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h2 id=&#34;s-expression-is-ast:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;S-expression is AST.&lt;/h2&gt;
+
+&lt;hr /&gt;
+
 &lt;p&gt;.left[&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bnf&#34;&gt;&amp;lt;S-exp&amp;gt; ::= &amp;lt;List&amp;gt; | &amp;lt;Atom&amp;gt; 
@@ -283,6 +295,12 @@ template: lisp&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;]&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h2 id=&#34;the-whole-language-is-always-available:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;The whole language is always available.&lt;/h2&gt;
 
 &lt;hr /&gt;
 
@@ -360,27 +378,51 @@ template: lisp&lt;/p&gt;
 
 &lt;p&gt;template: lisp&lt;/p&gt;
 
-&lt;h2 id=&#34;the-whole-language-always-available:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;The whole language always available.&lt;/h2&gt;
+&lt;h1 id=&#34;finally:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Finally,&lt;/h1&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;template: lisp&lt;/p&gt;
 
-&lt;h1 id=&#34;what-is-s-expression-for-us:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;What is S-expression for us??&lt;/h1&gt;
+&lt;h1 id=&#34;why-s-expression:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Why S-expression??&lt;/h1&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;template: lisp&lt;/p&gt;
 
-&lt;h2 id=&#34;need-not-think-of-how-to-express-thought:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Need not think of how to express thought,&lt;/h2&gt;
-
-&lt;h2 id=&#34;just-express-thought:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;just express thought.&lt;/h2&gt;
+&lt;h1 id=&#34;because:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Because,&lt;/h1&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;template: lisp&lt;/p&gt;
 
-&lt;h1 id=&#34;s-expression-is-a-method-of-salvation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;S-expression is a method of salvation.&lt;/h1&gt;
+&lt;h1 id=&#34;simple-and-coherence:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Simple and Coherence.&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h1 id=&#34;no-translation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Translation.&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h1 id=&#34;no-limitation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Limitation.&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h1 id=&#34;simple-and-coherence-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Simple and Coherence.&lt;/h1&gt;
+
+&lt;h1 id=&#34;no-translation-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Translation.&lt;/h1&gt;
+
+&lt;h1 id=&#34;no-limitation-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Limitation.&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;background-image: url( /images/20151029/the_end.jpg )&lt;/p&gt;
 </description>
     </item>
     
