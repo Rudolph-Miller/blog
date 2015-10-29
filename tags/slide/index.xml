@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Slides on (rudolph-miller)</title>
-    <link>http://blog.rudolph-miller.com/slide/</link>
-    <description>Recent content in Slides on (rudolph-miller)</description>
+    <title>Slide on (rudolph-miller)</title>
+    <link>http://blog.rudolph-miller.com/tags/slide/</link>
+    <description>Recent content in Slide on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
     <lastBuildDate>Thu, 29 Oct 2015 00:34:45 +0900</lastBuildDate>
-    <atom:link href="http://blog.rudolph-miller.com/slide/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.rudolph-miller.com/tags/slide/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>About lisp</title>
@@ -348,168 +348,6 @@ template: lisp&lt;/p&gt;
 &lt;p&gt;template: lisp&lt;/p&gt;
 
 &lt;h1 id=&#34;s-expression-is-a-method-of-salvation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;S-expression is a method of salvation.&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Upgrade Ruby on Rails</title>
-      <link>http://blog.rudolph-miller.com/slide/2015/10/16/upgrade_ruby_on_rails/</link>
-      <pubDate>Fri, 16 Oct 2015 12:01:40 +0900</pubDate>
-      
-      <guid>http://blog.rudolph-miller.com/slide/2015/10/16/upgrade_ruby_on_rails/</guid>
-      <description>
-
-&lt;p&gt;name: inverse
-layout: true&lt;/p&gt;
-
-&lt;h2 id=&#34;class-center-middle-inverse:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;class: center, middle, inverse&lt;/h2&gt;
-
-&lt;h1 id=&#34;kaizen-week-1:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;Kaizen Week #1&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&#34;rudolph-miller:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;@Rudolph-Miller&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&#34;3-2-to-4-2:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;3.2 to 4.2&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&#34;upgrade-ruby-on-rails:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;Upgrade Ruby on Rails&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;layout: false
-.left-column[&lt;/p&gt;
-
-&lt;h1 id=&#34;手順:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;手順&lt;/h1&gt;
-
-&lt;p&gt;]&lt;/p&gt;
-
-&lt;p&gt;.right-column[
-1. リリースノート.
-  - リリースノートで変更を頭に入れておく.
-2. Gemのupgrade.
-  - RailsのUpgrade.
-  - 依存解決.
-3. 作業.
-  - 壊れたところを直す.
-4. 2 -&amp;gt; 3を繰り返す.
-  - RailsのVersionは徐々にあげる.
-  - 3.2 -&amp;gt; 4.0 -&amp;gt; 4.1 -&amp;gt; 4.2
-]&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;リリースノートはnew-railsの説明書:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;リリースノートはNew Railsの説明書&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://railsguides.jp/4_0_release_notes.html&#34;&gt;Ruby on Rails 4.0 リリースノート&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://railsguides.jp/4_1_release_notes.html&#34;&gt;Ruby on Rails 4.1 リリースノート&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://railsguides.jp/4_2_release_notes.html&#34;&gt;Ruby on Rails 4.2 リリースノート&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;template: inverse&lt;/p&gt;
-
-&lt;h1 id=&#34;説明書は読まないタイプ:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;説明書は読まないタイプ.&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;.left-column[&lt;/p&gt;
-
-&lt;h1 id=&#34;作業:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;作業&lt;/h1&gt;
-
-&lt;p&gt;]&lt;/p&gt;
-
-&lt;p&gt;.right-column[
-1. Railsのupdate.
-2. &lt;code&gt;bundle upgate rails&lt;/code&gt;
-  - 依存解決に失敗したら頑張る.
-  - &lt;code&gt;bundle update&lt;/code&gt;
-3. &lt;code&gt;bundle exec rake rails:update&lt;/code&gt;
-  - config fileのupdate.
-4. &lt;code&gt;bundle exec rake spec&lt;/code&gt;
-  - 起動するまで頑張る.
-  - 起動してからも頑張る.
-]&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;template: inverse&lt;/p&gt;
-
-&lt;h1 id=&#34;障害:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;障害&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;.left-column[&lt;/p&gt;
-
-&lt;h2 id=&#34;api変更:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;API変更&lt;/h2&gt;
-
-&lt;p&gt;]&lt;/p&gt;
-
-&lt;p&gt;.right-column[
-- scopeの書き方.
-  - 心を無にして対応.
-- relationの定義のincludeがdeprecated.
-  - 心を無にして(ry.
-- joinsしてそのtableの条件を使用する時はreferencesを明示する.
-  - 心を(ry.
-]&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;.left-column[&lt;/p&gt;
-
-&lt;h2 id=&#34;gem:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;Gem&lt;/h2&gt;
-
-&lt;p&gt;]&lt;/p&gt;
-
-&lt;p&gt;.right-column[
-- メンテ停止したGem達.
-- 別Versionでの動作が保証されていないpatchが多数.
-]&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;.left-column[&lt;/p&gt;
-
-&lt;h2 id=&#34;activerecord:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;ActiveRecord&lt;/h2&gt;
-
-&lt;p&gt;]&lt;/p&gt;
-
-&lt;p&gt;.right-column[&lt;/p&gt;
-
-&lt;h3 id=&#34;失われた-bind-values:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;失われた&lt;code&gt;bind_values&lt;/code&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ActiveRecordをUpgrade.
-
-&lt;ul&gt;
-&lt;li&gt;4.0 -&amp;gt; 4.1&lt;/li&gt;
-&lt;li&gt;4.1 -&amp;gt; 4.2&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;existsがbroken.
-
-&lt;ul&gt;
-&lt;li&gt;とはいえ相関subqueryのPerformanceは.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;INNER JOIN&lt;/code&gt;で書き直すか.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;subqueryがbroken.
-]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;template: inverse&lt;/p&gt;
-
-&lt;h1 id=&#34;結果:01b2bdbc95643419b77b9948ad6b09f4&#34;&gt;結果&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;background-image: url(/images/20151016/to_be_continued.jpg)&lt;/p&gt;
 </description>
     </item>
     
