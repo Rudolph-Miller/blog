@@ -1,10 +1,10 @@
 +++
 Description = "About Lisp"
-Tags = ["Slide","Tech Talk","Common Lisp"]
-date = "2015-10-25T06:20:19+09:00"
-draft = true
-title = "About lisp"
+Tags = ["Slide", "Tech Talk", "Common Lisp"]
+date = "2015-10-29T00:34:45+09:00"
+draft = false
 slug = "about-lisp"
+title = "About lisp"
 +++
 
 name: lisp
