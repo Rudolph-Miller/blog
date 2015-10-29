@@ -118,6 +118,12 @@ layout: true&lt;/p&gt;
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
 
 &lt;p&gt;.right-column[
+- Syntactic coherence
+]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
 - Code is made up of first-class object
 ]&lt;/p&gt;
 
@@ -165,7 +171,11 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;background-image: url( /images/20151029/typing.png )&lt;/p&gt;
+&lt;p&gt;background-image: url( /images/20151029/typing1.png )&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;background-image: url( /images/20151029/typing2.png )&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -175,9 +185,15 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
 &lt;h1 id=&#34;imperative:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Imperative&lt;/h1&gt;
 
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
 &lt;h1 id=&#34;object-oriented:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Object-oriented&lt;/h1&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
 
 &lt;h1 id=&#34;functional:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Functional&lt;/h1&gt;
 
@@ -221,6 +237,12 @@ template: lisp&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;]&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h1 id=&#34;syntactic-coherence:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Syntactic coherence&lt;/h1&gt;
 
 &lt;hr /&gt;
 
