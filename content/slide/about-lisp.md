@@ -102,6 +102,11 @@ background-image: url( /images/20151029/lisp-alien.png )
 - S-expression and Polish Notation
 ]
 
+--
+
+.right-column[
+- Syntactic coherence
+]
 
 --
 
@@ -153,7 +158,11 @@ template: lisp
 
 ---
 
-background-image: url( /images/20151029/typing.png )
+background-image: url( /images/20151029/typing1.png )
+
+---
+
+background-image: url( /images/20151029/typing2.png )
 
 ---
 
@@ -163,8 +172,16 @@ template: lisp
 
 ---
 
+--
+
 # Imperative
+
+--
+
 # Object-oriented
+
+--
+
 # Functional
 
 ---
@@ -207,6 +224,12 @@ background-image: url( /images/20151029/lisp-keyboard.jpg )
 ;; => 6
 ```
 ]
+
+---
+
+template: lisp
+
+# Syntactic coherence
 
 ---
 
