@@ -113,7 +113,7 @@ code {
 }
 .lisp h1, .lisp h2 {
   color: #f3f3f3;
-  line-height: 0.8em;
+  line-height: 1.2em;
 }
 #slide-lisp .footnote {
   bottom: 12px;
