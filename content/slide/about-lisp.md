@@ -7,9 +7,16 @@ slug = "about-lisp"
 title = "About Lisp"
 +++
 
-name: lisp
 layout: true
+name: center
+class: middle, center
+
+---
+
+layout: true
+name: lisp
 class: center, middle, lisp
+
 ---
 
 # Tech Talk #4
@@ -38,6 +45,12 @@ background-image: url( http://somewrite.com/wp-content/uploads/2015/04/somelogo1
 
 layout: false
 
+.center[
+## Search on google (ja)
+]
+
+--
+
 background-image: url( /images/20151029/search.png )
 
 ---
@@ -58,9 +71,7 @@ background-image: url( /images/20151029/lisp-idle.jpg )
 
 ---
 
-template: lisp
-
-# ???
+background-image: url( /images/20151029/polnareff.png )
 
 ---
 
@@ -75,7 +86,7 @@ background-image: url( /images/20151029/lisp-alien.png )
 --
 
 .right-column[
-- 1958年
+- 1958
 ]
 
 --
@@ -105,7 +116,7 @@ background-image: url( /images/20151029/lisp-alien.png )
 --
 
 .right-column[
-- Syntactic coherence
+- Coherence
 ]
 
 --
@@ -116,6 +127,38 @@ background-image: url( /images/20151029/lisp-alien.png )
 
 --
 
+.right-column[
+- The whole language is always available.
+]
+
+---
+
+.left-column[
+# Lisp
+]
+.right-column[
+.red[
+- 1958
+]
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
 .right-column[
 - The whole language is always available.
 ]
@@ -138,22 +181,85 @@ background-image: url( /images/20151029/programming-languages.png )
 
 ---
 
+.left-column[
+# Lisp
+]
+.right-column[
+- 1958
+]
+.right-column[
+.red[
+- John McCarthy
+]
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]
+
+---
+
 template: lisp
 
 # John McCarthy
 
 ---
 
-class: middle, center
-layout: true
-
----
+template: center
 
 # the father of AI
 
 ---
 
+template: center
+
 # invented Garbage Collection
+
+---
+
+.left-column[
+# Lisp
+]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+.red[
+- Dynamic and strong typing
+]
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]
 
 ---
 
@@ -172,11 +278,45 @@ background-image: url( /images/20151029/typing2.png )
 
 ---
 
+.left-column[
+# Lisp
+]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+.red[
+- Multiparadigm
+]
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]
+
+---
+
 template: lisp
 
 # Multiparadigm
 
 ---
+
+template: center
 
 --
 
@@ -192,9 +332,47 @@ template: lisp
 
 ---
 
+.left-column[
+# Lisp
+]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+.red[
+- S-expression and Polish Notation
+]
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]
+
+---
+
 template: lisp
 
 # S-expression and Polish Notation
+
+---
+
+template: center
+
+## .red[L]ots of .red[I]rritating .red[S]uperfluous .red[P]arentheses
 
 ---
 
@@ -202,13 +380,73 @@ background-image: url( /images/20151029/lisp-keyboard.jpg )
 
 ---
 
-## Lots of Irritating Superfluous Parentheses
+template: lisp
+
+## S-expression is AST.
+
+---
+
+layout: true
+template: center
+
+---
+
+```ruby
+1 + 3 * 2
+```
+
+---
+
+background-image: url( /images/20151029/ast.png )
+
+---
+
+```lisp
+(+ 1 (* 3 2))
+```
+
+---
+
+## Wait!
+
+---
+
+## AST is for program,
+## not for human.
+
+---
+
+## We are human,
+## and think in natural language.
+
+---
+
+## Really??
+
+---
+
+## When you think of algorithm,
+## do you really think in natural language ?
 
 ---
 
 template: lisp
 
-## S-expression is AST.
+# No.
+
+---
+
+template: lisp
+
+# In the more abstract
+## like tree or graph.
+
+---
+
+template: lisp
+
+## S-expression is
+## the more appropriate method.
 
 ---
 
@@ -239,18 +477,93 @@ template: lisp
 
 ---
 
-template: lisp
+layout: false
 
-# Syntactic coherence
+.left-column[
+# Lisp
+]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+.red[
+- Coherence
+]
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]
 
 ---
 
+template: lisp
+
+# Coherence
+
+---
+
+template: lisp
+
+## No difference between Statement and Expression.
+
+---
+
+template: center
+
 .left[
 ```lisp
-(if (or false true)
-  (print true)
-  (print false))
+(defun sample (bool)
+  (if (if (null bool) false true)
+    (print true)
+    (print false)))
 ```
+]
+
+---
+
+.left-column[
+# Lisp
+]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+.red[
+- Code is made up of first-class object
+]
+]
+.right-column[
+- The whole language is always available.
 ]
 
 ---
@@ -260,6 +573,8 @@ template: lisp
 # Code is made up of first-class object
 
 ---
+
+template: center
 
 .left[
 ```lisp
@@ -283,16 +598,53 @@ template: lisp
 
 ---
 
+.left-column[
+# Lisp
+]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+.red[
+- The whole language is always available.
+]
+]
+
+---
+
 template: lisp
 
-## The whole language is always available.
+# The whole language is always available.
 
 ---
 
 template: lisp
 
 ## You can compile or run code while reading, read or run code while compiling, and read or compile code at runtime.
-quated from "[What Made Lisp Different](http://www.paulgraham.com/diff.html)" by Paul Graham
+quoted from "[What Made Lisp Different](http://www.paulgraham.com/diff.html)" by Paul Graham
+
+---
+
+layout: true
+template: center
 
 ---
 
@@ -357,47 +709,67 @@ quated from "[What Made Lisp Different](http://www.paulgraham.com/diff.html)" by
 
 ---
 
+layout: true
 template: lisp
+
+---
 
 # Finally,
 
 ---
 
-template: lisp
-
-# Why S-expression??
+# Why Lisp?? Why S-expression??
 
 ---
-
-template: lisp
 
 # Because,
 
 ---
 
-template: lisp
-
 # Simple and Coherence.
 
 ---
-
-template: lisp
 
 # No Translation.
 
 ---
 
-template: lisp
-
 # No Limitation.
 
 ---
 
-template: lisp
-
 # Simple and Coherence.
 # No Translation.
 # No Limitation.
+
+---
+
+### and...
+
+---
+
+# God wrote in Lisp code
+# Every creature great and small.
+quoted from [Eternal Flame](http://www.gnu.org/fun/jokes/eternal-flame.html)
+
+---
+
+# Think in Lisp,
+# Think as Transcendence.
+
+---
+
+# Human is freed from
+# all the limitations.
+
+---
+
+### so...
+
+---
+
+# Lisp is, S-expression is
+# a method of salvation.
 
 ---
 
