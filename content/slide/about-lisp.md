@@ -171,9 +171,29 @@ template: lisp
 
 ---
 
+background-image: url( /images/20151029/languages1.png )
+
+---
+
+background-image: url( /images/20151029/languages2.png )
+
+---
+
+background-image: url( /images/20151029/languages3.png )
+
+---
+
+background-image: url( /images/20151029/languages4.png )
+
+---
+
+background-image: url( /images/20151029/languages5.png )
+
+---
+
 class: bottom, center
 
-background-image: url( /images/20151029/programming-languages.png )
+background-image: url( /images/20151029/languages6.png )
 
 --
 
