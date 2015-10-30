@@ -18,10 +18,17 @@
       <guid>http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</guid>
       <description>
 
-&lt;p&gt;name: lisp
-layout: true&lt;/p&gt;
+&lt;p&gt;layout: true
+name: center
+class: middle, center&lt;/p&gt;
 
-&lt;h2 id=&#34;class-center-middle-lisp:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;class: center, middle, lisp&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;layout: true
+name: lisp
+class: center, middle, lisp&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h1 id=&#34;tech-talk-4:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Tech Talk #4&lt;/h1&gt;
 
@@ -49,6 +56,14 @@ layout: true&lt;/p&gt;
 
 &lt;p&gt;layout: false&lt;/p&gt;
 
+&lt;p&gt;.center[&lt;/p&gt;
+
+&lt;h2 id=&#34;search-on-google-ja:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Search on google (ja)&lt;/h2&gt;
+
+&lt;p&gt;]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
 &lt;p&gt;background-image: url( /images/20151029/search.png )&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -69,9 +84,7 @@ layout: true&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;template: lisp&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_7:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;???&lt;/h1&gt;
+&lt;p&gt;background-image: url( /images/20151029/polnareff.png )&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -88,7 +101,7 @@ layout: true&lt;/p&gt;
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
 
 &lt;p&gt;.right-column[
-- 1958年
+- 1958
 ]&lt;/p&gt;
 
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
@@ -118,7 +131,7 @@ layout: true&lt;/p&gt;
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
 
 &lt;p&gt;.right-column[
-- Syntactic coherence
+- Coherence
 ]&lt;/p&gt;
 
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
@@ -130,6 +143,40 @@ layout: true&lt;/p&gt;
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
 
 &lt;p&gt;.right-column[
+- The whole language is always available.
+]&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;lisp-2:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp&lt;/h1&gt;
+
+&lt;p&gt;]
+.right-column[
+.red[
+- 1958
+]
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
 - The whole language is always available.
 ]&lt;/p&gt;
 
@@ -151,22 +198,89 @@ layout: true&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;lisp-3:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp&lt;/h1&gt;
+
+&lt;p&gt;]
+.right-column[
+- 1958
+]
+.right-column[
+.red[
+- John McCarthy
+]
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;p&gt;template: lisp&lt;/p&gt;
 
 &lt;h1 id=&#34;john-mccarthy:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;John McCarthy&lt;/h1&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;class: middle, center
-layout: true&lt;/p&gt;
-
-&lt;hr /&gt;
+&lt;p&gt;template: center&lt;/p&gt;
 
 &lt;h1 id=&#34;the-father-of-ai:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;the father of AI&lt;/h1&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;template: center&lt;/p&gt;
+
 &lt;h1 id=&#34;invented-garbage-collection:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;invented Garbage Collection&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;lisp-4:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp&lt;/h1&gt;
+
+&lt;p&gt;]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+.red[
+- Dynamic and strong typing
+]
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -185,11 +299,47 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;lisp-5:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp&lt;/h1&gt;
+
+&lt;p&gt;]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+.red[
+- Multiparadigm
+]
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;p&gt;template: lisp&lt;/p&gt;
 
 &lt;h1 id=&#34;multiparadigm:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Multiparadigm&lt;/h1&gt;
 
 &lt;hr /&gt;
+
+&lt;p&gt;template: center&lt;/p&gt;
 
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
 
@@ -205,9 +355,49 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;lisp-6:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp&lt;/h1&gt;
+
+&lt;p&gt;]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+.red[
+- S-expression and Polish Notation
+]
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;p&gt;template: lisp&lt;/p&gt;
 
 &lt;h1 id=&#34;s-expression-and-polish-notation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;S-expression and Polish Notation&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: center&lt;/p&gt;
+
+&lt;h2 id=&#34;red-l-ots-of-red-i-rritating-red-s-uperfluous-red-p-arentheses:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;.red[L]ots of .red[I]rritating .red[S]uperfluous .red[P]arentheses&lt;/h2&gt;
 
 &lt;hr /&gt;
 
@@ -215,13 +405,76 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;lots-of-irritating-superfluous-parentheses:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lots of Irritating Superfluous Parentheses&lt;/h2&gt;
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h2 id=&#34;s-expression-is-ast:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;S-expression is AST.&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;layout: true
+template: center&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;1 + 3 * 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;background-image: url( /images/20151029/ast.png )&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-lisp&#34;&gt;(+ 1 (* 3 2))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;wait:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Wait!&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;ast-is-for-program:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;AST is for program,&lt;/h2&gt;
+
+&lt;h2 id=&#34;not-for-human:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;not for human.&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;we-are-human:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;We are human,&lt;/h2&gt;
+
+&lt;h2 id=&#34;and-think-in-natural-language:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;and think in natural language.&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;really:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Really??&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;when-you-think-of-algorithm:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;When you think of algorithm,&lt;/h2&gt;
+
+&lt;h2 id=&#34;do-you-really-think-in-natural-language:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;do you really think in natural language ?&lt;/h2&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;template: lisp&lt;/p&gt;
 
-&lt;h2 id=&#34;s-expression-is-ast:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;S-expression is AST.&lt;/h2&gt;
+&lt;h1 id=&#34;no:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No.&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h1 id=&#34;in-the-more-abstract:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;In the more abstract&lt;/h1&gt;
+
+&lt;h2 id=&#34;like-tree-or-graph:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;like tree or graph.&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h2 id=&#34;s-expression-is:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;S-expression is&lt;/h2&gt;
+
+&lt;h2 id=&#34;the-more-appropriate-method:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;the more appropriate method.&lt;/h2&gt;
 
 &lt;hr /&gt;
 
@@ -252,20 +505,99 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;template: lisp&lt;/p&gt;
+&lt;p&gt;layout: false&lt;/p&gt;
 
-&lt;h1 id=&#34;syntactic-coherence:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Syntactic coherence&lt;/h1&gt;
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;lisp-7:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp&lt;/h1&gt;
+
+&lt;p&gt;]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+.red[
+- Coherence
+]
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+- The whole language is always available.
+]&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h1 id=&#34;coherence:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Coherence&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: lisp&lt;/p&gt;
+
+&lt;h2 id=&#34;no-difference-between-statement-and-expression:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No difference between Statement and Expression.&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: center&lt;/p&gt;
+
 &lt;p&gt;.left[&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-lisp&#34;&gt;(if (or false true)
-  (print true)
-  (print false))
+&lt;pre&gt;&lt;code class=&#34;language-lisp&#34;&gt;(defun sample (bool)
+  (if (if (null bool) false true)
+    (print true)
+    (print false)))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;]&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;lisp-8:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp&lt;/h1&gt;
+
+&lt;p&gt;]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+.red[
+- Code is made up of first-class object
+]
+]
+.right-column[
+- The whole language is always available.
+]&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -274,6 +606,8 @@ template: lisp&lt;/p&gt;
 &lt;h1 id=&#34;code-is-made-up-of-first-class-object:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Code is made up of first-class object&lt;/h1&gt;
 
 &lt;hr /&gt;
+
+&lt;p&gt;template: center&lt;/p&gt;
 
 &lt;p&gt;.left[&lt;/p&gt;
 
@@ -298,9 +632,43 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;lisp-9:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp&lt;/h1&gt;
+
+&lt;p&gt;]
+.right-column[
+- 1958
+]
+.right-column[
+- John McCarthy
+]
+.right-column[
+- Dynamic and strong typing
+]
+.right-column[
+- Multiparadigm
+]
+.right-column[
+- S-expression and Polish Notation
+]
+.right-column[
+- Coherence
+]
+.right-column[
+- Code is made up of first-class object
+]
+.right-column[
+.red[
+- The whole language is always available.
+]
+]&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;p&gt;template: lisp&lt;/p&gt;
 
-&lt;h2 id=&#34;the-whole-language-is-always-available:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;The whole language is always available.&lt;/h2&gt;
+&lt;h1 id=&#34;the-whole-language-is-always-available:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;The whole language is always available.&lt;/h1&gt;
 
 &lt;hr /&gt;
 
@@ -308,7 +676,12 @@ template: lisp&lt;/p&gt;
 
 &lt;h2 id=&#34;you-can-compile-or-run-code-while-reading-read-or-run-code-while-compiling-and-read-or-compile-code-at-runtime:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;You can compile or run code while reading, read or run code while compiling, and read or compile code at runtime.&lt;/h2&gt;
 
-&lt;p&gt;quated from &amp;ldquo;&lt;a href=&#34;http://www.paulgraham.com/diff.html&#34;&gt;What Made Lisp Different&lt;/a&gt;&amp;rdquo; by Paul Graham&lt;/p&gt;
+&lt;p&gt;quoted from &amp;ldquo;&lt;a href=&#34;http://www.paulgraham.com/diff.html&#34;&gt;What Made Lisp Different&lt;/a&gt;&amp;rdquo; by Paul Graham&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;layout: true
+template: center&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -376,49 +749,74 @@ template: lisp&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;template: lisp&lt;/p&gt;
+&lt;p&gt;layout: true
+template: lisp&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h1 id=&#34;finally:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Finally,&lt;/h1&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;template: lisp&lt;/p&gt;
-
-&lt;h1 id=&#34;why-s-expression:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Why S-expression??&lt;/h1&gt;
+&lt;h1 id=&#34;why-lisp-why-s-expression:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Why Lisp?? Why S-expression??&lt;/h1&gt;
 
 &lt;hr /&gt;
-
-&lt;p&gt;template: lisp&lt;/p&gt;
 
 &lt;h1 id=&#34;because:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Because,&lt;/h1&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;template: lisp&lt;/p&gt;
-
 &lt;h1 id=&#34;simple-and-coherence:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Simple and Coherence.&lt;/h1&gt;
 
 &lt;hr /&gt;
-
-&lt;p&gt;template: lisp&lt;/p&gt;
 
 &lt;h1 id=&#34;no-translation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Translation.&lt;/h1&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;template: lisp&lt;/p&gt;
-
 &lt;h1 id=&#34;no-limitation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Limitation.&lt;/h1&gt;
 
 &lt;hr /&gt;
-
-&lt;p&gt;template: lisp&lt;/p&gt;
 
 &lt;h1 id=&#34;simple-and-coherence-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Simple and Coherence.&lt;/h1&gt;
 
 &lt;h1 id=&#34;no-translation-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Translation.&lt;/h1&gt;
 
 &lt;h1 id=&#34;no-limitation-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Limitation.&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;and:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;and&amp;hellip;&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;god-wrote-in-lisp-code:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;God wrote in Lisp code&lt;/h1&gt;
+
+&lt;h1 id=&#34;every-creature-great-and-small:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Every creature great and small.&lt;/h1&gt;
+
+&lt;p&gt;quoted from &lt;a href=&#34;http://www.gnu.org/fun/jokes/eternal-flame.html&#34;&gt;Eternal Flame&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;think-in-lisp:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Think in Lisp,&lt;/h1&gt;
+
+&lt;h1 id=&#34;think-as-transcendence:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Think as Transcendence.&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;human-is-freed-from:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Human is freed from&lt;/h1&gt;
+
+&lt;h1 id=&#34;all-the-limitations:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;all the limitations.&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;so:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;so&amp;hellip;&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;lisp-is-s-expression-is:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Lisp is, S-expression is&lt;/h1&gt;
+
+&lt;h1 id=&#34;a-method-of-salvation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;a method of salvation.&lt;/h1&gt;
 
 &lt;hr /&gt;
 
