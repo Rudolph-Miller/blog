@@ -5,6 +5,8 @@ def extract_title(argv, options = {})
   commands = argv.first.split(':')
   if commands.length > 1
     type = commands[1]
+  else
+    type = 'post'
   end
   unless title and argv.length >= 2
     if options[:ignore_error]
