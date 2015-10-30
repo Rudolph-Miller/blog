@@ -143,7 +143,7 @@ class: center, middle, lisp&lt;/p&gt;
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
 
 &lt;p&gt;.right-column[
-- The whole language is always available.
+- The whole language is always available
 ]&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -177,7 +177,7 @@ class: center, middle, lisp&lt;/p&gt;
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -227,7 +227,7 @@ class: center, middle, lisp&lt;/p&gt;
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -279,7 +279,7 @@ class: center, middle, lisp&lt;/p&gt;
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -328,7 +328,7 @@ template: lisp&lt;/p&gt;
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -384,7 +384,7 @@ template: lisp&lt;/p&gt;
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -536,7 +536,7 @@ template: center&lt;/p&gt;
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -596,7 +596,7 @@ template: center&lt;/p&gt;
 ]
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -660,7 +660,7 @@ template: center&lt;/p&gt;
 ]
 .right-column[
 .red[
-- The whole language is always available.
+- The whole language is always available
 ]
 ]&lt;/p&gt;
 
@@ -668,7 +668,7 @@ template: center&lt;/p&gt;
 
 &lt;p&gt;template: lisp&lt;/p&gt;
 
-&lt;h1 id=&#34;the-whole-language-is-always-available:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;The whole language is always available.&lt;/h1&gt;
+&lt;h1 id=&#34;the-whole-language-is-always-available:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;The whole language is always available&lt;/h1&gt;
 
 &lt;hr /&gt;
 
@@ -775,14 +775,6 @@ template: lisp&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;h1 id=&#34;no-limitation:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Limitation.&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&#34;simple-and-coherence-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;Simple and Coherence.&lt;/h1&gt;
-
-&lt;h1 id=&#34;no-translation-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Translation.&lt;/h1&gt;
-
-&lt;h1 id=&#34;no-limitation-1:2bcfea0b21f928ca7a28c561fd91b8fa&#34;&gt;No Limitation.&lt;/h1&gt;
 
 &lt;hr /&gt;
 
