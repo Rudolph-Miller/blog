@@ -128,7 +128,7 @@ background-image: url( /images/20151029/lisp-alien.png )
 --
 
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]
 
 ---
@@ -160,7 +160,7 @@ background-image: url( /images/20151029/lisp-alien.png )
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]
 
 ---
@@ -208,7 +208,7 @@ background-image: url( /images/20151029/programming-languages.png )
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]
 
 ---
@@ -258,7 +258,7 @@ template: center
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]
 
 ---
@@ -305,7 +305,7 @@ background-image: url( /images/20151029/typing2.png )
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]
 
 ---
@@ -359,7 +359,7 @@ template: center
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]
 
 ---
@@ -506,7 +506,7 @@ layout: false
 - Code is made up of first-class object
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]
 
 ---
@@ -563,7 +563,7 @@ template: center
 ]
 ]
 .right-column[
-- The whole language is always available.
+- The whole language is always available
 ]
 
 ---
@@ -624,7 +624,7 @@ template: center
 ]
 .right-column[
 .red[
-- The whole language is always available.
+- The whole language is always available
 ]
 ]
 
@@ -632,7 +632,7 @@ template: center
 
 template: lisp
 
-# The whole language is always available.
+# The whole language is always available
 
 ---
 
@@ -734,12 +734,6 @@ template: lisp
 
 ---
 
-# No Limitation.
-
----
-
-# Simple and Coherence.
-# No Translation.
 # No Limitation.
 
 ---
