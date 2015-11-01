@@ -7,8 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Wed, 16 Sep 2015 10:06:16 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2015 22:38:10 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Tech Talk About Lisp</title>
+      <link>http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</link>
+      <pubDate>Sun, 01 Nov 2015 22:38:10 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</guid>
+      <description>&lt;p&gt;社内のTech Talk #4でLispについて発表した.&lt;/p&gt;
+
+&lt;p&gt;LispやS-expressionについての軽い話をした.&lt;br /&gt;
+LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
+たぶんTalkがないとよくわからない部分が多いだろうけど公開しておく.
+&lt;iframe
+  class=&#34;iframe-slide&#34;
+  src=&#34;http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;
+  width=&#34;100%&#34;&gt;
+&lt;/iframe&gt;
+&lt;script&gt;
+  (function () {
+    function init () {
+      var slides = document.getElementsByClassName(&#39;iframe-slide&#39;);
+      for (var index = 0, len = slides.length; index &lt; len; index++) {
+        var slide = slides[index];
+        var width = slide.offsetWidth;
+        var height = width * 3 / 4;
+        slide.height = height;
+      }
+    }
+    init();
+    window.addEventListener(&#39;resize&#39;, init);
+  })()
+&lt;/script&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>React Native on Android device</title>
