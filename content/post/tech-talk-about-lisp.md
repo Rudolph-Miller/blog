@@ -13,4 +13,5 @@ slug = "tech-talk-about-lisp"
 
 Lispの外観やS-expressionについての軽い話をした.  
 LispとCommin Lispをごっちゃに扱っているのはワザと.  
-たぶんTalkがないと何言ってんだかって部分もあるだろうけど[Slide](/slide/2015/10/29/about-lisp/).
+たぶんTalkがないと何言ってんだかって部分もあるだろうけど公開しておく.
+{{% slide "/2015/10/29/about-lisp/" %}}
