@@ -44,7 +44,7 @@
 
 
 <body>
-  <textarea id="source">
+  <textarea id="source" style="display: none;">
 layout: true
 name: center
 class: middle, center
@@ -837,9 +837,23 @@ background-image: url( /images/20151029/angel7.jpg )
       navigation: {
         scroll: true,
         touch: true,
-        click: true
+        click: false
       }
     });
-  </script>
-</body>
+    var slideArea = document.getElementsByClassName('remark-slides-area')[0]
+    var threshold = window.innerWidth / 2;
+    slideArea.onclick = function(event) {
+      if (event.target.nodeName === 'A') {
+        return;
+      }
+      else if (event.button === 0) {
+        if ((event.x - threshold) > 0) {
+          slideshow.gotoNextSlide();
+        } else {
+          slideshow.gotoPreviousSlide();
+        }
+      };
+    }
+    </script>
+  </body>
 </html>
