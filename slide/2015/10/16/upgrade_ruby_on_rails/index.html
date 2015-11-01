@@ -176,7 +176,13 @@ background-image: url(/images/20151016/to_be_continued.jpg)
   <script src="http://blog.rudolph-miller.com/js/remark-latest.min.js">
   </script>
   <script>
-var slideshow = remark.create();
+    var slideshow = remark.create({
+      navigation: {
+        scroll: true,
+        touch: true,
+        click: true
+      }
+    });
   </script>
 </body>
 </html>

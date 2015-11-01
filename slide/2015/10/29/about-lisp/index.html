@@ -833,7 +833,13 @@ background-image: url( /images/20151029/angel7.jpg )
   <script src="http://blog.rudolph-miller.com/js/remark-latest.min.js">
   </script>
   <script>
-var slideshow = remark.create();
+    var slideshow = remark.create({
+      navigation: {
+        scroll: true,
+        touch: true,
+        click: true
+      }
+    });
   </script>
 </body>
 </html>
