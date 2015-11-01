@@ -8,7 +8,13 @@
   <script src="{{ .Site.BaseURL }}js/remark-latest.min.js">
   </script>
   <script>
-var slideshow = remark.create();
+    var slideshow = remark.create({
+      navigation: {
+        scroll: true,
+        touch: true,
+        click: true
+      }
+    });
   </script>
 </body>
 </html>
