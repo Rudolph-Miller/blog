@@ -41,6 +41,7 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
     window.addEventListener(&#39;resize&#39;, init);
   })()
 &lt;/script&gt;
+&lt;a href=&#34;http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;
 &lt;/p&gt;
 </description>
     </item>
