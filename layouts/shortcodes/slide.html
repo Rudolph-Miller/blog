@@ -1,1 +1,20 @@
-<iframe src="/slide{{ index .Params 0 }}" ></iframe>
+<iframe
+  class="iframe-slide"
+  src="/slide{{ index .Params 0 }}"
+  width="100%">
+</iframe>
+<script>
+  (function () {
+    function init () {
+      var slides = document.getElementsByClassName('iframe-slide');
+      for (var index = 0, len = slides.length; index < len; index++) {
+        var slide = slides[index];
+        var width = slide.offsetWidth;
+        var height = width * 3 / 4;
+        slide.height = height;
+      }
+    }
+    init();
+    window.addEventListener('resize', init);
+  })()
+</script>
