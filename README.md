@@ -1,1 +1,3 @@
-See [(rudolph-miller)](http://blog.rudolph-miller.com/).
+# My Blog
+
+[(rudolph-miller)](http://blog.rudolph-miller.com/).
