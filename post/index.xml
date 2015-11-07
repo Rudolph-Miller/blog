@@ -24,7 +24,8 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
 &lt;iframe
   class=&#34;iframe-slide&#34;
   src=&#34;http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;
-  width=&#34;100%&#34;&gt;
+  width=&#34;100%&#34;
+  style=&#34;border-width: 1px&#34;&gt;
 &lt;/iframe&gt;
 &lt;script&gt;
   (function () {
