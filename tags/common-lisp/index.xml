@@ -7,8 +7,84 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Thu, 29 Oct 2015 00:34:45 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 14 Nov 2015 23:02:13 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/tags/common-lisp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Daily Log in Slack</title>
+      <link>http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</link>
+      <pubDate>Sat, 14 Nov 2015 23:02:13 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</guid>
+      <description>
+
+&lt;p&gt;Slackでの社内Twitterを日報にするToolを作った.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#slackで社内twitter:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slackで社内Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#slack-nippo:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slack Nippo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;slackで社内twitter:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slackで社内Twitter&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://c16e.com/1511101558&#34;&gt;Slackで簡単に「日報」ならぬ「分報」をチームで実現する3ステップ 〜 Problemが10分で解決するチャットを作ろう&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;先日こんな記事があり、Kaizen Platform社内Slackにも&lt;strong&gt;技術顧問の先導&lt;/strong&gt;により &lt;code&gt;#times_${username}&lt;/code&gt; channelが開設された.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;やってみて感じたことと、これに関してのToolを作り始めたので報告する.&lt;/p&gt;
+
+&lt;p&gt;毎日日報を&lt;a href=&#34;http://kobito.qiita.com/&#34;&gt;Kobito&lt;/a&gt;で書いて、&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿しているのだが、二つ不満があった.&lt;/p&gt;
+
+&lt;p&gt;一つは、普段Vimを使っているので、別にApplicationとしてEditorを立ち上げたくないとこ.&lt;/p&gt;
+
+&lt;p&gt;もう一つは、上の記事にも書かれていたが、&amp;rdquo;チームとしてのスピード感がでない&amp;rdquo;とこ.&lt;br /&gt;
+ある程度の粒度の課題なら別で&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿するが、
+小粒な課題や粒度の見えない課題を発見して、日報に書き、投稿後にコメントをもらったときには解決していたりする.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;#times_${username]&lt;/code&gt; を始めてみると、余分にApplicationを立ち上げる必要がなく、
+リアルタイムにコミュニケーションが発生し、いままでの日報の不満は解決された.&lt;/p&gt;
+
+&lt;p&gt;それだけではなく、&lt;strong&gt;不思議としっくりくる感じ&lt;/strong&gt;があった.&lt;br /&gt;
+考えてみるとこれは&lt;strong&gt;社内でのコミュニケーションに近い&lt;/strong&gt;のだ.&lt;/p&gt;
+
+&lt;p&gt;席にいるかが一目で分かり、悩んでいると声をかけられ、話していると他の人が乱入してくる.&lt;br /&gt;
+リモートワークを取り入れている会社にとって、&lt;strong&gt;この空気&lt;/strong&gt;を生み出せるのは重要だと思う.&lt;/p&gt;
+
+&lt;p&gt;デメリットもある.
+だたのチャットなので&lt;strong&gt;流れる&lt;/strong&gt;.
+後で&lt;strong&gt;&amp;ldquo;あの時の課題はどうやって解決したっけ&amp;rdquo;&lt;/strong&gt;みたいなのがぱっとでてこない.&lt;/p&gt;
+
+&lt;h1 id=&#34;slack-nippo:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slack Nippo&lt;/h1&gt;
+
+&lt;p&gt;ということで、一日の終わりにこの &lt;code&gt;#times_${username}&lt;/code&gt; をまとめて日報とするToolを作った.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;タスク管理はTrelloを使用しており、そのログを &lt;code&gt;#times_${username}&lt;/code&gt; に流すようにした.&lt;br /&gt;
+今はこのMarkdownを&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿している.&lt;/p&gt;
+
+&lt;p&gt;まだ実験段階なのでローカルで叩いてMarkdownを吐き出すだけだが、&lt;br /&gt;
+フォーマットと機能がまとまってきたら、Serverとして起動して生成したMarkdownをSlackに投稿したり、
+&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に直接投稿できる機能をつける.&lt;/p&gt;
+
+&lt;p&gt;Source codeは&lt;a href=&#34;https://github.com/Rudolph-Miller/slack-nippo/&#34;&gt;Slack Nippo - GitHub&lt;/a&gt;にある.&lt;br /&gt;
+とりあえず日報をだしたかったので、かなり雑な部分があるのは認識している.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/jp/api-gateway/&#34;&gt;Amazon API Gateway&lt;/a&gt;と&lt;a href=&#34;https://aws.amazon.com/jp/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;でやろうと考えていたのだが、
+気がつくと&lt;strong&gt;Common Lisp&lt;/strong&gt;を書いていた. 心地よかった.&lt;br /&gt;
+Serverとして機能をつけたらDocker Imageも&lt;a href=&#34;https://hub.docker.com/&#34;&gt;Docker Hub&lt;/a&gt;に上げてローカルで簡単に立ち上げられるようにする.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://c16e.com/1511101558&#34;&gt;Slackで簡単に「日報」ならぬ「分報」をチームで実現する3ステップ 〜 Problemが10分で解決するチャットを作ろう&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/slack-nippo/&#34;&gt;Slack Nippo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>About Lisp</title>

@@ -3,24 +3,24 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="Tech Talk About Lisp - (rudolph-miller)" />
+  <meta property="og:title" content="Daily Log in Slack - (rudolph-miller)" />
   
   <meta property="og:site_name" content="(rudolph-miller)" />
-  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/" />
+  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2015-11-01T22:38:10&#43;09:00" />
+  <meta property="og:article:published_time" content="2015-11-14T23:02:13&#43;09:00" />
   
-  <meta property="og:article:tag" content="Commin Lisp" />
+  <meta property="og:article:tag" content="Slack" />
   
-  <meta property="og:article:tag" content="Tech Talk" />
+  <meta property="og:article:tag" content="Common Lisp" />
   
   
 
   <title>
-    Tech Talk About Lisp - (rudolph-miller)
+    Daily Log in Slack - (rudolph-miller)
   </title>
 
   <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/bootstrap.min.css" />
@@ -87,52 +87,91 @@
 
 <article>
   <header>
-    <h1 class="text-primary">Tech Talk About Lisp</h1>
+    <h1 class="text-primary">Daily Log in Slack</h1>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
-        <time datetime="2015-11-01T22:38:10&#43;09:00">
-          Nov 1, 2015
+        <time datetime="2015-11-14T23:02:13&#43;09:00">
+          Nov 14, 2015
         </time>
       </div>
       <div class="pull-right">
         
-        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/commin-lisp">#Commin Lisp</a></span>
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/slack">#Slack</a></span>
         
-        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/tech-talk">#Tech Talk</a></span>
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/common-lisp">#Common Lisp</a></span>
         
       </div>
     </div>
   </header>
   <section>
-    <p>社内のTech Talk #4でLispについて発表した.</p>
+    
 
-<p>LispやS-expressionについての軽い話をした.<br />
-LispとCommin Lispをごっちゃに扱っているのはワザと.<br />
-たぶんTalkがないとよくわからない部分が多いだろうけど公開しておく.
-<iframe
-  class="iframe-slide"
-  src="/slide/2015/10/29/about-lisp/"
-  width="100%"
-  style="border-width: 1px">
-</iframe>
-<script>
-  (function () {
-    function init () {
-      var slides = document.getElementsByClassName('iframe-slide');
-      for (var index = 0, len = slides.length; index < len; index++) {
-        var slide = slides[index];
-        var width = slide.offsetWidth;
-        var height = width * 3 / 4;
-        slide.height = height;
-      }
-    }
-    init();
-    window.addEventListener('resize', init);
-  })()
-</script>
-<a href="/slide/2015/10/29/about-lisp/" target="_blank">Slide</a>
-</p>
+<p>Slackでの社内Twitterを日報にするToolを作った.</p>
+
+<ol>
+<li><a href="#slackで社内twitter:5f3f4d8b5bd1bfce40967a1c97e646f2">Slackで社内Twitter</a></li>
+<li><a href="#slack-nippo:5f3f4d8b5bd1bfce40967a1c97e646f2">Slack Nippo</a></li>
+<li><a href="#see-also:5f3f4d8b5bd1bfce40967a1c97e646f2">See Also</a></li>
+</ol>
+
+<h1 id="slackで社内twitter:5f3f4d8b5bd1bfce40967a1c97e646f2">Slackで社内Twitter</h1>
+
+<p><a href="http://c16e.com/1511101558">Slackで簡単に「日報」ならぬ「分報」をチームで実現する3ステップ 〜 Problemが10分で解決するチャットを作ろう</a></p>
+
+<p>先日こんな記事があり、Kaizen Platform社内Slackにも<strong>技術顧問の先導</strong>により <code>#times_${username}</code> channelが開設された.</p>
+
+<p><img src="/images/20151114/channel.png" alt="channel" /></p>
+
+<p>やってみて感じたことと、これに関してのToolを作り始めたので報告する.</p>
+
+<p>毎日日報を<a href="http://kobito.qiita.com/">Kobito</a>で書いて、<a href="https://teams.qiita.com/">Qiita:Team</a>に投稿しているのだが、二つ不満があった.</p>
+
+<p>一つは、普段Vimを使っているので、別にApplicationとしてEditorを立ち上げたくないとこ.</p>
+
+<p>もう一つは、上の記事にも書かれていたが、&rdquo;チームとしてのスピード感がでない&rdquo;とこ.<br />
+ある程度の粒度の課題なら別で<a href="https://teams.qiita.com/">Qiita:Team</a>に投稿するが、
+小粒な課題や粒度の見えない課題を発見して、日報に書き、投稿後にコメントをもらったときには解決していたりする.</p>
+
+<p><code>#times_${username]</code> を始めてみると、余分にApplicationを立ち上げる必要がなく、
+リアルタイムにコミュニケーションが発生し、いままでの日報の不満は解決された.</p>
+
+<p>それだけではなく、<strong>不思議としっくりくる感じ</strong>があった.<br />
+考えてみるとこれは<strong>社内でのコミュニケーションに近い</strong>のだ.</p>
+
+<p>席にいるかが一目で分かり、悩んでいると声をかけられ、話していると他の人が乱入してくる.<br />
+リモートワークを取り入れている会社にとって、<strong>この空気</strong>を生み出せるのは重要だと思う.</p>
+
+<p>デメリットもある.
+だたのチャットなので<strong>流れる</strong>.
+後で<strong>&ldquo;あの時の課題はどうやって解決したっけ&rdquo;</strong>みたいなのがぱっとでてこない.</p>
+
+<h1 id="slack-nippo:5f3f4d8b5bd1bfce40967a1c97e646f2">Slack Nippo</h1>
+
+<p>ということで、一日の終わりにこの <code>#times_${username}</code> をまとめて日報とするToolを作った.</p>
+
+<p><img src="/images/20151114/daily_log.png" alt="daily log" /></p>
+
+<p>タスク管理はTrelloを使用しており、そのログを <code>#times_${username}</code> に流すようにした.<br />
+今はこのMarkdownを<a href="https://teams.qiita.com/">Qiita:Team</a>に投稿している.</p>
+
+<p>まだ実験段階なのでローカルで叩いてMarkdownを吐き出すだけだが、<br />
+フォーマットと機能がまとまってきたら、Serverとして起動して生成したMarkdownをSlackに投稿したり、
+<a href="https://teams.qiita.com/">Qiita:Team</a>に直接投稿できる機能をつける.</p>
+
+<p>Source codeは<a href="https://github.com/Rudolph-Miller/slack-nippo/">Slack Nippo - GitHub</a>にある.<br />
+とりあえず日報をだしたかったので、かなり雑な部分があるのは認識している.</p>
+
+<p><a href="https://aws.amazon.com/jp/api-gateway/">Amazon API Gateway</a>と<a href="https://aws.amazon.com/jp/lambda/">AWS Lambda</a>でやろうと考えていたのだが、
+気がつくと<strong>Common Lisp</strong>を書いていた. 心地よかった.<br />
+Serverとして機能をつけたらDocker Imageも<a href="https://hub.docker.com/">Docker Hub</a>に上げてローカルで簡単に立ち上げられるようにする.</p>
+
+<h1 id="see-also:5f3f4d8b5bd1bfce40967a1c97e646f2">See Also</h1>
+
+<ul>
+<li><a href="http://c16e.com/1511101558">Slackで簡単に「日報」ならぬ「分報」をチームで実現する3ステップ 〜 Problemが10分で解決するチャットを作ろう</a></li>
+<li><a href="https://github.com/Rudolph-Miller/slack-nippo/">Slack Nippo</a></li>
+</ul>
 
   </section>
   <footer>
@@ -174,20 +213,20 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.<br />
 
       
       <div class="social-button">
-        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
       </div>
 
       
       <div class="social-button">
-        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/"></div>
+        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/"></div>
       </div>
     </section>
     <ul class="pager">
       
-      <li class="previous"><a href="http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      <li class="previous"><a href="http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/"><span aria-hidden="true">&larr;</span> Older</a></li>
       
       
-      <li class="next"><a href="http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
       
     </ul>
     
