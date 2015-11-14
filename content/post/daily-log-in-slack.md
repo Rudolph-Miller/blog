@@ -1,8 +1,8 @@
 +++
 Description = "Daily Log in Slack"
 Tags = ["Slack", "Common Lisp"]
-date = "2015-11-14T22:52:04+09:00"
-draft = true
+date = "2015-11-14T23:02:13+09:00"
+draft = false
 slug = "daily-log-in-slack"
 title = "Daily Log in Slack"
 +++
