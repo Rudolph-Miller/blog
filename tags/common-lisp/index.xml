@@ -18,7 +18,7 @@
       <guid>http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</guid>
       <description>
 
-&lt;p&gt;Slackでの社内Twitterを日報にするToolを作った.&lt;/p&gt;
+&lt;p&gt;Slackでの社内Twitterを日報にするToolを作っている.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;#slackで社内twitter:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slackで社内Twitter&lt;/a&gt;&lt;/li&gt;
@@ -34,7 +34,7 @@
 
 &lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;やってみて感じたことと、これに関してのToolを作り始めたので報告する.&lt;/p&gt;
+&lt;p&gt;やってみて感じたことと、これに関してのToolを作っているので報告する.&lt;/p&gt;
 
 &lt;p&gt;毎日日報を&lt;a href=&#34;http://kobito.qiita.com/&#34;&gt;Kobito&lt;/a&gt;で書いて、&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿しているのだが、二つ不満があった.&lt;/p&gt;
 
@@ -59,7 +59,7 @@
 
 &lt;h1 id=&#34;slack-nippo:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slack Nippo&lt;/h1&gt;
 
-&lt;p&gt;ということで、一日の終わりにこの &lt;code&gt;#times_${username}&lt;/code&gt; をまとめて日報とするToolを作った.&lt;/p&gt;
+&lt;p&gt;ということで、一日の終わりにこの &lt;code&gt;#times_${username}&lt;/code&gt; をまとめて日報とするToolを作っている.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
 
