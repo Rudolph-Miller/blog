@@ -7,7 +7,7 @@ slug = "daily-log-in-slack"
 title = "Daily Log in Slack"
 +++
 
-Slackでの社内Twitterを日報にするToolを作った.
+Slackでの社内Twitterを日報にするToolを作っている.
 
 <!--more-->
 
@@ -24,7 +24,7 @@ Slackでの社内Twitterを日報にするToolを作った.
 
 ![channel](/images/20151114/channel.png)
 
-やってみて感じたことと、これに関してのToolを作り始めたので報告する.
+やってみて感じたことと、これに関してのToolを作っているので報告する.
 
 毎日日報を[Kobito](http://kobito.qiita.com/)で書いて、[Qiita:Team](https://teams.qiita.com/)に投稿しているのだが、二つ不満があった.
 
@@ -50,7 +50,7 @@ Slackでの社内Twitterを日報にするToolを作った.
 
 # Slack Nippo
 
-ということで、一日の終わりにこの `#times_${username}` をまとめて日報とするToolを作った.
+ということで、一日の終わりにこの `#times_${username}` をまとめて日報とするToolを作っている.
 
 ![daily log](/images/20151114/daily_log.png)
 
