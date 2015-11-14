@@ -102,7 +102,7 @@ def edit(argv, command, type='post')
   command = command.to_s
   type = type.to_s
   if title
-    if title == 'last'
+    if %w(last latest).include? title
       title = `ls -t content/#{type} | head -1 | cut -f 1 -d '.' | tr -d '\n'`
     end
     filename = "content/#{type}/#{title}.md"
