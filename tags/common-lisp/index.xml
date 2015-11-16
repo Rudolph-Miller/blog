@@ -7,8 +7,62 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Sat, 14 Nov 2015 23:02:13 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2015 15:33:08 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/tags/common-lisp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Jonathan unescapes Unicode Escape Sequence</title>
+      <link>http://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</link>
+      <pubDate>Mon, 16 Nov 2015 15:33:08 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan&#34;&gt;Jonathan&lt;/a&gt;にUnicode Escape Sequenceをunescapeする機能を入れた.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#unicode-escape-sequence:414e2a0fa0dc0ddadcfa66c7bce702e1&#34;&gt;Unicode Escape Sequence&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:414e2a0fa0dc0ddadcfa66c7bce702e1&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;unicode-escape-sequence:414e2a0fa0dc0ddadcfa66c7bce702e1&#34;&gt;Unicode Escape Sequence&lt;/h1&gt;
+
+&lt;p&gt;先日&lt;a href=&#34;http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/&#34;&gt;Daily Log in Slack&lt;/a&gt;で報告した&lt;a href=&#34;https://github.com/Rudolph-Miller/slack-nippo&#34;&gt;Slack Nippo&lt;/a&gt;を作っている時に、
+SlackのAPIのResponseにUnicode Escape Sequenceがあり、&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan&#34;&gt;Jonathan&lt;/a&gt;がこれをusescapeしていなかったことを知った.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://hanshuebner.github.io/yason/&#34;&gt;YASON&lt;/a&gt;も&lt;a href=&#34;https://common-lisp.net/project/cl-json/&#34;&gt;CL-JSON&lt;/a&gt;ももちろん対応しているので、
+&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan&#34;&gt;Jonathan&lt;/a&gt;にUnicode Escape Sequenceをunescapeする機能を入れた.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-lisp&#34;&gt;(jonathan:parse &amp;quot;\&amp;quot;\\u30b8\\u30e7\\u30ca\\u30b5\\u30f3\&amp;quot;&amp;quot;)
+;; =&amp;gt; &amp;quot;ジョナサン&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;もちろんSurrogate pairも対応している.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-lisp&#34;&gt;(jonathan:parse &amp;quot;\&amp;quot;\\uD840\\uDC0B\&amp;quot;&amp;quot;)
+;; =&amp;gt; &amp;quot;𠀋&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちなみに&lt;a href=&#34;https://common-lisp.net/project/cl-json/&#34;&gt;CL-JSON&lt;/a&gt;はSurrogate pairを投げると文字化けする.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-lisp&#34;&gt;(with-input-from-string (stream &amp;quot;\&amp;quot;\\uD840\\uDC0B\&amp;quot;&amp;quot;)
+  (cl-json:decode-json stream))
+;; =&amp;gt; &amp;quot;��&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;不具合があれば&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan/issues&#34;&gt;Issues&lt;/a&gt;にreportもらえれば対応します.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:414e2a0fa0dc0ddadcfa66c7bce702e1&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/&#34;&gt;Daily Log in Slack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/slack-nippo&#34;&gt;Slack Nippo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan&#34;&gt;Jonathan&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://hanshuebner.github.io/yason/&#34;&gt;YASON&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://common-lisp.net/project/cl-json/&#34;&gt;CL-JSON&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Daily Log in Slack</title>
