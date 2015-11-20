@@ -6,3 +6,11 @@ draft = true
 title = "Abount me"
 slug = "about-me"
 +++
+
+# Qualification
+
+# Experience and Skills
+
+# Employment
+
+# Education
