@@ -9,8 +9,6 @@ slug = "about-me"
 
 # Qualification
 
-# Experience and Skills
-
-# Employment
+# Experience
 
 # Education
