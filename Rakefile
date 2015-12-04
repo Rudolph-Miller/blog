@@ -140,7 +140,7 @@ task :server do
 end
 
 task :image_directory do
-  date = Time.now.strftime('%Y/%m/%d')
+  date = Time.now.strftime('%Y%m%d')
   dir = "static/images/#{date}"
   FileUtils.mkdir_p(dir)
   puts dir
