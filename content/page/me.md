@@ -11,8 +11,21 @@ slug = "about-me"
 
 # Experience
 
-## Kaizen Platform, Inc. 2015/09/01 - NOW
+## Kaizen Platform, Inc.
 
-## サムライト株式会社 2014/05/01 - 2015/08/31
+### About
+
+- 2015/09/01 - PRESENT
+- Tokyo
+- A/B test as SaaS
+- https://kaizenplatform.com/ja/
+
+## サムライト株式会社
+
+### About
+
+- 2014/05/01 - 2015/08/31
+- Tokyo
+- Native-ad platform
 
 # Education
