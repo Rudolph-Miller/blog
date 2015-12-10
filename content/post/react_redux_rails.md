@@ -11,10 +11,13 @@ React.js & Redux & Ruby on Railsでserver-side rendering.
 
 <!--more-->
 
+この記事は[React.js Advent Calendar 2015](http://qiita.com/advent-calendar/2015/reactjs)の10日目の記事であり、  
+[仮想DOM/Flux Advent Calendar 2015](http://qiita.com/advent-calendar/2015/vdom-flux)の10日目の記事です. (欲張り.)
+
 Source codeは[React Rails Example](https://github.com/Rudolph-Miller/react_rails_example).
 
-1. [React Redux Rails]({{< relref "#react-js" >}})
-1. [See Also]({{< relref "#see-alse" >}})
+1. [React Redux Rails]({{< relref "#react-redux-rails" >}})
+1. [See Also]({{< relref "#see-also" >}})
 
 
 # React Redux Rails
@@ -101,7 +104,11 @@ componentDidMount() {
   - [app/assets/javascripts/actions/index.js](https://github.com/Rudolph-Miller/react_rails_example/blob/ab95d682a10b91358f01bb431be2cdb397795cdd/app/assets/javascripts/actions/index.js#L34-L54)
 
 
-以外とすんなり書け、すんなり動いたので、どこかで実戦投入したいと思う.
+詳しくはSourceに.
+質問があればTwitterで [#Rudolph_Miller](https://twitter.com/Rudolph_Miller) に聞いて下さい.
+
+
+意外とすんなり書け、すんなり動いたので、どこかで実戦投入したいと思う.
 
 
 # See Also
