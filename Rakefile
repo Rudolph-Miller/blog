@@ -138,3 +138,10 @@ end
 task :server do
   sh 'hugo server -wD'
 end
+
+task :image_directory do
+  date = Time.now.strftime('%Y%m%d')
+  dir = "static/images/#{date}"
+  FileUtils.mkdir_p(dir)
+  puts dir
+end
