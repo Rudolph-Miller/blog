@@ -20,11 +20,14 @@
 
 &lt;p&gt;React.js &amp;amp; Redux &amp;amp; Ruby on Railsでserver-side rendering.&lt;/p&gt;
 
+&lt;p&gt;この記事は&lt;a href=&#34;http://qiita.com/advent-calendar/2015/reactjs&#34;&gt;React.js Advent Calendar 2015&lt;/a&gt;の10日目の記事であり、&lt;br /&gt;
+&lt;a href=&#34;http://qiita.com/advent-calendar/2015/vdom-flux&#34;&gt;仮想DOM/Flux Advent Calendar 2015&lt;/a&gt;の10日目の記事です. (欲張り.)&lt;/p&gt;
+
 &lt;p&gt;Source codeは&lt;a href=&#34;https://github.com/Rudolph-Miller/react_rails_example&#34;&gt;React Rails Example&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#react-js:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;React Redux Rails&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-alse:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#react-redux-rails:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;React Redux Rails&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h1 id=&#34;react-redux-rails:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;React Redux Rails&lt;/h1&gt;
@@ -118,7 +121,10 @@ Viewの状態管理をさぼれる.&lt;/p&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;以外とすんなり書け、すんなり動いたので、どこかで実戦投入したいと思う.&lt;/p&gt;
+&lt;p&gt;詳しくはSourceに.
+質問があればTwitterで &lt;a href=&#34;https://twitter.com/Rudolph_Miller&#34;&gt;#Rudolph_Miller&lt;/a&gt; に聞いて下さい.&lt;/p&gt;
+
+&lt;p&gt;意外とすんなり書け、すんなり動いたので、どこかで実戦投入したいと思う.&lt;/p&gt;
 
 &lt;h1 id=&#34;see-also:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;See Also&lt;/h1&gt;
 
