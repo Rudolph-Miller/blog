@@ -1,10 +1,10 @@
 +++
 Description = "React Redux Rails"
 Tags = ["React.js", "Redux", "Ruby on Rails"]
-date = "2015-12-10T22:49:37+09:00"
-draft = true
-title = "React Redux Rails"
+date = "2015-12-11T00:00:06+09:00"
+draft = false
 slug = "react-redux-rails"
+title = "React Redux Rails"
 +++
 
 React.js & Redux & Ruby on Railsでserver-side rendering.
