@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="React Redux Rails - (rudolph-miller)" />
+  
+  <meta property="og:site_name" content="(rudolph-miller)" />
+  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/12/11/react-redux-rails/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2015-12-11T00:00:06&#43;09:00" />
+  
+  <meta property="og:article:tag" content="React.js" />
+  
+  <meta property="og:article:tag" content="Redux" />
+  
+  <meta property="og:article:tag" content="Ruby on Rails" />
+  
+  
+
+  <title>
+    React Redux Rails - (rudolph-miller)
+  </title>
+
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/main.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/github.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/highlight-lisp/themes/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://blog.rudolph-miller.com/images/favicon.png" />
+  <link rel="icon" href="http://blog.rudolph-miller.com/images/favicon.png" />
+  <link rel="apple-touch-icon" href="http://blog.rudolph-miller.com/images/apple-touch-icon.png" />
+  
+  
+</head>
+
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://blog.rudolph-miller.com/">(rudolph-miller)</a></h1>
+      
+      <div class="tag-line">
+        NO LISP, NO LIFE.
+      </div>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://blog.rudolph-miller.com/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">React Redux Rails</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2015-12-11T00:00:06&#43;09:00">
+          Dec 11, 2015
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/react.js">#React.js</a></span>
+        
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/redux">#Redux</a></span>
+        
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/ruby-on-rails">#Ruby on Rails</a></span>
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>React.js &amp; Redux &amp; Ruby on Railsでserver-side rendering.</p>
+
+<p>Source codeは<a href="https://github.com/Rudolph-Miller/react_rails_example">React Rails Example</a>.</p>
+
+<ol>
+<li><a href="#react-js:982e6b4bd120a43daf7d20e0e817411f">React Redux Rails</a></li>
+<li><a href="#see-alse:982e6b4bd120a43daf7d20e0e817411f">See Also</a></li>
+</ol>
+
+<h1 id="react-redux-rails:982e6b4bd120a43daf7d20e0e817411f">React Redux Rails</h1>
+
+<h2 id="react-js:982e6b4bd120a43daf7d20e0e817411f">React.js</h2>
+
+<p>React.jsはFacebook製のJavaScriptのUI Library.<br />
+Viewの状態管理をさぼれる.</p>
+
+<ul>
+<li><a href="https://github.com/facebook/react">React.js</a></li>
+<li><a href="http://qiita.com/advent-calendar/2014/reactjs">一人React.js Advent Calendar 2014</a></li>
+</ul>
+
+<h2 id="redux:982e6b4bd120a43daf7d20e0e817411f">Redux</h2>
+
+<p>Reduxは今一番熱いFlux architecture frameworkで状態管理をatomitにする.</p>
+
+<ul>
+<li><a href="https://github.com/rackt/redux">Redux</a></li>
+<li><a href="https://github.com/rackt/react-redux">React Redux</a></li>
+<li><a href="http://amagitakayosi.hatenablog.com/entry/2015/07/30/000000">人気のFluxフレームワークReduxをさわってみた</a></li>
+</ul>
+
+<h2 id="react-rails:982e6b4bd120a43daf7d20e0e817411f">react-rails</h2>
+
+<p>Ruby on RailsにはReact.jsのserver-side renderingを容易にするGemがある.</p>
+
+<pre><code class="language-rb">&lt;%= react_component('HelloMessage', name: 'John') %&gt;
+&lt;!-- becomes: --&gt;
+&lt;div data-react-class=&quot;HelloMessage&quot; data-react-props=&quot;{&amp;quot;name&amp;quot;:&amp;quot;John&amp;quot;}&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<p>こんな感じにViewにReact.jsのComponentを埋め込むことができる.</p>
+
+<p><code>react_component</code> の3つ目の引数として <code>{prerender: true}</code> を渡すだけで、server-side renderingができる.</p>
+
+<pre><code class="language-rb">&lt;%= react_component('HelloMessage', {name: 'John'}, {prerender: true}) %&gt;
+&lt;!-- becomes: --&gt;
+&lt;div data-react-class=&quot;HelloMessage&quot; data-react-props=&quot;{&amp;quot;name&amp;quot;:&amp;quot;John&amp;quot;}&quot;&gt;
+  &lt;h1&gt;Hello, John!&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
+
+<ul>
+<li><a href="https://github.com/reactjs/react-rails">react-rails</a></li>
+<li><a href="http://qiita.com/joe-re/items/96f12dda4a62470d1d7c">react-railsを使ってReactのTutorialをやってみる</a></li>
+</ul>
+
+<h2 id="try:982e6b4bd120a43daf7d20e0e817411f">Try</h2>
+
+<p>これらを合わせて、Reduxで状態管理をして、ReactでComponentを組み立て、Ruby on Railsでserver-side renderingをしてみた.</p>
+
+<p>BaseのAppはReduxのBasic tutorialになっている<a href="http://rackt.org/redux/docs/basics/ExampleTodoList.html">tiny todo app</a>.</p>
+
+<pre><code class="language-rb">&lt;%= react_component('Root', {presetTodos: @todos}, {prerender: true}) %&gt;
+</code></pre>
+
+<p><a href="https://github.com/Rudolph-Miller/react_rails_example/blob/ab95d682a10b91358f01bb431be2cdb397795cdd/app/views/todos/index.html.erb#L1">app/views/todos/index.html.erb</a></p>
+
+<p>とRuby on RailsのViewに埋め込むことにより、初回は server-side renderingで <code>@todos</code> を <code>props</code> に渡して <code>componentDidMount</code> でDataをsetし、
+それ以外で <code>Root</code> をrenderした時は <code>componentDidMount</code> でDataをfetchする.<br />
+(今回のExampleではこの遷移は実装していないが、 <code>{presetTodos: @todos}</code> をはずぜばこの挙動となる.)</p>
+
+<pre><code class="language-js">componentDidMount() {
+	const { dispatch, presetTodos } = this.props;
+	if (presetTodos) {
+		dispatch(setTodos(presetTodos));
+	} else {
+		dispatch(fetchTodos());
+	}
+}
+</code></pre>
+
+<p><a href="https://github.com/Rudolph-Miller/react_rails_example/blob/ab95d682a10b91358f01bb431be2cdb397795cdd/app/assets/javascripts/containers/App.js#L38-L45">app/assets/javascripts/containers/App.js</a></p>
+
+<p>軽くポイントを掻い摘む.</p>
+
+<ul>
+<li>JavaScriptのLibrary管理はnpmでbrowserify-railsを使ってBabelでbuildした.
+
+<ul>
+<li><code>application.js</code> は <code>//= require react_ujs</code> と <code>//= require components</code> のみ. (<a href="https://github.com/Rudolph-Miller/react_rails_example/blob/c07553236da0464393fccf75ecb6a3d61f48b4e2/app/assets/javascripts/application.js#L1-L2">app/assets/javascripts/application.js</a>)</li>
+</ul></li>
+<li>Babel 6だとDecorationが未supportだったため、Babel 5を使用した. (<a href="http://phabricator.babeljs.io/T2645">Implement new decorator proposal when finalized</a>)</li>
+<li>ReduxでAsync.
+
+<ul>
+<li><a href="http://rackt.org/redux/docs/advanced/AsyncActions.html">Async Actions</a></li>
+<li><a href="https://github.com/Rudolph-Miller/react_rails_example/blob/ab95d682a10b91358f01bb431be2cdb397795cdd/app/assets/javascripts/actions/index.js#L34-L54">app/assets/javascripts/actions/index.js</a></li>
+</ul></li>
+</ul>
+
+<p>以外とすんなり書け、すんなり動いたので、どこかで実戦投入したいと思う.</p>
+
+<h1 id="see-also:982e6b4bd120a43daf7d20e0e817411f">See Also</h1>
+
+<ul>
+<li><a href="https://github.com/Rudolph-Miller/react_rails_example">React Rails Example</a></li>
+<li><a href="https://github.com/facebook/react">React.js</a></li>
+<li><a href="https://github.com/facebook/flux">Flux</a></li>
+<li><a href="https://github.com/rackt/redux">Redux</a></li>
+<li><a href="https://github.com/rackt/react-redux">React Redux</a></li>
+<li><a href="https://github.com/reactjs/react-rails">react-rails</a></li>
+<li><a href="https://github.com/browserify-rails/browserify-rails">Babel</a></li>
+<li><a href="https://github.com/browserify-rails/browserify-rails">browserify-rails</a></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+        <img alt="Author Avatar" src="/images/logo.png" />
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        <h1 class="author-name text-primary">Rudolph Miller</h1>
+        
+        
+        <div class="author-bio">Common Lisp Player.</div>
+        
+      </div>
+      
+      <div class="author-contact col-md-4">
+        <a href="mailto:lisper@rudolph-miller.com">
+          <i class="fa fa-envelope-o"></i>
+          &nbsp;Contact me
+        </a>
+      </div>
+      
+    </section>
+    <section class="social-buttons row">
+      
+      <div class="social-button">
+        <a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true" data-count="vertical">Tweet</a>
+      </div>
+
+      
+      <div class="social-button">
+        <a class='hatena-bookmark-button' data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en" expr:data-hatena-bookmark-title="data:post.title" expr:href='"http://b.hatena.ne.jp/entry/" + data:post.canonicalUrl' title='このエントリーをはてなブックマークに追加'>
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
+        </a>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/12/11/react-redux-rails/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/12/11/react-redux-rails/"></div>
+      </div>
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      
+      var disqus_shortname = 'rudolph-miller';
+      (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })()
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+    
+    <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
+
+    
+    <script type='text/javascript' src='http://b.st-hatena.com/js/bookmark_button.js' charset='utf-8' async='async'></script>
+
+    
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>
+      {lang: "ja"}
+    </script>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; Copyright 2015 Rudolph Miller
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://blog.rudolph-miller.com/js/highlight.pack.js"></script>
+  <script src="http://blog.rudolph-miller.com/highlight-lisp/highlight-lisp.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    HighlightLisp.highlight_auto({className: "language-common-lisp"});
+    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
+  </script>
+  
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47602577-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+</body>
+</html>
+
