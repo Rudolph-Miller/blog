@@ -7,8 +7,132 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 11 Dec 2015 00:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 13 Dec 2015 23:00:37 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>React Bootstrap Star Rating</title>
+      <link>http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</link>
+      <pubDate>Sun, 13 Dec 2015 23:00:37 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</guid>
+      <description>
+
+&lt;p&gt;React Bootstrap Star Ratingを作った.&lt;/p&gt;
+
+&lt;p&gt;作ったので軽く紹介する.&lt;br /&gt;
+GitHubは&lt;a href=&#34;https://github.com/Rudolph-Miller/react-bootstrap-star-rating&#34;&gt;React Bootstrap Star Rating&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#react-bootstrap-star-rating:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;React Bootstrap Star Rating&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;react-bootstrap-star-rating:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;React Bootstrap Star Rating&lt;/h1&gt;
+
+&lt;p&gt;作り始めた動機はあるプロジェクトでBowerでjQueryが使われており、
+commitするにあたってそれらを殲滅しnpmとReactを導入しようと思ったが、
+どうもReactには良い感じのStar rating libraryが無かったから.&lt;/p&gt;
+
+&lt;h2 id=&#34;star-rating-in-react:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;Star Rating in React&lt;/h2&gt;
+
+&lt;p&gt;npmのdownload statsで一番だったのは&lt;a href=&#34;https://www.npmjs.com/package/react-star-rating&#34;&gt;react-star-rating&lt;/a&gt; (939 downloads in the last month) で、
+それ以外はほとんど使われていないようだった.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/react-star-rating&#34;&gt;react-star-rating&lt;/a&gt;はどうかというと、GitHubのcommitはa month agoで&lt;a href=&#34;http://cameronjroe.com/react-star-rating/&#34;&gt;Project page&lt;/a&gt;もあり、
+ある程度は開発されていそうだったが、どうも件のProjectのowner曰くstyleがイケていないらしい.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151213/react-star-rating.png&#34; alt=&#34;react-star-rating-image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ということで、件のProjectで使用していたjQuery pluginをReactでwrapして使うことした.
+(&lt;a href=&#34;http://plugins.krajee.com/star-rating/demo&#34;&gt;DEMO&lt;/a&gt;をみる限り、色々customizableっぽい.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151213/bootstrap-star-rating.gif&#34; alt=&#34;bootstrap-star-rating-image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;wrap-jquery-plugin:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;Wrap jQuery plugin&lt;/h2&gt;
+
+&lt;p&gt;作ったといってもjQuery pluginをwrapしただけ (どうもnpmにpublishしていなかっただけで、package.jsonはあった.) なので、
+wrapする際の常套patternを軽く紹介する.&lt;/p&gt;
+
+&lt;h3 id=&#34;dom-node:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;DOM node&lt;/h3&gt;
+
+&lt;p&gt;jQuery pluginなのでDOM nodeに対して操作を行う.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;$(&#39;#rating&#39;).rating();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これをReactで実装する際は &lt;code&gt;ref&lt;/code&gt; を使用する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;class StarRating extends Component {
+  componentDidMount() {
+    $node.rating();
+  }
+
+  render() {
+    return (
+      &amp;lt;input
+        ref={node =&amp;gt; { this.$node = $(node); }} /&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;export-api:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;Export API&lt;/h3&gt;
+
+&lt;p&gt;今回の&lt;a href=&#34;https://www.npmjs.com/package/react-star-rating&#34;&gt;bootstrap-star-rating&lt;/a&gt;は強制にvalueをupdateするAPIがあった.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;$(&#39;#rating&#39;).rating(&#39;update&#39;, 5);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これをReactで実装する際は &lt;code&gt;method&lt;/code&gt; として定義して、 &lt;code&gt;ref&lt;/code&gt; を通して呼び出す.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;class StarRating extends Component {
+  componentDidMount() {
+    $node.rating();
+  }
+
+  render() {
+    return (
+      &amp;lt;input
+        ref={node =&amp;gt; { this.$node = $(node); }} /&amp;gt;
+    );
+  }
+
+  update(value) {
+    $node.rating(&#39;update&#39;, value);
+  }
+}
+
+class App extends Component {
+  componentDidMount() {
+    setTimeout(() =&amp;gt; {
+      this.starRating.update(5);
+    }, 1000);
+  }
+
+  render() {
+    return (
+      &amp;lt;StarRating
+        ref={ref =&amp;gt; { this.starRating = ref; }} /&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;result:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;Result&lt;/h2&gt;
+
+&lt;p&gt;簡単にwrapして別のLibraryとして切り出しただけなのでjQueryを無くせたわけでは無いが、&lt;br /&gt;
+直接の依存からはremoveできるようになったので心のざわつきは無くせたかな.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/react-bootstrap-star-rating&#34;&gt;React Bootstrap Star Rating&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://plugins.krajee.com/star-rating&#34;&gt;Bootstrap Star Rating&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/kartik-v/bootstrap-star-rating&#34;&gt;bootstrap-star-rating&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>React Redux Rails</title>
