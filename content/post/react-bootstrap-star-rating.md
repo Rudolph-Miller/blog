@@ -117,6 +117,11 @@ class App extends Component {
 ```
 
 
+## Result
+
+簡単にwrapして別のLibraryとして切り出しただけなのでjQueryを無くせたわけでは無いが、  
+直接の依存からはremoveできるようになったので心のざわつきは無くせたかな.
+
 # See Also
 
 - [React Bootstrap Star Rating](https://github.com/Rudolph-Miller/react-bootstrap-star-rating)
