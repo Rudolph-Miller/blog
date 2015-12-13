@@ -42,12 +42,14 @@ commitするにあたってそれらを殲滅しnpmとReactを導入しようと
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/react-star-rating&#34;&gt;react-star-rating&lt;/a&gt;はどうかというと、GitHubのcommitはa month agoで&lt;a href=&#34;http://cameronjroe.com/react-star-rating/&#34;&gt;Project page&lt;/a&gt;もあり、
 ある程度は開発されていそうだったが、どうも件のProjectのowner曰くstyleがイケていないらしい.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151213/react-star-rating.png&#34; alt=&#34;react-star-rating-image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151213/react-star-rating.png&#34; alt=&#34;/20151213/react-star-rating.png&#34;&gt;
+
 
 &lt;p&gt;ということで、件のProjectで使用していたjQuery pluginをReactでwrapして使うことした.
 (&lt;a href=&#34;http://plugins.krajee.com/star-rating/demo&#34;&gt;DEMO&lt;/a&gt;をみる限り、色々customizableっぽい.)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151213/bootstrap-star-rating.gif&#34; alt=&#34;bootstrap-star-rating-image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151213/bootstrap-star-rating.gif&#34; alt=&#34;/20151213/bootstrap-star-rating.gif&#34;&gt;
+
 
 &lt;h2 id=&#34;wrap-jquery-plugin:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;Wrap jQuery plugin&lt;/h2&gt;
 
