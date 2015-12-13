@@ -1,10 +1,10 @@
 +++
 Description = "React Bootstrap Star Rating"
 Tags = ["React.js"]
-date = "2015-12-13T21:46:15+09:00"
-draft = true
-title = "React Bootstrap Star Rating"
+date = "2015-12-13T23:00:37+09:00"
+draft = false
 slug = "react-bootstrap-star-rating"
+title = "React Bootstrap Star Rating"
 +++
 
 React Bootstrap Star Ratingを作った.
