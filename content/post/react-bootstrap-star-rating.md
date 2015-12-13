@@ -32,12 +32,12 @@ npmのdownload statsで一番だったのは[react-star-rating](https://www.npmj
 [react-star-rating](https://www.npmjs.com/package/react-star-rating)はどうかというと、GitHubのcommitはa month agoで[Project page](http://cameronjroe.com/react-star-rating/)もあり、
 ある程度は開発されていそうだったが、どうも件のProjectのowner曰くstyleがイケていないらしい.
 
-![react-star-rating-image](/images/20151213/react-star-rating.png)
+{{% image "/20151213/react-star-rating.png" %}}
 
 ということで、件のProjectで使用していたjQuery pluginをReactでwrapして使うことした.
 ([DEMO](http://plugins.krajee.com/star-rating/demo)をみる限り、色々customizableっぽい.)
 
-![bootstrap-star-rating-image](/images/20151213/bootstrap-star-rating.gif)
+{{% image "/20151213/bootstrap-star-rating.gif" %}}
 
 
 ## Wrap jQuery plugin
