@@ -18,6 +18,10 @@ React Bootstrap Star Ratingを作った.
 
 # React Bootstrap Star Rating
 
+作り始めた動機はあるプロジェクトでBowerでjQueryが使われており、
+commitするにあたってそれらを殲滅しnpmとReactを導入しようと思ったが、
+どうもReactには良い感じのStar rating libraryが無かったから.
+
 # See Also
 
 - [React Bootstrap Star Rating](https://github.com/Rudolph-Miller/react-bootstrap-star-rating)
