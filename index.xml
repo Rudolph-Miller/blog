@@ -32,7 +32,7 @@
 &lt;h2 id=&#34;why:204c7e295a840c149fff4b9b8d704763&#34;&gt;Why&lt;/h2&gt;
 
 &lt;p&gt;最近&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;を使っているが、DataのFetchが似たようなAction creatorとReducerのpatternになったので、
-切り出してpublishした. (&lt;code&gt;POST&lt;/code&gt; もFetchかよって違和感はありますが.)&lt;/p&gt;
+切り出してpublishした. (&lt;code&gt;POST&lt;/code&gt; もFetchかよって違和感はある.)&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/redux-fetch-action&#34;&gt;Redux Fetch Action&lt;/a&gt;&lt;/p&gt;
 
