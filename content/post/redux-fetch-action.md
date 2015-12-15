@@ -1,15 +1,17 @@
 +++
 Description = "Redux Fetch Action"
 Tags = ["React.js", "Redux"]
-date = "2015-12-15T00:35:49+09:00"
-draft = true
-title = "Redux Fetch Action"
+date = "2015-12-15T12:53:17+09:00"
+draft = false
 slug = "redux-fetch-action"
+title = "Redux Fetch Action"
 +++
 
 Redux Fetch ActionというReduxのFetch actionのutilityを作った.
 
 <!--more-->
+
+この記事は[仮想DOM/Flux Advent Calendar 2015](http://qiita.com/advent-calendar/2015/vdom-flux)の15日目の記事.
 
 1. [Redux Fetch Action]({{< relref "#redux-fetch-action" >}})
 2. [See Also]({{< relref "#see-also" >}})
