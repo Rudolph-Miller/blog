@@ -22,7 +22,7 @@ Redux Fetch ActionというReduxのFetch actionのutilityを作った.
 ## Why
 
 最近[Redux](https://github.com/rackt/redux)を使っているが、DataのFetchが似たようなAction creatorとReducerのpatternになったので、
-切り出してpublishした. (`POST` もFetchかよって違和感はありますが.)
+切り出してpublishした. (`POST` もFetchかよって違和感はある.)
 
 [Redux Fetch Action](https://github.com/Rudolph-Miller/redux-fetch-action)
 
