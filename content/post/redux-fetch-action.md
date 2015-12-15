@@ -11,6 +11,8 @@ Redux Fetch ActionというReduxのFetch actionのutilityを作った.
 
 <!--more-->
 
+この記事は[仮想DOM/Flux Advent Calendar 2015](http://qiita.com/advent-calendar/2015/vdom-flux)の15日目の記事.
+
 1. [Redux Fetch Action]({{< relref "#redux-fetch-action" >}})
 2. [See Also]({{< relref "#see-also" >}})
 
