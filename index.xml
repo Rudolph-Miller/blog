@@ -73,10 +73,10 @@ const reducer = handleFetchAction(FETCH_DATA, {
 
 &lt;p&gt;二つのAPIを合わせ、&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;mport { createStore, applyMiddleware } from &#39;redux&#39;;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import { createStore, applyMiddleware } from &#39;redux&#39;;
 import thunk from &#39;redux-thunk&#39;;
-import { handleActions, handleAction } from &#39;redux-actions&#39;;
-import { createFetchAction } from &#39;redux-fetch-action&#39;;
+import { handleActions } from &#39;redux-actions&#39;;
+import { createFetchAction, handleFetchAction } from &#39;redux-fetch-action&#39;;
 import { Server }from &#39;node-static&#39;;
 import { createServer } from &#39;http&#39;;
 
@@ -87,43 +87,62 @@ createServer((request, response)  =&amp;gt; {
   }).resume();
 }).listen(8080);
 
-
 const FETCH1 = &#39;FETCH1&#39;;
 const FETCH2 = &#39;FETCH2&#39;;
+const FETCH3 = &#39;FETCH3&#39;;
 
 const reducer1 = handleFetchAction(FETCH1, {
   request: (posts = [], action) =&amp;gt; {
-      console.log(&#39;REQUEST 1&#39;);
-      return posts;
+    console.log(&#39;REQUEST 1&#39;);
+    return posts;
   },
   receive: (posts = [], action) =&amp;gt; {
     console.log(&#39;RECEIVED 1&#39;);
+    console.log(action.payload);
     return action.payload.posts;
   },
   error: (posts = [], action) =&amp;gt; {
     console.log(&#39;ERROR 1&#39;);
-    return posts; 
+    return posts;
   }
 });
 
 const reducer2 = handleFetchAction(FETCH2, {
   request: (posts = [], action) =&amp;gt; {
-      console.log(&#39;REQUEST 2&#39;);
-      return posts;
+    console.log(&#39;REQUEST 2&#39;);
+    return posts;
   },
   receive: (posts = [], action) =&amp;gt; {
     console.log(&#39;RECEIVED 2&#39;);
+    console.log(action.payload);
     return action.payload.posts;
   },
   error: (posts = [], action) =&amp;gt; {
     console.log(&#39;ERROR 2&#39;);
-    return posts; 
+    return posts;
+  }
+});
+
+const reducer3 = handleFetchAction(FETCH3, {
+  request: (posts = [], action) =&amp;gt; {
+    console.log(&#39;REQUEST 3&#39;);
+    return posts;
+  },
+  receive: (posts = [], action) =&amp;gt; {
+    console.log(&#39;RECEIVED 3&#39;);
+    console.log(action.payload);
+    return action.payload.posts;
+  },
+  error: (posts = [], action) =&amp;gt; {
+    console.log(&#39;ERROR 3&#39;);
+    return posts;
   }
 });
 
 const reducer = handleActions({
   FETCH1: reducer1,
-  FETCH2: reducer2
+  FETCH2: reducer2,
+  FETCH3: reducer3
 }, {});
 
 const store = applyMiddleware(
@@ -131,16 +150,26 @@ const store = applyMiddleware(
 )(createStore)(reducer);
 
 const fetchAction1 = createFetchAction(FETCH1, &#39;http://localhost:8080/data.json&#39;);
-const fetchAction2 = createFetchAction(FETCH2, &#39;http://localhost:8080/unknown.json&#39;);
+const fetchAction2 = createFetchAction(FETCH2, &#39;http://localhost:8080/sample.html&#39;);
+const fetchAction3 = createFetchAction(FETCH3, &#39;http://localhost:8080/unknown.json&#39;);
 
 store.dispatch(fetchAction1());
 store.dispatch(fetchAction2());
+store.dispatch(fetchAction3());
 
 /*
 REQUEST 1
 REQUEST 2
-ERROR 2
+REQUEST 3
+ERROR 3
 RECEIVED 1
+{ posts:
+   [ { id: 1, text: &#39;Sample text 1&#39; },
+     { id: 2, text: &#39;Sample text 2&#39; } ] }
+RECEIVED 2
+&amp;lt;div&amp;gt;
+  sample
+&amp;lt;/div&amp;gt;
 */
 &lt;/code&gt;&lt;/pre&gt;
 
