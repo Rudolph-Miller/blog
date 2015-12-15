@@ -1,9 +1,11 @@
 {{ partial "header.html" . }}
 <section class="article-list">
-  <h1>{{ .Title }}</h1>
-  {{ range .Data.Pages}}
+  {{ range $index, $page := (.Paginator 5).Pages }}
+    {{ if ne $index 0 }}
     <hr/>
+    {{ end }}
     {{ .Render "li" }}
   {{ end }}
+  {{ template "partials/pagination.html" . }}
 </section>
 {{ partial "footer.html" . }}
