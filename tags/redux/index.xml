@@ -7,8 +7,155 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 11 Dec 2015 00:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 15 Dec 2015 12:53:17 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/tags/redux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Redux Fetch Action</title>
+      <link>http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</link>
+      <pubDate>Tue, 15 Dec 2015 12:53:17 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</guid>
+      <description>
+
+&lt;p&gt;Redux Fetch ActionというReduxのFetch actionのutilityを作った.&lt;/p&gt;
+
+&lt;p&gt;この記事は&lt;a href=&#34;http://qiita.com/advent-calendar/2015/vdom-flux&#34;&gt;仮想DOM/Flux Advent Calendar 2015&lt;/a&gt;の15日目の記事.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#redux-fetch-action:204c7e295a840c149fff4b9b8d704763&#34;&gt;Redux Fetch Action&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:204c7e295a840c149fff4b9b8d704763&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;redux-fetch-action:204c7e295a840c149fff4b9b8d704763&#34;&gt;Redux Fetch Action&lt;/h1&gt;
+
+&lt;h2 id=&#34;why:204c7e295a840c149fff4b9b8d704763&#34;&gt;Why&lt;/h2&gt;
+
+&lt;p&gt;最近&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;を使っているが、DataのFetchが似たようなAction creatorとReducerのpatternになったので、
+切り出してpublishした. (&lt;code&gt;POST&lt;/code&gt; もFetchかよって違和感はありますが.)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/redux-fetch-action&#34;&gt;Redux Fetch Action&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;FluxのActionには&lt;a href=&#34;https://github.com/acdlite/flux-standard-action&#34;&gt;非公式のCoding規約&lt;/a&gt;があるらしく、
+それに則るため&lt;a href=&#34;https://github.com/acdlite/redux-actions&#34;&gt;redux-actions&lt;/a&gt;をbaseとしている.&lt;/p&gt;
+
+&lt;h2 id=&#34;api:204c7e295a840c149fff4b9b8d704763&#34;&gt;API&lt;/h2&gt;
+
+&lt;p&gt;APIは &lt;code&gt;createFetchAction&lt;/code&gt; と &lt;code&gt;handleFetchAction&lt;/code&gt; がある.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;createFetchAction&lt;/code&gt; はAction creatorを返す.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const FETCH_DATA = &#39;FETCH_DATA&#39;;
+const fetchAction = createFetchAction(FETCH_DATA, &#39;/data.json&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように使用する.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;handleFetchAction&lt;/code&gt; はReducerを返す.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;
+const reducer = handleFetchAction(FETCH_DATA, {
+  request: (state = {}, action) =&amp;gt; {
+    return state;
+  },
+  receive: (state = {}, action) =&amp;gt; {
+    return action.payload;
+  },
+  error: (satet = {}, action) =&amp;gt; {
+    return state;
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように使用する.&lt;/p&gt;
+
+&lt;h2 id=&#34;example:204c7e295a840c149fff4b9b8d704763&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;二つのAPIを合わせ、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;mport { createStore, applyMiddleware } from &#39;redux&#39;;
+import thunk from &#39;redux-thunk&#39;;
+import { handleActions, handleAction } from &#39;redux-actions&#39;;
+import { createFetchAction } from &#39;redux-fetch-action&#39;;
+import { Server }from &#39;node-static&#39;;
+import { createServer } from &#39;http&#39;;
+
+const file = new Server();
+createServer((request, response)  =&amp;gt; {
+  request.addListener(&#39;end&#39;, () =&amp;gt; {
+    file.serve(request, response);
+  }).resume();
+}).listen(8080);
+
+
+const FETCH1 = &#39;FETCH1&#39;;
+const FETCH2 = &#39;FETCH2&#39;;
+
+const reducer1 = handleFetchAction(FETCH1, {
+  request: (posts = [], action) =&amp;gt; {
+      console.log(&#39;REQUEST 1&#39;);
+      return posts;
+  },
+  receive: (posts = [], action) =&amp;gt; {
+    console.log(&#39;RECEIVED 1&#39;);
+    return action.payload.posts;
+  },
+  error: (posts = [], action) =&amp;gt; {
+    console.log(&#39;ERROR 1&#39;);
+    return posts; 
+  }
+});
+
+const reducer2 = handleFetchAction(FETCH2, {
+  request: (posts = [], action) =&amp;gt; {
+      console.log(&#39;REQUEST 2&#39;);
+      return posts;
+  },
+  receive: (posts = [], action) =&amp;gt; {
+    console.log(&#39;RECEIVED 2&#39;);
+    return action.payload.posts;
+  },
+  error: (posts = [], action) =&amp;gt; {
+    console.log(&#39;ERROR 2&#39;);
+    return posts; 
+  }
+});
+
+const reducer = handleActions({
+  FETCH1: reducer1,
+  FETCH2: reducer2
+}, {});
+
+const store = applyMiddleware(
+  thunk
+)(createStore)(reducer);
+
+const fetchAction1 = createFetchAction(FETCH1, &#39;http://localhost:8080/data.json&#39;);
+const fetchAction2 = createFetchAction(FETCH2, &#39;http://localhost:8080/unknown.json&#39;);
+
+store.dispatch(fetchAction1());
+store.dispatch(fetchAction2());
+
+/*
+REQUEST 1
+REQUEST 2
+ERROR 2
+RECEIVED 1
+*/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このようにFetchのhandleができる.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:204c7e295a840c149fff4b9b8d704763&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/redux-fetch-action&#34;&gt;Redux Fetch Action&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-actions&#34;&gt;redux-actions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/yasuhiro-okada-aktsk/items/a14f7f37262fb6cf0bf8&#34;&gt;Redux: Actionのコーディング規約 と redux-actions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>React Redux Rails</title>

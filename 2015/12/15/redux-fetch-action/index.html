@@ -3,22 +3,24 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="React Bootstrap Star Rating - (rudolph-miller)" />
+  <meta property="og:title" content="Redux Fetch Action - (rudolph-miller)" />
   
   <meta property="og:site_name" content="(rudolph-miller)" />
-  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/" />
+  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2015-12-13T23:00:37&#43;09:00" />
+  <meta property="og:article:published_time" content="2015-12-15T12:53:17&#43;09:00" />
   
   <meta property="og:article:tag" content="React.js" />
+  
+  <meta property="og:article:tag" content="Redux" />
   
   
 
   <title>
-    React Bootstrap Star Rating - (rudolph-miller)
+    Redux Fetch Action - (rudolph-miller)
   </title>
 
   <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/bootstrap.min.css" />
@@ -85,17 +87,19 @@
 
 <article>
   <header>
-    <h1 class="text-primary">React Bootstrap Star Rating</h1>
+    <h1 class="text-primary">Redux Fetch Action</h1>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
-        <time datetime="2015-12-13T23:00:37&#43;09:00">
-          Dec 13, 2015
+        <time datetime="2015-12-15T12:53:17&#43;09:00">
+          Dec 15, 2015
         </time>
       </div>
       <div class="pull-right">
         
         <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/react.js">#React.js</a></span>
+        
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/redux">#Redux</a></span>
         
       </div>
     </div>
@@ -103,120 +107,141 @@
   <section>
     
 
-<p>React Bootstrap Star Ratingを作った.</p>
+<p>Redux Fetch ActionというReduxのFetch actionのutilityを作った.</p>
 
-<p>作ったので軽く紹介する.<br />
-GitHubは<a href="https://github.com/Rudolph-Miller/react-bootstrap-star-rating">React Bootstrap Star Rating</a>.</p>
+<p>この記事は<a href="http://qiita.com/advent-calendar/2015/vdom-flux">仮想DOM/Flux Advent Calendar 2015</a>の15日目の記事.</p>
 
 <ol>
-<li><a href="#react-bootstrap-star-rating:159d3cf4b915f27af0ae75de76a3186a">React Bootstrap Star Rating</a></li>
-<li><a href="#see-also:159d3cf4b915f27af0ae75de76a3186a">See Also</a></li>
+<li><a href="#redux-fetch-action:204c7e295a840c149fff4b9b8d704763">Redux Fetch Action</a></li>
+<li><a href="#see-also:204c7e295a840c149fff4b9b8d704763">See Also</a></li>
 </ol>
 
-<h1 id="react-bootstrap-star-rating:159d3cf4b915f27af0ae75de76a3186a">React Bootstrap Star Rating</h1>
+<h1 id="redux-fetch-action:204c7e295a840c149fff4b9b8d704763">Redux Fetch Action</h1>
 
-<p>作り始めた動機はあるプロジェクトでBowerでjQueryが使われており、
-commitするにあたってそれらを殲滅しnpmとReactを導入しようと思ったが、
-どうもReactには良い感じのStar rating libraryが無かったから.</p>
+<h2 id="why:204c7e295a840c149fff4b9b8d704763">Why</h2>
 
-<h2 id="star-rating-in-react:159d3cf4b915f27af0ae75de76a3186a">Star Rating in React</h2>
+<p>最近<a href="https://github.com/rackt/redux">Redux</a>を使っているが、DataのFetchが似たようなAction creatorとReducerのpatternになったので、
+切り出してpublishした. (<code>POST</code> もFetchかよって違和感はありますが.)</p>
 
-<p>npmのdownload statsで一番だったのは<a href="https://www.npmjs.com/package/react-star-rating">react-star-rating</a> (939 downloads in the last month) で、
-それ以外はほとんど使われていないようだった.</p>
+<p><a href="https://github.com/Rudolph-Miller/redux-fetch-action">Redux Fetch Action</a></p>
 
-<p><a href="https://www.npmjs.com/package/react-star-rating">react-star-rating</a>はどうかというと、GitHubのcommitはa month agoで<a href="http://cameronjroe.com/react-star-rating/">Project page</a>もあり、
-ある程度は開発されていそうだったが、どうも件のProjectのowner曰くstyleがイケていないらしい.</p>
+<p>FluxのActionには<a href="https://github.com/acdlite/flux-standard-action">非公式のCoding規約</a>があるらしく、
+それに則るため<a href="https://github.com/acdlite/redux-actions">redux-actions</a>をbaseとしている.</p>
 
-<img src="/images//20151213/react-star-rating.png" alt="/20151213/react-star-rating.png">
+<h2 id="api:204c7e295a840c149fff4b9b8d704763">API</h2>
 
+<p>APIは <code>createFetchAction</code> と <code>handleFetchAction</code> がある.</p>
 
-<p>ということで、件のProjectで使用していたjQuery pluginをReactでwrapして使うことした.
-(<a href="http://plugins.krajee.com/star-rating/demo">DEMO</a>をみる限り、色々customizableっぽい.)</p>
+<p><code>createFetchAction</code> はAction creatorを返す.</p>
 
-<img src="/images//20151213/bootstrap-star-rating.gif" alt="/20151213/bootstrap-star-rating.gif">
-
-
-<h2 id="wrap-jquery-plugin:159d3cf4b915f27af0ae75de76a3186a">Wrap jQuery plugin</h2>
-
-<p>作ったといってもjQuery pluginをwrapしただけ (どうもnpmにpublishしていなかっただけで、package.jsonはあった.) なので、
-wrapする際の常套patternを軽く紹介する.</p>
-
-<h3 id="dom-node:159d3cf4b915f27af0ae75de76a3186a">DOM node</h3>
-
-<p>jQuery pluginなのでDOM nodeに対して操作を行う.</p>
-
-<pre><code class="language-js">$('#rating').rating();
+<pre><code class="language-js">const FETCH_DATA = 'FETCH_DATA';
+const fetchAction = createFetchAction(FETCH_DATA, '/data.json');
 </code></pre>
 
-<p>これをReactで実装する際は <code>ref</code> を使用する.</p>
+<p>のように使用する.</p>
 
-<pre><code class="language-js">class StarRating extends Component {
-  componentDidMount() {
-    $node.rating();
-  }
+<p><code>handleFetchAction</code> はReducerを返す.</p>
 
-  render() {
-    return (
-      &lt;input
-        ref={node =&gt; { this.$node = $(node); }} /&gt;
-    );
+<pre><code class="language-js">
+const reducer = handleFetchAction(FETCH_DATA, {
+  request: (state = {}, action) =&gt; {
+    return state;
+  },
+  receive: (state = {}, action) =&gt; {
+    return action.payload;
+  },
+  error: (satet = {}, action) =&gt; {
+    return state;
   }
-}
+});
 </code></pre>
 
-<h3 id="export-api:159d3cf4b915f27af0ae75de76a3186a">Export API</h3>
+<p>のように使用する.</p>
 
-<p>今回の<a href="https://www.npmjs.com/package/react-star-rating">bootstrap-star-rating</a>は強制にvalueをupdateするAPIがあった.</p>
+<h2 id="example:204c7e295a840c149fff4b9b8d704763">Example</h2>
 
-<pre><code class="language-js">$('#rating').rating('update', 5);
+<p>二つのAPIを合わせ、</p>
+
+<pre><code class="language-js">mport { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { handleActions, handleAction } from 'redux-actions';
+import { createFetchAction } from 'redux-fetch-action';
+import { Server }from 'node-static';
+import { createServer } from 'http';
+
+const file = new Server();
+createServer((request, response)  =&gt; {
+  request.addListener('end', () =&gt; {
+    file.serve(request, response);
+  }).resume();
+}).listen(8080);
+
+
+const FETCH1 = 'FETCH1';
+const FETCH2 = 'FETCH2';
+
+const reducer1 = handleFetchAction(FETCH1, {
+  request: (posts = [], action) =&gt; {
+      console.log('REQUEST 1');
+      return posts;
+  },
+  receive: (posts = [], action) =&gt; {
+    console.log('RECEIVED 1');
+    return action.payload.posts;
+  },
+  error: (posts = [], action) =&gt; {
+    console.log('ERROR 1');
+    return posts; 
+  }
+});
+
+const reducer2 = handleFetchAction(FETCH2, {
+  request: (posts = [], action) =&gt; {
+      console.log('REQUEST 2');
+      return posts;
+  },
+  receive: (posts = [], action) =&gt; {
+    console.log('RECEIVED 2');
+    return action.payload.posts;
+  },
+  error: (posts = [], action) =&gt; {
+    console.log('ERROR 2');
+    return posts; 
+  }
+});
+
+const reducer = handleActions({
+  FETCH1: reducer1,
+  FETCH2: reducer2
+}, {});
+
+const store = applyMiddleware(
+  thunk
+)(createStore)(reducer);
+
+const fetchAction1 = createFetchAction(FETCH1, 'http://localhost:8080/data.json');
+const fetchAction2 = createFetchAction(FETCH2, 'http://localhost:8080/unknown.json');
+
+store.dispatch(fetchAction1());
+store.dispatch(fetchAction2());
+
+/*
+REQUEST 1
+REQUEST 2
+ERROR 2
+RECEIVED 1
+*/
 </code></pre>
 
-<p>これをReactで実装する際は <code>method</code> として定義して、 <code>ref</code> を通して呼び出す.</p>
+<p>このようにFetchのhandleができる.</p>
 
-<pre><code class="language-js">class StarRating extends Component {
-  componentDidMount() {
-    $node.rating();
-  }
-
-  render() {
-    return (
-      &lt;input
-        ref={node =&gt; { this.$node = $(node); }} /&gt;
-    );
-  }
-
-  update(value) {
-    $node.rating('update', value);
-  }
-}
-
-class App extends Component {
-  componentDidMount() {
-    setTimeout(() =&gt; {
-      this.starRating.update(5);
-    }, 1000);
-  }
-
-  render() {
-    return (
-      &lt;StarRating
-        ref={ref =&gt; { this.starRating = ref; }} /&gt;
-    );
-  }
-}
-</code></pre>
-
-<h2 id="result:159d3cf4b915f27af0ae75de76a3186a">Result</h2>
-
-<p>簡単にwrapして別のLibraryとして切り出しただけなのでjQueryを無くせたわけでは無いが、<br />
-直接の依存からはremoveできるようになったので心のざわつきは無くせたかな.</p>
-
-<h1 id="see-also:159d3cf4b915f27af0ae75de76a3186a">See Also</h1>
+<h1 id="see-also:204c7e295a840c149fff4b9b8d704763">See Also</h1>
 
 <ul>
-<li><a href="https://github.com/Rudolph-Miller/react-bootstrap-star-rating">React Bootstrap Star Rating</a></li>
-<li><a href="http://plugins.krajee.com/star-rating">Bootstrap Star Rating</a></li>
-<li><a href="https://github.com/kartik-v/bootstrap-star-rating">bootstrap-star-rating</a></li>
+<li><a href="https://github.com/Rudolph-Miller/redux-fetch-action">Redux Fetch Action</a></li>
+<li><a href="https://github.com/acdlite/redux-actions">redux-actions</a></li>
+<li><a href="https://github.com/rackt/redux">Redux</a></li>
+<li><a href="http://qiita.com/yasuhiro-okada-aktsk/items/a14f7f37262fb6cf0bf8">Redux: Actionのコーディング規約 と redux-actions</a></li>
 </ul>
 
   </section>
@@ -259,20 +284,20 @@ class App extends Component {
 
       
       <div class="social-button">
-        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
       </div>
 
       
       <div class="social-button">
-        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/"></div>
+        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/"></div>
       </div>
     </section>
     <ul class="pager">
       
-      <li class="previous"><a href="http://blog.rudolph-miller.com/2015/12/11/react-redux-rails/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      <li class="previous"><a href="http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/"><span aria-hidden="true">&larr;</span> Older</a></li>
       
       
-      <li class="next"><a href="http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
       
     </ul>
     
