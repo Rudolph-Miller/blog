@@ -9,3 +9,5 @@ title = "pustState in Redux Router"
 `pushState` を Redux Routerで使用する.
 
 <!--more-->
+
+https://github.com/acdlite/redux-router/issues/79
