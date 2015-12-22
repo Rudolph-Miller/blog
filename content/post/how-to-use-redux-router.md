@@ -194,7 +194,6 @@ class Increment extends Component {
 
 class Decrement extends Component {
   render() {
-    const { dispatch } = this.props;
     return (
       <div>
         <CounterButton type='decr'>DECREMENT</CounterButton>
@@ -251,6 +250,7 @@ React Routerを導入して `Increment` と `Decrement` をRoutingで分けた�
    }
  
    render() {
+     const { dispatch } = this.props;
      return (
        <button
          onClick={() => {
@@ -286,7 +286,6 @@ class Increment extends Component {
 
 ```diff
 class Decrement extends Component {
-     const { dispatch } = this.props;
      return (
        <div>
 -        <CounterButton type='decr'>DECREMENT</CounterButton>
@@ -306,6 +305,8 @@ __Application全体のState__の管理に一貫性がなくなった.
 
 
 ### Redux Router
+
+一貫性を取り戻すためにRedux Routerを導入する.
 
 
 # See Also
