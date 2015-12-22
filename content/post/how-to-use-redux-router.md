@@ -11,6 +11,11 @@ Redux Routerの使い方.
 
 <!--more-->
 
+この記事は[仮想DOM/Flux Advent Calendar 2015](http://qiita.com/advent-calendar/2015/vdom-flux)の23日目の記事.
+
+[React.js Advent Calendar 2015](http://qiita.com/advent-calendar/2015/reactjs)でRedux Routerの記事を見かけた気がするが、他所は気にしない.
+
+
 1. [Redux Router]({{< relref "#redux-router" >}})
 2. [See Also]({{< relref "#see-also" >}})
 
@@ -221,9 +226,7 @@ class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          {routes}
-        </Router>
+        <Router routes={routes} />
       </Provider>
     );
   }
@@ -307,6 +310,84 @@ __Application全体のState__の管理に一貫性がなくなった.
 ### Redux Router
 
 一貫性を取り戻すためにRedux Routerを導入する.
+
+```diff
+-import { Router, IndexRoute, Route, Redirect, Link } from 'react-router';
++import { IndexRoute, Route, Redirect, Link } from 'react-router';
++import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
++import createHistory from 'history/lib/createHashHistory';
+```
+
+```diff
+ const reducer = combineReducers({
++  router: routerStateReducer,
+   counter: handleCounter
+ });
+```
+
+```diff
+-@connect()
++@connect(state => {
++  return {
++    location: state.router.location
++  }
++})
+class CounterButton extends Component {
+-  static contextTypes = {
+-    location: React.PropTypes.object.isRequired
+-  }
+
+   render() {
+     const { dispatch } = this.props;
+ 
+     return (
+       <button
+         onClick={() => {
+-          if(this.context.location.pathname === '/incr') {
++          if(this.props.location.pathname === '/incr') {
+             dispatch(incrCounter());
+           } else {
+             dispatch(decrCounter());
+					 }
+        }} >
+        {this.props.children}
+      </button>
+    );
+  }
+}
+```
+
+```diff
+-const store = createStore(reducer);
++const store = reduxReactRouter({routes, createHistory})(createStore)(reducer);
+```
+
+```diff
+ class Root extends Component {
+   render() {
+     return (
+       <Provider store={store}>
+-        <Router routes={routes} />
++        <ReduxRouter />
+       </Provider>
+     );
+   }
+```
+
+上から順に解説する.
+
+- 色々 `import` .
+- `combineReducers` で `router:` を `routerStateReducer` がhandleするようset.
+- `this.context.location` を `this.props.location` とできるよう、 `@connect` で `location:` に `state.router.location` をset.
+- `this.context.location` の代わりに `this.props.location` を使用.
+- `store` を `reduxReactRouter` でwrapして、 `router` のStateを `store` で管理するようにする.
+  - `createBrowserHistory` を使用して、 `<Router history={history} />` をしていた場合は、 `createBrowserHistory` を `reduxReactRouter` の第二引数に渡す.
+    - `<ReduxRouter history={history} />` とはしない.
+- `<Router routes={routes} />` を `<ReduxRouter />` で置き換える.
+
+これでReduxでURLのStateも `router` として管理できるようになった.
+
+__秩序を取り戻した. ╭( ･ㅂ･)و__
 
 
 # See Also
