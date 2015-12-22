@@ -1,10 +1,10 @@
 +++
 Description = "Redux Router"
 Tags = ["React.js", "Redux"]
-date = "2015-12-22T00:27:25+09:00"
-draft = true
-title = "Redux Router"
+date = "2015-12-23T00:01:34+09:00"
+draft = false
 slug = "redux-router"
+title = "Redux Router"
 +++
 
 Redux Routerの紹介.
