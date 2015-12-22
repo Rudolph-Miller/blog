@@ -382,6 +382,8 @@ class CounterButton extends Component {
 
 これでReduxでURLのStateも `router` として管理できるようになった.
 
+__秩序を取り戻した.__
+
 
 # See Also
 
