@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="Redux Router - (rudolph-miller)" />
+  
+  <meta property="og:site_name" content="(rudolph-miller)" />
+  <meta property="og:url" content="http://blog.rudolph-miller.com/2015/12/23/redux-router/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2015-12-23T00:01:34&#43;09:00" />
+  
+  <meta property="og:article:tag" content="React.js" />
+  
+  <meta property="og:article:tag" content="Redux" />
+  
+  
+
+  <title>
+    Redux Router - (rudolph-miller)
+  </title>
+
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/main.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/css/github.css" />
+  <link rel="stylesheet" href="http://blog.rudolph-miller.com/highlight-lisp/themes/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://blog.rudolph-miller.com/images/favicon.png" />
+  <link rel="icon" href="http://blog.rudolph-miller.com/images/favicon.png" />
+  <link rel="apple-touch-icon" href="http://blog.rudolph-miller.com/images/apple-touch-icon.png" />
+  
+  
+</head>
+
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://blog.rudolph-miller.com/">(rudolph-miller)</a></h1>
+      
+      <div class="tag-line">
+        NO LISP, NO LIFE.
+      </div>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://blog.rudolph-miller.com/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Redux Router</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2015-12-23T00:01:34&#43;09:00">
+          Dec 23, 2015
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/react.js">#React.js</a></span>
+        
+        <span class="post-tag small"><a href="http://blog.rudolph-miller.com//tags/redux">#Redux</a></span>
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>Redux Routerの紹介.</p>
+
+<p>この記事は<a href="http://qiita.com/advent-calendar/2015/vdom-flux">仮想DOM/Flux Advent Calendar 2015</a>の23日目の記事.</p>
+
+<p><a href="http://qiita.com/advent-calendar/2015/reactjs">React.js Advent Calendar 2015</a>でRedux Routerの記事を見かけた気がするが、他所は気にしない.</p>
+
+<ol>
+<li><a href="#redux-router:bd1ab92ea0c3f9d4bc1d40d26147e922">Redux Router</a></li>
+<li><a href="#see-also:bd1ab92ea0c3f9d4bc1d40d26147e922">See Also</a></li>
+</ol>
+
+<h1 id="redux-router:bd1ab92ea0c3f9d4bc1d40d26147e922">Redux Router</h1>
+
+<h2 id="about:bd1ab92ea0c3f9d4bc1d40d26147e922">About</h2>
+
+<p><a href="https://github.com/acdlite/redux-router">Redux Router</a>はReact.jsでde facto standardとなっているRouting libraryの
+<a href="https://github.com/rackt/react-router">React Router</a>の<a href="https://github.com/rackt/redux">Redux</a> bindings.</p>
+
+<p>React RouterのRedux bindingsはReact RounterもReduxも抱えているOrganizationの<a href="https://github.com/rackt">rackt</a>が作っている
+<a href="https://github.com/rackt/redux-simple-router">redux-simple-router</a>もあるが、Redux Routerの方が現時点でGitHubのStar数は多い.
+(名前の通り、redux-simple-routerの方がよりsimpleで、Redux Routerはfatでcomplexだが機能は多い.)</p>
+
+<img src="/images//20151222/rackt.gif" alt="/20151222/rackt.gif">
+
+
+<p>これは<a href="http://rackt.org/">rackt.org</a>. サイトではもっと綺麗にうねうねしてる.</p>
+
+<h2 id="why:bd1ab92ea0c3f9d4bc1d40d26147e922">Why</h2>
+
+<p>ReduxはStateの管理を容易に (一様に) するが、単体でReact Routerを使用すると、
+Application上の重要なStateであるURLがReduxでの管理からはずれてしまう.<br />
+Redux RouterによりURLのStateもReduxで管理できる.</p>
+
+<h2 id="usage:bd1ab92ea0c3f9d4bc1d40d26147e922">Usage</h2>
+
+<p>とりあえずReduxでApplicationを作って、そこにReact Routerを導入、最後にRedux Routerを導入する手順で紹介する.</p>
+
+<h3 id="redux:bd1ab92ea0c3f9d4bc1d40d26147e922">Redux</h3>
+
+<pre><code class="language-js">import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { combineReducers, createStore } from 'redux';
+import { connect, Provider } from 'react-redux';
+import { createAction, handleActions } from 'redux-actions';
+
+const INCR_COUNTER = 'INCR_COUNTER';
+const incrCounter = createAction(INCR_COUNTER);
+const DECR_COUNTER = 'DECR_COUNTER';
+const decrCounter = createAction(DECR_COUNTER);
+
+const handleCounter = handleActions({
+  INCR_COUNTER: (counter = 0, action) =&gt; {
+    return counter + 1;
+  },
+  DECR_COUNTER: (counter = 0, action) =&gt; {
+    return counter - 1;
+  }
+}, 0);
+
+const reducer = combineReducers({
+  counter: handleCounter
+});
+
+@connect(state =&gt; {
+  return {
+    counter: state.counter
+  };
+})
+class App extends Component {
+  render() {
+    const { dispatch, counter } = this.props;
+    return (
+      &lt;div&gt;
+        &lt;p&gt;{`COUNTER: ${counter}`}&lt;/p&gt;
+        &lt;button onClick={() =&gt; { dispatch(incrCounter()); }}&gt;
+          INCREMENT
+        &lt;/button&gt;
+        &lt;button onClick={() =&gt; { dispatch(decrCounter()); }}&gt;
+          DECREMENT
+        &lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+const store = createStore(reducer);
+
+class Root extends Component {
+  render() {
+    return (
+      &lt;Provider store={store}&gt;
+        &lt;App /&gt;
+      &lt;/Provider&gt;
+    );
+  }
+}
+
+render(&lt;Root /&gt;, document.getElementById('app'));
+</code></pre>
+
+<img src="/images//20151222/initial-impl.gif" alt="/20151222/initial-impl.gif">
+
+
+<p><code>@connect</code> して <code>state.counter</code> を表示し、その <code>state.counter</code> を増減させるボタンがあるだけのApplicationで、とくに解説することはない.</p>
+
+<h3 id="react-router:bd1ab92ea0c3f9d4bc1d40d26147e922">React Router</h3>
+
+<pre><code class="language-js">mport React, { Component, PropTypes } from 'react';
+import { render } from 'react-dom';
+import { combineReducers, createStore } from 'redux';
+import { connect, Provider } from 'react-redux';
+import { createAction, handleActions } from 'redux-actions';
+import { Router, IndexRoute, Route, Redirect, Link } from 'react-router';
+
+const INCR_COUNTER = 'INCR_COUNTER';
+const incrCounter = createAction(INCR_COUNTER);
+const DECR_COUNTER = 'DECR_COUNTER';
+const decrCounter = createAction(DECR_COUNTER);
+
+const handleCounter = handleActions({
+  INCR_COUNTER: (counter = 0, action) =&gt; {
+    return counter + 1;
+  },
+  DECR_COUNTER: (counter = 0, action) =&gt; {
+    return counter - 1;
+  }
+}, 0);
+
+const reducer = combineReducers({
+  counter: handleCounter
+});
+
+@connect(state =&gt; {
+  return {
+    counter: state.counter
+  };
+})
+class App extends Component {
+  render() {
+    const { counter } = this.props;
+    return (
+      &lt;div&gt;
+        &lt;p&gt;{`COUNTER: ${counter}`}&lt;/p&gt;
+        {this.props.children}
+      &lt;/div&gt;
+    );
+  }
+}
+
+@connect()
+class CounterButton extends Component {
+  static propTypes = {
+    type: PropTypes.oneOf(['incr', 'decr']).isRequired
+  }
+
+  render() {
+    const { dispatch } = this.props;
+    return (
+      &lt;button
+        onClick={() =&gt; {
+          if(this.props.type === 'incr') {
+            dispatch(incrCounter());
+          } else {
+            dispatch(decrCounter());
+          }
+        }} &gt;
+        {this.props.children}
+      &lt;/button&gt;
+    );
+  }
+}
+
+class Increment extends Component {
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;CounterButton type='incr'&gt;INCREMENT&lt;/CounterButton&gt;
+        &lt;Link to='/decr'&gt;
+          TO DECREMENT
+        &lt;/Link&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+class Decrement extends Component {
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;CounterButton type='decr'&gt;DECREMENT&lt;/CounterButton&gt;
+        &lt;Link to='/'&gt;
+          TO INCREMENT
+        &lt;/Link&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+const routes = (
+  &lt;Route&gt;
+    &lt;Redirect from=&quot;/&quot; to=&quot;incr&quot; /&gt;
+    &lt;Route path=&quot;/&quot; component={App}&gt;
+      &lt;Route path=&quot;incr&quot; component={Increment} /&gt;
+      &lt;Route path=&quot;decr&quot; component={Decrement} /&gt;
+    &lt;/Route&gt;
+  &lt;/Route&gt;
+);
+
+const store = createStore(reducer);
+
+class Root extends Component {
+  render() {
+    return (
+      &lt;Provider store={store}&gt;
+        &lt;Router routes={routes} /&gt;
+      &lt;/Provider&gt;
+    );
+  }
+}
+
+render(&lt;Root /&gt;, document.getElementById('app'));
+</code></pre>
+
+<img src="/images//20151222/second-impl.gif" alt="/20151222/second-impl.gif">
+
+
+<p>React Routerを導入して <code>Increment</code> と <code>Decrement</code> をRoutingで分けただけ.<br />
+共通で <code>CounterButton</code> をrenderしていて、 <code>this.props.type</code> でボタンがクリックされた時に、
+<code>incrCounter()</code> か <code>decrCounter()</code> のどちらを <code>dispatch</code> するか分岐している.</p>
+
+<p><code>this.props.type</code> ではなく、<strong>URLというApplicationが持つState</strong>で分岐させたいとする.</p>
+
+<pre><code class="language-diff"> @connect()
+ class CounterButton extends Component {
+-  static propTypes = {
+-    type: PropTypes.oneOf(['incr', 'decr']).isRequired
++  static contextTypes = {
++    location: React.PropTypes.object.isRequired
+   }
+ 
+   render() {
+     const { dispatch } = this.props;
+     return (
+       &lt;button
+         onClick={() =&gt; {
+-          if(this.props.type === 'incr') {
++          if(this.context.location.pathname === '/incr') {
+             dispatch(incrCounter());
+           } else {
+             dispatch(decrCounter());
+					 }
+        }} &gt;
+        {this.props.children}
+      &lt;/button&gt;
+    );
+  }
+}
+</code></pre>
+
+<pre><code class="language-diff">class Increment extends Component {
+   render() {
+     return (
+       &lt;div&gt;
+-        &lt;CounterButton type='incr'&gt;INCREMENT&lt;/CounterButton&gt;
++        &lt;CounterButton&gt;INCREMENT&lt;/CounterButton&gt;
+         &lt;Link to='/decr'&gt;
+           TO DECREMENT
+         &lt;/Link&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+
+<pre><code class="language-diff">class Decrement extends Component {
+     return (
+       &lt;div&gt;
+-        &lt;CounterButton type='decr'&gt;DECREMENT&lt;/CounterButton&gt;
++        &lt;CounterButton&gt;DECREMENT&lt;/CounterButton&gt;
+         &lt;Link to='/'&gt;
+           TO INCREMENT
+         &lt;/Link&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+
+<p><code>static contextTypes</code> を定義して、 <code>this.context.location</code> を使用する.</p>
+
+<p><strong>Application全体のState</strong>の管理に一貫性がなくなった.</p>
+
+<h3 id="redux-router-1:bd1ab92ea0c3f9d4bc1d40d26147e922">Redux Router</h3>
+
+<p>一貫性を取り戻すためにRedux Routerを導入する.</p>
+
+<pre><code class="language-diff">-import { Router, IndexRoute, Route, Redirect, Link } from 'react-router';
++import { IndexRoute, Route, Redirect, Link } from 'react-router';
++import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
++import createHistory from 'history/lib/createHashHistory';
+</code></pre>
+
+<pre><code class="language-diff"> const reducer = combineReducers({
++  router: routerStateReducer,
+   counter: handleCounter
+ });
+</code></pre>
+
+<pre><code class="language-diff">-@connect()
++@connect(state =&gt; {
++  return {
++    location: state.router.location
++  }
++})
+class CounterButton extends Component {
+-  static contextTypes = {
+-    location: React.PropTypes.object.isRequired
+-  }
+
+   render() {
+     const { dispatch } = this.props;
+ 
+     return (
+       &lt;button
+         onClick={() =&gt; {
+-          if(this.context.location.pathname === '/incr') {
++          if(this.props.location.pathname === '/incr') {
+             dispatch(incrCounter());
+           } else {
+             dispatch(decrCounter());
+					 }
+        }} &gt;
+        {this.props.children}
+      &lt;/button&gt;
+    );
+  }
+}
+</code></pre>
+
+<pre><code class="language-diff">-const store = createStore(reducer);
++const store = reduxReactRouter({routes, createHistory})(createStore)(reducer);
+</code></pre>
+
+<pre><code class="language-diff"> class Root extends Component {
+   render() {
+     return (
+       &lt;Provider store={store}&gt;
+-        &lt;Router routes={routes} /&gt;
++        &lt;ReduxRouter /&gt;
+       &lt;/Provider&gt;
+     );
+   }
+</code></pre>
+
+<p>上から順に解説する.</p>
+
+<ul>
+<li>色々 <code>import</code> .</li>
+<li><code>combineReducers</code> で <code>router:</code> を <code>routerStateReducer</code> がhandleするようset.</li>
+<li><code>this.context.location</code> を <code>this.props.location</code> とできるよう、 <code>@connect</code> で <code>location:</code> に <code>state.router.location</code> をset.</li>
+<li><code>this.context.location</code> の代わりに <code>this.props.location</code> を使用.</li>
+<li><code>store</code> を <code>reduxReactRouter</code> でwrapして、 <code>router</code> のStateを <code>store</code> で管理するようにする.
+
+<ul>
+<li><code>createBrowserHistory</code> を使用して、 <code>&lt;Router history={history} /&gt;</code> をしていた場合は、 <code>createBrowserHistory</code> を <code>reduxReactRouter</code> の第二引数に渡す.</li>
+<li><code>&lt;ReduxRouter history={history} /&gt;</code> とはしない.</li>
+</ul></li>
+<li><code>&lt;Router routes={routes} /&gt;</code> を <code>&lt;ReduxRouter /&gt;</code> で置き換える.</li>
+</ul>
+
+<p>これでReduxでURLのStateも <code>router</code> として管理できるようになった.</p>
+
+<p><strong>秩序を取り戻した. ╭( ･ㅂ･)و</strong></p>
+
+<h1 id="see-also:bd1ab92ea0c3f9d4bc1d40d26147e922">See Also</h1>
+
+<ul>
+<li><a href="https://github.com/acdlite/redux-router">Redux Router</a></li>
+<li><a href="https://github.com/rackt/react-router">React Router</a></li>
+<li><a href="https://github.com/rackt/redux">Redux</a></li>
+<li><a href="https://github.com/rackt/redux-simple-router">redux-simple-router</a></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+        <img alt="Author Avatar" src="/images/logo.png" />
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        <h1 class="author-name text-primary">Rudolph Miller</h1>
+        
+        
+        <div class="author-bio">Common Lisp Player.</div>
+        
+      </div>
+      
+      <div class="author-contact col-md-4">
+        <a href="mailto:lisper@rudolph-miller.com">
+          <i class="fa fa-envelope-o"></i>
+          &nbsp;Contact me
+        </a>
+      </div>
+      
+    </section>
+    <section class="social-buttons row">
+      
+      <div class="social-button">
+        <a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true" data-count="vertical">Tweet</a>
+      </div>
+
+      
+      <div class="social-button">
+        <a class='hatena-bookmark-button' data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en" expr:data-hatena-bookmark-title="data:post.title" expr:href='"http://b.hatena.ne.jp/entry/" + data:post.canonicalUrl' title='このエントリーをはてなブックマークに追加'>
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
+        </a>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="fb-like" data-href="http://blog.rudolph-miller.com/2015/12/23/redux-router/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="http://blog.rudolph-miller.com/2015/12/23/redux-router/"></div>
+      </div>
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      
+      var disqus_shortname = 'rudolph-miller';
+      (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })()
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+    
+    <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
+
+    
+    <script type='text/javascript' src='http://b.st-hatena.com/js/bookmark_button.js' charset='utf-8' async='async'></script>
+
+    
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>
+      {lang: "ja"}
+    </script>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; Copyright 2015 Rudolph Miller
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://blog.rudolph-miller.com/js/highlight.pack.js"></script>
+  <script src="http://blog.rudolph-miller.com/highlight-lisp/highlight-lisp.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    HighlightLisp.highlight_auto({className: "language-common-lisp"});
+    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
+  </script>
+  
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47602577-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+</body>
+</html>
+

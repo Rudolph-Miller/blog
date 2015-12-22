@@ -7,8 +7,401 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Tue, 15 Dec 2015 12:53:17 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 23 Dec 2015 00:01:34 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Redux Router</title>
+      <link>http://blog.rudolph-miller.com/2015/12/23/redux-router/</link>
+      <pubDate>Wed, 23 Dec 2015 00:01:34 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/12/23/redux-router/</guid>
+      <description>
+
+&lt;p&gt;Redux Routerの紹介.&lt;/p&gt;
+
+&lt;p&gt;この記事は&lt;a href=&#34;http://qiita.com/advent-calendar/2015/vdom-flux&#34;&gt;仮想DOM/Flux Advent Calendar 2015&lt;/a&gt;の23日目の記事.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://qiita.com/advent-calendar/2015/reactjs&#34;&gt;React.js Advent Calendar 2015&lt;/a&gt;でRedux Routerの記事を見かけた気がするが、他所は気にしない.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#redux-router:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;redux-router:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;Redux Router&lt;/h1&gt;
+
+&lt;h2 id=&#34;about:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;About&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;はReact.jsでde facto standardとなっているRouting libraryの
+&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;の&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
+
+&lt;p&gt;React RouterのRedux bindingsはReact RounterもReduxも抱えているOrganizationの&lt;a href=&#34;https://github.com/rackt&#34;&gt;rackt&lt;/a&gt;が作っている
+&lt;a href=&#34;https://github.com/rackt/redux-simple-router&#34;&gt;redux-simple-router&lt;/a&gt;もあるが、Redux Routerの方が現時点でGitHubのStar数は多い.
+(名前の通り、redux-simple-routerの方がよりsimpleで、Redux Routerはfatでcomplexだが機能は多い.)&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151222/rackt.gif&#34; alt=&#34;/20151222/rackt.gif&#34;&gt;
+
+
+&lt;p&gt;これは&lt;a href=&#34;http://rackt.org/&#34;&gt;rackt.org&lt;/a&gt;. サイトではもっと綺麗にうねうねしてる.&lt;/p&gt;
+
+&lt;h2 id=&#34;why:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;Why&lt;/h2&gt;
+
+&lt;p&gt;ReduxはStateの管理を容易に (一様に) するが、単体でReact Routerを使用すると、
+Application上の重要なStateであるURLがReduxでの管理からはずれてしまう.&lt;br /&gt;
+Redux RouterによりURLのStateもReduxで管理できる.&lt;/p&gt;
+
+&lt;h2 id=&#34;usage:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;とりあえずReduxでApplicationを作って、そこにReact Routerを導入、最後にRedux Routerを導入する手順で紹介する.&lt;/p&gt;
+
+&lt;h3 id=&#34;redux:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;Redux&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import React, { Component } from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+import { combineReducers, createStore } from &#39;redux&#39;;
+import { connect, Provider } from &#39;react-redux&#39;;
+import { createAction, handleActions } from &#39;redux-actions&#39;;
+
+const INCR_COUNTER = &#39;INCR_COUNTER&#39;;
+const incrCounter = createAction(INCR_COUNTER);
+const DECR_COUNTER = &#39;DECR_COUNTER&#39;;
+const decrCounter = createAction(DECR_COUNTER);
+
+const handleCounter = handleActions({
+  INCR_COUNTER: (counter = 0, action) =&amp;gt; {
+    return counter + 1;
+  },
+  DECR_COUNTER: (counter = 0, action) =&amp;gt; {
+    return counter - 1;
+  }
+}, 0);
+
+const reducer = combineReducers({
+  counter: handleCounter
+});
+
+@connect(state =&amp;gt; {
+  return {
+    counter: state.counter
+  };
+})
+class App extends Component {
+  render() {
+    const { dispatch, counter } = this.props;
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;p&amp;gt;{`COUNTER: ${counter}`}&amp;lt;/p&amp;gt;
+        &amp;lt;button onClick={() =&amp;gt; { dispatch(incrCounter()); }}&amp;gt;
+          INCREMENT
+        &amp;lt;/button&amp;gt;
+        &amp;lt;button onClick={() =&amp;gt; { dispatch(decrCounter()); }}&amp;gt;
+          DECREMENT
+        &amp;lt;/button&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+const store = createStore(reducer);
+
+class Root extends Component {
+  render() {
+    return (
+      &amp;lt;Provider store={store}&amp;gt;
+        &amp;lt;App /&amp;gt;
+      &amp;lt;/Provider&amp;gt;
+    );
+  }
+}
+
+render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151222/initial-impl.gif&#34; alt=&#34;/20151222/initial-impl.gif&#34;&gt;
+
+
+&lt;p&gt;&lt;code&gt;@connect&lt;/code&gt; して &lt;code&gt;state.counter&lt;/code&gt; を表示し、その &lt;code&gt;state.counter&lt;/code&gt; を増減させるボタンがあるだけのApplicationで、とくに解説することはない.&lt;/p&gt;
+
+&lt;h3 id=&#34;react-router:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;React Router&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;mport React, { Component, PropTypes } from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+import { combineReducers, createStore } from &#39;redux&#39;;
+import { connect, Provider } from &#39;react-redux&#39;;
+import { createAction, handleActions } from &#39;redux-actions&#39;;
+import { Router, IndexRoute, Route, Redirect, Link } from &#39;react-router&#39;;
+
+const INCR_COUNTER = &#39;INCR_COUNTER&#39;;
+const incrCounter = createAction(INCR_COUNTER);
+const DECR_COUNTER = &#39;DECR_COUNTER&#39;;
+const decrCounter = createAction(DECR_COUNTER);
+
+const handleCounter = handleActions({
+  INCR_COUNTER: (counter = 0, action) =&amp;gt; {
+    return counter + 1;
+  },
+  DECR_COUNTER: (counter = 0, action) =&amp;gt; {
+    return counter - 1;
+  }
+}, 0);
+
+const reducer = combineReducers({
+  counter: handleCounter
+});
+
+@connect(state =&amp;gt; {
+  return {
+    counter: state.counter
+  };
+})
+class App extends Component {
+  render() {
+    const { counter } = this.props;
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;p&amp;gt;{`COUNTER: ${counter}`}&amp;lt;/p&amp;gt;
+        {this.props.children}
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+@connect()
+class CounterButton extends Component {
+  static propTypes = {
+    type: PropTypes.oneOf([&#39;incr&#39;, &#39;decr&#39;]).isRequired
+  }
+
+  render() {
+    const { dispatch } = this.props;
+    return (
+      &amp;lt;button
+        onClick={() =&amp;gt; {
+          if(this.props.type === &#39;incr&#39;) {
+            dispatch(incrCounter());
+          } else {
+            dispatch(decrCounter());
+          }
+        }} &amp;gt;
+        {this.props.children}
+      &amp;lt;/button&amp;gt;
+    );
+  }
+}
+
+class Increment extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;CounterButton type=&#39;incr&#39;&amp;gt;INCREMENT&amp;lt;/CounterButton&amp;gt;
+        &amp;lt;Link to=&#39;/decr&#39;&amp;gt;
+          TO DECREMENT
+        &amp;lt;/Link&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+class Decrement extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;CounterButton type=&#39;decr&#39;&amp;gt;DECREMENT&amp;lt;/CounterButton&amp;gt;
+        &amp;lt;Link to=&#39;/&#39;&amp;gt;
+          TO INCREMENT
+        &amp;lt;/Link&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+const routes = (
+  &amp;lt;Route&amp;gt;
+    &amp;lt;Redirect from=&amp;quot;/&amp;quot; to=&amp;quot;incr&amp;quot; /&amp;gt;
+    &amp;lt;Route path=&amp;quot;/&amp;quot; component={App}&amp;gt;
+      &amp;lt;Route path=&amp;quot;incr&amp;quot; component={Increment} /&amp;gt;
+      &amp;lt;Route path=&amp;quot;decr&amp;quot; component={Decrement} /&amp;gt;
+    &amp;lt;/Route&amp;gt;
+  &amp;lt;/Route&amp;gt;
+);
+
+const store = createStore(reducer);
+
+class Root extends Component {
+  render() {
+    return (
+      &amp;lt;Provider store={store}&amp;gt;
+        &amp;lt;Router routes={routes} /&amp;gt;
+      &amp;lt;/Provider&amp;gt;
+    );
+  }
+}
+
+render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151222/second-impl.gif&#34; alt=&#34;/20151222/second-impl.gif&#34;&gt;
+
+
+&lt;p&gt;React Routerを導入して &lt;code&gt;Increment&lt;/code&gt; と &lt;code&gt;Decrement&lt;/code&gt; をRoutingで分けただけ.&lt;br /&gt;
+共通で &lt;code&gt;CounterButton&lt;/code&gt; をrenderしていて、 &lt;code&gt;this.props.type&lt;/code&gt; でボタンがクリックされた時に、
+&lt;code&gt;incrCounter()&lt;/code&gt; か &lt;code&gt;decrCounter()&lt;/code&gt; のどちらを &lt;code&gt;dispatch&lt;/code&gt; するか分岐している.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;this.props.type&lt;/code&gt; ではなく、&lt;strong&gt;URLというApplicationが持つState&lt;/strong&gt;で分岐させたいとする.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; @connect()
+ class CounterButton extends Component {
+-  static propTypes = {
+-    type: PropTypes.oneOf([&#39;incr&#39;, &#39;decr&#39;]).isRequired
++  static contextTypes = {
++    location: React.PropTypes.object.isRequired
+   }
+ 
+   render() {
+     const { dispatch } = this.props;
+     return (
+       &amp;lt;button
+         onClick={() =&amp;gt; {
+-          if(this.props.type === &#39;incr&#39;) {
++          if(this.context.location.pathname === &#39;/incr&#39;) {
+             dispatch(incrCounter());
+           } else {
+             dispatch(decrCounter());
+					 }
+        }} &amp;gt;
+        {this.props.children}
+      &amp;lt;/button&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;class Increment extends Component {
+   render() {
+     return (
+       &amp;lt;div&amp;gt;
+-        &amp;lt;CounterButton type=&#39;incr&#39;&amp;gt;INCREMENT&amp;lt;/CounterButton&amp;gt;
++        &amp;lt;CounterButton&amp;gt;INCREMENT&amp;lt;/CounterButton&amp;gt;
+         &amp;lt;Link to=&#39;/decr&#39;&amp;gt;
+           TO DECREMENT
+         &amp;lt;/Link&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;class Decrement extends Component {
+     return (
+       &amp;lt;div&amp;gt;
+-        &amp;lt;CounterButton type=&#39;decr&#39;&amp;gt;DECREMENT&amp;lt;/CounterButton&amp;gt;
++        &amp;lt;CounterButton&amp;gt;DECREMENT&amp;lt;/CounterButton&amp;gt;
+         &amp;lt;Link to=&#39;/&#39;&amp;gt;
+           TO INCREMENT
+         &amp;lt;/Link&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;static contextTypes&lt;/code&gt; を定義して、 &lt;code&gt;this.context.location&lt;/code&gt; を使用する.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Application全体のState&lt;/strong&gt;の管理に一貫性がなくなった.&lt;/p&gt;
+
+&lt;h3 id=&#34;redux-router-1:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;Redux Router&lt;/h3&gt;
+
+&lt;p&gt;一貫性を取り戻すためにRedux Routerを導入する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;-import { Router, IndexRoute, Route, Redirect, Link } from &#39;react-router&#39;;
++import { IndexRoute, Route, Redirect, Link } from &#39;react-router&#39;;
++import { reduxReactRouter, routerStateReducer, ReduxRouter } from &#39;redux-router&#39;;
++import createHistory from &#39;history/lib/createHashHistory&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; const reducer = combineReducers({
++  router: routerStateReducer,
+   counter: handleCounter
+ });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;-@connect()
++@connect(state =&amp;gt; {
++  return {
++    location: state.router.location
++  }
++})
+class CounterButton extends Component {
+-  static contextTypes = {
+-    location: React.PropTypes.object.isRequired
+-  }
+
+   render() {
+     const { dispatch } = this.props;
+ 
+     return (
+       &amp;lt;button
+         onClick={() =&amp;gt; {
+-          if(this.context.location.pathname === &#39;/incr&#39;) {
++          if(this.props.location.pathname === &#39;/incr&#39;) {
+             dispatch(incrCounter());
+           } else {
+             dispatch(decrCounter());
+					 }
+        }} &amp;gt;
+        {this.props.children}
+      &amp;lt;/button&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;-const store = createStore(reducer);
++const store = reduxReactRouter({routes, createHistory})(createStore)(reducer);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; class Root extends Component {
+   render() {
+     return (
+       &amp;lt;Provider store={store}&amp;gt;
+-        &amp;lt;Router routes={routes} /&amp;gt;
++        &amp;lt;ReduxRouter /&amp;gt;
+       &amp;lt;/Provider&amp;gt;
+     );
+   }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上から順に解説する.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;色々 &lt;code&gt;import&lt;/code&gt; .&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;combineReducers&lt;/code&gt; で &lt;code&gt;router:&lt;/code&gt; を &lt;code&gt;routerStateReducer&lt;/code&gt; がhandleするようset.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;this.context.location&lt;/code&gt; を &lt;code&gt;this.props.location&lt;/code&gt; とできるよう、 &lt;code&gt;@connect&lt;/code&gt; で &lt;code&gt;location:&lt;/code&gt; に &lt;code&gt;state.router.location&lt;/code&gt; をset.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;this.context.location&lt;/code&gt; の代わりに &lt;code&gt;this.props.location&lt;/code&gt; を使用.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;store&lt;/code&gt; を &lt;code&gt;reduxReactRouter&lt;/code&gt; でwrapして、 &lt;code&gt;router&lt;/code&gt; のStateを &lt;code&gt;store&lt;/code&gt; で管理するようにする.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;createBrowserHistory&lt;/code&gt; を使用して、 &lt;code&gt;&amp;lt;Router history={history} /&amp;gt;&lt;/code&gt; をしていた場合は、 &lt;code&gt;createBrowserHistory&lt;/code&gt; を &lt;code&gt;reduxReactRouter&lt;/code&gt; の第二引数に渡す.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;ReduxRouter history={history} /&amp;gt;&lt;/code&gt; とはしない.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;Router routes={routes} /&amp;gt;&lt;/code&gt; を &lt;code&gt;&amp;lt;ReduxRouter /&amp;gt;&lt;/code&gt; で置き換える.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;これでReduxでURLのStateも &lt;code&gt;router&lt;/code&gt; として管理できるようになった.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;秩序を取り戻した. ╭( ･ㅂ･)و&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:bd1ab92ea0c3f9d4bc1d40d26147e922&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux-simple-router&#34;&gt;redux-simple-router&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Redux Fetch Action</title>
