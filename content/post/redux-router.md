@@ -1,13 +1,13 @@
 +++
-Description = "How to use Redux Router"
+Description = "Redux Router"
 Tags = ["React.js", "Redux"]
 date = "2015-12-22T00:27:25+09:00"
 draft = true
-title = "How to use Redux Router"
-slug = "how-to-user-redux-router"
+title = "Redux Router"
+slug = "redux-router"
 +++
 
-Redux Routerの使い方.
+Redux Routerの紹介.
 
 <!--more-->
 
