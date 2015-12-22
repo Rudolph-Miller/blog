@@ -11,6 +11,11 @@ Redux Routerの使い方.
 
 <!--more-->
 
+この記事は[仮想DOM/Flux Advent Calendar 2015](http://qiita.com/advent-calendar/2015/vdom-flux)の23日目の記事.
+
+[React.js Advent Calendar 2015](http://qiita.com/advent-calendar/2015/reactjs)でRedux Routerの記事を見かけた気がするが、他所は気にしない.
+
+
 1. [Redux Router]({{< relref "#redux-router" >}})
 2. [See Also]({{< relref "#see-also" >}})
 
@@ -382,7 +387,7 @@ class CounterButton extends Component {
 
 これでReduxでURLのStateも `router` として管理できるようになった.
 
-__秩序を取り戻した.__
+__秩序を取り戻した. ╭( ･ㅂ･)و__
 
 
 # See Also
