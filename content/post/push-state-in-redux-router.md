@@ -10,4 +10,13 @@ title = "pustState in Redux Router"
 
 <!--more-->
 
-https://github.com/acdlite/redux-router/issues/79
+1. [pushState]({{< relref "#pushstate" >}})
+2. [See Also]({{< relref "#see-also" >}})
+
+
+# pushState
+
+
+# See Also
+
+- [Redux Routerの使い方](http://blog.rudolph-miller.com/2015/12/23/redux-router/)
