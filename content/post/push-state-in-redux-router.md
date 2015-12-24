@@ -6,7 +6,7 @@ draft = true
 title = "pustState in Redux Router"
 +++
 
-`pushState` を Redux Routerで使用する.
+Redux Routerの `pushState` の使い方と、 `mapDispatchToProps` について.
 
 <!--more-->
 
