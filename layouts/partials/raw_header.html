@@ -9,6 +9,9 @@
   {{ end }}
   <meta property="og:site_name" content="{{ .Site.Title }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
+  {{ with .Description }}
+  <meta property="og:description" content="{{ . }}" />
+  {{ end }}
   {{ with .Params.images }}{{ range first 5 . }}
   <meta property="og:image" content="{{ . }}" />
   {{ end }}{{ end }}
@@ -28,6 +31,9 @@
   <title>
     {{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}
   </title>
+  {{ with .Description }}
+  <meta name="description" content="{{ . }}" />
+  {{ end }}
 
   <link rel="stylesheet" href="{{ .Site.BaseURL }}css/bootstrap.min.css" />
   <link rel="stylesheet" href="{{ .Site.BaseURL }}css/main.css" />
