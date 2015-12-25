@@ -1,9 +1,9 @@
 +++
-Description = "pushState in Redux Router"
+Description = "Redux Routerの `pushState` の使い方と、 `connect` の `mapDispatchToProps` について"
 Tags = ["React.js","Redux","Redux Router"]
 date = "2015-12-23T14:03:05+09:00"
 draft = true
-title = "pustState in Redux Router"
+title = "pushState in Redux Router"
 +++
 
 Redux Routerの `pushState` の使い方と、 `connect` の `mapDispatchToProps` について.
@@ -329,3 +329,6 @@ class Decrement extends Component {
 # See Also
 
 - [Redux Routerの使い方](http://blog.rudolph-miller.com/2015/12/23/redux-router/)
+- [Redux Router](https://github.com/acdlite/redux-router)
+- [React Router](https://github.com/rackt/react-router)
+- [Redux](https://github.com/rackt/redux)
