@@ -6,7 +6,7 @@ draft = false
 title = "pushState in Redux Router"
 +++
 
-Redux Routerの `pushState` の使い方と、 react-reduxの`connect` の `mapDispatchToProps` について、
+Redux Routerの `pushState` の使い方と、 React Reduxの`connect` の `mapDispatchToProps` について、
 `connect` のSource codeを追いながら解説.
 
 <!--more-->
@@ -199,7 +199,7 @@ Redux Routerの `pushState` は [ここ](https://github.com/acdlite/redux-router
 
 `connect` の第二引数って何だろう.
 
-[react-redux](https://github.com/rackt/react-redux)のTutorialの `connect` の解説にこう書いてある.
+[Redux](https://github.com/rackt/redux/)の[Tutorial](http://rackt.org/redux/index.html)の `connect` の[解説](http://rackt.org/redux/docs/basics/UsageWithReact.html)にこう書いてある.
 
 > In most cases you will only pass the first argument to connect(), which is a function we call a selector.
 
@@ -335,4 +335,5 @@ class Decrement extends Component {
 - [Redux Routerの使い方](http://blog.rudolph-miller.com/2015/12/23/redux-router/)
 - [Redux Router](https://github.com/acdlite/redux-router)
 - [React Router](https://github.com/rackt/react-router)
+- [React Redux](https://github.com/rackt/react-redux)
 - [Redux](https://github.com/rackt/redux)
