@@ -325,6 +325,8 @@ class Decrement extends Component {
 
 と、 `dispatch` もmappingするような関数 ( `mapDispatchToProps` ) を作り、 `connect` の第二引数として渡す.
 
+このように `dispatch` を内部で呼び出すAPI作る際は、`connect` の `mapDispatchToProps` を経由して、 `this.props` に組み込まれるよう作る.
+
 
 # See Also
 
