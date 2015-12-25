@@ -323,7 +323,7 @@ class Decrement extends Component {
 }
 ```
 
-と、 `dispath` もmappingするような関数 ( `mapDispatchToProps` ) を作り、 `connect` の第二引数として渡す.
+と、 `dispatch` もmappingするような関数 ( `mapDispatchToProps` ) を作り、 `connect` の第二引数として渡す.
 
 
 # See Also
