@@ -156,7 +156,7 @@ render(<Root />, document.getElementById('app'));
 
 {{% image "/20151225/without-push-state.gif" %}}
 
-これに `pushState` で `/decr` を1秒後に `/incr` にredirectする無駄な機能をつける.
+これに `pushState` で、 `/decr` を1秒後に `/incr` にredirectするという無駄な機能をつける.
 
 ```diff
 -import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
@@ -189,8 +189,7 @@ class Decrement extends Component {
 
 {{% image "/20151225/with-push-state.gif" %}}
 
-一つ目のdiffは `pushState` をRedux Routerから `import` している.
-二つ目のdiffで `pushState` を `connect` の第二引数に `{ pushState: pushState }` の形で渡し、
+`pushState` をRedux Routerから `import` し、 `pushState` を `connect` の第二引数に `{ pushState: pushState }` の形で渡し、
 `componentDidMount` の中で `setTimeout` を使って `this.props.pushState` を呼んでいる.
 
 Redux Routerの `pushState` は [ここ](https://github.com/acdlite/redux-router/blob/master/src/actionCreators.js#L56)で定義されていて、どうもAction creatorのようだ.
@@ -222,8 +221,8 @@ export default function connect(mapStateToProps, mapDispatchToProps, mergeProps,
       render() {
         return createElement(WrappedComponent, this.mergeProps);
       }
-		}
-	}
+    }
+  }
 }
 ```
 
