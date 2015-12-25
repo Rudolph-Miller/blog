@@ -18,7 +18,7 @@
       <guid>http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</guid>
       <description>
 
-&lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; の使い方と、 &lt;code&gt;connect&lt;/code&gt; の &lt;code&gt;mapDispatchToProps&lt;/code&gt; について、
+&lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; の使い方と、 react-reduxの&lt;code&gt;connect&lt;/code&gt; の &lt;code&gt;mapDispatchToProps&lt;/code&gt; について、
 &lt;code&gt;connect&lt;/code&gt; のSource codeを追いながら解説.&lt;/p&gt;
 
 &lt;p&gt;この記事は&lt;a href=&#34;http://qiita.com/advent-calendar/2015/vdom-flux&#34;&gt;仮想DOM/Flux Advent Calendar 2015&lt;/a&gt;の25日目の記事.&lt;/p&gt;
