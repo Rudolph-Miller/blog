@@ -300,7 +300,7 @@ class Decrement extends Component {
 createElement(Decrement, { pushState: (...args) => { dispatch(pushState(..args)); } });
 ```
 
-となって、`class Decrement` の中で `this.props.pushState` が使えるようになる.
+となって、 `class Decrement` の中で `this.props.pushState` が使えるようになる.
 
 さらに `mapDispatchToProps` のdefaultが
 
