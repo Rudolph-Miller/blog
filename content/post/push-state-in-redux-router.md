@@ -6,7 +6,7 @@ draft = false
 title = "pushState in Redux Router"
 +++
 
-Redux Routerの `pushState` の使い方と、 `connect` の `mapDispatchToProps` について、
+Redux Routerの `pushState` の使い方と、 react-reduxの`connect` の `mapDispatchToProps` について、
 `connect` のSource codeを追いながら解説.
 
 <!--more-->
