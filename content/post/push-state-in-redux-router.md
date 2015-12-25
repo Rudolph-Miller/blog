@@ -277,7 +277,7 @@ const defaultMergeProps = (stateProps, dispatchProps, parentProps) => ({
 ```
 
 で、 `stateProps`, `dispatchProps` と `parentProps` を受け取り、それらをexpandしてまとめて返している.
-`Connect#updateMergedProps` でこれらが `this.mergedProps` に入り、最終的に `createElement` で `connect` の返す関数の引数として渡される `WrappedComponent` に渡される.
+`Connect#updateMergedProps` でこれが `this.mergedProps` に入り、最終的に `connect` の返す関数の引数として渡される `WrappedComponent` に `createElement` で渡される.
 
 ```js
 createElement(WrappedComponent, this.mergedProps); 
