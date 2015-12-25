@@ -418,6 +418,8 @@ class Decrement extends Component {
 
 <p>と、 <code>dispatch</code> もmappingするような関数 ( <code>mapDispatchToProps</code> ) を作り、 <code>connect</code> の第二引数として渡す.</p>
 
+<p>このように <code>dispatch</code> を内部で呼び出すAPI作る際は、<code>connect</code> の <code>mapDispatchToProps</code> を経由して、 <code>this.props</code> に組み込まれるよう作る.</p>
+
 <h1 id="see-also:5ffab360503358b5e43ebafcc74ab758">See Also</h1>
 
 <ul>
