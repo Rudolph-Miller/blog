@@ -11,6 +11,8 @@ Redux Routerの `pushState` の使い方と、 `connect` の `mapDispatchToProps
 
 <!--more-->
 
+この記事は[仮想DOM/Flux Advent Calendar 2015](http://qiita.com/advent-calendar/2015/vdom-flux)の25日目の記事.
+
 1. [Redux Router]({{< relref "#redux-router" >}})
 2. [pushState]({{< relref "#pushstate" >}})
 3. [Usage]({{< relref "#usage" >}})
