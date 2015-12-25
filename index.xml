@@ -18,7 +18,7 @@
       <guid>http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</guid>
       <description>
 
-&lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; の使い方と、 react-reduxの&lt;code&gt;connect&lt;/code&gt; の &lt;code&gt;mapDispatchToProps&lt;/code&gt; について、
+&lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; の使い方と、 React Reduxの&lt;code&gt;connect&lt;/code&gt; の &lt;code&gt;mapDispatchToProps&lt;/code&gt; について、
 &lt;code&gt;connect&lt;/code&gt; のSource codeを追いながら解説.&lt;/p&gt;
 
 &lt;p&gt;この記事は&lt;a href=&#34;http://qiita.com/advent-calendar/2015/vdom-flux&#34;&gt;仮想DOM/Flux Advent Calendar 2015&lt;/a&gt;の25日目の記事.&lt;/p&gt;
@@ -207,7 +207,7 @@ class Decrement extends Component {
 
 &lt;p&gt;&lt;code&gt;connect&lt;/code&gt; の第二引数って何だろう.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/rackt/react-redux&#34;&gt;react-redux&lt;/a&gt;のTutorialの &lt;code&gt;connect&lt;/code&gt; の解説にこう書いてある.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/rackt/redux/&#34;&gt;Redux&lt;/a&gt;の&lt;a href=&#34;http://rackt.org/redux/index.html&#34;&gt;Tutorial&lt;/a&gt;の &lt;code&gt;connect&lt;/code&gt; の&lt;a href=&#34;http://rackt.org/redux/docs/basics/UsageWithReact.html&#34;&gt;解説&lt;/a&gt;にこう書いてある.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;In most cases you will only pass the first argument to connect(), which is a function we call a selector.&lt;/p&gt;
@@ -329,6 +329,7 @@ class Decrement extends Component {
 &lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの使い方&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-redux&#34;&gt;React Redux&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
