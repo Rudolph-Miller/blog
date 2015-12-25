@@ -7,8 +7,328 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Wed, 23 Dec 2015 00:01:34 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 25 Dec 2015 12:34:52 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>pushState in Redux Router</title>
+      <link>http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</link>
+      <pubDate>Fri, 25 Dec 2015 12:34:52 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</guid>
+      <description>
+
+&lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; の使い方と、 &lt;code&gt;connect&lt;/code&gt; の &lt;code&gt;mapDispatchToProps&lt;/code&gt; について、
+&lt;code&gt;connect&lt;/code&gt; のSource codeを追いながら解説.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#redux-router:5ffab360503358b5e43ebafcc74ab758&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pushstate:5ffab360503358b5e43ebafcc74ab758&#34;&gt;pushState&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#usage:5ffab360503358b5e43ebafcc74ab758&#34;&gt;Usage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#mapdispatchtoprops:5ffab360503358b5e43ebafcc74ab758&#34;&gt;mapDispatchToProps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:5ffab360503358b5e43ebafcc74ab758&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;redux-router:5ffab360503358b5e43ebafcc74ab758&#34;&gt;Redux Router&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;は&lt;a href=&#34;htpp://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;前回&lt;/a&gt;で紹介した通り、
+React.jsでde facto standardとなっているRouting libraryの&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;の&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
+
+&lt;h1 id=&#34;pushstate:5ffab360503358b5e43ebafcc74ab758&#34;&gt;pushState&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;pushState&lt;/code&gt; はReact RouterでURLを遷移するAPIで、元はBrowserのHistory API.
+Redux Routeの &lt;code&gt;pushState&lt;/code&gt; はこれをwrapしたもの.&lt;/p&gt;
+
+&lt;h1 id=&#34;usage:5ffab360503358b5e43ebafcc74ab758&#34;&gt;Usage&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/redux-router&#34;&gt;前回&lt;/a&gt;で使ったApplicationを用意する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import React, { Component, PropTypes } from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+import { combineReducers, createStore } from &#39;redux&#39;;
+import { connect, Provider } from &#39;react-redux&#39;;
+import { createAction, handleActions } from &#39;redux-actions&#39;;
+import { IndexRoute, Route, Redirect, Link } from &#39;react-router&#39;;
+import { reduxReactRouter, routerStateReducer, ReduxRouter } from &#39;redux-router&#39;;
+import createHistory from &#39;history/lib/createHashHistory&#39;;
+
+const INCR_COUNTER = &#39;INCR_COUNTER&#39;;
+const incrCounter = createAction(INCR_COUNTER);
+const DECR_COUNTER = &#39;DECR_COUNTER&#39;;
+const decrCounter = createAction(DECR_COUNTER);
+
+const handleCounter = handleActions({
+  INCR_COUNTER: (counter = 0, action) =&amp;gt; {
+    return counter + 1;
+  },
+  DECR_COUNTER: (counter = 0, action) =&amp;gt; {
+    return counter - 1;
+  }
+}, 0);
+
+const reducer = combineReducers({
+  router: routerStateReducer,
+  counter: handleCounter
+});
+
+@connect(state =&amp;gt; {
+  return {
+    counter: state.counter
+  };
+})
+class App extends Component {
+  render() {
+    const { counter } = this.props;
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;p&amp;gt;{`COUNTER: ${counter}`}&amp;lt;/p&amp;gt;
+        {this.props.children}
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+@connect(state =&amp;gt; {
+  return {
+    location: state.router.location
+  }
+})
+class CounterButton extends Component {
+  render() {
+    const { dispatch } = this.props;
+
+    return (
+      &amp;lt;button
+        onClick={() =&amp;gt; {
+          if(this.props.location.pathname === &#39;/incr&#39;) {
+            dispatch(incrCounter());
+          } else {
+            dispatch(decrCounter());
+          }
+        }} &amp;gt;
+        {this.props.children}
+      &amp;lt;/button&amp;gt;
+    );
+  }
+}
+
+class Increment extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;CounterButton&amp;gt;INCREMENT&amp;lt;/CounterButton&amp;gt;
+        &amp;lt;Link to=&#39;/decr&#39;&amp;gt;
+          TO DECREMENT
+        &amp;lt;/Link&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+class Decrement extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;CounterButton&amp;gt;DECREMENT&amp;lt;/CounterButton&amp;gt;
+        &amp;lt;Link to=&#39;/&#39;&amp;gt;
+          TO INCREMENT
+        &amp;lt;/Link&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+const routes = (
+  &amp;lt;Route&amp;gt;
+    &amp;lt;Redirect from=&amp;quot;/&amp;quot; to=&amp;quot;incr&amp;quot; /&amp;gt;
+    &amp;lt;Route path=&amp;quot;/&amp;quot; component={App}&amp;gt;
+      &amp;lt;Route path=&amp;quot;incr&amp;quot; component={Increment} /&amp;gt;
+      &amp;lt;Route path=&amp;quot;decr&amp;quot; component={Decrement} /&amp;gt;
+    &amp;lt;/Route&amp;gt;
+  &amp;lt;/Route&amp;gt;
+);
+
+const store = reduxReactRouter({routes, createHistory})(createStore)(reducer);
+
+class Root extends Component {
+  render() {
+    return (
+      &amp;lt;Provider store={store}&amp;gt;
+        &amp;lt;ReduxRouter /&amp;gt;
+      &amp;lt;/Provider&amp;gt;
+    );
+  }
+}
+
+render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151225/without-push-state.gif&#34; alt=&#34;/20151225/without-push-state.gif&#34;&gt;
+
+
+&lt;p&gt;これに &lt;code&gt;pushState&lt;/code&gt; で、 &lt;code&gt;/decr&lt;/code&gt; を1秒後に &lt;code&gt;/incr&lt;/code&gt; にredirectするという無駄な機能をつける.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;-import { reduxReactRouter, routerStateReducer, ReduxRouter } from &#39;redux-router&#39;;
++import { reduxReactRouter, routerStateReducer, ReduxRouter, pushState } from &#39;redux-router&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;+@connect(null, { pushState })
+class Decrement extends Component {
++  componentDidMount() {
++    const { pushState } = this.props;
++
++    setTimeout(() =&amp;gt; {
++      pushState(null, &#39;/incr&#39;);
++    }, 1000)
++  }
+
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;CounterButton&amp;gt;DECREMENT&amp;lt;/CounterButton&amp;gt;
+        &amp;lt;Link to=&#39;/&#39;&amp;gt;
+          TO INCREMENT
+        &amp;lt;/Link&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151225/with-push-state.gif&#34; alt=&#34;/20151225/with-push-state.gif&#34;&gt;
+
+
+&lt;p&gt;&lt;code&gt;pushState&lt;/code&gt; をRedux Routerから &lt;code&gt;import&lt;/code&gt; し、 &lt;code&gt;pushState&lt;/code&gt; を &lt;code&gt;connect&lt;/code&gt; の第二引数に &lt;code&gt;{ pushState: pushState }&lt;/code&gt; の形で渡し、
+&lt;code&gt;componentDidMount&lt;/code&gt; の中で &lt;code&gt;setTimeout&lt;/code&gt; を使って &lt;code&gt;this.props.pushState&lt;/code&gt; を呼んでいる.&lt;/p&gt;
+
+&lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; は &lt;a href=&#34;https://github.com/acdlite/redux-router/blob/master/src/actionCreators.js#L56&#34;&gt;ここ&lt;/a&gt;で定義されていて、どうもAction creatorのようだ.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;connect&lt;/code&gt; の第二引数って何だろう.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/rackt/react-redux&#34;&gt;react-redux&lt;/a&gt;のTutorialの &lt;code&gt;connect&lt;/code&gt; の解説にこう書いてある.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;In most cases you will only pass the first argument to connect(), which is a function we call a selector.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ほとんどの場合、第一引数しか使わないらしい.&lt;/p&gt;
+
+&lt;p&gt;仕方ないので&lt;a href=&#34;https://github.com/rackt/react-redux/blob/b35f8be00dae2af16a2b4eb12947ed616bc39279/src/components/connect.js#L24&#34;&gt;Source code&lt;/a&gt;を読むと、 &lt;code&gt;mapDispatchToProps&lt;/code&gt; と呼ぶものらしい.&lt;/p&gt;
+
+&lt;h1 id=&#34;mapdispatchtoprops:5ffab360503358b5e43ebafcc74ab758&#34;&gt;mapDispatchToProps&lt;/h1&gt;
+
+&lt;p&gt;もう少し &lt;code&gt;mapDispatchToProps&lt;/code&gt; を追ってみる.&lt;/p&gt;
+
+&lt;h2 id=&#34;connect:5ffab360503358b5e43ebafcc74ab758&#34;&gt;connect&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;connect&lt;/code&gt; の定義は&lt;a href=&#34;https://github.com/rackt/react-redux/blob/b35f8be00dae2af16a2b4eb12947ed616bc39279/src/components/connect.js#L24-L275&#34;&gt;ここ&lt;/a&gt;だが、簡単に言うと、4つの引数をとって、1つの引数をとる関数を返す.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;export default function connect(mapStateToProps, mapDispatchToProps, mergeProps, options = {}) {
+  return function wrapWithConnect(WrappedComponent) {
+    class Connect extends Component {
+      render() {
+        return createElement(WrappedComponent, this.mergeProps);
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;mapdispatchtoprops-1:5ffab360503358b5e43ebafcc74ab758&#34;&gt;mapDispatchToProps&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;Object&lt;/code&gt; なら &lt;code&gt;wrapActionCreators&lt;/code&gt; でwrapされて、 &lt;code&gt;Object&lt;/code&gt; でないならそのままで、 &lt;code&gt;finalMapDispatchToProps&lt;/code&gt; に入る.
+&lt;code&gt;mapDispatchToProps&lt;/code&gt; として何も渡さなかった場合は &lt;code&gt;defaultMapDispatchToProps&lt;/code&gt; がdefaultで入るようになっている. &lt;code&gt;defaultMapDispatchToProps&lt;/code&gt; の定義は、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const defaultMapDispatchToProps = dispatch =&amp;gt; ({ dispatch });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;となっていて、 &lt;code&gt;dispatch&lt;/code&gt; を受け取り &lt;code&gt;{ dispatch: dispatch }&lt;/code&gt; として返している.&lt;/p&gt;
+
+&lt;h2 id=&#34;wrapactioncreators:5ffab360503358b5e43ebafcc74ab758&#34;&gt;wrapActionCreators&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;mapDispatchToProps&lt;/code&gt; が &lt;code&gt;Object&lt;/code&gt; だったときは &lt;code&gt;wrapActionCreators&lt;/code&gt; でwrapされるが、 &lt;code&gt;wrapActionCreators&lt;/code&gt; の定義は&lt;a href=&#34;https://github.com/rackt/react-redux/blob/b35f8be00dae2af16a2b4eb12947ed616bc39279/src/utils/wrapActionCreators.js#L3&#34;&gt;ここ&lt;/a&gt;にあり、 Reduxの &lt;code&gt;bindActionCreators&lt;/code&gt; を呼んでいる.
+&lt;code&gt;bindActionCreators&lt;/code&gt; は引数が &lt;code&gt;Object&lt;/code&gt; の時は、その &lt;code&gt;values&lt;/code&gt; にたいして &lt;code&gt;bindActionCreator&lt;/code&gt; を &lt;code&gt;map&lt;/code&gt; している. &lt;code&gt;bindActionCreator&lt;/code&gt; の定義は、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function bindActionCreator(actionCreator, dispatch) {
+  return (...args) =&amp;gt; dispatch(actionCreator(...args));
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、&lt;code&gt;actionCreator&lt;/code&gt;を与えられた引数で呼んで、 &lt;code&gt;dispatch&lt;/code&gt; する関数を返している.&lt;/p&gt;
+
+&lt;h2 id=&#34;finalmapdispatchtoprops:5ffab360503358b5e43ebafcc74ab758&#34;&gt;finalMapDispatchToProps&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;finalMapDispatchToProps&lt;/code&gt; は &lt;code&gt;computeDispatchProps&lt;/code&gt; の中で &lt;code&gt;dispatch&lt;/code&gt; を引数として呼ばれており、その返り値が &lt;code&gt;Connect#updateDispatchPropsIfNeeded&lt;/code&gt; の中で &lt;code&gt;this.dispatchProps&lt;/code&gt; に入る. この &lt;code&gt;this.dispatchProps&lt;/code&gt; は &lt;code&gt;Connect#updateMergedProps&lt;/code&gt; で &lt;code&gt;computeMergedProps&lt;/code&gt; を通して &lt;code&gt;this.mergedProps&lt;/code&gt; に入る.&lt;/p&gt;
+
+&lt;h2 id=&#34;computemergedprops:5ffab360503358b5e43ebafcc74ab758&#34;&gt;computeMergedProps&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;computeMergedProps&lt;/code&gt; は &lt;code&gt;stateProps&lt;/code&gt;, &lt;code&gt;dispatchProps&lt;/code&gt; と &lt;code&gt;parentProps&lt;/code&gt; を受け取り、 &lt;code&gt;finalMergeProps&lt;/code&gt; にそれらを渡し、その返り値を返している.&lt;/p&gt;
+
+&lt;h2 id=&#34;finalmergeprops:5ffab360503358b5e43ebafcc74ab758&#34;&gt;finalMergeProps&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;finalMergeProps&lt;/code&gt; は &lt;code&gt;connect&lt;/code&gt; の第三引数である &lt;code&gt;mergeProps&lt;/code&gt; が入っている. &lt;code&gt;connect&lt;/code&gt; に第三引数が指定されていない場合は &lt;code&gt;defaultMergeProps&lt;/code&gt; が入り、その定義は、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const defaultMergeProps = (stateProps, dispatchProps, parentProps) =&amp;gt; ({
+  ...parentProps,
+  ...stateProps,
+  ...dispatchProps
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、 &lt;code&gt;stateProps&lt;/code&gt;, &lt;code&gt;dispatchProps&lt;/code&gt; と &lt;code&gt;parentProps&lt;/code&gt; を受け取り、それらをexpandしてまとめて返している.
+&lt;code&gt;Connect#updateMergedProps&lt;/code&gt; でこれらが &lt;code&gt;this.mergedProps&lt;/code&gt; に入り、最終的に &lt;code&gt;createElement&lt;/code&gt; で &lt;code&gt;connect&lt;/code&gt; の返す関数の引数として渡される &lt;code&gt;WrappedComponent&lt;/code&gt; に渡される.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;createElement(WrappedComponent, this.mergedProps); 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;mapdispatchtoprops-again:5ffab360503358b5e43ebafcc74ab758&#34;&gt;mapDispatchToProps again&lt;/h2&gt;
+
+&lt;p&gt;結局 &lt;code&gt;mapDispatchToProps&lt;/code&gt; は何だったかと言うと、 &lt;code&gt;dispatch&lt;/code&gt; を &lt;code&gt;createElement&lt;/code&gt; にどのように渡すかを定義する引数だった.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;@connect(null, { pushState })
+class Decrement extends Component {
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とすると、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;createElement(Decrement, { pushState: (...args) =&amp;gt; { dispatch(pushState(..args)); } });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;となって、 &lt;code&gt;class Decrement&lt;/code&gt; の中で &lt;code&gt;this.props.pushState&lt;/code&gt; が使えるようになる.&lt;/p&gt;
+
+&lt;p&gt;さらに &lt;code&gt;mapDispatchToProps&lt;/code&gt; のdefaultが&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const defaultMapDispatchToProps = dispatch =&amp;gt; ({ dispatch });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;であったように、 &lt;code&gt;dispatch&lt;/code&gt; 自体もmappingしないと &lt;code&gt;this.props.dispatch&lt;/code&gt; は使えないので &lt;code&gt;this.props.dispatch&lt;/code&gt; が必要な際は、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;functiton mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    pushState: bindActionCreators(pushState, dispatch)
+  };
+}
+@connect(null, mapDispatchToProps)
+class Decrement extends Component {
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と、 &lt;code&gt;dispatch&lt;/code&gt; もmappingするような関数 ( &lt;code&gt;mapDispatchToProps&lt;/code&gt; ) を作り、 &lt;code&gt;connect&lt;/code&gt; の第二引数として渡す.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:5ffab360503358b5e43ebafcc74ab758&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの使い方&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Redux Router</title>
