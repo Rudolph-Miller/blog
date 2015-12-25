@@ -1,8 +1,8 @@
 +++
 Description = "Redux Routerの `pushState` の使い方と、 `connect` の `mapDispatchToProps` について"
-Tags = ["React.js","Redux","Redux Router"]
-date = "2015-12-23T14:03:05+09:00"
-draft = true
+Tags = ["React.js", "Redux", "Redux Router"]
+date = "2015-12-25T12:34:52+09:00"
+draft = false
 title = "pushState in Redux Router"
 +++
 
