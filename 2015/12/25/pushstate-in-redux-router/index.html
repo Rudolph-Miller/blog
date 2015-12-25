@@ -375,7 +375,7 @@ class Decrement extends Component {
 </code></pre>
 
 <p>で、 <code>stateProps</code>, <code>dispatchProps</code> と <code>parentProps</code> を受け取り、それらをexpandしてまとめて返している.
-<code>Connect#updateMergedProps</code> でこれらが <code>this.mergedProps</code> に入り、最終的に <code>createElement</code> で <code>connect</code> の返す関数の引数として渡される <code>WrappedComponent</code> に渡される.</p>
+<code>Connect#updateMergedProps</code> でこれが <code>this.mergedProps</code> に入り、最終的に <code>connect</code> の返す関数の引数として渡される <code>WrappedComponent</code> に <code>createElement</code> で渡される.</p>
 
 <pre><code class="language-js">createElement(WrappedComponent, this.mergedProps); 
 </code></pre>
