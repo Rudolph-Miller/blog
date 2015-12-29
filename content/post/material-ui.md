@@ -11,8 +11,9 @@ Material-UIの紹介.
 <!--more-->
 
 https://github.com/zilverline/react-tap-event-plugin
+のinstall.
 
-の使い方.
+Web DB PressのexampleをReact.js + material-uiで作る.
 
 # See Also
 
