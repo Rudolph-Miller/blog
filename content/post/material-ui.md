@@ -10,10 +10,47 @@ Material-UIの紹介.
 
 <!--more-->
 
-https://github.com/zilverline/react-tap-event-plugin
-のinstall.
+1. [Material Design]({{< relref "#material-design" >}})
+2. [Material-UI]({{< relref "#material-ui" >}})
+3. [See Also]({{< relref "#see-also" >}})
 
-Web DB PressのexampleをReact.js + material-uiで作る.
+# Material Design
+
+
+# Material-UI
+
+## About
+
+[Material-UI](https://github.com/callemall/material-ui)はMaterial DesignのReact.js実装.
+
+
+## Install
+
+
+```sh
+npm install --save material-ui
+```
+
+で `material-ui` をinstallする.
+
+いくつかのComponentで[React-Tap-Event-Plugin](https://github.com/zilverline/react-tap-event-plugin)を使用して、touch eventsをlistenしているので、
+
+```sh
+npm install --save react-tap-event-plugin
+```
+
+でinstallし、`Tap Event` を有効にするために、
+
+```js
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+```
+
+をApplicationのstart timeに実行する.
+
+
+## Usage
+
 
 # See Also
 
