@@ -16,6 +16,10 @@ Material-UIの紹介.
 
 # Material Design
 
+Material DesignはGoogleが開発しているDesign Guidelineで  
+__一貫性と実世界と同じ挙動でユーザーの負担を軽くする__  
+ことが目標で、 __マテリアル（素材）のある世界__ が特徴.
+
 
 # Material-UI
 
