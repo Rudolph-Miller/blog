@@ -21,12 +21,16 @@ Material DesignはGoogleが開発しているDesign Guidelineで
 __一貫性と実世界と同じ挙動でユーザーの負担を軽くする__  
 ことが目標で、 __マテリアル（素材）のある世界__ が特徴.
 
+あらゆるDeviseを対象とした__一貫性__と__周りの世界と連続的で、同じ物理的性質や同じ動き__で、ユーザーがあらゆるApplicationをあらゆるDeviseで、それぞれでの操作を学習する必要無く、自然に使えるようになる.
+
 
 # Material-UI
 
 ## About
 
 [Material-UI](https://github.com/callemall/material-ui)はMaterial DesignのReact.js実装.
+
+簡単にMaterial Designを試すことができ、ユーザー
 
 
 ## Install
