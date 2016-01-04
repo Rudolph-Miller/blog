@@ -38,7 +38,8 @@
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/callemall/material-ui&#34;&gt;Material-UI&lt;/a&gt;はMaterial DesignのReact.js実装.&lt;/p&gt;
 
-&lt;p&gt;ComponentとThemeで簡単にMaterial Designを試すことができる.&lt;/p&gt;
+&lt;p&gt;ComponentとThemeで簡単にMaterial Designを試すことができる.&lt;br /&gt;
+(Themeについては今回は触れない.)&lt;/p&gt;
 
 &lt;h2 id=&#34;install:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Install&lt;/h2&gt;
 
@@ -110,8 +111,7 @@ render(&amp;lt;App /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;img src=&#34;http://blog.rudolph-miller.com/images/20160104/example.png&#34; alt=&#34;20160104/example.png&#34;&gt;
 
 
-&lt;p&gt;こんな感じにComponentに &lt;code&gt;props&lt;/code&gt; を渡すだけ.
-Themeについては別で書く.&lt;/p&gt;
+&lt;p&gt;こんな感じにComponentに &lt;code&gt;props&lt;/code&gt; を渡すだけ.&lt;/p&gt;
 
 &lt;h1 id=&#34;see-also:685cc0a50b9186931af118d17b9d18fd&#34;&gt;See Also&lt;/h1&gt;
 
