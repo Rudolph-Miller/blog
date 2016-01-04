@@ -30,7 +30,7 @@ __一貫性と実世界と同じ挙動でユーザーの負担を軽くする__
 
 [Material-UI](https://github.com/callemall/material-ui)はMaterial DesignのReact.js実装.
 
-簡単にMaterial Designを試すことができ、ユーザー
+Component群とThemeで簡単にMaterial Designを試すことができる.
 
 
 ## Install
