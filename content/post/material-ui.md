@@ -1,8 +1,8 @@
 +++
 Description = "Material-UI"
-Tags = ["React.js","Material Design"]
-date = "2015-12-28T10:56:18+09:00"
-draft = true
+Tags = ["React.js", "Material Design"]
+date = "2016-01-04T20:54:36+09:00"
+draft = false
 title = "Material-UI"
 +++
 
@@ -17,11 +17,9 @@ Material-UIの紹介.
 
 # Material Design
 
-Material DesignはGoogleが開発しているDesign Guidelineで  
-__一貫性と実世界と同じ挙動でユーザーの負担を軽くする__  
-ことが目標で、 __マテリアル（素材）のある世界__ が特徴.
+Material DesignはGoogleが開発しているDesign Guidelineで__一貫性と実世界と同じ挙動でユーザーの負担を軽くする__ことが目標で、 __マテリアル（素材）のある世界__ が特徴.
 
-あらゆるDeviseを対象とした__一貫性__と__周りの世界と連続的で、同じ物理的性質や同じ動き__で、ユーザーがあらゆるApplicationをあらゆるDeviseで、それぞれでの操作を学習する必要無く、自然に使えるようになる.
+あらゆるdeviceを対象とした__一貫性__と__周りの世界と連続的で、同じ物理的性質や同じ動き__で、ユーザーがあらゆるdeviceであらゆるApplicationを、それぞれでの操作を学習する必要無く、自然に使えるようになる.
 
 
 # Material-UI
@@ -30,11 +28,10 @@ __一貫性と実世界と同じ挙動でユーザーの負担を軽くする__
 
 [Material-UI](https://github.com/callemall/material-ui)はMaterial DesignのReact.js実装.
 
-Component群とThemeで簡単にMaterial Designを試すことができる.
+ComponentとThemeで簡単にMaterial Designを試すことができる.
 
 
 ## Install
-
 
 ```sh
 npm install --save material-ui
@@ -42,23 +39,23 @@ npm install --save material-ui
 
 で `material-ui` をinstallする.
 
-いくつかのComponentで[React-Tap-Event-Plugin](https://github.com/zilverline/react-tap-event-plugin)を使用して、touch eventsをlistenしているので、
+[React-Tap-Event-Plugin](https://github.com/zilverline/react-tap-event-plugin)を使用して、Tap eventをlistenしているので、これを有効にしないと一部のComponentが正常に動作しない.
 
 ```sh
 npm install --save react-tap-event-plugin
 ```
 
-でinstallし、`Tap Event` を有効にするために、
+でinstallし、
 
 ```js
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 ```
 
-をApplicationのstart timeに実行する.
+をApplicationで実行して有効化する.
 
 
-## Usage
+## Example
 
 ```js
 import { render } from 'react-dom';
@@ -108,8 +105,13 @@ render(<App />, document.getElementById('app'));
 
 {{% image "20160104/example.png" %}}
 
+こんな感じにComponentに `props` を渡すだけ.
+Themeについては別で書く.
+
 
 # See Also
 
-- [Material UI](https://github.com/callemall/material-ui)
+- [Material UI - GitHub](https://github.com/callemall/material-ui)
+- [Material UI - Document](http://www.material-ui.com/#/home)
 - [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin)
+- [Materail Design](https://www.google.com/design/spec/material-design/introduction.html)

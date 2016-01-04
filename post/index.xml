@@ -7,8 +7,122 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 25 Dec 2015 12:34:52 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 04 Jan 2016 20:54:36 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Material-UI</title>
+      <link>http://blog.rudolph-miller.com/2016/01/04/material-ui/</link>
+      <pubDate>Mon, 04 Jan 2016 20:54:36 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2016/01/04/material-ui/</guid>
+      <description>
+
+&lt;p&gt;Material-UIの紹介.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#material-design:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Material Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#material-ui:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Material-UI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:685cc0a50b9186931af118d17b9d18fd&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;material-design:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Material Design&lt;/h1&gt;
+
+&lt;p&gt;Material DesignはGoogleが開発しているDesign Guidelineで&lt;strong&gt;一貫性と実世界と同じ挙動でユーザーの負担を軽くする&lt;/strong&gt;ことが目標で、 &lt;strong&gt;マテリアル（素材）のある世界&lt;/strong&gt; が特徴.&lt;/p&gt;
+
+&lt;p&gt;あらゆるdeviceを対象とした&lt;strong&gt;一貫性&lt;/strong&gt;と&lt;strong&gt;周りの世界と連続的で、同じ物理的性質や同じ動き&lt;/strong&gt;で、ユーザーがあらゆるdeviceであらゆるApplicationを、それぞれでの操作を学習する必要無く、自然に使えるようになる.&lt;/p&gt;
+
+&lt;h1 id=&#34;material-ui:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Material-UI&lt;/h1&gt;
+
+&lt;h2 id=&#34;about:685cc0a50b9186931af118d17b9d18fd&#34;&gt;About&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/callemall/material-ui&#34;&gt;Material-UI&lt;/a&gt;はMaterial DesignのReact.js実装.&lt;/p&gt;
+
+&lt;p&gt;ComponentとThemeで簡単にMaterial Designを試すことができる.&lt;/p&gt;
+
+&lt;h2 id=&#34;install:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Install&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install --save material-ui
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で &lt;code&gt;material-ui&lt;/code&gt; をinstallする.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/zilverline/react-tap-event-plugin&#34;&gt;React-Tap-Event-Plugin&lt;/a&gt;を使用して、Tap eventをlistenしているので、これを有効にしないと一部のComponentが正常に動作しない.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install --save react-tap-event-plugin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でinstallし、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import injectTapEventPlugin from &#39;react-tap-event-plugin&#39;;
+injectTapEventPlugin();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;をApplicationで実行して有効化する.&lt;/p&gt;
+
+&lt;h2 id=&#34;example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import { render } from &#39;react-dom&#39;;
+import React, { Component, PropTypes } from &#39;react&#39;;
+import injectTapEventPlugin from &#39;react-tap-event-plugin&#39;;
+injectTapEventPlugin();
+
+import {
+  Avatar, Card, CardActions,
+  CardHeader, CardMedia, CardTitle,
+  FlatButton, CardText
+} from &#39;material-ui&#39;;
+
+class App extends Component {
+  render() {
+    return (
+      &amp;lt;Card&amp;gt;
+        &amp;lt;CardHeader
+          title=&amp;quot;Title&amp;quot;
+          subtitle=&amp;quot;Subtitle&amp;quot;
+          avatar={&amp;lt;Avatar style={{color: &#39;red&#39;}}&amp;gt;A&amp;lt;/Avatar&amp;gt;}/&amp;gt;
+        &amp;lt;CardHeader
+          title=&amp;quot;Demo Url Based Avatar&amp;quot;
+          subtitle=&amp;quot;Subtitle&amp;quot;
+          avatar=&amp;quot;http://lorempixel.com/100/100/nature/&amp;quot;/&amp;gt;
+        &amp;lt;CardMedia overlay={&amp;lt;CardTitle title=&amp;quot;Title&amp;quot; subtitle=&amp;quot;Subtitle&amp;quot;/&amp;gt;}&amp;gt;
+          &amp;lt;img src=&amp;quot;http://lorempixel.com/600/337/nature/&amp;quot;/&amp;gt;
+        &amp;lt;/CardMedia&amp;gt;
+        &amp;lt;CardTitle title=&amp;quot;Title&amp;quot; subtitle=&amp;quot;Subtitle&amp;quot;/&amp;gt;
+        &amp;lt;CardActions&amp;gt;
+          &amp;lt;FlatButton label=&amp;quot;Action1&amp;quot;/&amp;gt;
+          &amp;lt;FlatButton label=&amp;quot;Action2&amp;quot;/&amp;gt;
+        &amp;lt;/CardActions&amp;gt;
+        &amp;lt;CardText&amp;gt;
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+        &amp;lt;/CardText&amp;gt;
+      &amp;lt;/Card&amp;gt;
+    );
+  }
+}
+
+render(&amp;lt;App /&amp;gt;, document.getElementById(&#39;app&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160104/example.png&#34; alt=&#34;20160104/example.png&#34;&gt;
+
+
+&lt;p&gt;こんな感じにComponentに &lt;code&gt;props&lt;/code&gt; を渡すだけ.
+Themeについては別で書く.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:685cc0a50b9186931af118d17b9d18fd&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/callemall/material-ui&#34;&gt;Material UI - GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.material-ui.com/#/home&#34;&gt;Material UI - Document&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/zilverline/react-tap-event-plugin&#34;&gt;react-tap-event-plugin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/material-design/introduction.html&#34;&gt;Materail Design&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>pushState in Redux Router</title>
@@ -2005,192 +2119,6 @@ include_recipe &#39;nginx::debug&#39;
 &lt;li&gt;&lt;a href=&#34;https://github.com/itamae-kitchen/itamae&#34;&gt;Itamae GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://speakerdeck.com/ryotarai/itamae-infra-as-code-xian-zhuang-que-ren-hui&#34;&gt;Itamae - Infra as Code 現状確認会&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/mizzy/specinfra&#34;&gt;Specinfra GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Clipper</title>
-      <link>http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</link>
-      <pubDate>Mon, 10 Aug 2015 13:53:10 +0900</pubDate>
-      
-      <guid>http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</guid>
-      <description>
-
-&lt;p&gt;稚作のClipperを紹介.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#clipper:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;Clipper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;clipper:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;Clipper&lt;/h2&gt;
-
-&lt;p&gt;例えばMicro Blogサービスを作るとしよう.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(defpackage sample.models
-  (:use :cl
-        :integral))
-(in-package :sample.models)
-
-(defclass user ()
-  ((id :type integer
-       :primary-key t
-       :auto-increment t
-       :not-null t
-       :reader user-id)
-   (name :col-type (:varchar 255)
-         :initarg :name
-         :accessor user-name))
-  (:metaclass &amp;lt;dao-table-class&amp;gt;))
-
-(defclass post ()
-  ((id :type (:integer 11)
-       :primary-key t
-       :auto-increment t
-       :not-null t
-       :reader post-id)
-   (content :type string
-            :col-type (:varchar 255)
-            :initarg :content
-            :accessor post-content)
-   (user-id :type integer
-            :initarg :user-id
-            :accessor post-user-id))
-  (:metaclass &amp;lt;dao-table-class&amp;gt;))
-
-(defun user-posts (user)
-  (check-type user user)
-  (select-dao &#39;post (where (:= :user_id (user-id user)))))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;こんな感じに&lt;a href=&#34;https://github.com/fukamachi/integral&#34;&gt;Integral&lt;/a&gt;を使用しModelとして&lt;code&gt;user&lt;/code&gt;と&lt;code&gt;post&lt;/code&gt;を定義する.
-とりあえずこれで&lt;code&gt;user&lt;/code&gt;に紐づく&lt;code&gt;post&lt;/code&gt;の投稿と&lt;code&gt;post&lt;/code&gt;の一覧機能ができる.&lt;/p&gt;
-
-&lt;p&gt;次に&lt;code&gt;user&lt;/code&gt;が名前の表示だけじゃ物足りなく感じ、Iconを設定できるようにしてみる.
-Iconを設定するためにはImage Filesを保存、管理しなくてはならない.&lt;/p&gt;
-
-&lt;p&gt;開発を進めて行く内に、
-「開発時はBrowserで確認するため&lt;code&gt;static/images/icons&lt;/code&gt;に保存し、
-test時は開発環境を壊したくないため&lt;code&gt;t/images/icons&lt;/code&gt;に保存したい.
-その上、productionではS3のBucketに保存したい.」
-となるのは当然だと思う.
-(少なくとも僕はそれが必要になった.)&lt;/p&gt;
-
-&lt;p&gt;これらの切り替えを簡単にするのが&lt;a href=&#34;https://github.com/Rudolph-Miller/clipper&#34;&gt;Clipper&lt;/a&gt;だ.&lt;/p&gt;
-
-&lt;p&gt;とりあえずIconのModelとして&lt;code&gt;icon&lt;/code&gt;を用意して、&lt;code&gt;user&lt;/code&gt;と紐づける.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(defclass icon ()
-  ((id :type integer
-       :primary-key t
-       :auto-increment t
-       :not-null t
-       :initarg :id)
-   (user-id :type integer)
-   (image-file-name :col-type (:varchar 255)
-                    :initarg :image-file-name)
-   (image-content-type :col-type (:varchar 255)
-                       :initarg :image-content-type)
-   (image-file-size :col-type (:integer 11)
-                    :initarg :image-file-size)
-   (url :type string
-        :initarg :url))
-  (:metaclass &amp;lt;dao-table-class&amp;gt;))
-
-
-(defun user-icon (user)
-  (check-type user user)
-  (car
-   (select-dao &#39;icon
-               (where (:= :user_id (user-id user)))
-               (limit 1))))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;環境変数でのconfigの切り替えに&lt;a href=&#34;https://github.com/fukamachi/envy&#34;&gt;Envy&lt;/a&gt;を使用し、
-&lt;code&gt;clipper:setup-clipper&lt;/code&gt;の引数をenvごとに管理する.
-又、切り替えのための&lt;code&gt;sample.models::setup-clipper&lt;/code&gt;も定義しておく.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(defpackage sample.config
-  (:use :cl)
-  (:import-from :envy
-                :config-env-var
-                :defconfig))
-(in-package :sample.config)
-
-(setf (config-env-var) &amp;quot;APP_ENV&amp;quot;)
-
-(defconfig |development|
-    `(:clipper (:store-type :local
-                :image-directory #P&amp;quot;/home/user/app/images/icons&amp;quot;
-                :relative #P&amp;quot;/home/user/app/&amp;quot;
-                :prefix &amp;quot;http://localhost:3000/&amp;quot;
-                :format &amp;quot;:ID/:FILE-NAME.:EXTENSION&amp;quot;)))
-
-(defconfig |production|
-    `(:clipper (:store-type :s3
-                :aws-access-key (uiop:getenv &amp;quot;AWS_ACCESS_KEY&amp;quot;)
-                :aws-secret-key (uiop:getenv &amp;quot;AWS_SECRET_KEY&amp;quot;)
-                :s3-endpoint &amp;quot;s3-ap-northeast-1.amazonaws.com&amp;quot;
-                :s3-bucket-name &amp;quot;sample-app&amp;quot;
-                :format &amp;quot;:ID/:FILE-NAME.:EXTENSION&amp;quot;)))
-
-(defun config ()
-  (envy:config #.(package-name *package*)))
-
-
-(in-package :sample.models)
-
-(defun setup-clipper ()
-  (apply #&#39;clipper:setup-clipper
-         (append (list :clipper-class (find-class &#39;icon))
-                 (getf (sample.config::config) :clipper))))
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;すると環境変数&lt;code&gt;APP_ENV&lt;/code&gt;によってImage Filesの保存先を切り替えられる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(in-package :sample.models)
-
-(ql:quickload :osicat)
-
-(defvar *url* &amp;quot;http://www.lisperati.com/lisplogo_alien_256.png&amp;quot;)
-
-;; APP_ENV=development
-(setf (osicat:environment-variable &amp;quot;APP_ENV&amp;quot;) &amp;quot;development&amp;quot;)
-(setup-clipper)
-
-(let* ((user (create-dao &#39;user :name &amp;quot;Rudolph&amp;quot;))
-       (icon (create-dao &#39;icon :user-id (user-id user))))
-  (save-dao (clipper:attach-image icon :url *url*))
-  (clipper:image-url icon))
-
-;; =&amp;gt; &amp;quot;http://localhost:3000/images/icons/1/lisplogo_alien_256.png&amp;quot;
-
-
-;; APP_ENV=production
-(setf (osicat:environment-variable &amp;quot;APP_ENV&amp;quot;) &amp;quot;production&amp;quot;)
-(setup-clipper)
-
-(let* ((user (create-dao &#39;user :name &amp;quot;John&amp;quot;))
-       (icon (create-dao &#39;icon :user-id (user-id user))))
-  (save-dao (clipper:attach-image icon :url *url*))
-  (clipper:image-url icon))
-
-;; =&amp;gt; &amp;quot;https://s3-ap-northeast-1.amazonaws.com/sample-app/2/lisplogo_alien_256.png&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;便利.&lt;/p&gt;
-
-&lt;h2 id=&#34;see-also:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;See Also&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://rudolph-miller.github.io/clipper/overview.html&#34;&gt;Document&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://quickdocs.org/clipper/&#34;&gt;Quickdocs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/clipper&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/integral&#34;&gt;Integral&lt;/a&gt; - An object relational mapper for Common Lisp.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/envy&#34;&gt;Envy&lt;/a&gt; - Configuration switcher by an environment variable inspired by Config::ENV.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://xach.com/lisp/zs3/&#34;&gt;ZS3&lt;/a&gt; - Amazon S3 and CloudFront from Common Lisp.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Material Design on (rudolph-miller)</title>
+    <link>http://blog.rudolph-miller.com/tags/material-design/</link>
+    <description>Recent content in Material Design on (rudolph-miller)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
+    <lastBuildDate>Mon, 04 Jan 2016 20:54:36 +0900</lastBuildDate>
+    <atom:link href="http://blog.rudolph-miller.com/tags/material-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Material-UI</title>
+      <link>http://blog.rudolph-miller.com/2016/01/04/material-ui/</link>
+      <pubDate>Mon, 04 Jan 2016 20:54:36 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2016/01/04/material-ui/</guid>
+      <description>
+
+&lt;p&gt;Material-UIの紹介.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#material-design:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Material Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#material-ui:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Material-UI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:685cc0a50b9186931af118d17b9d18fd&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;material-design:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Material Design&lt;/h1&gt;
+
+&lt;p&gt;Material DesignはGoogleが開発しているDesign Guidelineで&lt;strong&gt;一貫性と実世界と同じ挙動でユーザーの負担を軽くする&lt;/strong&gt;ことが目標で、 &lt;strong&gt;マテリアル（素材）のある世界&lt;/strong&gt; が特徴.&lt;/p&gt;
+
+&lt;p&gt;あらゆるdeviceを対象とした&lt;strong&gt;一貫性&lt;/strong&gt;と&lt;strong&gt;周りの世界と連続的で、同じ物理的性質や同じ動き&lt;/strong&gt;で、ユーザーがあらゆるdeviceであらゆるApplicationを、それぞれでの操作を学習する必要無く、自然に使えるようになる.&lt;/p&gt;
+
+&lt;h1 id=&#34;material-ui:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Material-UI&lt;/h1&gt;
+
+&lt;h2 id=&#34;about:685cc0a50b9186931af118d17b9d18fd&#34;&gt;About&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/callemall/material-ui&#34;&gt;Material-UI&lt;/a&gt;はMaterial DesignのReact.js実装.&lt;/p&gt;
+
+&lt;p&gt;ComponentとThemeで簡単にMaterial Designを試すことができる.&lt;/p&gt;
+
+&lt;h2 id=&#34;install:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Install&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install --save material-ui
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で &lt;code&gt;material-ui&lt;/code&gt; をinstallする.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/zilverline/react-tap-event-plugin&#34;&gt;React-Tap-Event-Plugin&lt;/a&gt;を使用して、Tap eventをlistenしているので、これを有効にしないと一部のComponentが正常に動作しない.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install --save react-tap-event-plugin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でinstallし、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import injectTapEventPlugin from &#39;react-tap-event-plugin&#39;;
+injectTapEventPlugin();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;をApplicationで実行して有効化する.&lt;/p&gt;
+
+&lt;h2 id=&#34;example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import { render } from &#39;react-dom&#39;;
+import React, { Component, PropTypes } from &#39;react&#39;;
+import injectTapEventPlugin from &#39;react-tap-event-plugin&#39;;
+injectTapEventPlugin();
+
+import {
+  Avatar, Card, CardActions,
+  CardHeader, CardMedia, CardTitle,
+  FlatButton, CardText
+} from &#39;material-ui&#39;;
+
+class App extends Component {
+  render() {
+    return (
+      &amp;lt;Card&amp;gt;
+        &amp;lt;CardHeader
+          title=&amp;quot;Title&amp;quot;
+          subtitle=&amp;quot;Subtitle&amp;quot;
+          avatar={&amp;lt;Avatar style={{color: &#39;red&#39;}}&amp;gt;A&amp;lt;/Avatar&amp;gt;}/&amp;gt;
+        &amp;lt;CardHeader
+          title=&amp;quot;Demo Url Based Avatar&amp;quot;
+          subtitle=&amp;quot;Subtitle&amp;quot;
+          avatar=&amp;quot;http://lorempixel.com/100/100/nature/&amp;quot;/&amp;gt;
+        &amp;lt;CardMedia overlay={&amp;lt;CardTitle title=&amp;quot;Title&amp;quot; subtitle=&amp;quot;Subtitle&amp;quot;/&amp;gt;}&amp;gt;
+          &amp;lt;img src=&amp;quot;http://lorempixel.com/600/337/nature/&amp;quot;/&amp;gt;
+        &amp;lt;/CardMedia&amp;gt;
+        &amp;lt;CardTitle title=&amp;quot;Title&amp;quot; subtitle=&amp;quot;Subtitle&amp;quot;/&amp;gt;
+        &amp;lt;CardActions&amp;gt;
+          &amp;lt;FlatButton label=&amp;quot;Action1&amp;quot;/&amp;gt;
+          &amp;lt;FlatButton label=&amp;quot;Action2&amp;quot;/&amp;gt;
+        &amp;lt;/CardActions&amp;gt;
+        &amp;lt;CardText&amp;gt;
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+        &amp;lt;/CardText&amp;gt;
+      &amp;lt;/Card&amp;gt;
+    );
+  }
+}
+
+render(&amp;lt;App /&amp;gt;, document.getElementById(&#39;app&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160104/example.png&#34; alt=&#34;20160104/example.png&#34;&gt;
+
+
+&lt;p&gt;こんな感じにComponentに &lt;code&gt;props&lt;/code&gt; を渡すだけ.
+Themeについては別で書く.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:685cc0a50b9186931af118d17b9d18fd&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/callemall/material-ui&#34;&gt;Material UI - GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.material-ui.com/#/home&#34;&gt;Material UI - Document&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/zilverline/react-tap-event-plugin&#34;&gt;react-tap-event-plugin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/material-design/introduction.html&#34;&gt;Materail Design&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
