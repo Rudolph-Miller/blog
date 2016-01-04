@@ -166,7 +166,7 @@ injectTapEventPlugin();
 import {
   Avatar, Card, CardActions,
   CardHeader, CardMedia, CardTitle,
-  FlatButton, CardText
+  RaisedButton, FlatButton, CardText
 } from 'material-ui';
 
 class App extends Component {
@@ -186,7 +186,7 @@ class App extends Component {
         &lt;/CardMedia&gt;
         &lt;CardTitle title=&quot;Title&quot; subtitle=&quot;Subtitle&quot;/&gt;
         &lt;CardActions&gt;
-          &lt;FlatButton label=&quot;Action1&quot;/&gt;
+          &lt;RaisedButton primary={true} label=&quot;Action1&quot;/&gt;
           &lt;FlatButton label=&quot;Action2&quot;/&gt;
         &lt;/CardActions&gt;
         &lt;CardText&gt;
