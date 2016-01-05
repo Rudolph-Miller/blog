@@ -1,1 +1,1 @@
-gem 'toml'
+gem 'toml-rb'
