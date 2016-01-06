@@ -21,6 +21,12 @@ Material-UIのThemeの使い方を紹介.
 
 Material-UIとMaterial Designについては[前回](http://blog.rudolph-miller.com/2016/01/04/material-ui/)の記事を参照.
 
+## Theme
+
+Material Designは色が制限されてる.
+primary color palette & secondary color (accent color) palette
+これをMaterial-UIはThemeで管理する.
+
 
 # See Also
 
