@@ -6,3 +6,6 @@ draft = true
 title = "theme of material ui"
 +++
 
+Material-UIのThemeの使い方を紹介.
+
+<!--more-->
