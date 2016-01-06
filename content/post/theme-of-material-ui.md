@@ -1,9 +1,10 @@
 +++
-Description = ""
-Tags = ["WIP"]
+Description = "Theme of Material-UI"
+Tags = ["React.js", "Material Design", "Material-UI"]
 date = "2016-01-05T10:57:35+09:00"
 draft = true
-title = "theme of material ui"
+title = "Theme of Material-UI"
+slug = "theme-of-material-ui"
 +++
 
 Material-UIのThemeの使い方を紹介.
