@@ -12,20 +12,30 @@ Material-UIのThemeの使い方を紹介.
 <!--more-->
 
 1. [Material-UI]({{< relref "#material-ui" >}})
-2. [See Also]({{< relref "#see-also" >}})
+2. [Theme]({{< relref "#theme" >}})
+3. [See Also]({{< relref "#see-also" >}})
 
 
 # Material-UI
 
-## About
-
 Material-UIとMaterial Designについては[前回](http://blog.rudolph-miller.com/2016/01/04/material-ui/)の記事を参照.
 
-## Theme
 
-Material Designは色が制限されてる.
-primary color palette & secondary color (accent color) palette
+# Theme
+
+Material DesignではPrimary color paletteとSecondary color paletteを選択し、それらで色を制限する.
 これをMaterial-UIはThemeで管理する.
+
+
+## Usage
+
+```js
+```
+
+
+## Font Family
+
+NotoをMaterial-UIで使う.
 
 
 # See Also
