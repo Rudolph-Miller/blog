@@ -32,10 +32,11 @@ Material DesignではPrimary color paletteとSecondary color paletteを選択し
 ```js
 ```
 
+簡単にPrimary colorなどを変更できるが、Themeとして変更することにより、統一感が崩れない.
 
 ## Font Family
 
-NotoをMaterial-UIで使う.
+日本語でMaterial DesignならNotoをMaterial-UIで使う.
 
 
 # See Also
