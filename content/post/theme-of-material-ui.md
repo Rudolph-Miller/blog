@@ -23,8 +23,10 @@ Material-UIとMaterial Designについては[前回](http://blog.rudolph-miller.
 
 # Theme
 
-Material DesignではPrimary color paletteとSecondary color paletteを選択し、それらで色を制限する.
-これをMaterial-UIはThemeで管理する.
+Material Designでは色をPrimary color paletteとSecondary color (Accent color) paletteに限定することにより、
+直感的で統一感のあるDesignを作り出している.
+
+Material-UIではこれをThemeとして管理する.
 
 
 ## Usage
