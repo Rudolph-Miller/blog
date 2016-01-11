@@ -1,5 +1,7 @@
 require 'toml'
 
+SCREENSHOT_DIR = '~/Pictures/Screenshots'
+
 def extract_title(argv, options = {})
   title = argv.last
   commands = argv.first.split(':')
@@ -139,9 +141,25 @@ task :server do
   sh 'hugo server -wD'
 end
 
-task :image_directory do
+def image_dir_name
   date = Time.now.strftime('%Y%m%d')
-  dir = "static/images/#{date}"
+  "static/images/#{date}"
+end
+
+task :image_directory do
+  dir = image_dir_name
   FileUtils.mkdir_p(dir)
   puts dir
+end
+
+task :cp_ss do
+  name = ARGV.last
+  ARGV.slice(1, ARGV.size).each{|v| task v.to_sym do; end}
+
+  last_screenshot = `ls -t #{SCREENSHOT_DIR} | head -1`.gsub(' ', '\ ').gsub(/\n/, '')
+
+  dir = image_dir_name
+  FileUtils.mkdir_p(dir)
+
+  sh "cp #{SCREENSHOT_DIR}/#{last_screenshot} #{dir}/#{name}"
 end

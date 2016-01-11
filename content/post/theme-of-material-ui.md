@@ -31,7 +31,9 @@ Material-UIではこれをThemeとして管理する.
 
 ## Usage
 
-[前回]({{< relref "post/material-ui.md" >}})の記事の[Example]({{< relref "post/material-ui.md#example" >}})でThemeを使用してみる.
+[前回]({{< relref "post/material-ui.md" >}})の記事の[Example]({{< relref "post/material-ui.md#example" >}})にThemeを適用してみる.
+
+Colorの指定は[Color palette](https://www.google.com/design/spec/style/color.html#color-color-palette)を参照.
 
 ```js
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
@@ -59,6 +61,8 @@ export default ThemeManager.modifyRawThemePalette(
 )
 ```
 
+を `theme.js` に書き込み、
+
 ```diff
  import { render } from 'react-dom';
  import React, { Component, PropTypes } from 'react';
@@ -81,6 +85,8 @@ export default ThemeManager.modifyRawThemePalette(
  ...
 }
 ```
+
+`@ThemeDecorator` で適用する.
 
 簡単にPrimary colorなどを変更できるが、Themeとして変更することにより、統一感が崩れない.
 
