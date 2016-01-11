@@ -33,7 +33,7 @@ Material-UIではこれをThemeとして管理する.
 
 [前回]({{< relref "post/material-ui.md" >}})の記事の[Example]({{< relref "post/material-ui.md#example" >}})にThemeを適用し、Colorを変更する.
 
-Colorの指定は[Color palette](https://www.google.com/design/spec/style/color.html#color-color-palette)を参照.
+Colorの指定は[Color palette](https://www.google.com/design/spec/style/color.html#color-color-palette)とMaterial-UIの[customization/colors](http://www.material-ui.com/#/customization/colors)を参照.
 
 ```js
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
@@ -131,4 +131,5 @@ Material-UIのdefaultの `font-family` は `'Roboto', sans-serif` だが、日�
 
 - [Material-UIの紹介]({{< relref "post/material-ui.md" >}})
 - [Color palette](https://www.google.com/design/spec/style/color.html#color-color-palette)
+- [Material-UI customization/colors](http://www.material-ui.com/#/customization/colors)
 - [Typography](https://www.google.com/design/spec/style/typography.html#typography-typeface)

@@ -41,7 +41,7 @@
 
 &lt;p&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事の&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/#example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/a&gt;にThemeを適用し、Colorを変更する.&lt;/p&gt;
 
-&lt;p&gt;Colorの指定は&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;を参照.&lt;/p&gt;
+&lt;p&gt;Colorの指定は&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;とMaterial-UIの&lt;a href=&#34;http://www.material-ui.com/#/customization/colors&#34;&gt;customization/colors&lt;/a&gt;を参照.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import ThemeManager from &#39;material-ui/lib/styles/theme-manager&#39;;
 import ThemeDecorator from &#39;material-ui/lib/styles/theme-decorator&#39;;
@@ -137,6 +137,7 @@ export default ThemeManager.modifyRawThemePalette(
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;Material-UIの紹介&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.material-ui.com/#/customization/colors&#34;&gt;Material-UI customization/colors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/typography.html#typography-typeface&#34;&gt;Typography&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
