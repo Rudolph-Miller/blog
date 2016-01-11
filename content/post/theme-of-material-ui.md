@@ -88,14 +88,47 @@ export default ThemeManager.modifyRawThemePalette(
 
 `@ThemeDecorator` で適用する.
 
+{{% image "/20160111/theme-applied.png"  %}}
+
 簡単にPrimary colorなどを変更できるが、Themeとして変更することにより、統一感が崩れない.
 
 
 ## Font Family
 
-日本語でMaterial DesignならNotoをMaterial-UIで使う.
+Material-UIのdefaultの `font-family` は `'Roboto', sans-serif` だが、日本語などの `Roboto` でカバーされていない言語の場合 `Noto` を使用したい.  
+(Material Designの[Typography](https://www.google.com/design/spec/style/typography.html#typography-typeface)参考.)
+
+今回は `Noto Sans JP` を使用するため、あらかじめHTMLに
+
+```html
+<link href='http://fonts.googleapis.com/earlyaccess/notosansjp.css' rel='stylesheet' type='text/css'>
+```
+
+を差し込む.
+
+あとは上記の `theme.js` で
+
+```diff
+ export default ThemeManager.modifyRawThemePalette(
+-  ThemeManager.getMuiTheme(LightRawTheme),
++  ThemeManager.modifyRawThemeFontFamily(
++    ThemeManager.getMuiTheme(LightRawTheme),
++    "'Roboto', 'Noto Sans JP', sans-serif"
++  ),
+   {
+     primary1Color: Colors.cyan500,
+     primary2Color: Colors.cyan700,
+```
+
+のように `ThemeManager.modifyRawThemeFontFamily` で `font-family` を変更する.
+
+{{% image "/20160111/font-family-not-changed.png" %}}
+
+{{% image "/20160111/font-family-changed.png" %}}
 
 
 # See Also
 
 - [Material-UIの紹介]({{< relref "post/material-ui.md" >}})
+- [Color palette](https://www.google.com/design/spec/style/color.html#color-color-palette)
+- [Typography](https://www.google.com/design/spec/style/typography.html#typography-typeface)
