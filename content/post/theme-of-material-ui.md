@@ -1,10 +1,10 @@
 +++
 Description = "Theme of Material-UI"
 Tags = ["React.js", "Material Design", "Material-UI"]
-date = "2016-01-05T10:57:35+09:00"
-draft = true
-title = "Theme of Material-UI"
+date = "2016-01-11T21:15:39+09:00"
+draft = false
 slug = "theme-of-material-ui"
+title = "Theme of Material-UI"
 +++
 
 Material-UIのThemeの使い方を紹介.
@@ -29,9 +29,9 @@ Material Designでは色をPrimary color paletteとSecondary color (Accent color
 Material-UIではこれをThemeとして管理する.
 
 
-## Usage
+## Color
 
-[前回]({{< relref "post/material-ui.md" >}})の記事の[Example]({{< relref "post/material-ui.md#example" >}})にThemeを適用してみる.
+[前回]({{< relref "post/material-ui.md" >}})の記事の[Example]({{< relref "post/material-ui.md#example" >}})にThemeを適用し、Colorを変更する.
 
 Colorの指定は[Color palette](https://www.google.com/design/spec/style/color.html#color-color-palette)を参照.
 
@@ -90,7 +90,7 @@ export default ThemeManager.modifyRawThemePalette(
 
 {{% image "/20160111/theme-applied.png"  %}}
 
-簡単にPrimary colorなどを変更できるが、Themeとして変更することにより、統一感が崩れない.
+簡単にColorなどを変更できるが、Themeとして管理することにより、統一感が崩れない.
 
 
 ## Font Family

@@ -7,8 +7,140 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Mon, 04 Jan 2016 20:54:36 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 11 Jan 2016 21:15:39 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Theme of Material-UI</title>
+      <link>http://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</link>
+      <pubDate>Mon, 11 Jan 2016 21:15:39 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</guid>
+      <description>
+
+&lt;p&gt;Material-UIのThemeの使い方を紹介.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#material-ui:2974f27f4339877b24e592c5128f86c3&#34;&gt;Material-UI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#theme:2974f27f4339877b24e592c5128f86c3&#34;&gt;Theme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:2974f27f4339877b24e592c5128f86c3&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;material-ui:2974f27f4339877b24e592c5128f86c3&#34;&gt;Material-UI&lt;/h1&gt;
+
+&lt;p&gt;Material-UIとMaterial Designについては&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事を参照.&lt;/p&gt;
+
+&lt;h1 id=&#34;theme:2974f27f4339877b24e592c5128f86c3&#34;&gt;Theme&lt;/h1&gt;
+
+&lt;p&gt;Material Designでは色をPrimary color paletteとSecondary color (Accent color) paletteに限定することにより、
+直感的で統一感のあるDesignを作り出している.&lt;/p&gt;
+
+&lt;p&gt;Material-UIではこれをThemeとして管理する.&lt;/p&gt;
+
+&lt;h2 id=&#34;color:2974f27f4339877b24e592c5128f86c3&#34;&gt;Color&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事の&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/#example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/a&gt;にThemeを適用し、Colorを変更する.&lt;/p&gt;
+
+&lt;p&gt;Colorの指定は&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;を参照.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import ThemeManager from &#39;material-ui/lib/styles/theme-manager&#39;;
+import ThemeDecorator from &#39;material-ui/lib/styles/theme-decorator&#39;;
+import Colors from &#39;material-ui/lib/styles/colors&#39;;
+import ColorManipulator from &#39;material-ui/lib/utils/color-manipulator&#39;;
+import LightRawTheme from &#39;material-ui/lib/styles/raw-themes/light-raw-theme&#39;;
+
+export default ThemeManager.modifyRawThemePalette(
+  ThemeManager.getMuiTheme(LightRawTheme),
+  {
+    primary1Color: Colors.cyan500,
+    primary2Color: Colors.cyan700,
+    primary3Color: Colors.lightBlack,
+    accent1Color: Colors.green400,
+    accent2Color: Colors.grey100,
+    accent3Color: Colors.grey500,
+    textColor: Colors.blueGrey800,
+    alternateTextColor: Colors.white,
+    canvasColor: Colors.white,
+    borderColor: Colors.grey300,
+    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+    pickerHeaderColor: Colors.cyan500
+  }
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を &lt;code&gt;theme.js&lt;/code&gt; に書き込み、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; import { render } from &#39;react-dom&#39;;
+ import React, { Component, PropTypes } from &#39;react&#39;;
+ import injectTapEventPlugin from &#39;react-tap-event-plugin&#39;;
+ injectTapEventPlugin();
+ 
+ import {
+   Avatar, Card, CardActions,
+   CardHeader, CardMedia, CardTitle,
+-  RaisedButton, FlatButton, CardText
++  RaisedButton, FlatButton, CardText,
++  ThemeWrapper
+ } from &#39;material-ui&#39;;
++import ThemeDecorator from &#39;material-ui/lib/styles/theme-decorator&#39;;
+
++import Theme from &#39;./theme&#39;;
+ 
++@ThemeDecorator(Theme)
+ class App extends Component {
+ ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;@ThemeDecorator&lt;/code&gt; で適用する.&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20160111/theme-applied.png&#34; alt=&#34;/20160111/theme-applied.png&#34;&gt;
+
+
+&lt;p&gt;簡単にColorなどを変更できるが、Themeとして管理することにより、統一感が崩れない.&lt;/p&gt;
+
+&lt;h2 id=&#34;font-family:2974f27f4339877b24e592c5128f86c3&#34;&gt;Font Family&lt;/h2&gt;
+
+&lt;p&gt;Material-UIのdefaultの &lt;code&gt;font-family&lt;/code&gt; は &lt;code&gt;&#39;Roboto&#39;, sans-serif&lt;/code&gt; だが、日本語などの &lt;code&gt;Roboto&lt;/code&gt; でカバーされていない言語の場合 &lt;code&gt;Noto&lt;/code&gt; を使用したい.&lt;br /&gt;
+(Material Designの&lt;a href=&#34;https://www.google.com/design/spec/style/typography.html#typography-typeface&#34;&gt;Typography&lt;/a&gt;参考.)&lt;/p&gt;
+
+&lt;p&gt;今回は &lt;code&gt;Noto Sans JP&lt;/code&gt; を使用するため、あらかじめHTMLに&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&#39;http://fonts.googleapis.com/earlyaccess/notosansjp.css&#39; rel=&#39;stylesheet&#39; type=&#39;text/css&#39;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を差し込む.&lt;/p&gt;
+
+&lt;p&gt;あとは上記の &lt;code&gt;theme.js&lt;/code&gt; で&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; export default ThemeManager.modifyRawThemePalette(
+-  ThemeManager.getMuiTheme(LightRawTheme),
++  ThemeManager.modifyRawThemeFontFamily(
++    ThemeManager.getMuiTheme(LightRawTheme),
++    &amp;quot;&#39;Roboto&#39;, &#39;Noto Sans JP&#39;, sans-serif&amp;quot;
++  ),
+   {
+     primary1Color: Colors.cyan500,
+     primary2Color: Colors.cyan700,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように &lt;code&gt;ThemeManager.modifyRawThemeFontFamily&lt;/code&gt; で &lt;code&gt;font-family&lt;/code&gt; を変更する.&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20160111/font-family-not-changed.png&#34; alt=&#34;/20160111/font-family-not-changed.png&#34;&gt;
+
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images//20160111/font-family-changed.png&#34; alt=&#34;/20160111/font-family-changed.png&#34;&gt;
+
+
+&lt;h1 id=&#34;see-also:2974f27f4339877b24e592c5128f86c3&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;Material-UIの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/typography.html#typography-typeface&#34;&gt;Typography&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Material-UI</title>
@@ -39,7 +171,7 @@
 &lt;p&gt;&lt;a href=&#34;https://github.com/callemall/material-ui&#34;&gt;Material-UI&lt;/a&gt;はMaterial DesignのReact.js実装.&lt;/p&gt;
 
 &lt;p&gt;ComponentとThemeで簡単にMaterial Designを試すことができる.&lt;br /&gt;
-(Themeについては今回は触れない.)&lt;/p&gt;
+(Themeについては今回は触れず、&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/&#34;&gt;Theme of Material-ui&lt;/a&gt;で紹介.)&lt;/p&gt;
 
 &lt;h2 id=&#34;install:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Install&lt;/h2&gt;
 
@@ -2840,99 +2972,6 @@ end
 &lt;li&gt;&lt;a href=&#34;https://github.com/opal/opal&#34;&gt;Opal GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://fiveteesixone.lackland.io/2015/08/03/10-minutes-volt-chat-application-tutorial/&#34;&gt;Volt を使って10分でリアルタイムチャットアプリケーションを作るチュートリアル&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/todo_example_volt&#34;&gt;Todo-Example-Volt GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Integral-Rest</title>
-      <link>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</link>
-      <pubDate>Fri, 21 Aug 2015 11:20:54 +0900</pubDate>
-      
-      <guid>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</guid>
-      <description>
-
-&lt;p&gt;稚拙のIntegral-Restを紹介.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#integral-rest:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;Integral-Rest&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;integral-rest:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;Integral-Rest&lt;/h2&gt;
-
-&lt;p&gt;Integral-RestはIntegralのDAO tableからREST APIを簡単に作るLibrary.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defpackage sample
-  (:use :cl
-        :integral
-        :integral-rest))
-(in-package :sample)
-
-(connect-toplevel :sqlite3 :database-name &amp;quot;:memory:&amp;quot;)
-
-(defclass user ()
-  ((id :initarg :id
-       :type integer
-       :primary-key t
-       :accessor user-id)
-   (name :initarg :name
-         :type string
-         :accessor user-name))
-  (:metaclass integral:&amp;lt;dao-table-class&amp;gt;))
-
-(ensure-table-exists (find-class &#39;user))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;:metaclass&lt;/code&gt;として&lt;code&gt;integral:&amp;lt;dao-table-class&amp;gt;&lt;/code&gt;を指定し、&lt;code&gt;user&lt;/code&gt;を&lt;code&gt;defclass&lt;/code&gt;する.&lt;br /&gt;
-後は&lt;code&gt;(set-rest-app)&lt;/code&gt;をすると&lt;code&gt;*rest-app*&lt;/code&gt;がREST API appに束縛されので、&lt;br /&gt;
-&lt;code&gt;*rest-app*&lt;/code&gt;は&lt;code&gt;ningle:&amp;lt;app&amp;gt;&lt;/code&gt;の&lt;code&gt;instance&lt;/code&gt;なので、これをそのまま&lt;code&gt;clack:clackup&lt;/code&gt;できる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(set-rest-app)
-
-(clack:clackup *rest-app*)
-;; =&amp;gt; Listening on localhost:5000.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これだけでREST API ServerがPort 5000で立ち上がる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(create-dao &#39;user :name &amp;quot;Rudolph&amp;quot;)
-;; =&amp;gt; #&amp;lt;USER id: 1&amp;gt;
-
-(dex:get &amp;quot;http://localhost:5000/api/users&amp;quot;)
-;; =&amp;gt; &amp;quot;[{\&amp;quot;id\&amp;quot;:1,\&amp;quot;name\&amp;quot;:\&amp;quot;Rudolph\&amp;quot;}]&amp;quot;
-
-(dex:get &amp;quot;http://localhost:5000/api/users/1&amp;quot;)
-;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:1,\&amp;quot;name\&amp;quot;:\&amp;quot;Rudolph\&amp;quot;}&amp;quot;
-
-(dex:post &amp;quot;http://localhost:5000/api/users&amp;quot; :contest &#39;((&amp;quot;name&amp;quot; . &amp;quot;Miller&amp;quot;)))
-;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Miller\&amp;quot;}&amp;quot;
-
-(find-dao &#39;user 2)
-;; =&amp;gt; #&amp;lt;USER id: 2 name: &amp;quot;Miller&amp;quot;&amp;gt;
-
-(dex:put &amp;quot;http://localhost:5000/api/users/2&amp;quot; :contest &#39;((&amp;quot;name&amp;quot; . &amp;quot;Tom&amp;quot;)))
-;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Tom\&amp;quot;}&amp;quot;
-
-(find-dao &#39;user 2)
-;; =&amp;gt; #&amp;lt;USER id: 2 name: &amp;quot;Tom&amp;quot;&amp;gt;
-
-(dex:delete &amp;quot;http://localhost:5000/api/users/2&amp;quot;)
-;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Tom\&amp;quot;}&amp;quot;
-
-(find-dao &#39;user 2)
-;; =&amp;gt; NIL
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ちょっとしたAPI Serverだと&lt;code&gt;app.lisp&lt;/code&gt;に十数行で書ける.&lt;/p&gt;
-
-&lt;h2 id=&#34;see-also:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;See Also&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/integral-rest&#34;&gt;Integral-Rest GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://rudolph-miller.github.io/integral-rest/overview.html&#34;&gt;Integral-Rest Document&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/integral&#34;&gt;Integral GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/clack&#34;&gt;Clack GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
