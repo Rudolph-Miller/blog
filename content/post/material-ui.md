@@ -29,7 +29,7 @@ Material DesignはGoogleが開発しているDesign Guidelineで__一貫性と�
 [Material-UI](https://github.com/callemall/material-ui)はMaterial DesignのReact.js実装.
 
 ComponentとThemeで簡単にMaterial Designを試すことができる.  
-(Themeについては今回は触れない.)
+(Themeについては今回は触れず、[Theme of Material-ui]({{< relref "post/theme-of-material-ui.md" >}})で紹介.)
 
 
 ## Install
