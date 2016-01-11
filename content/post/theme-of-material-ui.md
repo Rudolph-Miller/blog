@@ -29,9 +29,9 @@ Material Designでは色をPrimary color paletteとSecondary color (Accent color
 Material-UIではこれをThemeとして管理する.
 
 
-## Usage
+## Color
 
-[前回]({{< relref "post/material-ui.md" >}})の記事の[Example]({{< relref "post/material-ui.md#example" >}})にThemeを適用してみる.
+[前回]({{< relref "post/material-ui.md" >}})の記事の[Example]({{< relref "post/material-ui.md#example" >}})にThemeを適用し、Colorを変更する.
 
 Colorの指定は[Color palette](https://www.google.com/design/spec/style/color.html#color-color-palette)を参照.
 
@@ -90,7 +90,7 @@ export default ThemeManager.modifyRawThemePalette(
 
 {{% image "/20160111/theme-applied.png"  %}}
 
-簡単にPrimary colorなどを変更できるが、Themeとして変更することにより、統一感が崩れない.
+簡単にColorなどを変更できるが、Themeとして管理することにより、統一感が崩れない.
 
 
 ## Font Family
