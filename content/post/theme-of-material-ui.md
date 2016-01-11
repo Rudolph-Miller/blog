@@ -1,10 +1,10 @@
 +++
 Description = "Theme of Material-UI"
 Tags = ["React.js", "Material Design", "Material-UI"]
-date = "2016-01-05T10:57:35+09:00"
-draft = true
-title = "Theme of Material-UI"
+date = "2016-01-11T21:15:39+09:00"
+draft = false
 slug = "theme-of-material-ui"
+title = "Theme of Material-UI"
 +++
 
 Material-UIのThemeの使い方を紹介.
