@@ -18,7 +18,7 @@ Material-UIのThemeの使い方を紹介.
 
 # Material-UI
 
-Material-UIとMaterial Designについては[前回](http://blog.rudolph-miller.com/2016/01/04/material-ui/)の記事を参照.
+Material-UIとMaterial Designについては[前回]({{< relref "post/material-ui.md" >}})の記事を参照.
 
 
 # Theme
@@ -31,7 +31,55 @@ Material-UIではこれをThemeとして管理する.
 
 ## Usage
 
+[前回]({{< relref "post/material-ui.md" >}})の記事の[Example]({{< relref "post/material-ui.md#example" >}})でThemeを使用してみる.
+
 ```js
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
+import Colors from 'material-ui/lib/styles/colors';
+import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
+import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
+
+export default ThemeManager.modifyRawThemePalette(
+  ThemeManager.getMuiTheme(LightRawTheme),
+  {
+    primary1Color: Colors.cyan500,
+    primary2Color: Colors.cyan700,
+    primary3Color: Colors.lightBlack,
+    accent1Color: Colors.green400,
+    accent2Color: Colors.grey100,
+    accent3Color: Colors.grey500,
+    textColor: Colors.blueGrey800,
+    alternateTextColor: Colors.white,
+    canvasColor: Colors.white,
+    borderColor: Colors.grey300,
+    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+    pickerHeaderColor: Colors.cyan500
+  }
+)
+```
+
+```diff
+ import { render } from 'react-dom';
+ import React, { Component, PropTypes } from 'react';
+ import injectTapEventPlugin from 'react-tap-event-plugin';
+ injectTapEventPlugin();
+ 
+ import {
+   Avatar, Card, CardActions,
+   CardHeader, CardMedia, CardTitle,
+-  RaisedButton, FlatButton, CardText
++  RaisedButton, FlatButton, CardText,
++  ThemeWrapper
+ } from 'material-ui';
++import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
+
++import Theme from './theme';
+ 
++@ThemeDecorator(Theme)
+ class App extends Component {
+ ...
+}
 ```
 
 簡単にPrimary colorなどを変更できるが、Themeとして変更することにより、統一感が崩れない.
@@ -44,4 +92,4 @@ Material-UIではこれをThemeとして管理する.
 
 # See Also
 
-- [Material-UIの紹介](http://blog.rudolph-miller.com/2016/01/04/material-ui/)
+- [Material-UIの紹介]({{< relref "post/material-ui.md" >}})
