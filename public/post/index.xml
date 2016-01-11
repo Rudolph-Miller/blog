@@ -61,6 +61,13 @@ injectTapEventPlugin();
 
 &lt;p&gt;をApplicationで実行して有効化する.&lt;/p&gt;
 
+&lt;p&gt;また、Material-UIは &lt;code&gt;Roboto&lt;/code&gt; フォントを使用しているので、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&#39;http://fonts.googleapis.com/css?family=Roboto&#39; rel=&#39;stylesheet&#39; type=&#39;text/css&#39;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;をHTMLに差し込むなどして、 &lt;code&gt;Roboto&lt;/code&gt; フォントを有効にする.&lt;/p&gt;
+
 &lt;h2 id=&#34;example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import { render } from &#39;react-dom&#39;;

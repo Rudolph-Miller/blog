@@ -55,6 +55,15 @@ injectTapEventPlugin();
 
 をApplicationで実行して有効化する.
 
+また、Material-UIは `Roboto` フォントを使用しているので、
+
+```html
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+```
+
+をHTMLに差し込むなどして、 `Roboto` フォントを有効にする.
+
+
 
 ## Example
 
