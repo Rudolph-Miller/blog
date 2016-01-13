@@ -7,6 +7,6 @@ title = "React Router and Material-UI"
 slug = "react-router-and-material-ui"
 +++
 
-React Router and Material-UI
+Material-UIのButtonでReact RouterのLinkを使う.
 
 <!--more-->
