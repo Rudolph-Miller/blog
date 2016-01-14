@@ -127,4 +127,8 @@ SELECT * from TABLE_DATE_RANGE(admin_users, DATE_ADD(CURRENT_TIMESTAMP(), -1, 'D
 
 のようにすると、当日のTableを対象としてQueryを実行できる.
 
+
 # See Also
+
+- [embulk-output-bigquery](https://github.com/embulk/embulk-output-bigquery)
+- [embulk-input-mysql](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql)
