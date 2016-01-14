@@ -5,6 +5,7 @@ date = "2015-10-16T12:01:40+09:00"
 draft = false
 Title = "Upgrade Ruby on Rails"
 slug = "upgrade_ruby_on_rails"
+unpublic = true
 +++
 
 name: inverse
