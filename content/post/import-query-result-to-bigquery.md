@@ -11,19 +11,54 @@ slug = "import-query-result-to-bigquery"
 
 <!--more-->
 
-1. [Import Query Result to BigQuery]({{< relref "#import-query-result-to-bigquery" >}})
-2. [See Also]({{< relref "#see-also" >}})
+1. [Background]({{< relref "#background" >}})
+2. [Import Query Result to BigQuery]({{< relref "#import-query-result-to-bigquery" >}})
+3. [See Also]({{< relref "#see-also" >}})
+
+
+# Background
+
+Kaizen Platformでは[BigQuery](https://cloud.google.com/bigquery/?hl=ja)と[re:dash](http://redash.io/)を使ってProjectの__定量KPIの可視化__をしていて、定期的に振り返りの機会を設けている.
+
+これを実施・運用する上で困ったのが、UserのPVなどをplotする際に社内UserかどうかがBigQueryに格納しているDataじゃ判別つかないことだった.  
+(社内UserのIDリストを `user_id NOT IN (...)` に貼り付けるという__真心こもったOperation__が行われていた.)
+
+解決策としては2通り考えられる.
+一つがLogにUserの属性を埋め込む方法、もう一つはBigQuery外部のDatabase (今回は社内のMySQL) からUserの属性を参照する方法だが、今回は二つ目の方法をとることにした.
+
+外部DatabaseをBigQueryから参照する方法だが、Query Engineでうまい具合にJOINする方法 ([Presto](https://prestodb.io/)) と、外部DatabaseのDataをBigQueryにimportする方法が考えられた. 一つ目の方法はこれぐらい軽いことをやりるのにわざわさ導入するのはなって気がした (あくまで気がした) ので、外部DatabaseのDataをBigQueryにimportすることにした.
+
+今回の場合、とりあえずUserのTableをうまい具合にBigQueryにimportするだけで良かったが、今後もカジュアルに外部DatabaseのDataをBigQueryにimportしたいという要望があったので、__特定の場所にSQL fileを設置するだけで、それらを実行した結果をBigQueryにimportできる__ようにした.
 
 
 # Import Query Result to BigQuery
 
-## Why
+## How
+
+始めはGoでScriptを書いていたが、ふとEmbulkが使えないかと思って調べてみると、
+
+- MySQLのInput pluginとBigQueryのOutput pluginは当然ある.
+- MySQLのInput pluginで任意のQueryが実行できる.
+- Queryの実行結果に対応するSchemaからBigQueryのSchemaを生成できると良かったが (別でPlugin書けばできそう) 、今回はSQL fileと別に `.schema.json` でBigQueryのSchemaを用意することにする.
+- Configulation fileのExtensionを `liquid` にすると[Liquid Template Engine](http://liquidmarkup.org/)が使用できる.
+  - `env` によって外部から値を差し込むことが可能.
+
+だったので、Scriptの中で特定の場所にあるSQL fileをとってきて、その情報で `env` を差し替えることにより、QueryそれぞれでConfigulation fileを作成する必要がなく、Embulkで上の目標が達成できそうだったので、Embulkを採用することにした.
 
 
-## Example
+## Do it
+
+Embulkはinstall済みだとして、
+
+```sh
+$ embulk gem install embulk-input-mysql
+$ embulk gem install embulk-output-bigquery
+```
+
+で、今回必要なPluginsをinstallする.
 
 ```yaml
-n:
+in:
   type: mysql
   host: {{ env.mysql_host }}
   user: {{ env.mysql_user }}
@@ -38,7 +73,7 @@ out:
   auth_method: private_key
   service_account_email: example@developer.gserviceaccount.com
   p12_keyfile: /path/to/p12_keyfile.p12
-  path_prefix: /tmp/embulk/query_result_to_bigquery/
+  path_prefix: /tmp/embulk/import_query_result_to_bigquery/
   file_ext: csv
   delete_from_local_when_job_end: 1
   project: your-project-name
@@ -109,13 +144,15 @@ ruby import_query_result_to_bigquery
 
 を実行すると、 `DATASET` で設定したBigQueryのDatasetに `admin_users_20160114` (Suffixは日毎で変化) として、MySQLのDataがloadされる.
 
+
 ## Operation
 
 ### Query files
 
-`*.sql` と `*.schema.json` は専用のGitHubのRepositioryを作成して、そこに集約し、実行時に `QUERY_DIR` で指定したDirectoryに展開する.
+`*.sql` と `*.schema.json` は専用のGitHubのRepositioryを作成して、そこに集約し、Scriptの実行前に `QUERY_DIR` で指定したDirectoryに展開する.
 
 これによって、新しくQueryを追加する際に、__GitHub上で完結__できる.
+
 
 ### Query in BigQuery
 
@@ -128,7 +165,14 @@ SELECT * from TABLE_DATE_RANGE(admin_users, DATE_ADD(CURRENT_TIMESTAMP(), -1, 'D
 のようにすると、当日のTableを対象としてQueryを実行できる.
 
 
+---
+
+
+EmbulkのPlugin機構と `Liquid Template Engine` の機能が素晴らしかった.
+
+
 # See Also
 
-- [embulk-output-bigquery](https://github.com/embulk/embulk-output-bigquery)
+- [Embulk](https://github.com/embulk/embulk)
 - [embulk-input-mysql](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql)
+- [embulk-output-bigquery](https://github.com/embulk/embulk-output-bigquery)
