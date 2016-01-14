@@ -1,6 +1,7 @@
 {{ partial "header.html" . }}
 <section class="article-list">
-  {{ range $index, $page := (.Paginator 5).Pages }}
+  {{ $paginator := .Paginate (where .Data.Pages ".Params.unpublic" nil)  5 }}
+  {{ range $index, $page := $paginator.Pages }}
     {{ if ne $index 0 }}
     <hr/>
     {{ end }}
