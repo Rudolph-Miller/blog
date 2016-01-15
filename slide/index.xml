@@ -7,8 +7,264 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; Copyright 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Thu, 29 Oct 2015 00:34:45 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 15 Jan 2016 15:03:17 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/slide/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>kaizen week 2</title>
+      <link>http://blog.rudolph-miller.com/slide/2016/01/15/kaizen-week-2/</link>
+      <pubDate>Fri, 15 Jan 2016 15:03:17 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/slide/2016/01/15/kaizen-week-2/</guid>
+      <description>
+
+&lt;p&gt;name: inverse
+layout: true&lt;/p&gt;
+
+&lt;h2 id=&#34;class-center-middle-inverse:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;class: center, middle, inverse&lt;/h2&gt;
+
+&lt;h1 id=&#34;kaizen-week-1:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Kaizen Week #1&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;rudolph-miller:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;@Rudolph-Miller&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;layout: false&lt;/p&gt;
+
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;list:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;List&lt;/h1&gt;
+
+&lt;p&gt;]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* Make Editor Textarea of Editor resizable
+]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* Script to import results of any SQL files to BigQuery
+]&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: inverse&lt;/p&gt;
+
+&lt;h1 id=&#34;make-editor-textarea-of-editor-resizable:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Make Editor Textarea of Editor resizable&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;background-image: url(/images/20160115/resizable_textarea.gif)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: inverse&lt;/p&gt;
+
+&lt;h1 id=&#34;script-to-import-results-of-any-sql-files-to-bigquery:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Script to import results of any SQL files to BigQuery&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;tools:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Tools&lt;/h1&gt;
+
+&lt;p&gt;]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* Go
+]&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;.left-column[&lt;/p&gt;
+
+&lt;h1 id=&#34;tools-1:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Tools&lt;/h1&gt;
+
+&lt;p&gt;]&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* &lt;del&gt;Go&lt;/del&gt;
+]&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* Embulk
+]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* embulk-input-mysql
+]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* embul-output-bigquery
+]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* Liquid Template Engine
+]&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;.right-column[
+* Shell script
+]&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code&gt;config.yml.liquid&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-liquid&#34;&gt;in:
+  type: mysql
+  host: {{ env.mysql_host }}
+  user: {{ env.mysql_user }}
+  {% if env.mysql_password %}
+    password: {{ env.mysql_password }}
+  {% endif %}
+  database:  {{ env.mysql_database }}
+  query: {{ env.query }}
+out:
+  type: bigquery
+  file_ext: csv
+  auth_method: private_key
+  service_account_email: {{ env.service_account_email }}
+  p12_keyfile: {{ env.p12_keyfile }}
+  path_prefix: /tmp/import_query_result_to_bq/
+  file_ext: csv
+  delete_from_local_when_job_end: 1
+  project: kaizen-analytics
+  dataset: {{ env.dataset }}
+  table: {{ env.table }}_%Y%m%d
+  source_format: CSV
+  formatter:
+    type: csv
+    header_line: false
+  schema_file: {{ env.schema_file }}
+  auto_create_table: 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code&gt;import_query_result_to_bq&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/bash
+
+QUERY_DIR=query
+DATASET=tmp
+
+export service_account_email=example@developer.gserviceaccount.com
+export p12_keyfile=/path/to/p12_keyfile.p12
+
+export mysql_host=localhost
+export mysql_user=root
+export mysql_password=password
+export mysql_database=yopr_database
+export dataset=$DATASET
+
+for file in $QUERY_DIR/*.sql; do
+  export query=`cat $file`
+  filename=${file##*/}
+  basename=${filename%.*}
+  dir=$(cd $(dirname $file) &amp;amp;&amp;amp; pwd)
+  export schema_file=$dir/$basename.schema.json
+  embulk run config.yml.liquid
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;class: middle&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;@query/not_admin_users.sql&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT id FROM users WHERE email NOT LIKE &#39;%kaizenplatform%&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;@query/not_admin_users.schema.json&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[
+ {&amp;quot;name&amp;quot;: &amp;quot;id&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;integer&amp;quot;}
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;class: middle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ ./import_query_result_to_bq
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;2016-01-15 12:07:15.267 +0900: Embulk v0.7.10
+2016-01-15 12:07:17.987 +0900 [INFO] (transaction): Loaded plugin embulk-input-mysql (0.6.2)
+2016-01-15 12:07:18.061 +0900 [INFO] (transaction): Loaded plugin embulk-output-bigquery (0.1.11)
+2016-01-15 12:07:18.121 +0900 [INFO] (transaction): Fetch size is 10000. Using server-side prepared statement.
+2016-01-15 12:07:20.034 +0900 [INFO] (transaction): {done:  0 / 1, running: 0}
+2016-01-15 12:07:20.187 +0900 [INFO] (task-0000): Writing file [/tmp/import_query_result_to_bq/.000.00.csv]
+2016-01-15 12:07:20.244 +0900 [INFO] (task-0000): Fetch size is 10000. Using server-side prepared statement.
+2016-01-15 12:07:20.257 +0900 [INFO] (task-0000): SQL: SELECT id FROM users WHERE email NOT LIKE &#39;%kaizenplatform%&#39;;
+2016-01-15 12:07:20.269 +0900 [INFO] (task-0000): &amp;gt; 0.01 seconds
+2016-01-15 12:07:20.297 +0900 [INFO] (task-0000): Fetched 500 rows.
+2016-01-15 12:07:20.303 +0900 [INFO] (task-0000): Fetched 1,000 rows.
+2016-01-15 12:07:20.328 +0900 [INFO] (task-0000): Fetched 2,000 rows.
+2016-01-15 12:07:20.369 +0900 [INFO] (task-0000): Job preparing... project:kaizen-analytics dataset:tmp table:_20160115
+2016-01-15 12:07:20.410 +0900 [INFO] (task-0000): table:[_20160115] will be create if not exists
+2016-01-15 12:07:20.439 +0900 [INFO] (task-0000): Upload start [/tmp/import_query_result_to_bq/.000.00.csv]
+2016-01-15 12:07:28.980 +0900 [INFO] (task-0000): Upload completed [/tmp/import_query_result_to_bq/.000.00.csv]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;2016-01-15 12:07:28.985 +0900 [INFO] (task-0000): Job executed. job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] file:[/tmp/import_query_result_to_bq/.000.00.csv]
+2016-01-15 12:07:29.158 +0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:173ms status:[PENDING]
+2016-01-15 12:07:39.339 +0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:10354ms status:[PENDING]
+2016-01-15 12:07:49.523 +0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:20538ms status:[PENDING]
+2016-01-15 12:07:59.704 +0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:30719ms status:[PENDING]
+2016-01-15 12:08:09.887 +0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:40902ms status:[RUNNING]
+2016-01-15 12:08:20.117 +0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:51132ms status:[RUNNING]
+2016-01-15 12:08:30.295 +0900 [INFO] (task-0000): Job statistics [{&amp;quot;inputFileBytes&amp;quot;:&amp;quot;20837&amp;quot;,&amp;quot;inputFiles&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;outputBytes&amp;quot;:&amp;quot;29144&amp;quot;,&amp;quot;outputRows&amp;quot;:&amp;quot;3643&amp;quot;}]
+2016-01-15 12:08:30.295 +0900 [INFO] (task-0000): Job completed successfully. job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:61310ms status:[SUCCESS]
+2016-01-15 12:08:30.296 +0900 [INFO] (task-0000): Delete local file [/tmp/import_query_result_to_bq/.000.00.csv]
+2016-01-15 12:08:30.296 +0900 [INFO] (transaction): {done:  1 / 1, running: 0}
+2016-01-15 12:08:30.304 +0900 [INFO] (main): Committed.
+2016-01-15 12:08:30.304 +0900 [INFO] (main): Next config diff: {&amp;quot;in&amp;quot;:{},&amp;quot;out&amp;quot;:{}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;background-image: url(/images/20160115/not_admin_users_table_info.png)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;class: middle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;AND user_id NOT IN ( 1490 rows )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;↓&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;INNER JOIN tmp.not_admin_users_20160114 not_admin_users ON not_admin_users.id = user_id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;background-image: url(/images/20160115/logo.jpg)&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>About Lisp</title>
