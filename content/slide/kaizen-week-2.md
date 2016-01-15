@@ -22,6 +22,7 @@ class: center, middle, inverse
 ---
 
 layout: false
+class: middle
 
 .left-column[
 # List
@@ -30,13 +31,13 @@ layout: false
 --
 
 .right-column[
-* Make Editor Textarea of Editor resizable
+## Make Editor Textarea of Editor resizable
 ]
 
 --
 
 .right-column[
-* Script to import results of any SQL files to BigQuery
+## Script to import results of any SQL files to BigQuery
 ]
 
 ---
