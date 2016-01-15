@@ -23,6 +23,8 @@ slug = "import-query-result-to-bigquery"
 これを実施・運用する上で困ったのが、UserのPVなどをplotする際に社内のUserかどうかがBigQueryに格納しているDataだけでは判別がつかないことだった.  
 (社内UserのIDリストを `user_id NOT IN (...)` に貼り付けるという__真心こもったOperation__が行われていた.)
 
+Kaizen Platformでは数ヶ月に一度 `Kaizen Week` の名で、日頃のプロジェクトを一時停止して、積みタスクや、リファクタリング、新しいツールの試験・導入などの時間を確保しようという試みがあり、ちょうど今週がその `Kaizen Week` だったので、ここを改善しようと思った.
+
 解決策としては2通り考えられる.
 一つがLogにUserの属性を埋め込む方法、もう一つはBigQuery外部のDatabase (今回は社内のMySQL) からUserの属性を参照する方法だが、今回は二つ目の方法をとることにした.
 
@@ -159,8 +161,9 @@ SELECT * from TABLE_DATE_RANGE(admin_users, DATE_ADD(CURRENT_TIMESTAMP(), -1, 'D
 
 ---
 
-
 EmbulkのPlugin機構と `Liquid Template Engine` のおかげで簡単なScriptで業務が改善した.
+
+---
 
 
 # See Also
