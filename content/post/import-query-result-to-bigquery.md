@@ -76,7 +76,7 @@ out:
   path_prefix: /tmp/import_query_result_to_bq/
   file_ext: csv
   delete_from_local_when_job_end: 1
-  project: kaizen-analytics
+  project: your_project
   dataset: {{ env.dataset }}
   table: {{ env.table }}_%Y%m%d
   source_format: CSV
@@ -87,7 +87,7 @@ out:
   auto_create_table: 1
 ```
 
-のように `Liquid Template Engine` を使用して、 `env` で設定可能な `config.yml.liquid` を用意し、
+のように `Liquid Template Engine` を使用し `env` で設定可能な `config.yml.liquid` を用意し、
 
 ```sh
 #!/bin/bash
@@ -168,3 +168,4 @@ EmbulkのPlugin機構と `Liquid Template Engine` の機能が素晴らしかっ
 - [Embulk](https://github.com/embulk/embulk)
 - [embulk-input-mysql](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql)
 - [embulk-output-bigquery](https://github.com/embulk/embulk-output-bigquery)
+- [Liquid Template Engine](http://liquidmarkup.org/)
