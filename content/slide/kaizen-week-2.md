@@ -57,6 +57,12 @@ template: inverse
 
 ---
 
+class: middle, center
+
+## Background: [次元テーブル管理の要件](https://kaizen.qiita.com/YuKawabe/items/45f9c12b1c2865195fa4#1-2)
+
+---
+
 .left-column[
 # Tools
 ]
