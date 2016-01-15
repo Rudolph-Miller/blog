@@ -84,6 +84,8 @@ class: middle, center
 * ~~Go~~
 ]
 
+--
+
 .right-column[
 * Embulk
 ]

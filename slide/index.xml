@@ -104,6 +104,8 @@ class: middle&lt;/p&gt;
 * &lt;del&gt;Go&lt;/del&gt;
 ]&lt;/p&gt;
 
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
 &lt;p&gt;.right-column[
 * Embulk
 ]&lt;/p&gt;
