@@ -117,6 +117,12 @@ end
 
 task vi: :vim
 
+namespace :vi do
+  task :slide do
+    edit ARGV, :vim, :slide
+  end
+end
+
 task :vim do
   edit ARGV, :vim
 end

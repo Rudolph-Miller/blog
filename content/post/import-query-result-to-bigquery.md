@@ -71,12 +71,12 @@ out:
   type: bigquery
   file_ext: csv
   auth_method: private_key
-  service_account_email: example@developer.gserviceaccount.com
-  p12_keyfile: /path/to/p12_keyfile.p12
-  path_prefix: /tmp/embulk/import_query_result_to_bigquery/
+  service_account_email: {{ env.service_account_email }}
+  p12_keyfile: {{ env.p12_keyfile }}
+  path_prefix: /tmp/import_query_result_to_bq/
   file_ext: csv
   delete_from_local_when_job_end: 1
-  project: your-project-name
+  project: kaizen-analytics
   dataset: {{ env.dataset }}
   table: {{ env.table }}_%Y%m%d
   source_format: CSV
@@ -89,40 +89,32 @@ out:
 
 のように `Liquid Template Engine` を使用して、 `env` で設定可能な `config.yml.liquid` を用意し、
 
-```ruby
-require 'open3'
+```sh
+#!/bin/bash
 
-QUERY_DIR = 'query'
-DATASET = 'tmp'
+QUERY_DIR=query
+DATASET=tmp
 
-def exec(cmd)
-  puts cmd
-  Open3.popen3(cmd) do |i, o, e, w|
-    i.close
-    o.each do |line| puts line end
-    e.each do |line| puts line end
-  end
-end
+export service_account_email=example@developer.gserviceaccount.com
+export p12_keyfile=/path/to/p12_keyfile.p12
 
-ENV['mysql_host'] = 'localhost'
-ENV['mysql_user'] = 'root'
-ENV['mysql_password'] = 'password'
-ENV['mysql_database'] = 'your_database'
-ENV['dataset'] = DATASET
+export mysql_host=localhost
+export mysql_user=root
+export mysql_password=password
+export mysql_database=yopr_database
+export dataset=$DATASET
 
-Dir.glob("#{QUERY_DIR}/*.sql").each do |file|
-  basename = File.basename(file, ".sql")
-  schema_file = file.sub(/\.sql$/, '.schema.json')
-
-  puts "Basename: #{basename}"
-  ENV['table'] = basename
-  ENV['query'] = File.read(file)
-  ENV['schema_file'] = File.expand_path(schema_file)
-  exec 'embulk run config.yml.liquid'
-end
+for file in $QUERY_DIR/*.sql; do
+  export query=`cat $file`
+  filename=${file##*/}
+  basename=${filename%.*}
+  dir=$(cd $(dirname $file) && pwd)
+  export schema_file=$dir/$basename.schema.json
+  embulk run config.yml.liquid
+done
 ```
 
-のようなScriptを `import_query_result_to_bigquery.rb` として用意し、 `QUERY_DIR` に設定したDirectoryに、
+のようなScriptを `import_query_result_to_bigquery` として用意し、実行権限をつけ、 `QUERY_DIR` に設定したDirectoryに、
 
 ```sql
 SELECT id FROM users WHENE is_admin = 1;
@@ -139,10 +131,10 @@ SELECT id FROM users WHENE is_admin = 1;
 を `admin_users.schema.json` として配置し、
 
 ```sh
-ruby import_query_result_to_bigquery
+./import_query_result_to_bigquery
 ```
 
-を実行すると、 `DATASET` で設定したBigQueryのDatasetに `admin_users_20160114` (Suffixは日毎で変化) として、MySQLのDataがloadされる.
+を実行すると、 `admin_users.sql` のQueryの実行結果が `DATASET` で設定したBigQueryのDatasetにTable名 `admin_users_20160114` (Suffixは日毎で変化) としてimportされる.
 
 
 ## Operation
