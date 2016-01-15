@@ -18,9 +18,9 @@ slug = "import-query-result-to-bigquery"
 
 # Background
 
-Kaizen Platformでは[BigQuery](https://cloud.google.com/bigquery/?hl=ja)と[re:dash](http://redash.io/)を使ってProjectの__定量KPIの可視化__をしていて、定期的に振り返りの機会を設けている.
+[Kaizen Platform](https://kaizenplatform.com/ja/)では[BigQuery](https://cloud.google.com/bigquery/?hl=ja)と[re:dash](http://redash.io/)を使ってProjectの__定量KPIの可視化__をしていて、定期的に振り返りの機会を設けている.
 
-これを実施・運用する上で困ったのが、UserのPVなどをplotする際に社内UserかどうかがBigQueryに格納しているDataじゃ判別つかないことだった.  
+これを実施・運用する上で困ったのが、UserのPVなどをplotする際に社内のUserかどうかがBigQueryに格納しているDataだけでは判別がつかないことだった.  
 (社内UserのIDリストを `user_id NOT IN (...)` に貼り付けるという__真心こもったOperation__が行われていた.)
 
 解決策としては2通り考えられる.
@@ -28,7 +28,7 @@ Kaizen Platformでは[BigQuery](https://cloud.google.com/bigquery/?hl=ja)と[re:
 
 外部DatabaseをBigQueryから参照する方法だが、Query Engineでうまい具合にJOINする方法 ([Presto](https://prestodb.io/)) と、外部DatabaseのDataをBigQueryにimportする方法が考えられた. 一つ目の方法はこれぐらい軽いことをやりるのにわざわさ導入するのはなって気がした (あくまで気がした) ので、外部DatabaseのDataをBigQueryにimportすることにした.
 
-今回の場合、とりあえずUserのTableをうまい具合にBigQueryにimportするだけで良かったが、今後もカジュアルに外部DatabaseのDataをBigQueryにimportしたいという要望があったので、__特定の場所にSQL fileを設置するだけで、それらを実行した結果をBigQueryにimportできる__ようにした.
+今回の場合、とりあえずUserのTableをうまい具合にBigQueryにimportするだけで良かったが、今後もカジュアルに外部DatabaseのDataをBigQueryにimportしたいという要望があったので、__特定の場所にSQL fileを配置するだけで、それらを実行した結果をBigQueryにimportできる__ようにした.
 
 
 # Import Query Result to BigQuery
