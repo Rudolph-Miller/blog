@@ -1,7 +1,7 @@
 baseurl = "http://blog.rudolph-miller.com/"
 languageCode = "ja-JP"
 title = "(rudolph-miller)"
-copyright = "&copy; Copyright 2015 Rudolph Miller"
+copyright = "&copy; 2015 Rudolph Miller"
 
 [params]
   twitter = "Rudolph_Miller"
