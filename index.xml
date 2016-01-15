@@ -182,7 +182,7 @@ export p12_keyfile=/path/to/p12_keyfile.p12
 export mysql_host=localhost
 export mysql_user=root
 export mysql_password=password
-export mysql_database=yopr_database
+export mysql_database=your_database
 export dataset=$DATASET
 
 for file in $QUERY_DIR/*.sql; do
