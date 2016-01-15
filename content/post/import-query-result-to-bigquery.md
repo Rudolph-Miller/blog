@@ -1,6 +1,6 @@
 +++
 Description = "Import Query Result to BigQuery"
-Tags = ["Embulk", "BigQuery"]
+Tags = ["Embulk", "BigQuery", "Kaizen Platform"]
 date = "2016-01-14T10:56:46+09:00"
 draft = true
 title = "Import Query Result to BigQuery"
@@ -114,7 +114,7 @@ for file in $QUERY_DIR/*.sql; do
 done
 ```
 
-のようなScriptを `import_query_result_to_bigquery` として用意し、実行権限をつけ、 `QUERY_DIR` に設定したDirectoryに、
+のようなScriptを `import_query_result_to_bigquery` として用意し実行権限をつけ、 `QUERY_DIR` に設定したDirectoryに、
 
 ```sql
 SELECT id FROM users WHENE is_admin = 1;
@@ -131,10 +131,10 @@ SELECT id FROM users WHENE is_admin = 1;
 を `admin_users.schema.json` として配置し、
 
 ```sh
-./import_query_result_to_bigquery
+$ ./import_query_result_to_bigquery
 ```
 
-を実行すると、 `admin_users.sql` のQueryの実行結果が `DATASET` で設定したBigQueryのDatasetにTable名 `admin_users_20160114` (Suffixは日毎で変化) としてimportされる.
+を実行すると、 `admin_users.sql` のQueryの実行結果を `DATASET` で設定したBigQueryのDatasetにTable名 `admin_users_20160114` (PrefixはSQL file名で、Suffixは年月日) としてimportできる.
 
 
 ## Operation
@@ -160,7 +160,7 @@ SELECT * from TABLE_DATE_RANGE(admin_users, DATE_ADD(CURRENT_TIMESTAMP(), -1, 'D
 ---
 
 
-EmbulkのPlugin機構と `Liquid Template Engine` の機能が素晴らしかった.
+EmbulkのPlugin機構と `Liquid Template Engine` のおかげで簡単なScriptで業務が改善した.
 
 
 # See Also
