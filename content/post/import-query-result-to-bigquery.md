@@ -153,7 +153,7 @@ $ ./import_query_result_to_bigquery
 cronなどでDailyのJobとして実行するとして、Table名のSuffixとして `_%Y%m%d` がついているので、BigQuery上では `TABLE_DATE_RANGE` を使用して、
 
 ```
-SELECT * from TABLE_DATE_RANGE(admin_users, DATE_ADD(CURRENT_TIMESTAMP(), -1, 'DAY'), CURRENT_TIMESTAMP());
+SELECT * FROM TABLE_DATE_RANGE(tmp.admin_users_, DATE_ADD(CURRENT_TIMESTAMP(), -1, 'DAY'), CURRENT_TIMESTAMP());
 ```
 
 のようにすると、当日のTableを対象としてQueryを実行できる.
