@@ -1,10 +1,10 @@
 +++
 Description = "Import Query Result to BigQuery"
 Tags = ["Embulk", "BigQuery", "Kaizen Platform"]
-date = "2016-01-14T10:56:46+09:00"
-draft = true
-title = "Import Query Result to BigQuery"
+date = "2016-01-15T18:45:16+09:00"
+draft = false
 slug = "import-query-result-to-bigquery"
+title = "Import Query Result to BigQuery"
 +++
 
 特定DirectoryにあるSQL fileを実行して、結果をBigQueryに入れるScriptを書いた.

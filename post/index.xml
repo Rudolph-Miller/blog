@@ -7,8 +7,178 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Mon, 11 Jan 2016 21:15:39 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 15 Jan 2016 18:45:16 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Import Query Result to BigQuery</title>
+      <link>http://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</link>
+      <pubDate>Fri, 15 Jan 2016 18:45:16 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</guid>
+      <description>
+
+&lt;p&gt;特定DirectoryにあるSQL fileを実行して、結果をBigQueryに入れるScriptを書いた.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#background:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;Background&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#import-query-result-to-bigquery:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;Import Query Result to BigQuery&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;background:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://kaizenplatform.com/ja/&#34;&gt;Kaizen Platform&lt;/a&gt;では&lt;a href=&#34;https://cloud.google.com/bigquery/?hl=ja&#34;&gt;BigQuery&lt;/a&gt;と&lt;a href=&#34;http://redash.io/&#34;&gt;re:dash&lt;/a&gt;を使ってProjectの&lt;strong&gt;定量KPIの可視化&lt;/strong&gt;をしていて、定期的に振り返りの機会を設けている.&lt;/p&gt;
+
+&lt;p&gt;これを実施・運用する上で困ったのが、UserのPVなどをplotする際に社内のUserかどうかがBigQueryに格納しているDataだけでは判別がつかないことだった.&lt;br /&gt;
+(社内UserのIDリストを &lt;code&gt;user_id NOT IN (...)&lt;/code&gt; に貼り付けるという&lt;strong&gt;真心こもったOperation&lt;/strong&gt;が行われていた.)&lt;/p&gt;
+
+&lt;p&gt;Kaizen Platformでは数ヶ月に一度 &lt;code&gt;Kaizen Week&lt;/code&gt; の名で、日頃のプロジェクトを一時停止して、積みタスクや、リファクタリング、新しいツールの試験・導入などの時間を確保しようという試みがあり、ちょうど今週がその &lt;code&gt;Kaizen Week&lt;/code&gt; だったので、ここを改善しようと思った.&lt;/p&gt;
+
+&lt;p&gt;解決策としては2通り考えられる.
+一つがLogにUserの属性を埋め込む方法、もう一つはBigQuery外部のDatabase (今回は社内のMySQL) からUserの属性を参照する方法だが、今回は二つ目の方法をとることにした.&lt;/p&gt;
+
+&lt;p&gt;外部DatabaseをBigQueryから参照する方法だが、Query Engineでうまい具合にJOINする方法 (&lt;a href=&#34;https://prestodb.io/&#34;&gt;Presto&lt;/a&gt;) と、外部DatabaseのDataをBigQueryにimportする方法が考えられた. 一つ目の方法はこれぐらい軽いことをやりるのにわざわさ導入するのはなって気がした (あくまで気がした) ので、外部DatabaseのDataをBigQueryにimportすることにした.&lt;/p&gt;
+
+&lt;p&gt;今回の場合、とりあえずUserのTableをうまい具合にBigQueryにimportするだけで良かったが、今後もカジュアルに外部DatabaseのDataをBigQueryにimportしたいという要望があったので、&lt;strong&gt;特定の場所にSQL fileを配置するだけで、それらを実行した結果をBigQueryにimportできる&lt;/strong&gt;ようにした.&lt;/p&gt;
+
+&lt;h1 id=&#34;import-query-result-to-bigquery:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;Import Query Result to BigQuery&lt;/h1&gt;
+
+&lt;h2 id=&#34;how:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;How&lt;/h2&gt;
+
+&lt;p&gt;始めはGoでScriptを書いていたが、ふとEmbulkが使えないかと思って調べてみると、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MySQLのInput pluginとBigQueryのOutput pluginは当然ある.&lt;/li&gt;
+&lt;li&gt;MySQLのInput pluginで任意のQueryが実行できる.&lt;/li&gt;
+&lt;li&gt;Queryの実行結果に対応するSchemaからBigQueryのSchemaを生成できると良かったが (別でPlugin書けばできそう) 、今回はSQL fileと別に &lt;code&gt;.schema.json&lt;/code&gt; でBigQueryのSchemaを用意することにする.&lt;/li&gt;
+&lt;li&gt;Configulation fileのExtensionを &lt;code&gt;liquid&lt;/code&gt; にすると&lt;a href=&#34;http://liquidmarkup.org/&#34;&gt;Liquid Template Engine&lt;/a&gt;が使用できる.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;env&lt;/code&gt; によって外部から値を差し込むことが可能.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;だったので、Scriptの中で特定の場所にあるSQL fileをとってきて、その情報で &lt;code&gt;env&lt;/code&gt; を差し替えることにより、QueryそれぞれでConfigulation fileを作成する必要がなく、Embulkで上の目標が達成できそうだったので、Embulkを採用することにした.&lt;/p&gt;
+
+&lt;h2 id=&#34;do-it:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;Do it&lt;/h2&gt;
+
+&lt;p&gt;Embulkはinstall済みだとして、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ embulk gem install embulk-input-mysql
+$ embulk gem install embulk-output-bigquery
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、今回必要なPluginsをinstallする.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;in:
+  type: mysql
+  host: {{ env.mysql_host }}
+  user: {{ env.mysql_user }}
+  {% if env.mysql_password %}
+    password: {{ env.mysql_password }}
+  {% endif %}
+  database:  {{ env.mysql_database }}
+  query: {{ env.query }}
+out:
+  type: bigquery
+  file_ext: csv
+  auth_method: private_key
+  service_account_email: {{ env.service_account_email }}
+  p12_keyfile: {{ env.p12_keyfile }}
+  path_prefix: /tmp/import_query_result_to_bq/
+  file_ext: csv
+  delete_from_local_when_job_end: 1
+  project: your_project
+  dataset: {{ env.dataset }}
+  table: {{ env.table }}_%Y%m%d
+  source_format: CSV
+  formatter:
+    type: csv
+    header_line: false
+  schema_file: {{ env.schema_file }}
+  auto_create_table: 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように &lt;code&gt;Liquid Template Engine&lt;/code&gt; を使用し &lt;code&gt;env&lt;/code&gt; で設定可能な &lt;code&gt;config.yml.liquid&lt;/code&gt; を用意し、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/bash
+
+QUERY_DIR=query
+DATASET=tmp
+
+export service_account_email=example@developer.gserviceaccount.com
+export p12_keyfile=/path/to/p12_keyfile.p12
+
+export mysql_host=localhost
+export mysql_user=root
+export mysql_password=password
+export mysql_database=your_database
+export dataset=$DATASET
+
+for file in $QUERY_DIR/*.sql; do
+  export query=`cat $file`
+  filename=${file##*/}
+  basename=${filename%.*}
+  dir=$(cd $(dirname $file) &amp;amp;&amp;amp; pwd)
+  export table=$basename
+  export schema_file=$dir/$basename.schema.json
+  embulk run config.yml.liquid
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のようなScriptを &lt;code&gt;import_query_result_to_bigquery&lt;/code&gt; として用意し実行権限をつけ、 &lt;code&gt;QUERY_DIR&lt;/code&gt; に設定したDirectoryに、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT id FROM users WHENE is_admin = 1;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を &lt;code&gt;admin_users.sql&lt;/code&gt; として、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[
+  { &amp;quot;name&amp;quot;: &amp;quot;id&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;STRING&amp;quot; }
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を &lt;code&gt;admin_users.schema.json&lt;/code&gt; として配置し、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ ./import_query_result_to_bigquery
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を実行すると、 &lt;code&gt;admin_users.sql&lt;/code&gt; のQueryの実行結果を &lt;code&gt;DATASET&lt;/code&gt; で設定したBigQueryのDatasetにTable名 &lt;code&gt;admin_users_20160114&lt;/code&gt; (PrefixはSQL file名で、Suffixは年月日) としてimportできる.&lt;/p&gt;
+
+&lt;h2 id=&#34;operation:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;Operation&lt;/h2&gt;
+
+&lt;h3 id=&#34;query-files:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;Query files&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;*.sql&lt;/code&gt; と &lt;code&gt;*.schema.json&lt;/code&gt; は専用のGitHubのRepositioryを作成して、そこに集約し、Scriptの実行前に &lt;code&gt;QUERY_DIR&lt;/code&gt; で指定したDirectoryに展開する.&lt;/p&gt;
+
+&lt;p&gt;これによって、新しくQueryを追加する際に、&lt;strong&gt;GitHub上で完結&lt;/strong&gt;できる.&lt;/p&gt;
+
+&lt;h3 id=&#34;query-in-bigquery:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;Query in BigQuery&lt;/h3&gt;
+
+&lt;p&gt;cronなどでDailyのJobとして実行するとして、Table名のSuffixとして &lt;code&gt;_%Y%m%d&lt;/code&gt; がついているので、BigQuery上では &lt;code&gt;TABLE_DATE_RANGE&lt;/code&gt; を使用して、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT * FROM TABLE_DATE_RANGE(tmp.admin_users_, DATE_ADD(CURRENT_TIMESTAMP(), -1, &#39;DAY&#39;), CURRENT_TIMESTAMP());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のようにすると、当日のTableを対象としてQueryを実行できる.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;EmbulkのPlugin機構と &lt;code&gt;Liquid Template Engine&lt;/code&gt; のおかげで簡単なScriptで業務が改善した.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;see-also:139eb9a18c43f6f61ff0332b901ae2a9&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/embulk/embulk&#34;&gt;Embulk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql&#34;&gt;embulk-input-mysql&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/embulk/embulk-output-bigquery&#34;&gt;embulk-output-bigquery&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://liquidmarkup.org/&#34;&gt;Liquid Template Engine&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Theme of Material-UI</title>
@@ -2076,68 +2246,6 @@ end
 &lt;li&gt;&lt;a href=&#34;http://rudolph-miller.github.io/integral-rest/overview.html&#34;&gt;Integral-Rest Document&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/integral&#34;&gt;Integral GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/clack&#34;&gt;Clack GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Docker image for Clack Application</title>
-      <link>http://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</link>
-      <pubDate>Thu, 20 Aug 2015 10:10:48 +0900</pubDate>
-      
-      <guid>http://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</guid>
-      <description>
-
-&lt;p&gt;Clack Application用のDocker base imageを作成したので紹介.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#how-to-use:cea2b2dc75a3d671d3ebef79d9a355b3&#34;&gt;How to use.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:cea2b2dc75a3d671d3ebef79d9a355b3&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;how-to-use:cea2b2dc75a3d671d3ebef79d9a355b3&#34;&gt;How to use.&lt;/h2&gt;
-
-&lt;p&gt;簡単な&lt;code&gt;app.lisp&lt;/code&gt;を用意する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defvar *app*
-  (lambda (env)
-    (declare (ignore env))
-    &#39;(200 (:content-type &amp;quot;text/plain&amp;quot;) (&amp;quot;Hello, World&amp;quot;))))
-
-(lack:builder
- :session
- *app*)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;FROM&lt;/code&gt;として&lt;code&gt;rudolphm/clack&lt;/code&gt;を指定してDockerfileを用意する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FROM rudolphm/clack:latest
-MAINTAINER Rudolph Miller
-
-
-ADD app.lisp /usr/local/src/clack-test/
-
-CMD clackup --port 5000 --server woo /usr/local/src/clack-test/app.lisp
-EXPOSE 5000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Dockerfileでやっているのは上の&lt;code&gt;app.lisp&lt;/code&gt;を配置して、
-&lt;code&gt;ENTRYPOINT&lt;/code&gt;として&lt;code&gt;clackup --port 5000 --server woo app.lisp&lt;/code&gt;を指定しているだけだ.
-後はDockerで&lt;code&gt;build&lt;/code&gt;して&lt;code&gt;run&lt;/code&gt;するとClack Applicationが動く.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker build -t clack-sample ./
-docker run -d -p 5000:5000 clack-sample
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Common Lispもようやくここまで来たかって所感.&lt;/p&gt;
-
-&lt;h2 id=&#34;see-also:cea2b2dc75a3d671d3ebef79d9a355b3&#34;&gt;See Also&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/dockerfile-clack&#34;&gt;Dockerfile-Clack GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/clack&#34;&gt;Clack GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/woo&#34;&gt;Woo GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/snmsts/roswell&#34;&gt;Roswell GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
