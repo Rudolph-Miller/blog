@@ -1,10 +1,11 @@
 +++
 Description = "Kaizen Week #2"
 Tags = ["Kaizen Week"]
-date = "2016-01-15T10:05:13+09:00"
-draft = true
-title = "kaizen week 2"
+date = "2016-01-15T15:03:17+09:00"
+draft = false
 slug = "kaizen-week-2"
+title = "kaizen week 2"
+unpublic = true
 +++
 
 name: inverse
