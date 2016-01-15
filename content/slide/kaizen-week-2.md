@@ -56,13 +56,25 @@ template: inverse
 
 ---
 
-layout: false
-
 .left-column[
-# About
+# Tools
 ]
 
 --
+
+.right-column[
+* Go
+]
+
+---
+
+.left-column[
+# Tools
+]
+
+.right-column[
+* ~~Go~~
+]
 
 .right-column[
 * Embulk

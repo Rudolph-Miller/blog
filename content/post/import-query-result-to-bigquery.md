@@ -1,6 +1,6 @@
 +++
 Description = "Import Query Result to BigQuery"
-Tags = ["Embulk", "BigQuery"]
+Tags = ["Embulk", "BigQuery", "Kaizen Platform"]
 date = "2016-01-14T10:56:46+09:00"
 draft = true
 title = "Import Query Result to BigQuery"
@@ -18,17 +18,19 @@ slug = "import-query-result-to-bigquery"
 
 # Background
 
-Kaizen Platformでは[BigQuery](https://cloud.google.com/bigquery/?hl=ja)と[re:dash](http://redash.io/)を使ってProjectの__定量KPIの可視化__をしていて、定期的に振り返りの機会を設けている.
+[Kaizen Platform](https://kaizenplatform.com/ja/)では[BigQuery](https://cloud.google.com/bigquery/?hl=ja)と[re:dash](http://redash.io/)を使ってProjectの__定量KPIの可視化__をしていて、定期的に振り返りの機会を設けている.
 
-これを実施・運用する上で困ったのが、UserのPVなどをplotする際に社内UserかどうかがBigQueryに格納しているDataじゃ判別つかないことだった.  
+これを実施・運用する上で困ったのが、UserのPVなどをplotする際に社内のUserかどうかがBigQueryに格納しているDataだけでは判別がつかないことだった.  
 (社内UserのIDリストを `user_id NOT IN (...)` に貼り付けるという__真心こもったOperation__が行われていた.)
+
+Kaizen Platformでは数ヶ月に一度 `Kaizen Week` の名で、日頃のプロジェクトを一時停止して、積みタスクや、リファクタリング、新しいツールの試験・導入などの時間を確保しようという試みがあり、ちょうど今週がその `Kaizen Week` だったので、ここを改善しようと思った.
 
 解決策としては2通り考えられる.
 一つがLogにUserの属性を埋め込む方法、もう一つはBigQuery外部のDatabase (今回は社内のMySQL) からUserの属性を参照する方法だが、今回は二つ目の方法をとることにした.
 
 外部DatabaseをBigQueryから参照する方法だが、Query Engineでうまい具合にJOINする方法 ([Presto](https://prestodb.io/)) と、外部DatabaseのDataをBigQueryにimportする方法が考えられた. 一つ目の方法はこれぐらい軽いことをやりるのにわざわさ導入するのはなって気がした (あくまで気がした) ので、外部DatabaseのDataをBigQueryにimportすることにした.
 
-今回の場合、とりあえずUserのTableをうまい具合にBigQueryにimportするだけで良かったが、今後もカジュアルに外部DatabaseのDataをBigQueryにimportしたいという要望があったので、__特定の場所にSQL fileを設置するだけで、それらを実行した結果をBigQueryにimportできる__ようにした.
+今回の場合、とりあえずUserのTableをうまい具合にBigQueryにimportするだけで良かったが、今後もカジュアルに外部DatabaseのDataをBigQueryにimportしたいという要望があったので、__特定の場所にSQL fileを配置するだけで、それらを実行した結果をBigQueryにimportできる__ようにした.
 
 
 # Import Query Result to BigQuery
@@ -76,7 +78,7 @@ out:
   path_prefix: /tmp/import_query_result_to_bq/
   file_ext: csv
   delete_from_local_when_job_end: 1
-  project: kaizen-analytics
+  project: your_project
   dataset: {{ env.dataset }}
   table: {{ env.table }}_%Y%m%d
   source_format: CSV
@@ -87,7 +89,7 @@ out:
   auto_create_table: 1
 ```
 
-のように `Liquid Template Engine` を使用して、 `env` で設定可能な `config.yml.liquid` を用意し、
+のように `Liquid Template Engine` を使用し `env` で設定可能な `config.yml.liquid` を用意し、
 
 ```sh
 #!/bin/bash
@@ -114,7 +116,7 @@ for file in $QUERY_DIR/*.sql; do
 done
 ```
 
-のようなScriptを `import_query_result_to_bigquery` として用意し、実行権限をつけ、 `QUERY_DIR` に設定したDirectoryに、
+のようなScriptを `import_query_result_to_bigquery` として用意し実行権限をつけ、 `QUERY_DIR` に設定したDirectoryに、
 
 ```sql
 SELECT id FROM users WHENE is_admin = 1;
@@ -131,10 +133,10 @@ SELECT id FROM users WHENE is_admin = 1;
 を `admin_users.schema.json` として配置し、
 
 ```sh
-./import_query_result_to_bigquery
+$ ./import_query_result_to_bigquery
 ```
 
-を実行すると、 `admin_users.sql` のQueryの実行結果が `DATASET` で設定したBigQueryのDatasetにTable名 `admin_users_20160114` (Suffixは日毎で変化) としてimportされる.
+を実行すると、 `admin_users.sql` のQueryの実行結果を `DATASET` で設定したBigQueryのDatasetにTable名 `admin_users_20160114` (PrefixはSQL file名で、Suffixは年月日) としてimportできる.
 
 
 ## Operation
@@ -159,8 +161,9 @@ SELECT * from TABLE_DATE_RANGE(admin_users, DATE_ADD(CURRENT_TIMESTAMP(), -1, 'D
 
 ---
 
+EmbulkのPlugin機構と `Liquid Template Engine` のおかげで簡単なScriptで業務が改善した.
 
-EmbulkのPlugin機構と `Liquid Template Engine` の機能が素晴らしかった.
+---
 
 
 # See Also
@@ -168,3 +171,4 @@ EmbulkのPlugin機構と `Liquid Template Engine` の機能が素晴らしかっ
 - [Embulk](https://github.com/embulk/embulk)
 - [embulk-input-mysql](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql)
 - [embulk-output-bigquery](https://github.com/embulk/embulk-output-bigquery)
+- [Liquid Template Engine](http://liquidmarkup.org/)
