@@ -31,7 +31,8 @@ layout: true&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;layout: false&lt;/p&gt;
+&lt;p&gt;layout: false
+class: middle&lt;/p&gt;
 
 &lt;p&gt;.left-column[&lt;/p&gt;
 
@@ -41,21 +42,25 @@ layout: true&lt;/p&gt;
 
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
 
-&lt;p&gt;.right-column[
-* Make Editor Textarea of Editor resizable
-]&lt;/p&gt;
+&lt;p&gt;.right-column[&lt;/p&gt;
+
+&lt;h2 id=&#34;make-editor-textarea-of-editor-resizable:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Make Editor Textarea of Editor resizable&lt;/h2&gt;
+
+&lt;p&gt;]&lt;/p&gt;
 
 &lt;p&gt;&amp;ndash;&lt;/p&gt;
 
-&lt;p&gt;.right-column[
-* Script to import results of any SQL files to BigQuery
-]&lt;/p&gt;
+&lt;p&gt;.right-column[&lt;/p&gt;
+
+&lt;h2 id=&#34;script-to-import-results-of-any-sql-files-to-bigquery:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Script to import results of any SQL files to BigQuery&lt;/h2&gt;
+
+&lt;p&gt;]&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;template: inverse&lt;/p&gt;
 
-&lt;h1 id=&#34;make-editor-textarea-of-editor-resizable:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Make Editor Textarea of Editor resizable&lt;/h1&gt;
+&lt;h1 id=&#34;make-editor-textarea-of-editor-resizable-1:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Make Editor Textarea of Editor resizable&lt;/h1&gt;
 
 &lt;hr /&gt;
 
@@ -65,7 +70,7 @@ layout: true&lt;/p&gt;
 
 &lt;p&gt;template: inverse&lt;/p&gt;
 
-&lt;h1 id=&#34;script-to-import-results-of-any-sql-files-to-bigquery:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Script to import results of any SQL files to BigQuery&lt;/h1&gt;
+&lt;h1 id=&#34;script-to-import-results-of-any-sql-files-to-bigquery-1:494be4e0a74e69754d46287a4d7ce1e8&#34;&gt;Script to import results of any SQL files to BigQuery&lt;/h1&gt;
 
 &lt;hr /&gt;
 
