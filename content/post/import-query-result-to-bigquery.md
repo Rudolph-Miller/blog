@@ -111,6 +111,7 @@ for file in $QUERY_DIR/*.sql; do
   filename=${file##*/}
   basename=${filename%.*}
   dir=$(cd $(dirname $file) && pwd)
+  export table=$basename
   export schema_file=$dir/$basename.schema.json
   embulk run config.yml.liquid
 done
