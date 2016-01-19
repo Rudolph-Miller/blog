@@ -19,9 +19,12 @@ Material-UIのButtonでReact RouterのLinkを使う.
 # Button in Material-UI
 
 Material-UIにはButtonのComponentが複数ある.
-どれも `link-button` parameterでlinkにできる.
+どれも `link-button` propertyでlinkにできる.
+
 
 # React Router and Material-UI
+
+React Routerの `Link` をMaterial-UIで使うには `container-element` propertyを使う.
 
 
 # See Also
