@@ -26,5 +26,11 @@ Material-UIにはButtonのComponentが複数ある.
 
 React Routerの `Link` をMaterial-UIで使うには `container-element` propertyを使う.
 
+```js
+<FlatButtor
+  linkButton={true}
+  container-element={<Link to='/' />} />
+```
+
 
 # See Also
