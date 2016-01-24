@@ -50,7 +50,11 @@ Twitter、 はてなブックマーク、Facebook、Google+のshareボタンがB
 </script>
 ```
 
-を埋め込み、さらに一つ目のHTML codeの `a` tagの `data-conut="vertical"` により、Tweet数のBalloon付きでshareボタンが表示された.
+を埋め込む.
+
+以前は一つ目のHTML codeの `a` tagの `data-conut="vertical"` によりTweet数のBalloon付きでshareボタンが表示されていたが、今はこのように表示される.
+
+{{% image "20160124/new_twitter.png" %}}
 
 
 # See Also
