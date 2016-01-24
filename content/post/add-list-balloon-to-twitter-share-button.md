@@ -18,7 +18,7 @@ Twitterのshare buttonにlist balloonを追加する.
 
 # Twitter share button
 
-Blogなどに埋め込まれているTwitterのshareボタンだが、以前はTweet数のカウント表示があった.
+Blogなどに埋め込まれているTwitterのshareボタンだが、以前は上にBalloonでTweet数が表示されていた.
 
 {{% image "20160124/previous_twitter.png" %}}
 
