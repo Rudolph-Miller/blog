@@ -7,8 +7,183 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 15 Jan 2016 18:45:16 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 25 Jan 2016 00:01:11 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Add List-balloon to Twitter share button</title>
+      <link>http://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</link>
+      <pubDate>Mon, 25 Jan 2016 00:01:11 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</guid>
+      <description>
+
+&lt;p&gt;Twitterのshare buttonにlist balloonを追加する.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#twitter-share-button:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;Twitter share button&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#add-list-balloon:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;Add List-balloon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;twitter-share-button:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;Twitter share button&lt;/h1&gt;
+
+&lt;p&gt;Blogなどに埋め込まれているTwitterのshareボタンだが、以前は上にBalloonでTweet数が表示されていた.&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/previous_twitter.png&#34; alt=&#34;20160124/previous_twitter.png&#34;&gt;
+
+
+&lt;p&gt;それがTwitter内部でのCassandraの廃止に付随して、昨年末なくなった.&lt;br /&gt;
+(参照: &lt;a href=&#34;https://blog.twitter.com/ja/2015/buttons&#34;&gt;持続的なプラットフォームのための難しい決断&lt;/a&gt;)&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+
+
+&lt;p&gt;Twitter、 はてなブックマーク、Facebook、Google+のshareボタンがBalloon付きでならんでいたのだが、TwitterのshareボタンだけがBalloonが無くなり、統一感が失われた.
+違和感を感じつつも放置していたのだが、最近あるBlogでTwittenのshareボタンの上にBalloonで &lt;code&gt;list&lt;/code&gt; と表示し、
+&lt;em&gt;&lt;a href=&#34;https://twitter.com/search&#34;&gt;https://twitter.com/search&lt;/a&gt;&lt;/em&gt; のその記事のPermalinkの検索結果へのLinkとなるようにしているのを見かけたので実装してみた.&lt;/p&gt;
+
+&lt;h1 id=&#34;add-list-balloon:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;Add List-balloon&lt;/h1&gt;
+
+&lt;p&gt;まず従来のshareボタンだが、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div class=&amp;quot;social-button&amp;quot;&amp;gt;
+  &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+  window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src=&amp;quot;https://platform.twitter.com/widgets.js&amp;quot;;fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,&amp;quot;script&amp;quot;,&amp;quot;twitter-wjs&amp;quot;));
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を埋め込む.&lt;/p&gt;
+
+&lt;p&gt;以前は一つ目のHTML codeの &lt;code&gt;a&lt;/code&gt; tagの &lt;code&gt;data-conut=&amp;quot;vertical&amp;quot;&lt;/code&gt; によりTweet数のBalloon付きでshareボタンが表示されていたが、今はこのように表示される.&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+
+
+&lt;p&gt;とりあえず、Balloonを表示する.&lt;br /&gt;
+BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::before&lt;/code&gt; と &lt;code&gt;::after&lt;/code&gt; を使って描けるので、とりあえず一つ &lt;code&gt;span&lt;/code&gt; を追加する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; &amp;lt;div class=&amp;quot;social-button&amp;quot;&amp;gt;
++  &amp;lt;span class=&amp;quot;balloon-bottom&amp;quot;&amp;gt;list&amp;lt;/span&amp;gt;
+   &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
+ &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step1.png&#34; alt=&#34;20160124/step1.png&#34;&gt;
+
+
+&lt;p&gt;これにBalloonを描くようCSSを当てる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.balloon-bottom {
+  position: relative;
+  display: inline-block;
+  padding: 0 15px;
+  width: 75px;
+  min-width: 75px;
+  height: 33px;
+  line-height: 33px;
+  color: #000;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #B0C1D8;
+  border-radius: 3px;
+  z-index: 0;
+}
+
+.balloon-bottom:before {
+  content: &amp;quot;&amp;quot;;
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  margin-left: -4px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+  border-color: #fff transparent transparent transparent;
+  z-index: 0;
+}
+
+.balloon-bottom:after {
+  content: &amp;quot;&amp;quot;;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  margin-left: -5px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+  border-color: #B0C1D8 transparent transparent transparent;
+  z-index: -1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step2.png&#34; alt=&#34;20160124/step2.png&#34;&gt;
+
+
+&lt;p&gt;(下の吹き出しの大きさの変更は &lt;code&gt;:before&lt;/code&gt; と &lt;code&gt;:after&lt;/code&gt; の &lt;code&gt;bottom&lt;/code&gt;, &lt;code&gt;margin-left&lt;/code&gt;, &lt;code&gt;border-width&lt;/code&gt; をsynchronouslyに変更する.)&lt;/p&gt;
+
+&lt;p&gt;次はこれを縦に並べる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; &amp;lt;div class=&amp;quot;social-button&amp;quot;&amp;gt;
+-  &amp;lt;span class=&amp;quot;balloon-bottom&amp;quot;&amp;gt;list&amp;lt;/span&amp;gt;
+-  &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
++  &amp;lt;ul class=&amp;quot;twitter-share-button-with-balloon&amp;quot;&amp;gt;
++    &amp;lt;li&amp;gt;
++      &amp;lt;span class=&amp;quot;balloon-bottom&amp;quot;&amp;gt;list&amp;lt;/span&amp;gt;
++    &amp;lt;/li&amp;gt;
++    &amp;lt;li&amp;gt;
++      &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
++    &amp;lt;/li&amp;gt;
++  &amp;lt;/ul&amp;gt;
+ &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.twitter-share-button-with-balloon {
+  list-style: none;
+}
+
+.twitter-share-button-with-balloon &amp;gt; :first-child + * {
+  margin-top: 7px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step3.png&#34; alt=&#34;20160124/step3.png&#34;&gt;
+
+
+&lt;p&gt;見た目はこれで完成.&lt;br /&gt;
+あとはLinkだが、このBlogは&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;を使っているので、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; &amp;lt;div class=&amp;quot;social-button&amp;quot;&amp;gt;
+   &amp;lt;ul class=&amp;quot;twitter-share-button-with-balloon&amp;quot;&amp;gt;
+     &amp;lt;li&amp;gt;
++    &amp;lt;a href=&amp;quot;https://twitter.com/search?q={{ .Permalink }}&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;
+       &amp;lt;span class=&amp;quot;balloon-bottom&amp;quot;&amp;gt;list&amp;lt;/span&amp;gt;
++    &amp;lt;/a&amp;gt;
+     &amp;lt;/li&amp;gt;
+     &amp;lt;li&amp;gt;
+       &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
+     &amp;lt;/li&amp;gt;
+   &amp;lt;/ul&amp;gt;
+ &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように &lt;code&gt;a&lt;/code&gt; tagで囲えば完成.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.twitter.com/ja/2015/buttons&#34;&gt;持続的なプラットフォームのための難しい決断&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Import Query Result to BigQuery</title>
@@ -3010,70 +3185,6 @@ layout: true&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;background-image: url(/images/20151016/to_be_continued.jpg)&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>React Native on Android device</title>
-      <link>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</link>
-      <pubDate>Wed, 16 Sep 2015 10:06:16 +0900</pubDate>
-      
-      <guid>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</guid>
-      <description>
-
-&lt;p&gt;React Native for Androidを実機で動かす.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#run-on-device:60c6196952e7045685a1de9e62046e9b&#34;&gt;Run on device&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:60c6196952e7045685a1de9e62046e9b&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;run-on-device:60c6196952e7045685a1de9e62046e9b&#34;&gt;Run on device&lt;/h2&gt;
-
-&lt;p&gt;まずUSB Debugging ModeをONにする.&lt;/p&gt;
-
-&lt;p&gt;するとAndroid端末を開発機にUSBで接続して、&lt;code&gt;react-native run-android&lt;/code&gt;を実行すると、
-端末にApplicationのインストールが可能と起動が可能となる.&lt;/p&gt;
-
-&lt;p&gt;そしてこの真っ赤なエラー画面に遭遇して面食らう.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150916/error.png&#34; alt=&#34;Error on device&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;なにが起こっているか.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;index.android.bundle&lt;/code&gt;を&lt;code&gt;localhost:8081&lt;/code&gt;から取ってこようとして、接続できなくエラーとなっている.
-つまりbundleしたJavaScriptファイルを開発機から取ってこようとして失敗したと.&lt;/p&gt;
-
-&lt;p&gt;そのため開発サーバーに接続すれば良く、とりあえず2通りの方法がある.&lt;/p&gt;
-
-&lt;h3 id=&#34;using-adb-reverse:60c6196952e7045685a1de9e62046e9b&#34;&gt;Using adb reverse&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;adb reverse&lt;/code&gt;を使用して、端末の&lt;code&gt;tcp:8081&lt;/code&gt;で開発機の&lt;code&gt;tpc:8081&lt;/code&gt;を参照できるようにする.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;adb reverse tcp:8081 tcp:8081
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これだけで他の設定を変更することなく端末上で&lt;code&gt;Reload JS&lt;/code&gt;などの開発オプションが使用できるようになる.&lt;/p&gt;
-
-&lt;h3 id=&#34;configure-device-to-connect-to-the-dev-server-via-wi-fi:60c6196952e7045685a1de9e62046e9b&#34;&gt;Configure device to connect to the dev server via Wi-Fi&lt;/h3&gt;
-
-&lt;p&gt;端末の&lt;code&gt;Dev Settings&lt;/code&gt;で&lt;code&gt;Debug server host&lt;/code&gt;の設定を変更する.
-この方法で開発機に接続するためには端末と開発機が同じWi-Fiに接続している必要がある.&lt;/p&gt;
-
-&lt;p&gt;Applicationで&lt;code&gt;menu&lt;/code&gt;を表示する.
-(端末のメニューボタンを押すかApplicationを開いた状態で端末を振ると表示される.)&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Dev Settings&lt;/code&gt;、&lt;code&gt;Debug server host for device&lt;/code&gt;と遷移し、開発機のIPアドレスを入力する.&lt;br /&gt;
-(OS XのIPアドレスは&lt;code&gt;システム環境設定&lt;/code&gt;、&lt;code&gt;ネットワーク&lt;/code&gt;と遷移して、接続中のネットワークのタブで確認できる.)&lt;/p&gt;
-
-&lt;p&gt;すると端末上で&lt;code&gt;Reload JS&lt;/code&gt;などの開発オプションが使用できるようになる.&lt;/p&gt;
-
-&lt;h2 id=&#34;see-also:60c6196952e7045685a1de9e62046e9b&#34;&gt;See Also&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/running-on-device-android.html&#34;&gt;Running On Device(Android)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://developer.android.com/tools/device.html&#34;&gt;Using Handware Devices&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

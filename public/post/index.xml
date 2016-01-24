@@ -7,8 +7,183 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 15 Jan 2016 18:45:16 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 25 Jan 2016 00:01:11 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Add List-balloon to Twitter share button</title>
+      <link>http://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</link>
+      <pubDate>Mon, 25 Jan 2016 00:01:11 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</guid>
+      <description>
+
+&lt;p&gt;Twitterのshare buttonにlist balloonを追加する.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#twitter-share-button:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;Twitter share button&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#add-list-balloon:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;Add List-balloon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;twitter-share-button:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;Twitter share button&lt;/h1&gt;
+
+&lt;p&gt;Blogなどに埋め込まれているTwitterのshareボタンだが、以前は上にBalloonでTweet数が表示されていた.&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/previous_twitter.png&#34; alt=&#34;20160124/previous_twitter.png&#34;&gt;
+
+
+&lt;p&gt;それがTwitter内部でのCassandraの廃止に付随して、昨年末なくなった.&lt;br /&gt;
+(参照: &lt;a href=&#34;https://blog.twitter.com/ja/2015/buttons&#34;&gt;持続的なプラットフォームのための難しい決断&lt;/a&gt;)&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+
+
+&lt;p&gt;Twitter、 はてなブックマーク、Facebook、Google+のshareボタンがBalloon付きでならんでいたのだが、TwitterのshareボタンだけがBalloonが無くなり、統一感が失われた.
+違和感を感じつつも放置していたのだが、最近あるBlogでTwittenのshareボタンの上にBalloonで &lt;code&gt;list&lt;/code&gt; と表示し、
+&lt;em&gt;&lt;a href=&#34;https://twitter.com/search&#34;&gt;https://twitter.com/search&lt;/a&gt;&lt;/em&gt; のその記事のPermalinkの検索結果へのLinkとなるようにしているのを見かけたので実装してみた.&lt;/p&gt;
+
+&lt;h1 id=&#34;add-list-balloon:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;Add List-balloon&lt;/h1&gt;
+
+&lt;p&gt;まず従来のshareボタンだが、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div class=&amp;quot;social-button&amp;quot;&amp;gt;
+  &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+  window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src=&amp;quot;https://platform.twitter.com/widgets.js&amp;quot;;fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,&amp;quot;script&amp;quot;,&amp;quot;twitter-wjs&amp;quot;));
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を埋め込む.&lt;/p&gt;
+
+&lt;p&gt;以前は一つ目のHTML codeの &lt;code&gt;a&lt;/code&gt; tagの &lt;code&gt;data-conut=&amp;quot;vertical&amp;quot;&lt;/code&gt; によりTweet数のBalloon付きでshareボタンが表示されていたが、今はこのように表示される.&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+
+
+&lt;p&gt;とりあえず、Balloonを表示する.&lt;br /&gt;
+BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::before&lt;/code&gt; と &lt;code&gt;::after&lt;/code&gt; を使って描けるので、とりあえず一つ &lt;code&gt;span&lt;/code&gt; を追加する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; &amp;lt;div class=&amp;quot;social-button&amp;quot;&amp;gt;
++  &amp;lt;span class=&amp;quot;balloon-bottom&amp;quot;&amp;gt;list&amp;lt;/span&amp;gt;
+   &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
+ &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step1.png&#34; alt=&#34;20160124/step1.png&#34;&gt;
+
+
+&lt;p&gt;これにBalloonを描くようCSSを当てる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.balloon-bottom {
+  position: relative;
+  display: inline-block;
+  padding: 0 15px;
+  width: 75px;
+  min-width: 75px;
+  height: 33px;
+  line-height: 33px;
+  color: #000;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #B0C1D8;
+  border-radius: 3px;
+  z-index: 0;
+}
+
+.balloon-bottom:before {
+  content: &amp;quot;&amp;quot;;
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  margin-left: -4px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+  border-color: #fff transparent transparent transparent;
+  z-index: 0;
+}
+
+.balloon-bottom:after {
+  content: &amp;quot;&amp;quot;;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  margin-left: -5px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+  border-color: #B0C1D8 transparent transparent transparent;
+  z-index: -1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step2.png&#34; alt=&#34;20160124/step2.png&#34;&gt;
+
+
+&lt;p&gt;(下の吹き出しの大きさの変更は &lt;code&gt;:before&lt;/code&gt; と &lt;code&gt;:after&lt;/code&gt; の &lt;code&gt;bottom&lt;/code&gt;, &lt;code&gt;margin-left&lt;/code&gt;, &lt;code&gt;border-width&lt;/code&gt; をsynchronouslyに変更する.)&lt;/p&gt;
+
+&lt;p&gt;次はこれを縦に並べる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; &amp;lt;div class=&amp;quot;social-button&amp;quot;&amp;gt;
+-  &amp;lt;span class=&amp;quot;balloon-bottom&amp;quot;&amp;gt;list&amp;lt;/span&amp;gt;
+-  &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
++  &amp;lt;ul class=&amp;quot;twitter-share-button-with-balloon&amp;quot;&amp;gt;
++    &amp;lt;li&amp;gt;
++      &amp;lt;span class=&amp;quot;balloon-bottom&amp;quot;&amp;gt;list&amp;lt;/span&amp;gt;
++    &amp;lt;/li&amp;gt;
++    &amp;lt;li&amp;gt;
++      &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
++    &amp;lt;/li&amp;gt;
++  &amp;lt;/ul&amp;gt;
+ &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.twitter-share-button-with-balloon {
+  list-style: none;
+}
+
+.twitter-share-button-with-balloon &amp;gt; :first-child + * {
+  margin-top: 7px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step3.png&#34; alt=&#34;20160124/step3.png&#34;&gt;
+
+
+&lt;p&gt;見た目はこれで完成.&lt;br /&gt;
+あとはLinkだが、このBlogは&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;を使っているので、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; &amp;lt;div class=&amp;quot;social-button&amp;quot;&amp;gt;
+   &amp;lt;ul class=&amp;quot;twitter-share-button-with-balloon&amp;quot;&amp;gt;
+     &amp;lt;li&amp;gt;
++    &amp;lt;a href=&amp;quot;https://twitter.com/search?q={{ .Permalink }}&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;
+       &amp;lt;span class=&amp;quot;balloon-bottom&amp;quot;&amp;gt;list&amp;lt;/span&amp;gt;
++    &amp;lt;/a&amp;gt;
+     &amp;lt;/li&amp;gt;
+     &amp;lt;li&amp;gt;
+       &amp;lt;a class=&amp;quot;twitter-share-button&amp;quot; href=&amp;quot;https://twitter.com/share&amp;quot; data-dnt=&amp;quot;true&amp;quot; data-count=&amp;quot;vertical&amp;quot;&amp;gt;Tweet&amp;lt;/a&amp;gt;
+     &amp;lt;/li&amp;gt;
+   &amp;lt;/ul&amp;gt;
+ &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように &lt;code&gt;a&lt;/code&gt; tagで囲えば完成.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:359e491c453d46e1b4bf2da9348c0d89&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.twitter.com/ja/2015/buttons&#34;&gt;持続的なプラットフォームのための難しい決断&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Import Query Result to BigQuery</title>
@@ -2154,99 +2329,6 @@ end
 &lt;li&gt;&lt;a href=&#34;https://github.com/opal/opal&#34;&gt;Opal GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://fiveteesixone.lackland.io/2015/08/03/10-minutes-volt-chat-application-tutorial/&#34;&gt;Volt を使って10分でリアルタイムチャットアプリケーションを作るチュートリアル&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/todo_example_volt&#34;&gt;Todo-Example-Volt GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Integral-Rest</title>
-      <link>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</link>
-      <pubDate>Fri, 21 Aug 2015 11:20:54 +0900</pubDate>
-      
-      <guid>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</guid>
-      <description>
-
-&lt;p&gt;稚拙のIntegral-Restを紹介.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#integral-rest:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;Integral-Rest&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;integral-rest:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;Integral-Rest&lt;/h2&gt;
-
-&lt;p&gt;Integral-RestはIntegralのDAO tableからREST APIを簡単に作るLibrary.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defpackage sample
-  (:use :cl
-        :integral
-        :integral-rest))
-(in-package :sample)
-
-(connect-toplevel :sqlite3 :database-name &amp;quot;:memory:&amp;quot;)
-
-(defclass user ()
-  ((id :initarg :id
-       :type integer
-       :primary-key t
-       :accessor user-id)
-   (name :initarg :name
-         :type string
-         :accessor user-name))
-  (:metaclass integral:&amp;lt;dao-table-class&amp;gt;))
-
-(ensure-table-exists (find-class &#39;user))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;:metaclass&lt;/code&gt;として&lt;code&gt;integral:&amp;lt;dao-table-class&amp;gt;&lt;/code&gt;を指定し、&lt;code&gt;user&lt;/code&gt;を&lt;code&gt;defclass&lt;/code&gt;する.&lt;br /&gt;
-後は&lt;code&gt;(set-rest-app)&lt;/code&gt;をすると&lt;code&gt;*rest-app*&lt;/code&gt;がREST API appに束縛されので、&lt;br /&gt;
-&lt;code&gt;*rest-app*&lt;/code&gt;は&lt;code&gt;ningle:&amp;lt;app&amp;gt;&lt;/code&gt;の&lt;code&gt;instance&lt;/code&gt;なので、これをそのまま&lt;code&gt;clack:clackup&lt;/code&gt;できる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(set-rest-app)
-
-(clack:clackup *rest-app*)
-;; =&amp;gt; Listening on localhost:5000.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これだけでREST API ServerがPort 5000で立ち上がる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(create-dao &#39;user :name &amp;quot;Rudolph&amp;quot;)
-;; =&amp;gt; #&amp;lt;USER id: 1&amp;gt;
-
-(dex:get &amp;quot;http://localhost:5000/api/users&amp;quot;)
-;; =&amp;gt; &amp;quot;[{\&amp;quot;id\&amp;quot;:1,\&amp;quot;name\&amp;quot;:\&amp;quot;Rudolph\&amp;quot;}]&amp;quot;
-
-(dex:get &amp;quot;http://localhost:5000/api/users/1&amp;quot;)
-;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:1,\&amp;quot;name\&amp;quot;:\&amp;quot;Rudolph\&amp;quot;}&amp;quot;
-
-(dex:post &amp;quot;http://localhost:5000/api/users&amp;quot; :contest &#39;((&amp;quot;name&amp;quot; . &amp;quot;Miller&amp;quot;)))
-;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Miller\&amp;quot;}&amp;quot;
-
-(find-dao &#39;user 2)
-;; =&amp;gt; #&amp;lt;USER id: 2 name: &amp;quot;Miller&amp;quot;&amp;gt;
-
-(dex:put &amp;quot;http://localhost:5000/api/users/2&amp;quot; :contest &#39;((&amp;quot;name&amp;quot; . &amp;quot;Tom&amp;quot;)))
-;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Tom\&amp;quot;}&amp;quot;
-
-(find-dao &#39;user 2)
-;; =&amp;gt; #&amp;lt;USER id: 2 name: &amp;quot;Tom&amp;quot;&amp;gt;
-
-(dex:delete &amp;quot;http://localhost:5000/api/users/2&amp;quot;)
-;; =&amp;gt; &amp;quot;{\&amp;quot;id\&amp;quot;:2,\&amp;quot;name\&amp;quot;:\&amp;quot;Tom\&amp;quot;}&amp;quot;
-
-(find-dao &#39;user 2)
-;; =&amp;gt; NIL
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ちょっとしたAPI Serverだと&lt;code&gt;app.lisp&lt;/code&gt;に十数行で書ける.&lt;/p&gt;
-
-&lt;h2 id=&#34;see-also:1b7c182b77a3e5cf7ce9ca5c9ca33b73&#34;&gt;See Also&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/integral-rest&#34;&gt;Integral-Rest GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://rudolph-miller.github.io/integral-rest/overview.html&#34;&gt;Integral-Rest Document&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/integral&#34;&gt;Integral GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fukamachi/clack&#34;&gt;Clack GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
