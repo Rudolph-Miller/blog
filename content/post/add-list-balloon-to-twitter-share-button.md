@@ -28,7 +28,8 @@ Blogなどに埋め込まれているTwitterのshareボタンだが、以前はT
 {{% image "20160124/new_twitter.png" %}}
 
 Twitter、 はてなブックマーク、Facebook、Google+のシェアボタンがBalloon付きでならんでいたが、TwitterのシェアボタンだけがBalloon無しとなり、統一感がなくなった.
-違和感を感じつつも放置していたのだが、最近あるBlogでTwittenのシェアボタンの上にBalloonで `list` と表示し、 *https://twitter.com/search* のその記事のPermalinkの検索結果へのLinkとなるようにしているのを見かけたので、実装してみた.
+違和感を感じつつも放置していたのだが、最近あるBlogでTwittenのシェアボタンの上にBalloonで `list` と表示し、
+*https://twitter.com/search* のその記事のPermalinkの検索結果へのLinkとなるようにしているのを見かけたので実装してみた.
 
 
 # Add List-balloon
