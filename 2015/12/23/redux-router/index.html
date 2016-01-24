@@ -373,7 +373,7 @@ render(&lt;Root /&gt;, document.getElementById('app'));
 }
 </code></pre>
 
-<pre><code class="language-diff">class Increment extends Component {
+<pre><code class="language-diff"> class Increment extends Component {
    render() {
      return (
        &lt;div&gt;
@@ -382,13 +382,14 @@ render(&lt;Root /&gt;, document.getElementById('app'));
          &lt;Link to='/decr'&gt;
            TO DECREMENT
          &lt;/Link&gt;
-      &lt;/div&gt;
-    );
-  }
-}
+       &lt;/div&gt;
+     );
+   }
+ }
 </code></pre>
 
-<pre><code class="language-diff">class Decrement extends Component {
+<pre><code class="language-diff"> class Decrement extends Component {
+   render() {
      return (
        &lt;div&gt;
 -        &lt;CounterButton type='decr'&gt;DECREMENT&lt;/CounterButton&gt;
@@ -396,10 +397,10 @@ render(&lt;Root /&gt;, document.getElementById('app'));
          &lt;Link to='/'&gt;
            TO INCREMENT
          &lt;/Link&gt;
-      &lt;/div&gt;
-    );
-  }
-}
+       &lt;/div&gt;
+     );
+   }
+ }
 </code></pre>
 
 <p><code>static contextTypes</code> を定義して、 <code>this.context.location</code> を使用する.</p>
@@ -445,12 +446,12 @@ class CounterButton extends Component {
            } else {
              dispatch(decrCounter());
 					 }
-        }} &gt;
-        {this.props.children}
-      &lt;/button&gt;
-    );
-  }
-}
+         }} &gt;
+         {this.props.children}
+       &lt;/button&gt;
+     );
+   }
+ }
 </code></pre>
 
 <pre><code class="language-diff">-const store = createStore(reducer);

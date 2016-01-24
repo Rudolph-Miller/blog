@@ -272,7 +272,7 @@ React Routerを導入して `Increment` と `Decrement` をRoutingで分けた�
 ```
 
 ```diff
-class Increment extends Component {
+ class Increment extends Component {
    render() {
      return (
        <div>
@@ -281,14 +281,15 @@ class Increment extends Component {
          <Link to='/decr'>
            TO DECREMENT
          </Link>
-      </div>
-    );
-  }
-}
+       </div>
+     );
+   }
+ }
 ```
 
 ```diff
-class Decrement extends Component {
+ class Decrement extends Component {
+   render() {
      return (
        <div>
 -        <CounterButton type='decr'>DECREMENT</CounterButton>
@@ -296,10 +297,10 @@ class Decrement extends Component {
          <Link to='/'>
            TO INCREMENT
          </Link>
-      </div>
-    );
-  }
-}
+       </div>
+     );
+   }
+ }
 ```
 
 `static contextTypes` を定義して、 `this.context.location` を使用する.
@@ -349,12 +350,12 @@ class CounterButton extends Component {
            } else {
              dispatch(decrCounter());
 					 }
-        }} >
-        {this.props.children}
-      </button>
-    );
-  }
-}
+         }} >
+         {this.props.children}
+       </button>
+     );
+   }
+ }
 ```
 
 ```diff

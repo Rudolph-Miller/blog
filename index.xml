@@ -1296,7 +1296,7 @@ render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;class Increment extends Component {
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; class Increment extends Component {
    render() {
      return (
        &amp;lt;div&amp;gt;
@@ -1305,13 +1305,14 @@ render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
          &amp;lt;Link to=&#39;/decr&#39;&amp;gt;
            TO DECREMENT
          &amp;lt;/Link&amp;gt;
-      &amp;lt;/div&amp;gt;
-    );
-  }
-}
+       &amp;lt;/div&amp;gt;
+     );
+   }
+ }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;class Decrement extends Component {
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; class Decrement extends Component {
+   render() {
      return (
        &amp;lt;div&amp;gt;
 -        &amp;lt;CounterButton type=&#39;decr&#39;&amp;gt;DECREMENT&amp;lt;/CounterButton&amp;gt;
@@ -1319,10 +1320,10 @@ render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
          &amp;lt;Link to=&#39;/&#39;&amp;gt;
            TO INCREMENT
          &amp;lt;/Link&amp;gt;
-      &amp;lt;/div&amp;gt;
-    );
-  }
-}
+       &amp;lt;/div&amp;gt;
+     );
+   }
+ }
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;static contextTypes&lt;/code&gt; を定義して、 &lt;code&gt;this.context.location&lt;/code&gt; を使用する.&lt;/p&gt;
@@ -1368,12 +1369,12 @@ class CounterButton extends Component {
            } else {
              dispatch(decrCounter());
 					 }
-        }} &amp;gt;
-        {this.props.children}
-      &amp;lt;/button&amp;gt;
-    );
-  }
-}
+         }} &amp;gt;
+         {this.props.children}
+       &amp;lt;/button&amp;gt;
+     );
+   }
+ }
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;-const store = createStore(reducer);
