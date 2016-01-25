@@ -163,6 +163,9 @@ const reducer = combineReducers({
 
 {{% image "20160125/scroll_step2.gif" %}}
 
+
+## pushState
+
 [pushState in Redux Router]({{< relref "post/pushstate-in-redux-router.md" >}}) で紹介した通り、
 Redux Routerにも `pushState` のAPIがあり `pushState` ででもPageの遷移ができるが、
 この改修により `pushState` での遷移でもScrollを最上部に持っていくことができる.
