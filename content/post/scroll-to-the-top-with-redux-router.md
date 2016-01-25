@@ -1,10 +1,10 @@
 +++
 Description = "Redux RouterでLocationの変更時にScrollをtopに持っていく方法"
 Tags = ["React.js", "Redux", "Redux Router"]
-date = "2016-01-24T21:29:54+09:00"
-draft = true
-title = "Scroll to the top with Redux Router"
+date = "2016-01-25T21:46:15+09:00"
+draft = false
 slug = "scroll-to-the-top-with-redux-router"
+title = "Scroll to the top with Redux Router"
 +++
 
 Redux RouterでLocationの変更時にScrollをtopに持っていく方法.
