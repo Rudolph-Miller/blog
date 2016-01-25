@@ -7,8 +7,189 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 25 Dec 2015 12:34:52 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 25 Jan 2016 21:46:15 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/tags/redux-router/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Scroll to the top with Redux Router</title>
+      <link>http://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</link>
+      <pubDate>Mon, 25 Jan 2016 21:46:15 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</guid>
+      <description>
+
+&lt;p&gt;Redux RouterでLocationの変更時にScrollをtopに持っていく方法.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#scroll-position-after-transition-with-redux-router:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll position after transition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#scroll-to-the-top-with-redux-router:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll to the top&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;scroll-position-after-transition:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll position after transition&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt; は &lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt; で紹介した通り、React.jsでde facto standardとなっているRouting libraryの &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt; の &lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
+
+&lt;p&gt;Redux Routerを実際にApplicationで使用していると &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままで困ったので、 &lt;code&gt;Link&lt;/code&gt; での遷移で &lt;code&gt;window.scrollTo(0, 0)&lt;/code&gt; するよう実装した.&lt;/p&gt;
+
+&lt;h1 id=&#34;scroll-to-the-top:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll to the top&lt;/h1&gt;
+
+&lt;h2 id=&#34;example:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;とりあえずRedux Routerを使用したApplicationを用意する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import React, { Component, PropTypes } from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+import { createStore, combineReducers } from &#39;redux&#39;;
+import { connect, Provider } from &#39;react-redux&#39;;
+import { IndexRoute, Route, Redirect, Link } from &#39;react-router&#39;;
+import { reduxReactRouter, routerStateReducer, ReduxRouter } from &#39;redux-router&#39;;
+import createHistory from &#39;history/lib/createHashHistory&#39;;
+
+const Styles = {
+  linkContainer: {
+    marginTop: &#39;1000px&#39;
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        {this.props.children}
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+class Hoge extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;div&amp;gt;Hoge&amp;lt;/div&amp;gt;
+        &amp;lt;div style={Styles.linkContainer}&amp;gt;
+          &amp;lt;Link to=&amp;quot;/fuga&amp;quot;&amp;gt;
+            To Fuga
+          &amp;lt;/Link&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+class Fuga extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;div&amp;gt;Fuga&amp;lt;/div&amp;gt;
+        &amp;lt;div style={Styles.linkContainer}&amp;gt;
+          &amp;lt;Link to=&amp;quot;/hoge&amp;quot;&amp;gt;
+            To Hoge
+          &amp;lt;/Link&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+const routes = (
+  &amp;lt;Route&amp;gt;
+    &amp;lt;Redirect path=&amp;quot;/&amp;quot; to=&amp;quot;hoge&amp;quot; /&amp;gt;
+    &amp;lt;Route path=&amp;quot;/&amp;quot; component={App}&amp;gt;
+      &amp;lt;Route path=&amp;quot;hoge&amp;quot; component={Hoge} /&amp;gt;
+      &amp;lt;Route path=&amp;quot;fuga&amp;quot; component={Fuga} /&amp;gt;
+    &amp;lt;/Route&amp;gt;
+  &amp;lt;/Route&amp;gt;
+);
+
+const reducer = combineReducers({
+  router: routerStateReducer
+});
+
+const store = reduxReactRouter({routes, createHistory})(createStore)(reducer);
+
+class Root extends Component {
+  render() {
+    return (
+      &amp;lt;Provider store={store}&amp;gt;
+        &amp;lt;ReduxRouter /&amp;gt;
+      &amp;lt;/Provider&amp;gt;
+    );
+  }
+}
+
+render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160125/scroll_step1.gif&#34; alt=&#34;20160125/scroll_step1.gif&#34;&gt;
+
+
+&lt;p&gt;上のGIFの通り、このままだと &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままだ.&lt;br /&gt;
+本来なら、遷移したらScrollを最上部にもっていくべきだろう.&lt;/p&gt;
+
+&lt;h2 id=&#34;scroll-to-the-top-1:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll to the top&lt;/h2&gt;
+
+&lt;p&gt;Redux Routerでも数行でこれが実装できる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;@@ -66,7 +66,18 @@
+const reducer = combineReducers({
+   router: routerStateReducer
+ });
+ 
+-const store = reduxReactRouter({routes, createHistory})(createStore)(reducer);
++const history = createHistory();
++
++history.listen(location =&amp;gt; {
++  setTimeout(() =&amp;gt; {
++    if (location.action === &#39;POP&#39;) {
++      return;
++    }
++    window.scrollTo(0, 0);
++  });
++});
++
++const store = reduxReactRouter({routes, history})(createStore)(reducer);
+ 
+ class Root extends Component {
+   render() {
+     return (
+       &amp;lt;Provider store={store}&amp;gt;
+         &amp;lt;ReduxRouter /&amp;gt;
+       &amp;lt;/Provider&amp;gt;
+     );
+   }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;変更点は、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;reduxReactRouter&lt;/code&gt; に &lt;code&gt;createHistory&lt;/code&gt; ではなく、 &lt;code&gt;history&lt;/code&gt; として &lt;code&gt;createHistory()&lt;/code&gt; の返り値を渡す.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;history&lt;/code&gt; に対して &lt;code&gt;location&lt;/code&gt; の変更のEventの &lt;code&gt;listen&lt;/code&gt; を行い、 &lt;code&gt;location.action&lt;/code&gt; が &lt;code&gt;&#39;POP&#39;&lt;/code&gt; 以外の時に &lt;code&gt;window.scrollTo(0, 0)&lt;/code&gt; を実行する.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;だけ.&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160125/scroll_step2.gif&#34; alt=&#34;20160125/scroll_step2.gif&#34;&gt;
+
+
+&lt;h2 id=&#34;pushstate:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;pushState&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;No page found with path or logical name &#34;post/pushstate-in-redux-router.md&#34;.
+&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
+Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&gt;pushState&lt;/code&gt; ででもPageの遷移ができるが、
+この改修により &lt;code&gt;pushState&lt;/code&gt; での遷移でもScrollを最上部に持っていくことができる.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>pushState in Redux Router</title>

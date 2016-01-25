@@ -7,8 +7,189 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Mon, 25 Jan 2016 00:01:11 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 25 Jan 2016 21:46:15 +0900</lastBuildDate>
     <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Scroll to the top with Redux Router</title>
+      <link>http://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</link>
+      <pubDate>Mon, 25 Jan 2016 21:46:15 +0900</pubDate>
+      
+      <guid>http://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</guid>
+      <description>
+
+&lt;p&gt;Redux RouterでLocationの変更時にScrollをtopに持っていく方法.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#scroll-position-after-transition-with-redux-router:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll position after transition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#scroll-to-the-top-with-redux-router:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll to the top&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;scroll-position-after-transition:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll position after transition&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt; は &lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt; で紹介した通り、React.jsでde facto standardとなっているRouting libraryの &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt; の &lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
+
+&lt;p&gt;Redux Routerを実際にApplicationで使用していると &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままで困ったので、 &lt;code&gt;Link&lt;/code&gt; での遷移で &lt;code&gt;window.scrollTo(0, 0)&lt;/code&gt; するよう実装した.&lt;/p&gt;
+
+&lt;h1 id=&#34;scroll-to-the-top:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll to the top&lt;/h1&gt;
+
+&lt;h2 id=&#34;example:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;とりあえずRedux Routerを使用したApplicationを用意する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import React, { Component, PropTypes } from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+import { createStore, combineReducers } from &#39;redux&#39;;
+import { connect, Provider } from &#39;react-redux&#39;;
+import { IndexRoute, Route, Redirect, Link } from &#39;react-router&#39;;
+import { reduxReactRouter, routerStateReducer, ReduxRouter } from &#39;redux-router&#39;;
+import createHistory from &#39;history/lib/createHashHistory&#39;;
+
+const Styles = {
+  linkContainer: {
+    marginTop: &#39;1000px&#39;
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        {this.props.children}
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+class Hoge extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;div&amp;gt;Hoge&amp;lt;/div&amp;gt;
+        &amp;lt;div style={Styles.linkContainer}&amp;gt;
+          &amp;lt;Link to=&amp;quot;/fuga&amp;quot;&amp;gt;
+            To Fuga
+          &amp;lt;/Link&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+class Fuga extends Component {
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;div&amp;gt;Fuga&amp;lt;/div&amp;gt;
+        &amp;lt;div style={Styles.linkContainer}&amp;gt;
+          &amp;lt;Link to=&amp;quot;/hoge&amp;quot;&amp;gt;
+            To Hoge
+          &amp;lt;/Link&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+const routes = (
+  &amp;lt;Route&amp;gt;
+    &amp;lt;Redirect path=&amp;quot;/&amp;quot; to=&amp;quot;hoge&amp;quot; /&amp;gt;
+    &amp;lt;Route path=&amp;quot;/&amp;quot; component={App}&amp;gt;
+      &amp;lt;Route path=&amp;quot;hoge&amp;quot; component={Hoge} /&amp;gt;
+      &amp;lt;Route path=&amp;quot;fuga&amp;quot; component={Fuga} /&amp;gt;
+    &amp;lt;/Route&amp;gt;
+  &amp;lt;/Route&amp;gt;
+);
+
+const reducer = combineReducers({
+  router: routerStateReducer
+});
+
+const store = reduxReactRouter({routes, createHistory})(createStore)(reducer);
+
+class Root extends Component {
+  render() {
+    return (
+      &amp;lt;Provider store={store}&amp;gt;
+        &amp;lt;ReduxRouter /&amp;gt;
+      &amp;lt;/Provider&amp;gt;
+    );
+  }
+}
+
+render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160125/scroll_step1.gif&#34; alt=&#34;20160125/scroll_step1.gif&#34;&gt;
+
+
+&lt;p&gt;上のGIFの通り、このままだと &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままだ.&lt;br /&gt;
+本来なら、遷移したらScrollを最上部にもっていくべきだろう.&lt;/p&gt;
+
+&lt;h2 id=&#34;scroll-to-the-top-1:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll to the top&lt;/h2&gt;
+
+&lt;p&gt;Redux Routerでも数行でこれが実装できる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;@@ -66,7 +66,18 @@
+const reducer = combineReducers({
+   router: routerStateReducer
+ });
+ 
+-const store = reduxReactRouter({routes, createHistory})(createStore)(reducer);
++const history = createHistory();
++
++history.listen(location =&amp;gt; {
++  setTimeout(() =&amp;gt; {
++    if (location.action === &#39;POP&#39;) {
++      return;
++    }
++    window.scrollTo(0, 0);
++  });
++});
++
++const store = reduxReactRouter({routes, history})(createStore)(reducer);
+ 
+ class Root extends Component {
+   render() {
+     return (
+       &amp;lt;Provider store={store}&amp;gt;
+         &amp;lt;ReduxRouter /&amp;gt;
+       &amp;lt;/Provider&amp;gt;
+     );
+   }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;変更点は、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;reduxReactRouter&lt;/code&gt; に &lt;code&gt;createHistory&lt;/code&gt; ではなく、 &lt;code&gt;history&lt;/code&gt; として &lt;code&gt;createHistory()&lt;/code&gt; の返り値を渡す.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;history&lt;/code&gt; に対して &lt;code&gt;location&lt;/code&gt; の変更のEventの &lt;code&gt;listen&lt;/code&gt; を行い、 &lt;code&gt;location.action&lt;/code&gt; が &lt;code&gt;&#39;POP&#39;&lt;/code&gt; 以外の時に &lt;code&gt;window.scrollTo(0, 0)&lt;/code&gt; を実行する.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;だけ.&lt;/p&gt;
+
+&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160125/scroll_step2.gif&#34; alt=&#34;20160125/scroll_step2.gif&#34;&gt;
+
+
+&lt;h2 id=&#34;pushstate:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;pushState&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;No page found with path or logical name &#34;post/pushstate-in-redux-router.md&#34;.
+&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
+Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&gt;pushState&lt;/code&gt; ででもPageの遷移ができるが、
+この改修により &lt;code&gt;pushState&lt;/code&gt; での遷移でもScrollを最上部に持っていくことができる.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Add List-balloon to Twitter share button</title>
@@ -2149,186 +2330,6 @@ react-native run-android
 &lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/android-setup.html&#34;&gt;Android Setup - React Native&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/tutorial.html#content&#34;&gt;Tutorial - React Native&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://code.facebook.com/posts/1189117404435352&#34;&gt;React Native for Android: How we built the first cross-platform React Native app&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Volt - Isomorphic in Ruby</title>
-      <link>http://blog.rudolph-miller.com/2015/08/27/volt/</link>
-      <pubDate>Thu, 27 Aug 2015 11:32:17 +0900</pubDate>
-      
-      <guid>http://blog.rudolph-miller.com/2015/08/27/volt/</guid>
-      <description>
-
-&lt;p&gt;Isomorphic in RubyなFramework &lt;a href=&#34;https://github.com/voltrb/volt/&#34;&gt;Volt&lt;/a&gt;を紹介.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Same code runs on the client and the server&lt;/li&gt;
-&lt;li&gt;Automatic Data Syncing&lt;/li&gt;
-&lt;li&gt;Reactive Data Bindings&lt;/li&gt;
-&lt;li&gt;Components&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;VoltはClient, Server共にRubyで記述する&lt;strong&gt;Isomorphic&lt;/strong&gt;で&lt;strong&gt;Reactive&lt;/strong&gt;なWeb Application Frameworkで上のような特徴を持つ.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#getting-started:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#same-code-runs-on-the-client-and-the-server:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Same code runs on the client and the server&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#automatic-data-syncing:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Automatic Data Syncing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#reactive-data-bindings:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Reactive Data Bindings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#components:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Components&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;getting-started:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Getting Started&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;gem install volt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;volt new sample_app
-cd sample_app
-bundle exec volt server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これでServerが起動する.&lt;/p&gt;
-
-&lt;p&gt;ファイルが変更されたときには、Voltは自動的にそのファイルをreloadし、Clientに変更をpushする.&lt;/p&gt;
-
-&lt;h2 id=&#34;same-code-runs-on-the-client-and-the-server:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Same code runs on the client and the server&lt;/h2&gt;
-
-&lt;p&gt;ClientとServerをRubyでIsomorphicに書ける.&lt;/p&gt;
-
-&lt;p&gt;First RequestはServer Sideで実行されるが、それ以降はClient Sideで実行され、HTTP Requestが発生しない.&lt;/p&gt;
-
-&lt;p&gt;データはModelClassで表現され、それの同期はautomaticallyにWebSocketかそれと同等のSocket通信でなされる.&lt;/p&gt;
-
-&lt;h2 id=&#34;automatic-data-syncing:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Automatic Data Syncing&lt;/h2&gt;
-
-&lt;p&gt;ある1つのクライアント上でデータが更新されたときには、
-データベース、および他のリスニング中のクライアント上でも更新が行われる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!-- @ app/main/views/index.html --&amp;gt;
-&amp;lt;:Body&amp;gt;
-  {{ store._memos.each_with_index do |memo, index| }}
-    &amp;lt;div&amp;gt;
-      &amp;lt;label&amp;gt;{{ index + 1 }}&amp;lt;/label&amp;gt;
-      &amp;lt;span&amp;gt;{{ memo._text }}&amp;lt;/span&amp;gt;
-    &amp;lt;/div&amp;gt;
-  {{ end }}
-  &amp;lt;form e-submit=&amp;quot;add_memo&amp;quot;&amp;gt;
-    &amp;lt;label&amp;gt;memo: &amp;lt;/label&amp;gt;
-    &amp;lt;input type=&amp;quot;text&amp;quot; value=&amp;quot;{{ page._new_text }}&amp;quot; /&amp;gt;
-  &amp;lt;/form&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# @ app/main/controllers/main_controller.rb
-module Main
-  class MainController &amp;lt; Volt::ModelController
-    def add_memo
-      store._memos &amp;lt;&amp;lt; { text: page._new_text }
-      page._new_text = &#39;&#39;
-    end
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Viewでは&lt;code&gt;each&lt;/code&gt;バインディングでイテレーションができる.&lt;/li&gt;
-&lt;li&gt;Viewでは&lt;code&gt;e-{イベント名}&lt;/code&gt;の属性でイベントをバインドして、Controllerのメソッドを呼び出すことができる.&lt;/li&gt;
-&lt;li&gt;Viewでは&lt;code&gt;{{&lt;/code&gt;と&lt;code&gt;}}&lt;/code&gt;で囲った中のRubyのCodeを実行し、その返り血をrenderできる.
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;self&lt;/code&gt;はControllerのインスタンスなので&lt;code&gt;{{ add_memo }}&lt;/code&gt;で&lt;code&gt;main_controller.rb&lt;/code&gt;の&lt;code&gt;add_memo&lt;/code&gt;が実行される.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;_&lt;/code&gt;(&lt;strong&gt;Underscore Accessors&lt;/strong&gt;)によって事前に定義せずにPropertyにgetとsetができる.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;page&lt;/code&gt;は&lt;strong&gt;Page Collection&lt;/strong&gt;と呼ばれるもので、一時的にデータを保存するためのもの.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;value=&amp;quot;{{ page._new_text }}&amp;quot;&lt;/code&gt;で双方向バインドが可能.
-
-&lt;ul&gt;
-&lt;li&gt;Controllerでもpage._nex_textにget, setが可能.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;store&lt;/code&gt;は&lt;strong&gt;Store Collection&lt;/strong&gt;と呼ばれるもので、データベースにデータを保存するためのもの.&lt;/li&gt;
-&lt;li&gt;Voltは複数形の属性を自動的に空の&lt;code&gt;Volt::ArrayModel&lt;/code&gt;に初期化する.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Volt::ArrayModel&lt;/code&gt;にハッシュを追加した場合、自動的にVoltのモデルに変換される.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;これだけで&lt;code&gt;memo:&lt;/code&gt;のText Inputに入力してEnterすると、Memoの追加ができる.&lt;/p&gt;
-
-&lt;p&gt;これを複数Clientsで操作をするとリアルタイムで同期しているのが確認できる.&lt;/p&gt;
-
-&lt;h2 id=&#34;reactive-data-bindings:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Reactive Data Bindings&lt;/h2&gt;
-
-&lt;p&gt;DOM (および値が変更されたことを検知したい他のすべてのコード)に対して、
-自動的に、かつ正確に変更を伝えるために、データフロー／リアクティブプログラミングを利用する.&lt;/p&gt;
-
-&lt;p&gt;DOMに何らかの変更があった場合に、Voltは変更が必要なノードだけを更新する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; &amp;lt;!-- @ app/main/views/index.html --&amp;gt;
- &amp;lt;:Body&amp;gt;
-   {{ store._memos.each_with_index do |memo, index| }}
-     &amp;lt;div&amp;gt;
-       &amp;lt;label&amp;gt;{{ index + 1 }}&amp;lt;/label&amp;gt;
-       &amp;lt;span&amp;gt;{{ memo._text }}&amp;lt;/span&amp;gt;
-     &amp;lt;/div&amp;gt;
-   {{ end }}
-   &amp;lt;form e-submit=&amp;quot;add_memo&amp;quot;&amp;gt;
-     &amp;lt;label&amp;gt;memo&amp;lt;/label&amp;gt;
-     &amp;lt;input type=&amp;quot;text&amp;quot; value=&amp;quot;{{ page._new_text }}&amp;quot; /&amp;gt;
-   &amp;lt;/form&amp;gt;
-+  {{ if too_much_memos }}&amp;lt;div&amp;gt;Are you crazy??&amp;lt;/div&amp;gt;{{ end }}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; # @ app/main/controllers/main_controller.rb
- module Main
-   class MainController &amp;lt; Volt::ModelController
-     def add_memo
-       store._memos &amp;lt;&amp;lt; { text: page._new_text }
-       page._new_text = &#39;&#39;
-     end
-+
-+    def too_much_memos
-+      store._memos.size.then do |size|
-+        size &amp;gt; 10
-+      end
-+    end
-   end
- end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;store&lt;/code&gt;の&lt;code&gt;ArrayModel&lt;/code&gt;に対するメソッド実行は&lt;code&gt;promise&lt;/code&gt;を返す.
-
-&lt;ul&gt;
-&lt;li&gt;結果を処理するときは&lt;code&gt;.then&lt;/code&gt;を使う.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://opalrb.org/blog/2014/05/07/promises-in-opal/&#34;&gt;Promises in Opal&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ロジックを&lt;strong&gt;宣言的に&lt;/strong&gt;記述すると、Userの操作に&lt;strong&gt;reactive&lt;/strong&gt;にDOMが更新される.&lt;/p&gt;
-
-&lt;h2 id=&#34;components:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;Components&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ApplicationはComponentから成り立っている.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;app/&lt;/code&gt;以下のすべてのdirectoryはComponentである.&lt;/li&gt;
-&lt;li&gt;ComponentはGemにすることも可能.&lt;/li&gt;
-&lt;li&gt;Componentの依存が可能.&lt;/li&gt;
-&lt;li&gt;ClientとServerでコードを共有できることによって、Full StackなComponentの提供を実現する.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Componentに分割することにより、コードを再利用可能で疎結合でテストを容易なものにする.&lt;/p&gt;
-
-&lt;h2 id=&#34;see-also:8c63057b999b8f8f5d0ebcbc905bc390&#34;&gt;See Also&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/voltrb/volt/&#34;&gt;Volt GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://voltframework.com/docs&#34;&gt;Volt Docs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/opal/opal&#34;&gt;Opal GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://fiveteesixone.lackland.io/2015/08/03/10-minutes-volt-chat-application-tutorial/&#34;&gt;Volt を使って10分でリアルタイムチャットアプリケーションを作るチュートリアル&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/todo_example_volt&#34;&gt;Todo-Example-Volt GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
