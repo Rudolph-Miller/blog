@@ -1,6 +1,7 @@
 require 'toml'
 
 SCREENSHOT_DIR = '~/Pictures/Screenshots'
+GIF_DIR = '~/Pictures/gif'
 
 def extract_title(argv, options = {})
   title = argv.last
@@ -168,4 +169,16 @@ task :cp_ss do
   FileUtils.mkdir_p(dir)
 
   sh "cp #{SCREENSHOT_DIR}/#{last_screenshot} #{dir}/#{name}"
+end
+
+task :cp_gif do
+  name = ARGV.last
+  ARGV.slice(1, ARGV.size).each{|v| task v.to_sym do; end}
+
+  last_gif = `ls -t #{GIF_DIR} | head -1`.gsub(' ', '\ ').gsub(/\n/, '')
+
+  dir = image_dir_name
+  FileUtils.mkdir_p(dir)
+
+  sh "cp #{GIF_DIR}/#{last_gif} #{dir}/#{name}"
 end
