@@ -10,3 +10,12 @@ slug = "detect-js-changes"
 detect-js-changesってToolを作った話
 
 <!--more-->
+
+- なぜつくったか
+- いままでのflow
+- これからのflow
+- 実装についてすこし
+  - `beautify-go`
+  - `diffmatchpatch`
+  - `download` と `detect` は `sync.WaitGroup` で並列実行.
+      - `go` で囲うだけで `download` がn倍.
