@@ -1,4 +1,4 @@
-baseurl = "http://blog.rudolph-miller.com/"
+baseurl = "https://blog.rudolph-miller.com/"
 languageCode = "ja-JP"
 title = "(rudolph-miller)"
 copyright = "&copy; 2015 Rudolph Miller"
