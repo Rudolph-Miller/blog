@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on (rudolph-miller)</title>
-    <link>http://blog.rudolph-miller.com/post/</link>
+    <link>https://blog.rudolph-miller.com/post/</link>
     <description>Recent content in Posts on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Mon, 25 Jan 2016 21:46:15 +0900</lastBuildDate>
-    <atom:link href="http://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Scroll to the top with Redux Router</title>
-      <link>http://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</link>
       <pubDate>Mon, 25 Jan 2016 21:46:15 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux RouterでLocationの変更時にScrollをtopに持っていく方法.&lt;/p&gt;
@@ -28,7 +28,7 @@
 
 &lt;h1 id=&#34;scroll-position-after-transition:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll position after transition&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt; は &lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt; で紹介した通り、React.jsでde facto standardとなっているRouting libraryの &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt; の &lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt; は &lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt; で紹介した通り、React.jsでde facto standardとなっているRouting libraryの &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt; の &lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
 
 &lt;p&gt;Redux Routerを実際にApplicationで使用していると &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままで困ったので、 &lt;code&gt;Link&lt;/code&gt; での遷移で &lt;code&gt;window.scrollTo(0, 0)&lt;/code&gt; するよう実装した.&lt;/p&gt;
 
@@ -121,7 +121,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160125/scroll_step1.gif&#34; alt=&#34;20160125/scroll_step1.gif&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160125/scroll_step1.gif&#34; alt=&#34;20160125/scroll_step1.gif&#34;&gt;
 
 
 &lt;p&gt;上のGIFの通り、このままだと &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままだ.&lt;br /&gt;
@@ -170,19 +170,19 @@ const reducer = combineReducers({
 
 &lt;p&gt;だけ.&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160125/scroll_step2.gif&#34; alt=&#34;20160125/scroll_step2.gif&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160125/scroll_step2.gif&#34; alt=&#34;20160125/scroll_step2.gif&#34;&gt;
 
 
 &lt;h2 id=&#34;pushstate:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;pushState&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
+&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
 Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&gt;pushState&lt;/code&gt; ででもPageの遷移ができるが、
 この改修により &lt;code&gt;pushState&lt;/code&gt; での遷移でもScrollを最上部に持っていくことができる.&lt;/p&gt;
 
 &lt;h1 id=&#34;see-also:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;See Also&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
@@ -192,10 +192,10 @@ Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&g
     
     <item>
       <title>Add List-balloon to Twitter share button</title>
-      <link>http://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</link>
       <pubDate>Mon, 25 Jan 2016 00:01:11 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</guid>
       <description>
 
 &lt;p&gt;Twitterのshare buttonにlist balloonを追加する.&lt;/p&gt;
@@ -210,13 +210,13 @@ Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&g
 
 &lt;p&gt;Blogなどに埋め込まれているTwitterのshareボタンだが、以前は上にBalloonでTweet数が表示されていた.&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/previous_twitter.png&#34; alt=&#34;20160124/previous_twitter.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/previous_twitter.png&#34; alt=&#34;20160124/previous_twitter.png&#34;&gt;
 
 
 &lt;p&gt;それがTwitter内部でのCassandraの廃止に付随して、昨年末なくなった.&lt;br /&gt;
 (参照: &lt;a href=&#34;https://blog.twitter.com/ja/2015/buttons&#34;&gt;持続的なプラットフォームのための難しい決断&lt;/a&gt;)&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
 
 
 &lt;p&gt;Twitter、 はてなブックマーク、Facebook、Google+のshareボタンがBalloon付きでならんでいたのだが、TwitterのshareボタンだけがBalloonが無くなり、統一感が失われた.
@@ -243,7 +243,7 @@ Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&g
 
 &lt;p&gt;以前は一つ目のHTML codeの &lt;code&gt;a&lt;/code&gt; tagの &lt;code&gt;data-conut=&amp;quot;vertical&amp;quot;&lt;/code&gt; によりTweet数のBalloon付きでshareボタンが表示されていたが、今はこのように表示される.&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
 
 
 &lt;p&gt;とりあえず、Balloonを表示する.&lt;br /&gt;
@@ -255,7 +255,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
  &amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step1.png&#34; alt=&#34;20160124/step1.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step1.png&#34; alt=&#34;20160124/step1.png&#34;&gt;
 
 
 &lt;p&gt;これにBalloonを描くようCSSを当てる.&lt;/p&gt;
@@ -305,7 +305,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step2.png&#34; alt=&#34;20160124/step2.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step2.png&#34; alt=&#34;20160124/step2.png&#34;&gt;
 
 
 &lt;p&gt;(下の吹き出しの大きさの変更は &lt;code&gt;:before&lt;/code&gt; と &lt;code&gt;:after&lt;/code&gt; の &lt;code&gt;bottom&lt;/code&gt;, &lt;code&gt;margin-left&lt;/code&gt;, &lt;code&gt;border-width&lt;/code&gt; をsynchronouslyに変更する.)&lt;/p&gt;
@@ -335,7 +335,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160124/step3.png&#34; alt=&#34;20160124/step3.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step3.png&#34; alt=&#34;20160124/step3.png&#34;&gt;
 
 
 &lt;p&gt;見た目はこれで完成.&lt;br /&gt;
@@ -367,10 +367,10 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
     
     <item>
       <title>Import Query Result to BigQuery</title>
-      <link>http://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</link>
       <pubDate>Fri, 15 Jan 2016 18:45:16 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</guid>
       <description>
 
 &lt;p&gt;特定DirectoryにあるSQL fileを実行して、結果をBigQueryに入れるScriptを書いた.&lt;/p&gt;
@@ -537,10 +537,10 @@ done
     
     <item>
       <title>Theme of Material-UI</title>
-      <link>http://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</link>
       <pubDate>Mon, 11 Jan 2016 21:15:39 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</guid>
       <description>
 
 &lt;p&gt;Material-UIのThemeの使い方を紹介.&lt;/p&gt;
@@ -553,7 +553,7 @@ done
 
 &lt;h1 id=&#34;material-ui:2974f27f4339877b24e592c5128f86c3&#34;&gt;Material-UI&lt;/h1&gt;
 
-&lt;p&gt;Material-UIとMaterial Designについては&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事を参照.&lt;/p&gt;
+&lt;p&gt;Material-UIとMaterial Designについては&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事を参照.&lt;/p&gt;
 
 &lt;h1 id=&#34;theme:2974f27f4339877b24e592c5128f86c3&#34;&gt;Theme&lt;/h1&gt;
 
@@ -564,7 +564,7 @@ done
 
 &lt;h2 id=&#34;color:2974f27f4339877b24e592c5128f86c3&#34;&gt;Color&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事の&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/#example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/a&gt;にThemeを適用し、Colorを変更する.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事の&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/#example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/a&gt;にThemeを適用し、Colorを変更する.&lt;/p&gt;
 
 &lt;p&gt;Colorの指定は&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;とMaterial-UIの&lt;a href=&#34;http://www.material-ui.com/#/customization/colors&#34;&gt;customization/colors&lt;/a&gt;を参照.&lt;/p&gt;
 
@@ -619,7 +619,7 @@ export default ThemeManager.modifyRawThemePalette(
 
 &lt;p&gt;&lt;code&gt;@ThemeDecorator&lt;/code&gt; で適用する.&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20160111/theme-applied.png&#34; alt=&#34;/20160111/theme-applied.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/theme-applied.png&#34; alt=&#34;/20160111/theme-applied.png&#34;&gt;
 
 
 &lt;p&gt;簡単にColorなどを変更できるが、Themeとして管理することにより、統一感が崩れない.&lt;/p&gt;
@@ -651,16 +651,16 @@ export default ThemeManager.modifyRawThemePalette(
 
 &lt;p&gt;のように &lt;code&gt;ThemeManager.modifyRawThemeFontFamily&lt;/code&gt; で &lt;code&gt;font-family&lt;/code&gt; を変更する.&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20160111/font-family-not-changed.png&#34; alt=&#34;/20160111/font-family-not-changed.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/font-family-not-changed.png&#34; alt=&#34;/20160111/font-family-not-changed.png&#34;&gt;
 
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20160111/font-family-changed.png&#34; alt=&#34;/20160111/font-family-changed.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/font-family-changed.png&#34; alt=&#34;/20160111/font-family-changed.png&#34;&gt;
 
 
 &lt;h1 id=&#34;see-also:2974f27f4339877b24e592c5128f86c3&#34;&gt;See Also&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;Material-UIの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;Material-UIの紹介&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.material-ui.com/#/customization/colors&#34;&gt;Material-UI customization/colors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/typography.html#typography-typeface&#34;&gt;Typography&lt;/a&gt;&lt;/li&gt;
@@ -670,10 +670,10 @@ export default ThemeManager.modifyRawThemePalette(
     
     <item>
       <title>Material-UI</title>
-      <link>http://blog.rudolph-miller.com/2016/01/04/material-ui/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/04/material-ui/</link>
       <pubDate>Mon, 04 Jan 2016 20:54:36 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2016/01/04/material-ui/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/04/material-ui/</guid>
       <description>
 
 &lt;p&gt;Material-UIの紹介.&lt;/p&gt;
@@ -697,7 +697,7 @@ export default ThemeManager.modifyRawThemePalette(
 &lt;p&gt;&lt;a href=&#34;https://github.com/callemall/material-ui&#34;&gt;Material-UI&lt;/a&gt;はMaterial DesignのReact.js実装.&lt;/p&gt;
 
 &lt;p&gt;ComponentとThemeで簡単にMaterial Designを試すことができる.&lt;br /&gt;
-(Themeについては今回は触れず、&lt;a href=&#34;http://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/&#34;&gt;Theme of Material-ui&lt;/a&gt;で紹介.)&lt;/p&gt;
+(Themeについては今回は触れず、&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/&#34;&gt;Theme of Material-ui&lt;/a&gt;で紹介.)&lt;/p&gt;
 
 &lt;h2 id=&#34;install:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Install&lt;/h2&gt;
 
@@ -773,7 +773,7 @@ class App extends Component {
 render(&amp;lt;App /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images/20160104/example.png&#34; alt=&#34;20160104/example.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160104/example.png&#34; alt=&#34;20160104/example.png&#34;&gt;
 
 
 &lt;p&gt;こんな感じにComponentに &lt;code&gt;props&lt;/code&gt; を渡すだけ.&lt;/p&gt;
@@ -791,10 +791,10 @@ render(&amp;lt;App /&amp;gt;, document.getElementById(&#39;app&#39;));
     
     <item>
       <title>pushState in Redux Router</title>
-      <link>http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</link>
+      <link>https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</link>
       <pubDate>Fri, 25 Dec 2015 12:34:52 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; の使い方と、 React Reduxの&lt;code&gt;connect&lt;/code&gt; の &lt;code&gt;mapDispatchToProps&lt;/code&gt; について、
@@ -944,7 +944,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151225/without-push-state.gif&#34; alt=&#34;/20151225/without-push-state.gif&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151225/without-push-state.gif&#34; alt=&#34;/20151225/without-push-state.gif&#34;&gt;
 
 
 &lt;p&gt;これに &lt;code&gt;pushState&lt;/code&gt; で、 &lt;code&gt;/decr&lt;/code&gt; を1秒後に &lt;code&gt;/incr&lt;/code&gt; にredirectするという無駄な機能をつける.&lt;/p&gt;
@@ -976,7 +976,7 @@ class Decrement extends Component {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151225/with-push-state.gif&#34; alt=&#34;/20151225/with-push-state.gif&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151225/with-push-state.gif&#34; alt=&#34;/20151225/with-push-state.gif&#34;&gt;
 
 
 &lt;p&gt;&lt;code&gt;pushState&lt;/code&gt; をRedux Routerから &lt;code&gt;import&lt;/code&gt; し、 &lt;code&gt;pushState&lt;/code&gt; を &lt;code&gt;connect&lt;/code&gt; の第二引数に &lt;code&gt;{ pushState: pushState }&lt;/code&gt; の形で渡し、
@@ -1116,10 +1116,10 @@ class Decrement extends Component {
     
     <item>
       <title>Redux Router</title>
-      <link>http://blog.rudolph-miller.com/2015/12/23/redux-router/</link>
+      <link>https://blog.rudolph-miller.com/2015/12/23/redux-router/</link>
       <pubDate>Wed, 23 Dec 2015 00:01:34 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/12/23/redux-router/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/12/23/redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux Routerの紹介.&lt;/p&gt;
@@ -1144,7 +1144,7 @@ class Decrement extends Component {
 &lt;a href=&#34;https://github.com/rackt/redux-simple-router&#34;&gt;redux-simple-router&lt;/a&gt;もあるが、Redux Routerの方が現時点でGitHubのStar数は多い.
 (名前の通り、redux-simple-routerの方がよりsimpleで、Redux Routerはfatでcomplexだが機能は多い.)&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151222/rackt.gif&#34; alt=&#34;/20151222/rackt.gif&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/rackt.gif&#34; alt=&#34;/20151222/rackt.gif&#34;&gt;
 
 
 &lt;p&gt;これは&lt;a href=&#34;http://rackt.org/&#34;&gt;rackt.org&lt;/a&gt;. サイトではもっと綺麗にうねうねしてる.&lt;/p&gt;
@@ -1222,7 +1222,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151222/initial-impl.gif&#34; alt=&#34;/20151222/initial-impl.gif&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/initial-impl.gif&#34; alt=&#34;/20151222/initial-impl.gif&#34;&gt;
 
 
 &lt;p&gt;&lt;code&gt;@connect&lt;/code&gt; して &lt;code&gt;state.counter&lt;/code&gt; を表示し、その &lt;code&gt;state.counter&lt;/code&gt; を増減させるボタンがあるだけのApplicationで、とくに解説することはない.&lt;/p&gt;
@@ -1345,7 +1345,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151222/second-impl.gif&#34; alt=&#34;/20151222/second-impl.gif&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/second-impl.gif&#34; alt=&#34;/20151222/second-impl.gif&#34;&gt;
 
 
 &lt;p&gt;React Routerを導入して &lt;code&gt;Increment&lt;/code&gt; と &lt;code&gt;Decrement&lt;/code&gt; をRoutingで分けただけ.&lt;br /&gt;
@@ -1510,10 +1510,10 @@ class CounterButton extends Component {
     
     <item>
       <title>Redux Fetch Action</title>
-      <link>http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</link>
+      <link>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</link>
       <pubDate>Tue, 15 Dec 2015 12:53:17 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</guid>
       <description>
 
 &lt;p&gt;Redux Fetch ActionというReduxのFetch actionのutilityを作った.&lt;/p&gt;
@@ -1686,10 +1686,10 @@ RECEIVED 2
     
     <item>
       <title>React Bootstrap Star Rating</title>
-      <link>http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</link>
+      <link>https://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</link>
       <pubDate>Sun, 13 Dec 2015 23:00:37 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</guid>
       <description>
 
 &lt;p&gt;React Bootstrap Star Ratingを作った.&lt;/p&gt;
@@ -1716,13 +1716,13 @@ commitするにあたってそれらを殲滅しnpmとReactを導入しようと
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/react-star-rating&#34;&gt;react-star-rating&lt;/a&gt;はどうかというと、GitHubのcommitはa month agoで&lt;a href=&#34;http://cameronjroe.com/react-star-rating/&#34;&gt;Project page&lt;/a&gt;もあり、
 ある程度は開発されていそうだったが、どうも件のProjectのowner曰くstyleがイケていないらしい.&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151213/react-star-rating.png&#34; alt=&#34;/20151213/react-star-rating.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151213/react-star-rating.png&#34; alt=&#34;/20151213/react-star-rating.png&#34;&gt;
 
 
 &lt;p&gt;ということで、件のProjectで使用していたjQuery pluginをReactでwrapして使うことした.
 (&lt;a href=&#34;http://plugins.krajee.com/star-rating/demo&#34;&gt;DEMO&lt;/a&gt;をみる限り、色々customizableっぽい.)&lt;/p&gt;
 
-&lt;img src=&#34;http://blog.rudolph-miller.com/images//20151213/bootstrap-star-rating.gif&#34; alt=&#34;/20151213/bootstrap-star-rating.gif&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151213/bootstrap-star-rating.gif&#34; alt=&#34;/20151213/bootstrap-star-rating.gif&#34;&gt;
 
 
 &lt;h2 id=&#34;wrap-jquery-plugin:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;Wrap jQuery plugin&lt;/h2&gt;
@@ -1812,10 +1812,10 @@ class App extends Component {
     
     <item>
       <title>React Redux Rails</title>
-      <link>http://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</link>
+      <link>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</link>
       <pubDate>Fri, 11 Dec 2015 00:00:06 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</guid>
       <description>
 
 &lt;p&gt;React.js &amp;amp; Redux &amp;amp; Ruby on Railsでserver-side rendering.&lt;/p&gt;
@@ -1943,10 +1943,10 @@ Viewの状態管理をさぼれる.&lt;/p&gt;
     
     <item>
       <title>Jonathan unescapes Unicode Escape Sequence</title>
-      <link>http://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</link>
+      <link>https://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</link>
       <pubDate>Mon, 16 Nov 2015 15:33:08 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan&#34;&gt;Jonathan&lt;/a&gt;にUnicode Escape Sequenceをunescapeする機能を入れた.&lt;/p&gt;
@@ -1997,10 +1997,10 @@ SlackのAPIのResponseにUnicode Escape Sequenceがあり、&lt;a href=&#34;http
     
     <item>
       <title>Daily Log in Slack</title>
-      <link>http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</link>
+      <link>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</link>
       <pubDate>Sat, 14 Nov 2015 23:02:13 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</guid>
       <description>
 
 &lt;p&gt;Slackでの社内Twitterを日報にするToolを作っている.&lt;/p&gt;
@@ -2017,7 +2017,7 @@ SlackのAPIのResponseにUnicode Escape Sequenceがあり、&lt;a href=&#34;http
 
 &lt;p&gt;先日こんな記事があり、Kaizen Platform社内Slackにも&lt;strong&gt;技術顧問の先導&lt;/strong&gt;により &lt;code&gt;#times_${username}&lt;/code&gt; channelが開設された.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;やってみて感じたことと、これに関してのToolを作っているので報告する.&lt;/p&gt;
 
@@ -2046,7 +2046,7 @@ SlackのAPIのResponseにUnicode Escape Sequenceがあり、&lt;a href=&#34;http
 
 &lt;p&gt;ということで、一日の終わりにこの &lt;code&gt;#times_${username}&lt;/code&gt; をまとめて日報とするToolを作っている.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;タスク管理はTrelloを使用しており、そのログを &lt;code&gt;#times_${username}&lt;/code&gt; に流すようにした.&lt;br /&gt;
 今はこのMarkdownを&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿している.&lt;/p&gt;
@@ -2073,10 +2073,10 @@ Serverとして機能をつけたらDocker Imageも&lt;a href=&#34;https://hub.d
     
     <item>
       <title>Tech Talk About Lisp</title>
-      <link>http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</link>
+      <link>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</link>
       <pubDate>Sun, 01 Nov 2015 22:38:10 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</guid>
       <description>&lt;p&gt;社内のTech Talk #4でLispについて発表した.&lt;/p&gt;
 
 &lt;p&gt;LispやS-expressionについての軽い話をした.&lt;br /&gt;
@@ -2084,7 +2084,7 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
 たぶんTalkがないとよくわからない部分が多いだろうけど公開しておく.
 &lt;iframe
   class=&#34;iframe-slide&#34;
-  src=&#34;http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;
+  src=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;
   width=&#34;100%&#34;
   style=&#34;border-width: 1px&#34;&gt;
 &lt;/iframe&gt;
@@ -2103,17 +2103,17 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
     window.addEventListener(&#39;resize&#39;, init);
   })()
 &lt;/script&gt;
-&lt;a href=&#34;http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;
+&lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;
 &lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>React Native on Android device</title>
-      <link>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</link>
+      <link>https://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</link>
       <pubDate>Wed, 16 Sep 2015 10:06:16 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</guid>
       <description>
 
 &lt;p&gt;React Native for Androidを実機で動かす.&lt;/p&gt;
@@ -2132,7 +2132,7 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
 
 &lt;p&gt;そしてこの真っ赤なエラー画面に遭遇して面食らう.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150916/error.png&#34; alt=&#34;Error on device&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20150916/error.png&#34; alt=&#34;Error on device&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;なにが起こっているか.&lt;/p&gt;
 
@@ -2174,10 +2174,10 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
     
     <item>
       <title>Setup React Native for Android</title>
-      <link>http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</link>
+      <link>https://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</link>
       <pubDate>Tue, 15 Sep 2015 10:39:31 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</guid>
       <description>
 
 &lt;p&gt;OS XでのReact Native for Androidのセットアップを紹介.&lt;/p&gt;
@@ -2274,7 +2274,7 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
 
 &lt;p&gt;でAVD Managerを立ち上げ&lt;code&gt;Create...&lt;/code&gt;でAVDを作成し&lt;code&gt;Start...&lt;/code&gt;でEmulatorを立ち上げる.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150915/CreateAVD.png&#34; alt=&#34;Create AVD&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20150915/CreateAVD.png&#34; alt=&#34;Create AVD&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;又はすでに&lt;code&gt;~/.android/avd/&lt;/code&gt;に&lt;code&gt;.avd&lt;/code&gt;ファイルがあれば、&lt;/p&gt;
 
@@ -2319,7 +2319,7 @@ react-native run-android
 
 &lt;p&gt;でEmulator又は(接続してsetupしていれば)実機でApplicationが立ち上がる.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150915/welcome-to-react-native.png&#34; alt=&#34;Welcome to React Native&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20150915/welcome-to-react-native.png&#34; alt=&#34;Welcome to React Native&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;see-also:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;See Also&lt;/h2&gt;
 

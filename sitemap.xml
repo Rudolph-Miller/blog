@@ -2,123 +2,123 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.rudolph-miller.com/</loc>
+    <loc>https://blog.rudolph-miller.com/</loc>
     <lastmod>2016-01-25T21:46:15+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</loc>
+    <loc>https://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</loc>
     <lastmod>2016-01-25T21:46:15+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</loc>
+    <loc>https://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</loc>
     <lastmod>2016-01-25T00:01:11+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</loc>
+    <loc>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</loc>
     <lastmod>2016-01-15T18:45:16+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/slide/2016/01/15/kaizen-week-2/</loc>
+    <loc>https://blog.rudolph-miller.com/slide/2016/01/15/kaizen-week-2/</loc>
     <lastmod>2016-01-15T15:03:17+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</loc>
+    <loc>https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</loc>
     <lastmod>2016-01-11T21:15:39+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2016/01/04/material-ui/</loc>
+    <loc>https://blog.rudolph-miller.com/2016/01/04/material-ui/</loc>
     <lastmod>2016-01-04T20:54:36+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</loc>
     <lastmod>2015-12-25T12:34:52+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/12/23/redux-router/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/12/23/redux-router/</loc>
     <lastmod>2015-12-23T00:01:34+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</loc>
     <lastmod>2015-12-15T12:53:17+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</loc>
     <lastmod>2015-12-13T23:00:37+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</loc>
     <lastmod>2015-12-11T00:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</loc>
     <lastmod>2015-11-16T15:33:08+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</loc>
     <lastmod>2015-11-14T23:02:13+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</loc>
     <lastmod>2015-11-01T22:38:10+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</loc>
+    <loc>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</loc>
     <lastmod>2015-10-29T00:34:45+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/slide/2015/10/16/upgrade_ruby_on_rails/</loc>
+    <loc>https://blog.rudolph-miller.com/slide/2015/10/16/upgrade_ruby_on_rails/</loc>
     <lastmod>2015-10-16T12:01:40+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</loc>
     <lastmod>2015-09-16T10:06:16+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</loc>
     <lastmod>2015-09-15T10:39:31+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/08/27/volt/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/08/27/volt/</loc>
     <lastmod>2015-08-27T11:32:17+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/08/21/integral-rest/</loc>
     <lastmod>2015-08-21T11:20:54+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</loc>
     <lastmod>2015-08-20T10:10:48+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/08/18/introduction-to-itamae/</loc>
     <lastmod>2015-08-18T22:19:36+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</loc>
+    <loc>https://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</loc>
     <lastmod>2015-08-10T13:53:10+09:00</lastmod>
   </url>
   

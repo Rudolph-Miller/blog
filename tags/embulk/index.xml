@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Embulk on (rudolph-miller)</title>
-    <link>http://blog.rudolph-miller.com/tags/embulk/</link>
+    <link>https://blog.rudolph-miller.com/tags/embulk/</link>
     <description>Recent content in Embulk on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 15 Jan 2016 18:45:16 +0900</lastBuildDate>
-    <atom:link href="http://blog.rudolph-miller.com/tags/embulk/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/embulk/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Import Query Result to BigQuery</title>
-      <link>http://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</link>
       <pubDate>Fri, 15 Jan 2016 18:45:16 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</guid>
       <description>
 
 &lt;p&gt;特定DirectoryにあるSQL fileを実行して、結果をBigQueryに入れるScriptを書いた.&lt;/p&gt;

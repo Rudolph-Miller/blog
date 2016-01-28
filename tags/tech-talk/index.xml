@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tech Talk on (rudolph-miller)</title>
-    <link>http://blog.rudolph-miller.com/tags/tech-talk/</link>
+    <link>https://blog.rudolph-miller.com/tags/tech-talk/</link>
     <description>Recent content in Tech Talk on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Sun, 01 Nov 2015 22:38:10 +0900</lastBuildDate>
-    <atom:link href="http://blog.rudolph-miller.com/tags/tech-talk/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/tech-talk/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Tech Talk About Lisp</title>
-      <link>http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</link>
+      <link>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</link>
       <pubDate>Sun, 01 Nov 2015 22:38:10 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</guid>
       <description>&lt;p&gt;社内のTech Talk #4でLispについて発表した.&lt;/p&gt;
 
 &lt;p&gt;LispやS-expressionについての軽い話をした.&lt;br /&gt;
@@ -23,7 +23,7 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
 たぶんTalkがないとよくわからない部分が多いだろうけど公開しておく.
 &lt;iframe
   class=&#34;iframe-slide&#34;
-  src=&#34;http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;
+  src=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;
   width=&#34;100%&#34;
   style=&#34;border-width: 1px&#34;&gt;
 &lt;/iframe&gt;
@@ -42,17 +42,17 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
     window.addEventListener(&#39;resize&#39;, init);
   })()
 &lt;/script&gt;
-&lt;a href=&#34;http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;
+&lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;
 &lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>About Lisp</title>
-      <link>http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</link>
+      <link>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</link>
       <pubDate>Thu, 29 Oct 2015 00:34:45 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</guid>
+      <guid>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</guid>
       <description>
 
 &lt;p&gt;layout: true

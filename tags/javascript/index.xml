@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on (rudolph-miller)</title>
-    <link>http://blog.rudolph-miller.com/tags/javascript/</link>
+    <link>https://blog.rudolph-miller.com/tags/javascript/</link>
     <description>Recent content in Javascript on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Wed, 16 Sep 2015 10:06:16 +0900</lastBuildDate>
-    <atom:link href="http://blog.rudolph-miller.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>React Native on Android device</title>
-      <link>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</link>
+      <link>https://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</link>
       <pubDate>Wed, 16 Sep 2015 10:06:16 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/09/16/react-native-on-android-device/</guid>
       <description>
 
 &lt;p&gt;React Native for Androidを実機で動かす.&lt;/p&gt;
@@ -34,7 +34,7 @@
 
 &lt;p&gt;そしてこの真っ赤なエラー画面に遭遇して面食らう.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150916/error.png&#34; alt=&#34;Error on device&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20150916/error.png&#34; alt=&#34;Error on device&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;なにが起こっているか.&lt;/p&gt;
 
@@ -76,10 +76,10 @@
     
     <item>
       <title>Setup React Native for Android</title>
-      <link>http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</link>
+      <link>https://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</link>
       <pubDate>Tue, 15 Sep 2015 10:39:31 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</guid>
       <description>
 
 &lt;p&gt;OS XでのReact Native for Androidのセットアップを紹介.&lt;/p&gt;
@@ -176,7 +176,7 @@
 
 &lt;p&gt;でAVD Managerを立ち上げ&lt;code&gt;Create...&lt;/code&gt;でAVDを作成し&lt;code&gt;Start...&lt;/code&gt;でEmulatorを立ち上げる.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150915/CreateAVD.png&#34; alt=&#34;Create AVD&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20150915/CreateAVD.png&#34; alt=&#34;Create AVD&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;又はすでに&lt;code&gt;~/.android/avd/&lt;/code&gt;に&lt;code&gt;.avd&lt;/code&gt;ファイルがあれば、&lt;/p&gt;
 
@@ -221,7 +221,7 @@ react-native run-android
 
 &lt;p&gt;でEmulator又は(接続してsetupしていれば)実機でApplicationが立ち上がる.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.rudolph-miller.com/images/20150915/welcome-to-react-native.png&#34; alt=&#34;Welcome to React Native&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20150915/welcome-to-react-native.png&#34; alt=&#34;Welcome to React Native&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;see-also:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;See Also&lt;/h2&gt;
 

@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Integral on (rudolph-miller)</title>
-    <link>http://blog.rudolph-miller.com/tags/integral/</link>
+    <link>https://blog.rudolph-miller.com/tags/integral/</link>
     <description>Recent content in Integral on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 21 Aug 2015 11:20:54 +0900</lastBuildDate>
-    <atom:link href="http://blog.rudolph-miller.com/tags/integral/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/integral/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Integral-Rest</title>
-      <link>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</link>
+      <link>https://blog.rudolph-miller.com/2015/08/21/integral-rest/</link>
       <pubDate>Fri, 21 Aug 2015 11:20:54 +0900</pubDate>
       
-      <guid>http://blog.rudolph-miller.com/2015/08/21/integral-rest/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/08/21/integral-rest/</guid>
       <description>
 
 &lt;p&gt;稚拙のIntegral-Restを紹介.&lt;/p&gt;
