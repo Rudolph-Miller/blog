@@ -35,21 +35,21 @@
   <meta name="description" content="{{ . }}" />
   {{ end }}
 
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/bootstrap.min.css" />
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/main.css" />
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/font-awesome.min.css" />
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/github.css" />
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}highlight-lisp/themes/github.css" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/highlight-lisp/themes/github.css" />
   <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/earlyaccess/notosansjp.css' rel='stylesheet' type='text/css'>
-  <link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.png" />
-  <link rel="icon" href="{{ .Site.BaseURL }}images/favicon.png" />
-  <link rel="apple-touch-icon" href="{{ .Site.BaseURL }}images/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+  <link rel="icon" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
   {{ if eq .URL "/" }}
   <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
   {{ end }}
   {{ if eq .Section "slide" }}
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300|Ubuntu+Mono:400,700,400italic|Yanone+Kaffeesatz|Droid+Serif:400,700,400italic' rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/remark.css" />
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300|Ubuntu+Mono:400,700,400italic|Yanone+Kaffeesatz|Droid+Serif:400,700,400italic' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="/css/remark.css" />
   {{ end }}
 </head>
