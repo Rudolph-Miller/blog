@@ -49,7 +49,7 @@
       <div class="social-button">
         <ul class="twitter-share-button-with-balloon">
           <li>
-          <a href="https://twitter.com/search?q={{ .Permalink }}" target="_blank">
+          <a href="https://twitter.com/search?q={{ .RelPermalink }}" target="_blank">
               <span class="balloon-bottom">list</span>
             </a>
           </li>
@@ -68,22 +68,22 @@
 
       <!-- Facebook -->
       <div class="social-button">
-        <div class="fb-like" data-href="{{ .Permalink }}" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+        <div class="fb-like" data-href="{{ .RelPermalink }}" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
       </div>
 
       <!-- Google+ -->
       <div class="social-button">
-        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="{{ .Permalink }}"></div>
+        <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-href="{{ .RelPermalink }}"></div>
       </div>
     </section>
     <ul class="pager">
       {{ if .Next }}
-      <li class="previous"><a href="{{ .Next.Permalink }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+      <li class="previous"><a href="{{ .Next.RelPermalink }}"><span aria-hidden="true">&larr;</span> Older</a></li>
       {{ else }}
       <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
       {{ end }}
       {{ if .Prev }}
-      <li class="next"><a href="{{ .Prev.Permalink }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      <li class="next"><a href="{{ .Prev.RelPermalink }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
       {{ else }}
       <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
       {{ end }}
