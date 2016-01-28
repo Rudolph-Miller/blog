@@ -1,8 +1,6 @@
 {{ partial "raw_header.html" . }}
-{{ $baseurl := .Site.BaseURL }}
-
 <body>
-  <script src="{{ .Site.BaseURL }}js/remark-latest.min.js"></script>
+  <script src="/js/remark-latest.min.js"></script>
   <textarea id="source" style="display: none;">
 {{ .RawContent }}
   </textarea>
