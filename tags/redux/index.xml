@@ -175,8 +175,7 @@ const reducer = combineReducers({
 
 &lt;h2 id=&#34;pushstate:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;pushState&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;No page found with path or logical name &#34;post/pushstate-in-redux-router.md&#34;.
-&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
+&lt;p&gt;&lt;a href=&#34;http://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
 Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&gt;pushState&lt;/code&gt; ででもPageの遷移ができるが、
 この改修により &lt;code&gt;pushState&lt;/code&gt; での遷移でもScrollを最上部に持っていくことができる.&lt;/p&gt;
 
