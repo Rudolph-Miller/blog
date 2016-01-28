@@ -11,6 +11,10 @@ detect-js-changesってToolを作った話
 
 <!--more-->
 
+1. [Background]({{< relref "#background" >}})
+2. [detect-js-changes]({{< relref "#detect-js-changes" >}})
+3. [Implementation]({{< relref "#implementation" >}})
+4. [See Also]({{< relref "#see-also" >}})
 
 - なぜつくったか
 - いままでのflow
