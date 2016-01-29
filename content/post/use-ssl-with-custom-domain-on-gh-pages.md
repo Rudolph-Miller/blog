@@ -125,8 +125,10 @@ Subdomainの設定は上のMenuの `DNS`
 DNSの反映待ちはあったが、簡単にCustom domainなGitHub Pagesを簡単にSSL対応できた.
 
 
+
 # See Also
 
 - [CloudFlare](https://www.cloudflare.com/)
+- [CloudFlare system status](https://www.cloudflarestatus.com/)
 - [Configuring CloudFlare’s Universal SSL](https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/)
 - [Setting up a custom domain with GitHub Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/)

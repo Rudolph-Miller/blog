@@ -154,6 +154,7 @@ Web serverがWeb browserに対して、次回以降HTTPの代わりにHTTPSを�
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.cloudflare.com/&#34;&gt;CloudFlare&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cloudflarestatus.com/&#34;&gt;CloudFlare system status&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/&#34;&gt;Configuring CloudFlare’s Universal SSL&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/&#34;&gt;Setting up a custom domain with GitHub Pages&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
