@@ -26,7 +26,7 @@ Custom domainを使用している場合は
 証明書のdomainが異なるためGitHubの発行している証明書ではSSLが使えないようだった.
 
 なにかやり方がないかと調べていると、
-CloudFlareというDNSサービスを使えばSSL対応できそうだったのでやってみた.
+CloudFlareのDNSを使えばCustom domainでもSSL対応できそうだったのでやってみた.
 
 
 # CloudFlare
