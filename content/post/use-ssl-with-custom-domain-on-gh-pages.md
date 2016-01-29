@@ -42,11 +42,14 @@ Freeプランがあり、基本無料で使える.
 Sign upからdomainの登録は迷わないと思うので割愛.
 
 今回した設定は `SSL`, `HSTS`, `Subdomain`.
+基本的にはCloudFlareの管理画面のDomain毎のOverviewの上のMenuから入って設定する.
+
+{{% image "20160129/menu.png" %}}
 
 
 ### SSL
 
-まずSSLの設定だが、上のMenuの `Crypto`
+SSLの設定は上のMenuの `Crypto`
 
 {{% image "20160129/crypto.png" %}}
 
@@ -69,6 +72,27 @@ SSLの設定は `Off`, `Flexible`, `Full`, `Strict` と選べる.
 
 
 ### HSTS
+
+---
+
+HSTSと言うのは `HTTP Strict Transport Security` の略で、
+Web serverがWeb browserに対して、次回以降HTTPの代わりにHTTPSを使うように伝達する機能.
+
+__次回以降__なので初回はHTTPでRequestし、その次からHTTPSを強制することができる.
+(もちろん初回からHTTPSでRequestもできる.)
+
+初回から強制するために、BrowserがHSTSの設定のpreloadを行う機能もある.
+(CloadFlareでもpreloadを有効にすることが可能.)
+
+---
+
+HSTSの設定は `SSL` 同様に上のMenuの `Crypto`
+
+{{% image "20160129/crypto.png" %}}
+
+から設定できる.
+
+{{% image "20160129/hsts.png" %}}
 
 
 ### Subdomain
