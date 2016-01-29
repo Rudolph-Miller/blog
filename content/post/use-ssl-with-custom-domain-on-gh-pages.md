@@ -26,7 +26,7 @@ Custom domainを使用している場合は
 証明書のdomainが異なるためGitHubの発行している証明書ではSSLが使えないようだった.
 
 なにかやり方がないかと調べていると、
-CloudFlareのDNSを使えばCustom domainでもSSL対応できそうだったのでやってみた.
+[CloudFlare](https://www.cloudflare.com/)のDNSを使えばCustom domainでもSSL対応できそうだったのでやってみた.
 
 
 # CloudFlare
@@ -42,15 +42,18 @@ Freeプランがあり、基本無料で使える.
 Sign upからdomainの登録は迷わないと思うので割愛.
 
 今回した設定は `SSL`, `HSTS`, `Subdomain`.
+基本的にはCloudFlareの管理画面のDomain毎のOverviewの上のMenuから入って設定する.
+
+{{% image "20160129/menu.png" %}}
 
 
 ### SSL
 
-まずSSLの設定だが、上のMenuの `Crypto`
+SSLの設定は上のMenuの `Crypto`
 
 {{% image "20160129/crypto.png" %}}
 
-から設定できる.
+から行う.
 
 {{% image "20160129/ssl.png" %}}
 
@@ -70,8 +73,61 @@ SSLの設定は `Off`, `Flexible`, `Full`, `Strict` と選べる.
 
 ### HSTS
 
+---
+
+HSTSと言うのは `HTTP Strict Transport Security` の略で、
+Web serverがWeb browserに対して、次回以降HTTPの代わりにHTTPSを使うように伝達する機能.
+
+__次回以降__なので初回はHTTPでRequestし、その次からHTTPSを強制することができる.
+(もちろん初回からHTTPSでRequestもできる.)
+
+初回から強制するために、BrowserがHSTSの設定のpreloadを行う機能もある.
+(CloadFlareでもpreloadを有効にすることが可能.)
+
+---
+
+HSTSの設定は `SSL` 同様に上のMenuの `Crypto`
+
+{{% image "20160129/crypto.png" %}}
+
+から行う.
+
+{{% image "20160129/hsts.png" %}}
+
 
 ### Subdomain
 
+Subdomainの設定は上のMenuの `DNS`
+
+{{% image "20160129/dns.png" %}}
+
+から行う.
+
+今回はSubdomainが *blog.rudolph-miller.com* でGitHub PagesのDomainが *rudolph-miller.github.io* なので、
+
+{{% image "20160129/dns_input.png" %}}
+
+こんな感じに `CNAME` を登録し、
+
+{{% image "20160129/dns_status.png" %}}
+
+`Status` を
+
+{{% image "20160129/not_penetrating.png" %}}
+
+から
+
+{{% image "20160129/penetrating.png" %}}
+
+にClickで変更すると完了.
+
+---
+
+DNSの反映待ちはあったが、簡単にCustom domainなGitHub Pagesを簡単にSSL対応できた.
+
 
 # See Also
+
+- [CloudFlare](https://www.cloudflare.com/)
+- [Configuring CloudFlare’s Universal SSL](https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/)
+- [Setting up a custom domain with GitHub Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/)
