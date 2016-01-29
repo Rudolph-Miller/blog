@@ -21,9 +21,8 @@ Custom domainなGitHub PagesをSSL対応する.
 *blog.rudolph-miller.com* はGitHub Pagesで配信しており、
 ふとGitHub PagesはSSL対応しているのかと思い調べてみた.
 
-defaultの *github.io* domainの場合はSSL対応しているが、
-Custom domainを使用している場合は
-証明書のdomainが異なるためGitHubの発行している証明書ではSSLが使えないようだった.
+defaultの *github.io* domainの場合はSSL対応しているが ([公式には完了していない??](https://github.com/isaacs/github/issues/156)) 、
+Custom domainを使用している場合は証明書のdomainが異なるためGitHubの発行している証明書ではSSLが使えないようだった.
 
 なにかやり方がないかと調べていると、
 [CloudFlare](https://www.cloudflare.com/)のDNSを使えばCustom domainでもSSL対応できそうだったのでやってみた.
