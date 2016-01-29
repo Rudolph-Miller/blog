@@ -1,10 +1,10 @@
 +++
 Description = "Custom domainなGitHub PagesをSSL対応する."
 Tags = ["GitHub Pages"]
-date = "2016-01-28T15:56:50+09:00"
-draft = true
-title = "Use SSL with Custom Domain on GitHub Pages"
+date = "2016-01-29T17:18:42+09:00"
+draft = false
 slug = "use-ssl-with-custom-domain-on-gh-pages"
+title = "Use SSL with Custom Domain on GitHub Pages"
 +++
 
 Custom domainなGitHub PagesをSSL対応する.
