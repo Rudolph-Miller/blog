@@ -127,3 +127,7 @@ DNSの反映待ちはあったが、簡単にCustom domainなGitHub Pagesを簡�
 
 
 # See Also
+
+- [CloudFlare](https://www.cloudflare.com/)
+- [Configuring CloudFlare’s Universal SSL](https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/)
+- [Setting up a custom domain with GitHub Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/)
