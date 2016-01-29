@@ -318,6 +318,7 @@ img {
 
 .twitter-share-button-with-balloon {
   list-style: none;
+  padding: 0;
 }
 
 .twitter-share-button-with-balloon > :first-child + * {
