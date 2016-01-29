@@ -11,6 +11,13 @@ Custom domainなGitHub PagesをSSL対応する.
 
 <!--more-->
 
+1. [SSL on GitHub Pages]({{< relref "#ssl-on-github-pages" >}})
+2. [CloudFlare]({{< relref "#cloudflare" >}})
+3. [See Also]({{< relref "#see-also" >}})
+
+
+# SSL on GitHub Pages
+
 blog.rudolph-miller.com はGitHub Pagesで配信しており、
 ふとGitHub PagesはSSL対応しているのかと思い調べてみた.
 
@@ -22,8 +29,7 @@ Custom domainを使用している場合は
 CloudFlareというDNSサービスを使えばSSL対応できそうだったのでやってみた.
 
 
-# SSL on GitHub Pages
-
 # CloudFlare
+
 
 # See Also
