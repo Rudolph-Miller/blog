@@ -7,8 +7,158 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Mon, 25 Jan 2016 21:46:15 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 29 Jan 2016 17:18:42 +0900</lastBuildDate>
     <atom:link href="https://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Use SSL with Custom Domain on GitHub Pages</title>
+      <link>https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/</link>
+      <pubDate>Fri, 29 Jan 2016 17:18:42 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/</guid>
+      <description>
+
+&lt;p&gt;Custom domainなGitHub PagesをSSL対応する.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#ssl-on-github-pages:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;SSL on GitHub Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cloudflare:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;CloudFlare&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ssl-on-github-pages:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;SSL on GitHub Pages&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;blog.rudolph-miller.com&lt;/em&gt; はGitHub Pagesで配信しており、
+ふとGitHub PagesはSSL対応しているのかと思い調べてみた.&lt;/p&gt;
+
+&lt;p&gt;defaultの &lt;em&gt;github.io&lt;/em&gt; domainの場合はSSL対応しているが (&lt;a href=&#34;https://github.com/isaacs/github/issues/156&#34;&gt;公式には完了していない??&lt;/a&gt;) 、
+Custom domainを使用している場合は証明書のdomainが異なるためGitHubの発行している証明書ではSSLが使えないようだった.&lt;/p&gt;
+
+&lt;p&gt;なにかやり方がないかと調べていると、
+&lt;a href=&#34;https://www.cloudflare.com/&#34;&gt;CloudFlare&lt;/a&gt;のDNSを使えばCustom domainでもSSL対応できそうだったのでやってみた.&lt;/p&gt;
+
+&lt;h1 id=&#34;cloudflare:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;CloudFlare&lt;/h1&gt;
+
+&lt;h2 id=&#34;about:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;About&lt;/h2&gt;
+
+&lt;p&gt;CloudFlareはCDNやDNSをやってるUSの企業.
+Freeプランがあり、基本無料で使える.&lt;/p&gt;
+
+&lt;h2 id=&#34;setting:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;Setting&lt;/h2&gt;
+
+&lt;p&gt;Sign upからdomainの登録は迷わないと思うので割愛.&lt;/p&gt;
+
+&lt;p&gt;今回した設定は &lt;code&gt;SSL&lt;/code&gt;, &lt;code&gt;HSTS&lt;/code&gt;, &lt;code&gt;Subdomain&lt;/code&gt;.
+基本的にはCloudFlareの管理画面のDomain毎のOverviewの上のMenuから入って設定する.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/menu.png&#34; alt=&#34;20160129/menu.png&#34;&gt;
+
+
+&lt;h3 id=&#34;ssl:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;SSL&lt;/h3&gt;
+
+&lt;p&gt;SSLの設定は上のMenuの &lt;code&gt;Crypto&lt;/code&gt;&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
+
+
+&lt;p&gt;から行う.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/ssl.png&#34; alt=&#34;20160129/ssl.png&#34;&gt;
+
+
+&lt;p&gt;SSLの設定は &lt;code&gt;Off&lt;/code&gt;, &lt;code&gt;Flexible&lt;/code&gt;, &lt;code&gt;Full&lt;/code&gt;, &lt;code&gt;Strict&lt;/code&gt; と選べる.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Flexible&lt;/code&gt;: ClientとCloudFlareの間は暗号化されたConnectionを使い、CloudFlareからServerは暗号化されてないConnectionを使う.
+
+&lt;ul&gt;
+&lt;li&gt;ServerにSSL証明書が必要ない.&lt;/li&gt;
+&lt;li&gt;今回はこれを使用.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Full&lt;/code&gt;: ClientとCloudFlare間もCloudFlareからServer間も暗号化されたConnectionを使う.
+
+&lt;ul&gt;
+&lt;li&gt;ServerにSSL証明書が必要.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Strict&lt;/code&gt;: HTTPできたRequestをHTTPSにupgradeする.
+
+&lt;ul&gt;
+&lt;li&gt;Enterprise only.&lt;/li&gt;
+&lt;li&gt;ServerにSSL証明書が必要.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;今回は &lt;code&gt;Flexible&lt;/code&gt; を選択.&lt;/p&gt;
+
+&lt;h3 id=&#34;hsts:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;HSTS&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;HSTSと言うのは &lt;code&gt;HTTP Strict Transport Security&lt;/code&gt; の略で、
+Web serverがWeb browserに対して、次回以降HTTPの代わりにHTTPSを使うように伝達する機能.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;次回以降&lt;/strong&gt;なので初回はHTTPでRequestし、その次からHTTPSを強制することができる.
+(もちろん初回からHTTPSでRequestもできる.)&lt;/p&gt;
+
+&lt;p&gt;初回から強制するために、BrowserがHSTSの設定のpreloadを行う機能もある.
+(CloadFlareでもpreloadを有効にすることが可能.)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;HSTSの設定は &lt;code&gt;SSL&lt;/code&gt; 同様に上のMenuの &lt;code&gt;Crypto&lt;/code&gt;&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
+
+
+&lt;p&gt;から行う.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/hsts.png&#34; alt=&#34;20160129/hsts.png&#34;&gt;
+
+
+&lt;h3 id=&#34;subdomain:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;Subdomain&lt;/h3&gt;
+
+&lt;p&gt;Subdomainの設定は上のMenuの &lt;code&gt;DNS&lt;/code&gt;&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns.png&#34; alt=&#34;20160129/dns.png&#34;&gt;
+
+
+&lt;p&gt;から行う.&lt;/p&gt;
+
+&lt;p&gt;今回はSubdomainが &lt;em&gt;blog.rudolph-miller.com&lt;/em&gt; でGitHub PagesのDomainが &lt;em&gt;rudolph-miller.github.io&lt;/em&gt; なので、&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns_input.png&#34; alt=&#34;20160129/dns_input.png&#34;&gt;
+
+
+&lt;p&gt;こんな感じに &lt;code&gt;CNAME&lt;/code&gt; を登録し、&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns_status.png&#34; alt=&#34;20160129/dns_status.png&#34;&gt;
+
+
+&lt;p&gt;&lt;code&gt;Status&lt;/code&gt; を&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/not_penetrating.png&#34; alt=&#34;20160129/not_penetrating.png&#34;&gt;
+
+
+&lt;p&gt;から&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/penetrating.png&#34; alt=&#34;20160129/penetrating.png&#34;&gt;
+
+
+&lt;p&gt;にClickで変更すると完了.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;DNSの反映待ちはあったが、簡単にCustom domainなGitHub Pagesを簡単にSSL対応できた.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cloudflare.com/&#34;&gt;CloudFlare&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/&#34;&gt;Configuring CloudFlare’s Universal SSL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/&#34;&gt;Setting up a custom domain with GitHub Pages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Scroll to the top with Redux Router</title>
@@ -2168,167 +2318,6 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/running-on-device-android.html&#34;&gt;Running On Device(Android)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://developer.android.com/tools/device.html&#34;&gt;Using Handware Devices&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Setup React Native for Android</title>
-      <link>https://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</link>
-      <pubDate>Tue, 15 Sep 2015 10:39:31 +0900</pubDate>
-      
-      <guid>https://blog.rudolph-miller.com/2015/09/15/setup-react-native-for-android/</guid>
-      <description>
-
-&lt;p&gt;OS XでのReact Native for Androidのセットアップを紹介.&lt;/p&gt;
-
-&lt;p&gt;ようやくReact Native for Androidが公開されたので、
-まずはOS Xでのセットアップを紹介.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#install-and-configure-sdk:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Install and configure SDK&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#install-and-run-android-stock-emulator:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Install and run Android stock emulator&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#setup:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;install-and-configure-sdk:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Install and configure SDK&lt;/h2&gt;
-
-&lt;p&gt;SDKのインストールと設定をする.&lt;/p&gt;
-
-&lt;p&gt;まずは&lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&#34;&gt;JDK&lt;/a&gt;の最新版をインストール.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;android-sdk&lt;/code&gt;を&lt;code&gt;brew&lt;/code&gt;でインストールします.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;brew install android-sdk
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;次に&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;export ANDROID_HOME=/usr/local/opt/android-sdk
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;を&lt;code&gt;~/.zshrc&lt;/code&gt;又は&lt;code&gt;~/.bashrc&lt;/code&gt;に追加し再読み込み.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;source ~/.zshrc
-# source ~/.bashrc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;Android SDK Manager&lt;/code&gt;を起動.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;android
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Android SDK Build-tools version 23.0.1&lt;/li&gt;
-&lt;li&gt;Android 6.0 (API 23)&lt;/li&gt;
-&lt;li&gt;Android Support Repository&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;にチェックを入れて&lt;code&gt;Install Packages&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;install-and-run-android-stock-emulator:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Install and run Android stock emulator&lt;/h2&gt;
-
-&lt;p&gt;Android emulatorをインストールして起動する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;android
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;で&lt;code&gt;Android SDK Manager&lt;/code&gt;を起動して&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Intel x86 Atom System Image (for Android 5.1.1 - API 22)
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Android 5.1.1 (API 22)&lt;/code&gt;のタブ中にあるので注意.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Intel x86 Emulator Accelerator (HAXM installer)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;にチェックを入れて&lt;code&gt;Install Packages&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;configure-haxm:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Configure HAXM&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://developer.android.com/tools/devices/emulator.html#vm-mac&#34;&gt;HAXM&lt;/a&gt;の設定をする.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;open /usr/local/Cellar/android-sdk/24.3.4/extras/intel/Hardware_Accelerated_Execution_Manager/IntelHAXM_1.1.4.dmg
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;IntelHAXM_1.1.4.mpkg&lt;/code&gt;をダブルクリックし、画面の指示に従ってインストールする.&lt;/p&gt;
-
-&lt;p&gt;インストール終了後、新しい&lt;code&gt;kernel extension&lt;/code&gt;が正しく処理されていることを確認するため、&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;kextstat | grep intel
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;を実行し&lt;code&gt;com.intel.kext.intelhaxm&lt;/code&gt;が表示されることを確認する.&lt;/p&gt;
-
-&lt;p&gt;これでHAXMの設定は完了.&lt;/p&gt;
-
-&lt;h3 id=&#34;run-android-emulator:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Run Android emulator&lt;/h3&gt;
-
-&lt;p&gt;Android emulatorを起動する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;android avd
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でAVD Managerを立ち上げ&lt;code&gt;Create...&lt;/code&gt;でAVDを作成し&lt;code&gt;Start...&lt;/code&gt;でEmulatorを立ち上げる.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20150915/CreateAVD.png&#34; alt=&#34;Create AVD&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;又はすでに&lt;code&gt;~/.android/avd/&lt;/code&gt;に&lt;code&gt;.avd&lt;/code&gt;ファイルがあれば、&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# ls ~/.android/avd/
-# =&amp;gt; Nexus_5_API_23_x86.avd Nexus_5_API_23_x86.ini
-emulator -avd Nexus_5_API_23_x86
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でファイル名を指定してEmulatorを起動できる.&lt;/p&gt;
-
-&lt;h2 id=&#34;setup:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;Setup&lt;/h2&gt;
-
-&lt;p&gt;最後にReact Native本体のセットアップをする.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/creationix/nvm&#34;&gt;NVM&lt;/a&gt;や&lt;a href=&#34;https://github.com/wfarr/nodenv&#34;&gt;nodenv&lt;/a&gt;
-などで&lt;code&gt;io.js 1.0 or newer&lt;/code&gt;を準備する.&lt;br /&gt;
-(今回はnodenvとNode.js v4.0.0を使用.)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;nodenv install v4.0.0
-# nodenv global v4.0.0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;npmでコマンドラインインターフェースの&lt;code&gt;react-native-cli&lt;/code&gt;をインストールする.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install -g react-native-cli
-# nodenv rehash
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;すると&lt;code&gt;react-native&lt;/code&gt;コマンドが使用可能になるので、適当なディレクトリで&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;react-native init AwesomeProject
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;を実行すると、iOS用に&lt;code&gt;AwesomeProject/iOS/AwesomeProject.xcodeproj&lt;/code&gt;と&lt;br /&gt;
-Android用に&lt;code&gt;AwesomeProject/android/app&lt;/code&gt;とが生成される.&lt;/p&gt;
-
-&lt;p&gt;後は&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cd AwesomeProject
-react-native run-android
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でEmulator又は(接続してsetupしていれば)実機でApplicationが立ち上がる.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20150915/welcome-to-react-native.png&#34; alt=&#34;Welcome to React Native&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;see-also:f4f600c0da5570cdeafda90b8b2d1724&#34;&gt;See Also&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/&#34;&gt;React Native&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/getting-started.html#content&#34;&gt;Getting Started - React Native&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/android-setup.html&#34;&gt;Android Setup - React Native&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react-native/docs/tutorial.html#content&#34;&gt;Tutorial - React Native&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://code.facebook.com/posts/1189117404435352&#34;&gt;React Native for Android: How we built the first cross-platform React Native app&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

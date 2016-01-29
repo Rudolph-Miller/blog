@@ -3,8 +3,13 @@
   
   <url>
     <loc>https://blog.rudolph-miller.com/</loc>
-    <lastmod>2016-01-25T21:46:15+09:00</lastmod>
+    <lastmod>2016-01-29T17:18:42+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/</loc>
+    <lastmod>2016-01-29T17:18:42+09:00</lastmod>
   </url>
   
   <url>
