@@ -16,11 +16,23 @@ detect-js-changesってToolを作った話.
 3. [Go]({{< relref "#go" >}})
 4. [See Also]({{< relref "#see-also" >}})
 
+
 # Background
+
+## JavaScript file
+
+Kaizen PlatformではAB TestのJavaScript fileをBaseのfileにClient毎のDataを書き出して生成している.
+生成後、JavaScript fileをClient毎のS3 ObjectにUploadしている.
+
+
+## E2E
+
 
 # detect-js-changes
 
+
 # Go
+
 
 # See Also
 
