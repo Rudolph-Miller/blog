@@ -117,14 +117,12 @@ production:
 
 # Go
 
+- `beautify-go`
+- `diffmatchpatch`
+- `download` と `detect` は `sync.WaitGroup` で並列実行.
+    - `go` で囲うだけで `download` がn倍.
+
 
 # See Also
 
-- なぜつくったか
-- いままでのflow
-- これからのflow
-- 実装についてすこし
-  - `beautify-go`
-  - `diffmatchpatch`
-  - `download` と `detect` は `sync.WaitGroup` で並列実行.
-      - `go` で囲うだけで `download` がn倍.
+- [detect-js-changes](https://github.com/Rudolph-Miller/detect-js-changes)
