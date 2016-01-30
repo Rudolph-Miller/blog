@@ -27,6 +27,14 @@ Kaizen PlatformではAB TestのJavaScript fileをBaseのfileにClient毎のData�
 
 ## E2E
 
+このAB TestのJavaScriptに対してPhantomJSやBrowserStack上でのE2E Testを行っている.
+
+DeployのタイミングでこのE2E Testを実施しているのだが、
+そもそも生成されるJavaScript fileに変更がなかった場合Test結果は変わらないのでskipするようになっている.
+
+
+## Until now
+
 
 # detect-js-changes
 
