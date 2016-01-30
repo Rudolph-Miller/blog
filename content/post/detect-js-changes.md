@@ -35,6 +35,22 @@ DeployのタイミングでこのE2E Testを実施しているのだが、
 
 ## Until now
 
+このJavaScript fileに変更があるかないかの確認フローは、
+
+1. 今までは対象のJavaScript files (16 files) のURLに対して `wget` .
+2. Depoly.
+3. 再度 `wget` .
+4. 末尾にJavaScript file生成日時のTimestampと、ClientのDataに書き出した日時のTimestampがあるので、それら意外に差分がないかを `diff` で確認.
+
+の様な感じだが、面倒くさいポイントがいくつもある.
+
+- 何回も `wget` する.
+    - Timestampの差分すら出なかった場合はS3の反映待ちだったりするので、再度 `wget` する.
+- JavaScript fileはminifyしてあるので、`diff` をとるにはunminifyしないといけない.
+- Timestampの差分はでるので、 `diff` の結果をTimestampの差分かどうか確認しないといけない.
+
+ひとつひとつのStepはScriptが用意されていたりするが、それでも面倒くさい.
+
 
 # detect-js-changes
 
