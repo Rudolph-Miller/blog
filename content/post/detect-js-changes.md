@@ -1,5 +1,5 @@
 +++
-Description = "detect-js-changesってToolを作った話."
+Description = "detect-js-changesという業務Toolを作った話."
 Tags = ["Go", "CLI", "Kaizen Platform"]
 date = "2016-01-27T21:45:41+09:00"
 draft = true
@@ -7,7 +7,7 @@ title = "detect-js-changes"
 slug = "detect-js-changes"
 +++
 
-detect-js-changesってToolを作った話.
+[detect-js-changes](https://github.com/Rudolph-Miller/detect-js-changes)という業務Toolを作った話.
 
 <!--more-->
 
@@ -30,7 +30,7 @@ Kaizen PlatformではAB TestのJavaScript fileをBaseのfileにClient毎のData�
 このAB TestのJavaScriptに対してPhantomJSやBrowserStack上でのE2E Testを行っている.
 
 DeployのタイミングでこのE2E Testを実施しているのだが、
-そもそも生成されるJavaScript fileに変更がなかった場合Test結果は変わらないのでskipするようになっている.
+そもそも生成されるJavaScript fileに変更がなかった場合Test結果は変わらないのでskipする様になっている.
 
 
 ## Until now
@@ -45,14 +45,74 @@ DeployのタイミングでこのE2E Testを実施しているのだが、
 の様な感じだが、面倒くさいポイントがいくつもある.
 
 - 何回も `wget` する.
+    - Deploy環境によってURLが変わる. (QA用やProduction用など.)
     - Timestampの差分すら出なかった場合はS3の反映待ちだったりするので、再度 `wget` する.
 - JavaScript fileはminifyしてあるので、`diff` をとるにはunminifyしないといけない.
 - Timestampの差分はでるので、 `diff` の結果をTimestampの差分かどうか確認しないといけない.
 
 ひとつひとつのStepはScriptが用意されていたりするが、それでも面倒くさい.
 
+Depoly毎 (基本は週2回) にこれを誰かが実行している.
+
 
 # detect-js-changes
+
+この面倒くささを解消するために作ったのが `detect-js-changes` だ.
+
+```sh
+$ go get github.com/Rudolph-Miller/detect-js-changes
+```
+
+でinstallできる.
+
+`detect-js-changes` を使うと上の確認フローが、
+
+1. `detect-js-changes download`
+2. Deploy.
+3. `detect-js-changes download`
+4. `detect-js-changes detect`
+
+の様になる.
+
+Deploy環境ごとのURLは `config.yml` に
+
+```yml
+qa:
+  urls:
+  - https://qa.kaizenplatform.com/file1.js
+  - https://qa.kaizenplatform.com/file2.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file1.js
+  - https://production.kaizenplatform.com/file2.js
+```
+
+の様にYamlで記述し、
+
+```
+detect-js-changes -e qa -c config.yml
+```
+
+の様に指定できる.
+
+`config.yml` でどういうKeywordをignoreするか
+(今回は末尾のTimestampとClientのDataのTimestampを特定するKeyword)
+を指定できる.
+
+```yml
+default:
+  ignore_keywords:
+  - Timestamp
+  - generated_at
+qa:
+  urls:
+  - https://qa.kaizenplatform.com/file1.js
+  - https://qa.kaizenplatform.com/file2.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file1.js
+  - https://production.kaizenplatform.com/file2.js
+```
 
 
 # Go
