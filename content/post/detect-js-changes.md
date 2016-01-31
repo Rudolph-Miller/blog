@@ -119,11 +119,124 @@ production:
 
 軽く実装に触れておく.
 
+言語は `Go` を使用しており、採用理由はなんとなくである.
+
+
 ## CLI
 
-- `cli`
+CLIには [`codegangsta/cli`](https://github.com/codegangsta/cli) を使用した.
+
+感想は特にない.
+
 
 ## YAML
+
+YAML formatのConfig fileのparseには [gopkg.in/yaml.v2](https://github.com/go-yaml/yaml) を使用した.
+
+```go
+package main
+
+import (
+  "fmt"
+  "gopkg.in/yaml.v2"
+  "os"
+)
+
+var data = `
+key1: value1
+key2:
+  key3:
+  - value2
+  - value3
+`
+
+type T struct {
+  Key1 string
+  Key2 struct {
+    Key3 []string
+  }
+}
+
+func main() {
+  t := T{}
+  err := yaml.Unmarshal([]byte(data), &t)
+  if err != nil {
+    fmt.Println(err)
+    os.Exit(1)
+  }
+
+  fmt.Println(t)
+  // {value1 {[value2 value3]}}
+}
+```
+
+の様にOutputの `struct` を用意して `yaml.Unmarshal` するのだが、今回のConfig fileは
+
+```yaml
+default:
+  ignore_keywords:
+  - sample keyword
+development:
+  urls:
+  - https://development.kaizenplatform.com/file0.js
+  - https://development.kaizenplatform.com/file1.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file0.js
+  - https://production.kaizenplatform.com/file1.js
+```
+
+の様に環境名がTop levelのKeyとなりその下に特定のKVが入る形式で、
+環境名はUserが自由に指定でき、Top levelのKeyが指定できない.
+
+この場合は
+
+```go
+package main
+
+import (
+  "fmt"
+  "gopkg.in/yaml.v2"
+  "os"
+)
+
+var data = `
+default:
+  key1: value1
+  key2:
+    key3:
+    - value2
+    - value3
+development:
+  key1: value1
+  key2:
+    key3:
+    - value2
+    - value3
+`
+
+type T struct {
+  Key1 string
+  Key2 struct {
+    Key3 []string
+  }
+}
+
+func main() {
+  m := make(map[string]T)
+  err := yaml.Unmarshal([]byte(data), &m)
+  if err != nil {
+    fmt.Println(err)
+    os.Exit(1)
+  }
+
+  fmt.Println(m)
+  // map[default:{value1 {[value2 value3]}} development:{value1 {[value2 value3]}}]
+}
+```
+
+の様に `map` で指定する.
+
 
 ## Unminify
 
