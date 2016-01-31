@@ -240,7 +240,7 @@ func main() {
 
 ## Unminify
 
-minified fileのunminifyには [`ditashi/jsbeautifier-go/jsbeautifier`](https://github.com/ditashi/jsbeautifier-go) と言う [jsbeautifier](http://jsbeautifier.org) のGo port (CLI tool) の内部APIを使用した.
+minified fileのunminifyには [`ditashi/jsbeautifier-go`](https://github.com/ditashi/jsbeautifier-go) と言う [jsbeautifier](http://jsbeautifier.org) のGo port (CLI tool) の内部APIを使用した.
 
 ```js
 function main(){var e={key1:"value1",key2:{key3:["value2","value3"]}};console.log(e)}
