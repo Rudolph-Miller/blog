@@ -1,10 +1,10 @@
 +++
 Description = "detect-js-changesという業務Toolを作った話."
 Tags = ["Go", "CLI", "Kaizen Platform"]
-date = "2016-01-27T21:45:41+09:00"
-draft = true
-title = "detect-js-changes"
+date = "2016-01-31T21:39:15+09:00"
+draft = false
 slug = "detect-js-changes"
+title = "detect-js-changes"
 +++
 
 [detect-js-changes](https://github.com/Rudolph-Miller/detect-js-changes)という業務Toolを作った話.
