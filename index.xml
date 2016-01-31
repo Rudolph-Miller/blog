@@ -7,8 +7,370 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 29 Jan 2016 17:18:42 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 31 Jan 2016 21:39:15 +0900</lastBuildDate>
     <atom:link href="https://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>detect-js-changes</title>
+      <link>https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/</link>
+      <pubDate>Sun, 31 Jan 2016 21:39:15 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/detect-js-changes&#34;&gt;detect-js-changes&lt;/a&gt;という業務Toolを作った話.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#background:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;Background&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#detect-js-changes:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;detect-js-changes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#go:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;Go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;background:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;Background&lt;/h1&gt;
+
+&lt;h2 id=&#34;javascript-file:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;JavaScript file&lt;/h2&gt;
+
+&lt;p&gt;Kaizen PlatformではAB TestのJavaScript fileをBaseのfileにClient毎のDataを書き出して生成している.
+生成後、JavaScript fileをClient毎のS3 ObjectにUploadしている.&lt;/p&gt;
+
+&lt;h2 id=&#34;e2e:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;E2E&lt;/h2&gt;
+
+&lt;p&gt;このAB TestのJavaScriptに対してPhantomJSやBrowserStack上でのE2E Testを行っている.&lt;/p&gt;
+
+&lt;p&gt;DeployのタイミングでこのE2E Testを実施しているのだが、
+そもそも生成されるJavaScript fileに変更がなかった場合Test結果は変わらないのでskipすることになっている.&lt;/p&gt;
+
+&lt;h2 id=&#34;until-now:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;Until now&lt;/h2&gt;
+
+&lt;p&gt;このJavaScript fileに変更があるかないかの確認フローは、&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;今までは対象のJavaScript files (16 files) のURLに対して &lt;code&gt;wget&lt;/code&gt; .&lt;/li&gt;
+&lt;li&gt;Depoly.&lt;/li&gt;
+&lt;li&gt;再度 &lt;code&gt;wget&lt;/code&gt; .&lt;/li&gt;
+&lt;li&gt;末尾にJavaScript file生成日時のTimestampと、ClientのDataに書き出した日時のTimestampがあるので、それら意外に差分がないかを &lt;code&gt;diff&lt;/code&gt; で確認.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;となっていて、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;何回も &lt;code&gt;wget&lt;/code&gt; する.
+
+&lt;ul&gt;
+&lt;li&gt;Deploy環境によってURLが変わる. (QA用やProduction用など.)&lt;/li&gt;
+&lt;li&gt;Timestampの差分すら出なかった場合はS3の反映待ちだったりするので、再度 &lt;code&gt;wget&lt;/code&gt; する.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;JavaScript fileはminifyしてあるので、&lt;code&gt;diff&lt;/code&gt; をとるにはunminifyしないといけない.&lt;/li&gt;
+&lt;li&gt;Timestampの差分はでるので、 &lt;code&gt;diff&lt;/code&gt; の結果をTimestampの差分かどうか確認しないといけない.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あたりが面倒くさい.&lt;/p&gt;
+
+&lt;p&gt;ひとつひとつのStepはScriptが用意されていたりするが、それでも面倒くさい.&lt;/p&gt;
+
+&lt;p&gt;Depoly (基本は週2回) 毎にこれを誰かが実行している.&lt;/p&gt;
+
+&lt;h1 id=&#34;detect-js-changes:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;detect-js-changes&lt;/h1&gt;
+
+&lt;p&gt;この面倒くささを解消するために作ったのが &lt;code&gt;detect-js-changes&lt;/code&gt; だ.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ go get github.com/Rudolph-Miller/detect-js-changes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でinstallできる.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;detect-js-changes&lt;/code&gt; を使うと上の確認フローが、&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;detect-js-changes download&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Deploy.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;detect-js-changes download&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;detect-js-changes detect&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;となる.&lt;/p&gt;
+
+&lt;p&gt;Deploy環境ごとのURLは &lt;code&gt;config.yml&lt;/code&gt; に&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;qa:
+  urls:
+  - https://qa.kaizenplatform.com/file1.js
+  - https://qa.kaizenplatform.com/file2.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file1.js
+  - https://production.kaizenplatform.com/file2.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とYAMLで記述し、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;detect-js-changes -e qa -c config.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と環境やConfig fileを指定できる.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;config.yml&lt;/code&gt; でどういうKeywordをignoreするか
+(今回は末尾のTimestampとClientのDataのTimestampを特定するKeyword)
+も指定できる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;default:
+  ignore_keywords:
+  - Timestamp
+  - generated_at
+qa:
+  urls:
+  - https://qa.kaizenplatform.com/file1.js
+  - https://qa.kaizenplatform.com/file2.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file1.js
+  - https://production.kaizenplatform.com/file2.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;go:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;Go&lt;/h1&gt;
+
+&lt;p&gt;軽く実装に触れておく.&lt;/p&gt;
+
+&lt;p&gt;言語は &lt;code&gt;Go&lt;/code&gt; を使用しており、採用理由はなんとなくである.&lt;/p&gt;
+
+&lt;h2 id=&#34;cli:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;CLI&lt;/h2&gt;
+
+&lt;p&gt;CLIには &lt;a href=&#34;https://github.com/codegangsta/cli&#34;&gt;&lt;code&gt;codegangsta/cli&lt;/code&gt;&lt;/a&gt; を使用した.&lt;/p&gt;
+
+&lt;p&gt;感想は特にない.&lt;/p&gt;
+
+&lt;h2 id=&#34;yaml:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;YAML&lt;/h2&gt;
+
+&lt;p&gt;YAML formatのConfig fileのparseには &lt;a href=&#34;https://github.com/go-yaml/yaml&#34;&gt;gopkg.in/yaml.v2&lt;/a&gt; を使用した.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+  &amp;quot;fmt&amp;quot;
+  &amp;quot;gopkg.in/yaml.v2&amp;quot;
+  &amp;quot;os&amp;quot;
+)
+
+var data = `
+key1: value1
+key2:
+  key3:
+  - value2
+  - value3
+`
+
+type T struct {
+  Key1 string
+  Key2 struct {
+    Key3 []string
+  }
+}
+
+func main() {
+  t := T{}
+  err := yaml.Unmarshal([]byte(data), &amp;amp;t)
+  if err != nil {
+    fmt.Println(err)
+    os.Exit(1)
+  }
+
+  fmt.Println(t)
+  // {value1 {[value2 value3]}}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;の様にOutputの &lt;code&gt;struct&lt;/code&gt; を用意して &lt;code&gt;yaml.Unmarshal&lt;/code&gt; するのだが、今回のConfig fileは&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;default:
+  ignore_keywords:
+  - sample keyword
+development:
+  urls:
+  - https://development.kaizenplatform.com/file0.js
+  - https://development.kaizenplatform.com/file1.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file0.js
+  - https://production.kaizenplatform.com/file1.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;の様に環境名がTop levelのKeyとなりその下に特定のKVが入る形式で、
+環境名はUserが自由に指定でき、Top levelのKeyが指定できない.&lt;/p&gt;
+
+&lt;p&gt;この場合は&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+  &amp;quot;fmt&amp;quot;
+  &amp;quot;gopkg.in/yaml.v2&amp;quot;
+  &amp;quot;os&amp;quot;
+)
+
+var data = `
+default:
+  key1: value1
+  key2:
+    key3:
+    - value2
+    - value3
+development:
+  key1: value1
+  key2:
+    key3:
+    - value2
+    - value3
+`
+
+type T struct {
+  Key1 string
+  Key2 struct {
+    Key3 []string
+  }
+}
+
+func main() {
+  m := make(map[string]T)
+  err := yaml.Unmarshal([]byte(data), &amp;amp;m)
+  if err != nil {
+    fmt.Println(err)
+    os.Exit(1)
+  }
+
+  fmt.Println(m)
+  // map[default:{value1 {[value2 value3]}} development:{value1 {[value2 value3]}}]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;の様に &lt;code&gt;map&lt;/code&gt; で指定する.&lt;/p&gt;
+
+&lt;h2 id=&#34;unminify:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;Unminify&lt;/h2&gt;
+
+&lt;p&gt;minified fileのunminifyには &lt;a href=&#34;https://github.com/ditashi/jsbeautifier-go&#34;&gt;&lt;code&gt;ditashi/jsbeautifier-go&lt;/code&gt;&lt;/a&gt; と言う &lt;a href=&#34;http://jsbeautifier.org&#34;&gt;jsbeautifier&lt;/a&gt; のGo port (CLI tool) の内部APIを使用した.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function main(){var e={key1:&amp;quot;value1&amp;quot;,key2:{key3:[&amp;quot;value2&amp;quot;,&amp;quot;value3&amp;quot;]}};console.log(e)}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;の様なminifiedなJavaScriptを &lt;code&gt;example.min.js&lt;/code&gt; として用意して、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+  &amp;quot;fmt&amp;quot;
+  &amp;quot;github.com/ditashi/jsbeautifier-go/jsbeautifier&amp;quot;
+)
+
+func beautify(src string) *string {
+  options := jsbeautifier.DefaultOptions()
+  return jsbeautifier.BeautifyFile(src, options)
+}
+
+func main() {
+  filename := &amp;quot;example.min.js&amp;quot;
+  fmt.Println(*beautify(filename))
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を &lt;code&gt;go run&lt;/code&gt; すると、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function main() {
+    var e = {
+        key1: &amp;quot;value1&amp;quot;,
+        key2: {
+            key3: [&amp;quot;value2&amp;quot;, &amp;quot;value3&amp;quot;]
+        }
+    };
+    console.log(e)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とunminifyできる.&lt;/p&gt;
+
+&lt;h2 id=&#34;diff:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;Diff&lt;/h2&gt;
+
+&lt;p&gt;diffには &lt;a href=&#34;https://github.com/sergi/go-diff&#34;&gt;sergi/go-diff/diffmatchpatch&lt;/a&gt; を使用した.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+  &amp;quot;fmt&amp;quot;
+  &amp;quot;github.com/sergi/go-diff/diffmatchpatch&amp;quot;
+  &amp;quot;strings&amp;quot;
+)
+
+func lineDiff(src1, src2 string) []diffmatchpatch.Diff {
+  dmp := diffmatchpatch.New()
+  a, b, c := dmp.DiffLinesToChars(src1, src2)
+  diffs := dmp.DiffMain(a, b, false)
+  result := dmp.DiffCharsToLines(diffs, c)
+  return result
+}
+
+func prefix(diff diffmatchpatch.Diff) string {
+  switch diff.Type {
+  case diffmatchpatch.DiffEqual:
+    return &amp;quot; &amp;quot;
+  case diffmatchpatch.DiffInsert:
+    return &amp;quot;+&amp;quot;
+
+  case diffmatchpatch.DiffDelete:
+    return &amp;quot;-&amp;quot;
+  }
+  return &amp;quot; &amp;quot;
+}
+
+var src1 = `
+abc
+def
+ghi
+`
+
+var src2 = `
+abc
+defg
+hi
+`
+
+func main() {
+  result := lineDiff(src1, src2)
+
+  for _, diff := range result {
+    for _, string := range strings.Split(diff.Text, &amp;quot;\n&amp;quot;) {
+      if len(string) &amp;gt; 0 {
+        fmt.Println(prefix(diff) + string)
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を &lt;code&gt;go run&lt;/code&gt; すると、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt; abc
+-def
+-ghi
++defg
++hi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;となり、行単位のdiffが取れている.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;業務KAIZEN! ╭( ･ㅂ･)و&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:344e738fbd9ca3a556971580ada8f1e4&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/detect-js-changes&#34;&gt;detect-js-changes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/codegangsta/cli&#34;&gt;codegangsta/cli&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/go-yaml/yaml&#34;&gt;gopkg.in/yaml.v2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ditashi/jsbeautifier-go&#34;&gt;ditashi/jsbeautifier-go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sergi/go-diff&#34;&gt;sergi/go-diff/diffmatchpatch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Use SSL with Custom Domain on GitHub Pages</title>
@@ -2489,43 +2851,6 @@ Serverとして機能をつけたらDocker Imageも&lt;a href=&#34;https://hub.d
 &lt;li&gt;&lt;a href=&#34;http://c16e.com/1511101558&#34;&gt;Slackで簡単に「日報」ならぬ「分報」をチームで実現する3ステップ 〜 Problemが10分で解決するチャットを作ろう&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/slack-nippo/&#34;&gt;Slack Nippo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tech Talk About Lisp</title>
-      <link>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</link>
-      <pubDate>Sun, 01 Nov 2015 22:38:10 +0900</pubDate>
-      
-      <guid>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</guid>
-      <description>&lt;p&gt;社内のTech Talk #4でLispについて発表した.&lt;/p&gt;
-
-&lt;p&gt;LispやS-expressionについての軽い話をした.&lt;br /&gt;
-LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
-たぶんTalkがないとよくわからない部分が多いだろうけど公開しておく.
-&lt;iframe
-  class=&#34;iframe-slide&#34;
-  src=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;
-  width=&#34;100%&#34;
-  style=&#34;border-width: 1px&#34;&gt;
-&lt;/iframe&gt;
-&lt;script&gt;
-  (function () {
-    function init () {
-      var slides = document.getElementsByClassName(&#39;iframe-slide&#39;);
-      for (var index = 0, len = slides.length; index &lt; len; index++) {
-        var slide = slides[index];
-        var width = slide.offsetWidth;
-        var height = width * 3 / 4;
-        slide.height = height;
-      }
-    }
-    init();
-    window.addEventListener(&#39;resize&#39;, init);
-  })()
-&lt;/script&gt;
-&lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;
-&lt;/p&gt;
 </description>
     </item>
     

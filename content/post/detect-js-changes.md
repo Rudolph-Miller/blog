@@ -1,10 +1,10 @@
 +++
 Description = "detect-js-changesという業務Toolを作った話."
 Tags = ["Go", "CLI", "Kaizen Platform"]
-date = "2016-01-27T21:45:41+09:00"
-draft = true
-title = "detect-js-changes"
+date = "2016-01-31T21:39:15+09:00"
+draft = false
 slug = "detect-js-changes"
+title = "detect-js-changes"
 +++
 
 [detect-js-changes](https://github.com/Rudolph-Miller/detect-js-changes)という業務Toolを作った話.
@@ -30,7 +30,7 @@ Kaizen PlatformではAB TestのJavaScript fileをBaseのfileにClient毎のData�
 このAB TestのJavaScriptに対してPhantomJSやBrowserStack上でのE2E Testを行っている.
 
 DeployのタイミングでこのE2E Testを実施しているのだが、
-そもそも生成されるJavaScript fileに変更がなかった場合Test結果は変わらないのでskipする様になっている.
+そもそも生成されるJavaScript fileに変更がなかった場合Test結果は変わらないのでskipすることになっている.
 
 
 ## Until now
@@ -42,7 +42,7 @@ DeployのタイミングでこのE2E Testを実施しているのだが、
 3. 再度 `wget` .
 4. 末尾にJavaScript file生成日時のTimestampと、ClientのDataに書き出した日時のTimestampがあるので、それら意外に差分がないかを `diff` で確認.
 
-の様な感じだが、面倒くさいポイントがいくつもある.
+となっていて、
 
 - 何回も `wget` する.
     - Deploy環境によってURLが変わる. (QA用やProduction用など.)
@@ -50,9 +50,11 @@ DeployのタイミングでこのE2E Testを実施しているのだが、
 - JavaScript fileはminifyしてあるので、`diff` をとるにはunminifyしないといけない.
 - Timestampの差分はでるので、 `diff` の結果をTimestampの差分かどうか確認しないといけない.
 
+あたりが面倒くさい.
+
 ひとつひとつのStepはScriptが用意されていたりするが、それでも面倒くさい.
 
-Depoly毎 (基本は週2回) にこれを誰かが実行している.
+Depoly (基本は週2回) 毎にこれを誰かが実行している.
 
 
 # detect-js-changes
@@ -72,7 +74,7 @@ $ go get github.com/Rudolph-Miller/detect-js-changes
 3. `detect-js-changes download`
 4. `detect-js-changes detect`
 
-の様になる.
+となる.
 
 Deploy環境ごとのURLは `config.yml` に
 
@@ -87,17 +89,17 @@ production:
   - https://production.kaizenplatform.com/file2.js
 ```
 
-の様にYAMLで記述し、
+とYAMLで記述し、
 
 ```
 detect-js-changes -e qa -c config.yml
 ```
 
-の様に指定できる.
+と環境やConfig fileを指定できる.
 
 `config.yml` でどういうKeywordをignoreするか
 (今回は末尾のTimestampとClientのDataのTimestampを特定するKeyword)
-を指定できる.
+も指定できる.
 
 ```yml
 default:
@@ -356,10 +358,16 @@ func main() {
 となり、行単位のdiffが取れている.
 
 
+---
+
+
+__業務KAIZEN! ╭( ･ㅂ･)و__
+
+
 # See Also
 
 - [detect-js-changes](https://github.com/Rudolph-Miller/detect-js-changes)
-- [`codegangsta/cli`](https://github.com/codegangsta/cli)
+- [codegangsta/cli](https://github.com/codegangsta/cli)
 - [gopkg.in/yaml.v2](https://github.com/go-yaml/yaml)
-- [`ditashi/jsbeautifier-go`](https://github.com/ditashi/jsbeautifier-go)
+- [ditashi/jsbeautifier-go](https://github.com/ditashi/jsbeautifier-go)
 - [sergi/go-diff/diffmatchpatch](https://github.com/sergi/go-diff)
