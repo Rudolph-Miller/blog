@@ -343,7 +343,7 @@ func main() {
 }
 ```
 
-を実行すると、
+を `go run` すると、
 
 ```diff
  abc
@@ -353,15 +353,13 @@ func main() {
 +hi
 ```
 
-となり、行単位のdiffが取れる.
-
-
-## go
-
-- `download` と `detect` は `sync.WaitGroup` で並列実行.
-    - `go` で囲うだけで `download` がn倍.
+となり、行単位のdiffが取れている.
 
 
 # See Also
 
 - [detect-js-changes](https://github.com/Rudolph-Miller/detect-js-changes)
+- [`codegangsta/cli`](https://github.com/codegangsta/cli)
+- [gopkg.in/yaml.v2](https://github.com/go-yaml/yaml)
+- [`ditashi/jsbeautifier-go`](https://github.com/ditashi/jsbeautifier-go)
+- [sergi/go-diff/diffmatchpatch](https://github.com/sergi/go-diff)
