@@ -240,7 +240,49 @@ func main() {
 
 ## Unminify
 
-- `beautify-go`
+minified fileのunminifyには [`ditashi/jsbeautifier-go/jsbeautifier`](https://github.com/ditashi/jsbeautifier-go) と言う [jsbeautifier](http://jsbeautifier.org) のGo port (CLI tool) の内部APIを使用した.
+
+```js
+function main(){var e={key1:"value1",key2:{key3:["value2","value3"]}};console.log(e)}
+```
+
+の様なminifiedなJavaScriptを `example.min.js` として用意して、
+
+```go
+package main
+
+import (
+  "fmt"
+  "github.com/ditashi/jsbeautifier-go/jsbeautifier"
+)
+
+func beautify(src string) *string {
+  options := jsbeautifier.DefaultOptions()
+  return jsbeautifier.BeautifyFile(src, options)
+}
+
+func main() {
+  filename := "example.min.js"
+  fmt.Println(*beautify(filename))
+}
+```
+
+を `go run` すると、
+
+```js
+function main() {
+    var e = {
+        key1: "value1",
+        key2: {
+            key3: ["value2", "value3"]
+        }
+    };
+    console.log(e)
+}
+```
+
+とunminifyできる.
+
 
 ## Diff
 
