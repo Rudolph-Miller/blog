@@ -286,7 +286,75 @@ function main() {
 
 ## Diff
 
-- `diffmatchpatch`
+diffには [sergi/go-diff/diffmatchpatch](https://github.com/sergi/go-diff) を使用した.
+
+```go
+package main
+
+import (
+  "fmt"
+  "github.com/sergi/go-diff/diffmatchpatch"
+  "strings"
+)
+
+func lineDiff(src1, src2 string) []diffmatchpatch.Diff {
+  dmp := diffmatchpatch.New()
+  a, b, c := dmp.DiffLinesToChars(src1, src2)
+  diffs := dmp.DiffMain(a, b, false)
+  result := dmp.DiffCharsToLines(diffs, c)
+  return result
+}
+
+func prefix(diff diffmatchpatch.Diff) string {
+  switch diff.Type {
+  case diffmatchpatch.DiffEqual:
+    return " "
+  case diffmatchpatch.DiffInsert:
+    return "+"
+
+  case diffmatchpatch.DiffDelete:
+    return "-"
+  }
+  return " "
+}
+
+var src1 = `
+abc
+def
+ghi
+`
+
+var src2 = `
+abc
+defg
+hi
+`
+
+func main() {
+  result := lineDiff(src1, src2)
+
+  for _, diff := range result {
+    for _, string := range strings.Split(diff.Text, "\n") {
+      if len(string) > 0 {
+        fmt.Println(prefix(diff) + string)
+      }
+    }
+  }
+}
+```
+
+を実行すると、
+
+```diff
+ abc
+-def
+-ghi
++defg
++hi
+```
+
+となり、行単位のdiffが取れる.
+
 
 ## go
 
