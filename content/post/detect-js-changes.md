@@ -121,6 +121,8 @@ production:
 
 ## CLI
 
+- `cli`
+
 ## YAML
 
 ## Unminify
