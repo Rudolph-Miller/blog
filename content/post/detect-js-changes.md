@@ -87,7 +87,7 @@ production:
   - https://production.kaizenplatform.com/file2.js
 ```
 
-の様にYamlで記述し、
+の様にYAMLで記述し、
 
 ```
 detect-js-changes -e qa -c config.yml
@@ -117,8 +117,24 @@ production:
 
 # Go
 
+軽く実装に触れておく.
+
+## CLI
+
+- `cli`
+
+## YAML
+
+## Unminify
+
 - `beautify-go`
+
+## Diff
+
 - `diffmatchpatch`
+
+## go
+
 - `download` と `detect` は `sync.WaitGroup` で並列実行.
     - `go` で囲うだけで `download` がn倍.
 
