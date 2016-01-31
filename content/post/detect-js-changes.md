@@ -343,7 +343,7 @@ func main() {
 }
 ```
 
-を実行すると、
+を `go run` すると、
 
 ```diff
  abc
@@ -353,13 +353,7 @@ func main() {
 +hi
 ```
 
-となり、行単位のdiffが取れる.
-
-
-## go
-
-- `download` と `detect` は `sync.WaitGroup` で並列実行.
-    - `go` で囲うだけで `download` がn倍.
+となり、行単位のdiffが取れている.
 
 
 # See Also
