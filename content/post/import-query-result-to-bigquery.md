@@ -65,7 +65,7 @@ in:
   host: {{ env.mysql_host }}
   user: {{ env.mysql_user }}
   {% if env.mysql_password %}
-    password: {{ env.mysql_password }}
+  password: {{ env.mysql_password }}
   {% endif %}
   database:  {{ env.mysql_database }}
   query: {{ env.query }}
