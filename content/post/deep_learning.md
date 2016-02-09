@@ -7,4 +7,6 @@ title = "Deep Learning"
 slug = "deep-learing"
 +++
 
+Deep LearningでPM
+
 <!--more-->
