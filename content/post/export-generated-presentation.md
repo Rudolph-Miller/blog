@@ -1,26 +1,26 @@
 +++
-Description = "HTMLなpresentationをPDFにexportする"
+Description = "HTMLなSlideをPDFにexportする"
 Tags = ["Presentation", "Remark.js"]
 date = "2016-02-12T23:27:43+09:00"
 draft = true
-title = "Export HTML Presentation as PDF"
-slug = "export-html-presentation-as-pdf"
+title = "Export HTML Slide as PDF"
+slug = "export-html-slide-as-pdf"
 +++
 
-HTMLなpresentationをPDFにexportする
+HTMLなSlideをPDFにexportする
 
 <!--more-->
 
-1. [HTML Presentations]({{< relref "#html-presentations" >}})
-2. [Export HTML Presentations]({{< relref "#export-html-presentations" >}})
+1. [HTML Slide]({{< relref "#html-slide" >}})
+2. [Export HTML Slide]({{< relref "#export-html-slide" >}})
 3. [See Also]({{< relref "#see-also" >}})
 
 
-# HTML Presentations
+# HTML Slide
 
 最近 [yusukebe/revealgo](https://github.com/yusukebe/revealgo) が話題となり
-MarkdownでHTML Presentationのgenerateが再燃(?)しているが、
-HTML Presentationで困るのがPresentationの共有だ.
+MarkdownでHTML Slideのgenerateが再燃(?)しているが、
+HTML Slideで困るのがSlideの共有だ.
 
 以前Kaizen PlatformでのTech Talk #4でRemark.js製の [Slide]({{< relref "slide/about-lisp.md" >}})
 を発表した後、共有のために `iframe` でこのSlideを埋め込んだ
@@ -32,7 +32,7 @@ HTML Presentationで困るのがPresentationの共有だ.
 Speaker Deck や SlideShare にuploadして共有できないかと考えた.
 
 
-# Export HTML Presentations
+# Export HTML Slide
 
 そんなTool作ろうとしたところで、とりあえず調べてみると
 [DeckTape](https://github.com/astefanutti/decktape) というProjectが見つかった.
@@ -146,7 +146,7 @@ Printed 88 slides
 
 ---
 
-これでなんの気兼ねもなく、これからもMarkdownでPresentationを作れる.
+これでなんの気兼ねもなく、これからもMarkdownでSlideを作れる.
 
 めでたし.
 
