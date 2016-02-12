@@ -22,13 +22,14 @@ HTMLなSlideをPDFにexportする.
 MarkdownでHTML Slideのgenerateが再燃(?)しているが、
 HTML Slideで困るのがSlideの共有だ.
 
-以前Kaizen PlatformでのTech Talk #4でRemark.js製の [Slide]({{< relref "slide/about-lisp.md" >}})
-を発表した後、共有のために `iframe` でこのSlideを埋め込んだ
+普段Remark.jsを使ってMarkdownからHTML Slideをgenerateしているのだが、
+以前Kaizen PlatformでのTech Talk #4で [Slide]({{< relref "slide/about-lisp.md" >}})
+を発表した際、共有のために `iframe` でこのSlideを埋め込んだ
 [Blog post]({{< relref "post/tech-talk-about-lisp.md" >}}) を作り共有していた.
 
 {{% image "20160213/share_lisp_1.gif" %}}
 
-ふとPhantomJSなどでScreenshotを撮り、さらにそれをPDFに変換し、
+今更ながらふと、PhantomJSなどでScreenshotを撮り、それをPDFに変換し、
 Speaker Deck や SlideShare にuploadして共有できないかと考えた.
 
 
