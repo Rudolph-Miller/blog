@@ -2594,30 +2594,9 @@ Serverとして機能をつけたらDocker Imageも&lt;a href=&#34;https://hub.d
 
 &lt;p&gt;LispやS-expressionについての軽い話をした.&lt;br /&gt;
 LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
-たぶんTalkがないとよくわからない部分が多いだろうけど公開しておく.
-&lt;iframe
-  class=&#34;iframe-slide&#34;
-  src=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;
-  width=&#34;100%&#34;
-  style=&#34;border-width: 1px&#34;&gt;
-&lt;/iframe&gt;
-&lt;script&gt;
-  (function () {
-    function init () {
-      var slides = document.getElementsByClassName(&#39;iframe-slide&#39;);
-      for (var index = 0, len = slides.length; index &lt; len; index++) {
-        var slide = slides[index];
-        var width = slide.offsetWidth;
-        var height = width * 3 / 4;
-        slide.height = height;
-      }
-    }
-    init();
-    window.addEventListener(&#39;resize&#39;, init);
-  })()
-&lt;/script&gt;
-&lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;
-&lt;/p&gt;
+たぶんTalkがないとよくわからない部分が多いだろうけど公開しておく.&lt;/p&gt;
+
+&lt;script async class=&#34;speakerdeck-embed&#34; data-id=&#34;77ce6ba2d6134d94a77e432f0246cd06&#34; data-ratio=&#34;1.33333333333333&#34; src=&#34;//speakerdeck.com/assets/embed.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
