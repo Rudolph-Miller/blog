@@ -1,10 +1,10 @@
 +++
 Description = "HTMLなSlideをPDFにexportする."
 Tags = ["Presentation", "Remark.js"]
-date = "2016-02-12T23:27:43+09:00"
-draft = true
-title = "Export HTML Slide as PDF"
+date = "2016-02-13T01:17:33+09:00"
+draft = false
 slug = "export-html-slide-as-pdf"
+title = "Export HTML Slide as PDF"
 +++
 
 HTMLなSlideをPDFにexportする.
