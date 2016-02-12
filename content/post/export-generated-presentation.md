@@ -10,3 +10,7 @@ slug = "export-html-presentations-as-pdf"
 HTMLなpresentationをPDFにexportする
 
 <!--more-->
+
+1. [HTML Presentations]({{< relref "#html-presentations" >}})
+2. [Export HTML Presentations]({{< relref "#export-html-presentations" >}})
+3. [See Also]({{< relref "#see-also" >}})
