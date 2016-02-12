@@ -16,3 +16,5 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.
 たぶんTalkがないとよくわからない部分が多いだろうけど公開しておく.
 
 <script async class="speakerdeck-embed" data-id="77ce6ba2d6134d94a77e432f0246cd06" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+[Original](https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/)
