@@ -22,9 +22,9 @@ HTMLなpresentationをPDFにexportする
 MarkdownでHTML Presentationのgenerateが再燃(?)しているが、
 HTML Presentationで困るのがPresentationの共有だ.
 
-以前Kaizen PlatformでのTech Talk #4でRemark.js製の
-https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/
-を発表した後、共有のために `iframe` でこのSlideを埋め込んだBlog postを作り共有していた.
+以前Kaizen PlatformでのTech Talk #4でRemark.js製の [Slide]({{< relref "slide/about-lisp.md" >}})
+を発表した後、共有のために `iframe` でこのSlideを埋め込んだ
+[Blog post]({{< relref "post/tech-talk-about-lisp.md" >}}) を作り共有していた.
 
 {{% image "20160213/share_lisp_1.gif" %}}
 
@@ -35,7 +35,8 @@ Speaker Deck や SlideShare にuploadして共有できないかと考えた.
 # Export HTML Presentations
 
 そんなTool作ろうとしたところで、とりあえず調べてみると
-[DeckTape](https://github.com/astefanutti/decktape) というToolが見つかった.
+[DeckTape](https://github.com/astefanutti/decktape) というProjectが見つかった.
+
 
 ## About DeckTape
 
@@ -108,7 +109,7 @@ specified <url> and uses it to export and write the PDF into the specified <file
 
 と表示され、ちゃんと動いてることが分かった.
 
-Docker imageなのでうまい具合に `pwd` をmountして、
+Docker imageなので良い感じににcurrent directoryをmountして、さらにScreen sizeを指定して
 
 ```sh
 $ docker run --rm -v `pwd`:/pwd astefanutti/decktape -s 1240x930 https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/ /pwd/lisp.pdf
@@ -137,6 +138,22 @@ Printed 88 slides
 
 ## Upload
 
+あとはこの生成された `lisp.pdf` をSpeaker Deckにuploadすると、
+
+<script async class="speakerdeck-embed" data-id="77ce6ba2d6134d94a77e432f0246cd06" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+のようにちゃんと処理できていることが分かる.
+
+---
+
+これでなんの気兼ねもなく、これからもMarkdownでPresentationを作れる.
+
+めでたし.
+
+---
 
 # See Also
 - [yusukebe/revealgo](https://github.com/yusukebe/revealgo)
+- [DeckTape](https://github.com/astefanutti/decktape)
+- [Tech Talk About Lisp - Slide]({{< relref "slide/about-lisp.md" >}})
+- [Tech Talk About Lisp - Blog post]({{< relref "post/tech-talk-about-lisp.md" >}})
