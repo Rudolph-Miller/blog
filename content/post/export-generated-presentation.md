@@ -150,6 +150,7 @@ Printed 88 slides
 
 めでたし.
 
+---
 
 # See Also
 - [yusukebe/revealgo](https://github.com/yusukebe/revealgo)
