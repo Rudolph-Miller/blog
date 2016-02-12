@@ -132,8 +132,10 @@ Printing slide #88      (1/88) ...
 Printed 88 slides
 ```
 
-と表示されて、処理は終了. ``` `pwd`/lisp.pdf ``` にPDFが生成されていた.
+と表示されて、処理は終了. `lisp.pdf` にPDFが生成されていた.
 
+
+## Upload
 
 
 # See Also
