@@ -7,8 +7,166 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Sun, 31 Jan 2016 21:39:15 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 13 Feb 2016 01:17:33 +0900</lastBuildDate>
     <atom:link href="https://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Export HTML Slide as PDF</title>
+      <link>https://blog.rudolph-miller.com/2016/02/13/export-html-slide-as-pdf/</link>
+      <pubDate>Sat, 13 Feb 2016 01:17:33 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/2016/02/13/export-html-slide-as-pdf/</guid>
+      <description>
+
+&lt;p&gt;HTMLなSlideをPDFにexportする.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#html-slide:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;HTML Slide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#export-html-slide:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;Export HTML Slide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;html-slide:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;HTML Slide&lt;/h1&gt;
+
+&lt;p&gt;最近 &lt;a href=&#34;https://github.com/yusukebe/revealgo&#34;&gt;yusukebe/revealgo&lt;/a&gt; が話題となり
+MarkdownでHTML Slideのgenerateが再燃(?)しているが、
+HTML Slideで困るのがSlideの共有だ.&lt;/p&gt;
+
+&lt;p&gt;普段Remark.jsを使ってMarkdownからHTML Slideをgenerateしているのだが、
+以前Kaizen PlatformでのTech Talk #4で &lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;&gt;Slide&lt;/a&gt;
+を発表した際、共有のために &lt;code&gt;iframe&lt;/code&gt; でこのSlideを埋め込んだ
+&lt;a href=&#34;https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/&#34;&gt;Blog post&lt;/a&gt; を作り共有していた.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160213/share_lisp_1.gif&#34; alt=&#34;20160213/share_lisp_1.gif&#34;&gt;
+
+
+&lt;p&gt;今更ながらふと、PhantomJSなどでScreenshotを撮り、それをPDFに変換し、
+Speaker Deck や SlideShare にuploadして共有できないかと考えた.&lt;/p&gt;
+
+&lt;h1 id=&#34;export-html-slide:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;Export HTML Slide&lt;/h1&gt;
+
+&lt;p&gt;そんなTool作ろうとしたところで、とりあえず調べてみると
+&lt;a href=&#34;https://github.com/astefanutti/decktape&#34;&gt;DeckTape&lt;/a&gt; というProjectが見つかった.&lt;/p&gt;
+
+&lt;h2 id=&#34;about-decktape:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;About DeckTape&lt;/h2&gt;
+
+&lt;p&gt;DeckTapeは&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;DeckTape is a high-quality PDF exporter for HTML5 presentation frameworks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;らしい.&lt;/p&gt;
+
+&lt;p&gt;SupportしているFrameworkは&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://leaverou.github.io/csss/&#34;&gt;CSSS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://imakewebthings.com/deck.js/&#34;&gt;deck.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://paulrouget.com/dzslides/&#34;&gt;DZSlides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://flowtime-js.marcolago.com/&#34;&gt;flowtime.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.w3.org/Talks/Tools/&#34;&gt;HTML Slidy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://impress.github.io/impress.js&#34;&gt;impress.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://remarkjs.com/&#34;&gt;remark.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://lab.hakim.se/reveal-js&#34;&gt;reveal.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://shwr.me/&#34;&gt;Shower&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;で、使用していた Remark.js もsupportされていた.&lt;/p&gt;
+
+&lt;p&gt;とりあえずこれを使ってSpeaker Deckにuploadしてみる.&lt;/p&gt;
+
+&lt;h2 id=&#34;install:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;Install&lt;/h2&gt;
+
+&lt;p&gt;DeckTapeのREADMEの &lt;a href=&#34;https://github.com/astefanutti/decktape#install&#34;&gt;Install&lt;/a&gt; sectionを見ると、PhantomJSのforked versionを使用しているとのこと.
+これを見てやめようかと思ったが、READMEを少し読んでいくと &lt;a href=&#34;https://github.com/astefanutti/decktape#docker&#34;&gt;Docker&lt;/a&gt; なるsectionがあり、どうもDocker imageを配布しているようなので、Docker imageでInstallすることにする.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ docker pull astefanutti/decktape
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;簡単だ.&lt;/p&gt;
+
+&lt;h2 id=&#34;run:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;Run&lt;/h2&gt;
+
+&lt;p&gt;とりあえず&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ docker run astefanutti/decktape -h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;してみると、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ docker run astefanutti/decktape -h
+
+Usage: phantomjs decktape.js [options] [command] &amp;lt;url&amp;gt; &amp;lt;filename&amp;gt;
+
+command      one of: automatic, csss, deck, dzslides, flowtime, generic, impress, remark, reveal, shower, slidy
+url          URL of the slides deck
+filename     Filename of the output PDF file
+
+Options:
+   -s, --size                Size of the slides deck viewport: &amp;lt;width&amp;gt;x&amp;lt;height&amp;gt;  [1280x720]
+   -p, --pause               Duration in milliseconds before each slide is exported  [1000]
+   --screenshots             Capture each slide as an image  [false]
+   --screenshots-directory   Screenshots output directory  [screenshots]
+   --screenshots-size        Screenshots resolution, can be repeated
+   --screenshots-format      Screenshots image format, one of [jpg, png]  [png]
+
+Defaults to the automatic command.
+Iterates over the available plugins, picks the compatible one for presentation at the 
+specified &amp;lt;url&amp;gt; and uses it to export and write the PDF into the specified &amp;lt;filename&amp;gt;.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と表示され、ちゃんと動いてることが分かった.&lt;/p&gt;
+
+&lt;p&gt;Docker imageなので良い感じににcurrent directoryをmountして、さらにScreen sizeを指定して&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ docker run --rm -v `pwd`:/pwd astefanutti/decktape -s 1240x930 https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/ /pwd/lisp.pdf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を実行すると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Loading page https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/ ...
+
+Loading page finished with status: success
+Remark JS DeckTape plugin activated
+Printing slide #88      (1/88) ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と読み込まれ、Remark.js製ということも判別でき、処理が始まったようだ.&lt;/p&gt;
+
+&lt;p&gt;最後に&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Printed 88 slides
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と表示されて、処理は終了. &lt;code&gt;lisp.pdf&lt;/code&gt; にPDFが生成されていた.&lt;/p&gt;
+
+&lt;h2 id=&#34;upload:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;Upload&lt;/h2&gt;
+
+&lt;p&gt;あとはこの生成された &lt;code&gt;lisp.pdf&lt;/code&gt; をSpeaker Deckにuploadすると、&lt;/p&gt;
+
+&lt;script async class=&#34;speakerdeck-embed&#34; data-id=&#34;77ce6ba2d6134d94a77e432f0246cd06&#34; data-ratio=&#34;1.33333333333333&#34; src=&#34;//speakerdeck.com/assets/embed.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;のようにちゃんと処理できていることが分かる.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;これでなんの気兼ねもなく、これからもMarkdownでSlideを作れる.&lt;/p&gt;
+
+&lt;p&gt;めでたし.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;see-also:a5ea6a661ec970ab6e9fbdd82bb7f6a8&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/yusukebe/revealgo&#34;&gt;yusukebe/revealgo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/astefanutti/decktape&#34;&gt;DeckTape&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;&gt;Tech Talk About Lisp - Slide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/&#34;&gt;Tech Talk About Lisp - Blog post&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>detect-js-changes</title>
@@ -2774,82 +2932,6 @@ SlackのAPIのResponseにUnicode Escape Sequenceがあり、&lt;a href=&#34;http
 &lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan&#34;&gt;Jonathan&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://hanshuebner.github.io/yason/&#34;&gt;YASON&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://common-lisp.net/project/cl-json/&#34;&gt;CL-JSON&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Daily Log in Slack</title>
-      <link>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</link>
-      <pubDate>Sat, 14 Nov 2015 23:02:13 +0900</pubDate>
-      
-      <guid>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</guid>
-      <description>
-
-&lt;p&gt;Slackでの社内Twitterを日報にするToolを作っている.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#slackで社内twitter:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slackで社内Twitter&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#slack-nippo:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slack Nippo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;slackで社内twitter:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slackで社内Twitter&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://c16e.com/1511101558&#34;&gt;Slackで簡単に「日報」ならぬ「分報」をチームで実現する3ステップ 〜 Problemが10分で解決するチャットを作ろう&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;先日こんな記事があり、Kaizen Platform社内Slackにも&lt;strong&gt;技術顧問の先導&lt;/strong&gt;により &lt;code&gt;#times_${username}&lt;/code&gt; channelが開設された.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;やってみて感じたことと、これに関してのToolを作っているので報告する.&lt;/p&gt;
-
-&lt;p&gt;毎日日報を&lt;a href=&#34;http://kobito.qiita.com/&#34;&gt;Kobito&lt;/a&gt;で書いて、&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿しているのだが、二つ不満があった.&lt;/p&gt;
-
-&lt;p&gt;一つは、普段Vimを使っているので、別にApplicationとしてEditorを立ち上げたくないとこ.&lt;/p&gt;
-
-&lt;p&gt;もう一つは、上の記事にも書かれていたが、&amp;rdquo;チームとしてのスピード感がでない&amp;rdquo;とこ.&lt;br /&gt;
-ある程度の粒度の課題なら別で&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿するが、
-小粒な課題や粒度の見えない課題を発見して、日報に書き、投稿後にコメントをもらったときには解決していたりする.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;#times_${username]&lt;/code&gt; を始めてみると、余分にApplicationを立ち上げる必要がなく、
-リアルタイムにコミュニケーションが発生し、いままでの日報の不満は解決された.&lt;/p&gt;
-
-&lt;p&gt;それだけではなく、&lt;strong&gt;不思議としっくりくる感じ&lt;/strong&gt;があった.&lt;br /&gt;
-考えてみるとこれは&lt;strong&gt;社内でのコミュニケーションに近い&lt;/strong&gt;のだ.&lt;/p&gt;
-
-&lt;p&gt;席にいるかが一目で分かり、悩んでいると声をかけられ、話していると他の人が乱入してくる.&lt;br /&gt;
-リモートワークを取り入れている会社にとって、&lt;strong&gt;この空気&lt;/strong&gt;を生み出せるのは重要だと思う.&lt;/p&gt;
-
-&lt;p&gt;デメリットもある.
-だたのチャットなので&lt;strong&gt;流れる&lt;/strong&gt;.
-後で&lt;strong&gt;&amp;ldquo;あの時の課題はどうやって解決したっけ&amp;rdquo;&lt;/strong&gt;みたいなのがぱっとでてこない.&lt;/p&gt;
-
-&lt;h1 id=&#34;slack-nippo:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;Slack Nippo&lt;/h1&gt;
-
-&lt;p&gt;ということで、一日の終わりにこの &lt;code&gt;#times_${username}&lt;/code&gt; をまとめて日報とするToolを作っている.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;タスク管理はTrelloを使用しており、そのログを &lt;code&gt;#times_${username}&lt;/code&gt; に流すようにした.&lt;br /&gt;
-今はこのMarkdownを&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿している.&lt;/p&gt;
-
-&lt;p&gt;まだ実験段階なのでローカルで叩いてMarkdownを吐き出すだけだが、&lt;br /&gt;
-フォーマットと機能がまとまってきたら、Serverとして起動して生成したMarkdownをSlackに投稿したり、
-&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に直接投稿できる機能をつける.&lt;/p&gt;
-
-&lt;p&gt;Source codeは&lt;a href=&#34;https://github.com/Rudolph-Miller/slack-nippo/&#34;&gt;Slack Nippo - GitHub&lt;/a&gt;にある.&lt;br /&gt;
-とりあえず日報をだしたかったので、かなり雑な部分があるのは認識している.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/jp/api-gateway/&#34;&gt;Amazon API Gateway&lt;/a&gt;と&lt;a href=&#34;https://aws.amazon.com/jp/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;でやろうと考えていたのだが、
-気がつくと&lt;strong&gt;Common Lisp&lt;/strong&gt;を書いていた. 心地よかった.&lt;br /&gt;
-Serverとして機能をつけたらDocker Imageも&lt;a href=&#34;https://hub.docker.com/&#34;&gt;Docker Hub&lt;/a&gt;に上げてローカルで簡単に立ち上げられるようにする.&lt;/p&gt;
-
-&lt;h1 id=&#34;see-also:5f3f4d8b5bd1bfce40967a1c97e646f2&#34;&gt;See Also&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://c16e.com/1511101558&#34;&gt;Slackで簡単に「日報」ならぬ「分報」をチームで実現する3ステップ 〜 Problemが10分で解決するチャットを作ろう&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/slack-nippo/&#34;&gt;Slack Nippo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

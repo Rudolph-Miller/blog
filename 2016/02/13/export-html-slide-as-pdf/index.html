@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="Export HTML Slide as PDF - (rudolph-miller)" />
+  
+  <meta property="og:site_name" content="(rudolph-miller)" />
+  <meta property="og:url" content="https://blog.rudolph-miller.com/2016/02/13/export-html-slide-as-pdf/" />
+  
+  <meta property="og:description" content="HTMLなSlideをPDFにexportする." />
+  
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2016-02-13T01:17:33&#43;09:00" />
+  
+  <meta property="og:article:tag" content="Presentation" />
+  
+  <meta property="og:article:tag" content="Remark.js" />
+  
+  
+
+  <title>
+    Export HTML Slide as PDF - (rudolph-miller)
+  </title>
+  
+  <meta name="description" content="HTMLなSlideをPDFにexportする." />
+  
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/highlight-lisp/themes/github.css" />
+  <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/earlyaccess/notosansjp.css' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/images/favicon.png" />
+  <link rel="icon" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  
+  <link rel="canonical" href="https://blog.rudolph-miller.com/2016/02/13/export-html-slide-as-pdf/">
+</head>
+
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="https://blog.rudolph-miller.com/">(rudolph-miller)</a></h1>
+      
+      <div class="tag-line">
+        NO LISP, NO LIFE.
+      </div>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="https://blog.rudolph-miller.com/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Export HTML Slide as PDF</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2016-02-13T01:17:33&#43;09:00">
+          Feb 13, 2016
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="https://blog.rudolph-miller.com//tags/presentation">#Presentation</a></span>
+        
+        <span class="post-tag small"><a href="https://blog.rudolph-miller.com//tags/remark.js">#Remark.js</a></span>
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>HTMLなSlideをPDFにexportする.</p>
+
+<ol>
+<li><a href="#html-slide:a5ea6a661ec970ab6e9fbdd82bb7f6a8">HTML Slide</a></li>
+<li><a href="#export-html-slide:a5ea6a661ec970ab6e9fbdd82bb7f6a8">Export HTML Slide</a></li>
+<li><a href="#see-also:a5ea6a661ec970ab6e9fbdd82bb7f6a8">See Also</a></li>
+</ol>
+
+<h1 id="html-slide:a5ea6a661ec970ab6e9fbdd82bb7f6a8">HTML Slide</h1>
+
+<p>最近 <a href="https://github.com/yusukebe/revealgo">yusukebe/revealgo</a> が話題となり
+MarkdownでHTML Slideのgenerateが再燃(?)しているが、
+HTML Slideで困るのがSlideの共有だ.</p>
+
+<p>普段Remark.jsを使ってMarkdownからHTML Slideをgenerateしているのだが、
+以前Kaizen PlatformでのTech Talk #4で <a href="/slide/2015/10/29/about-lisp/">Slide</a>
+を発表した際、共有のために <code>iframe</code> でこのSlideを埋め込んだ
+<a href="/2015/11/01/tech-talk-about-lisp/">Blog post</a> を作り共有していた.</p>
+
+<img src="/images/20160213/share_lisp_1.gif" alt="20160213/share_lisp_1.gif">
+
+
+<p>今更ながらふと、PhantomJSなどでScreenshotを撮り、それをPDFに変換し、
+Speaker Deck や SlideShare にuploadして共有できないかと考えた.</p>
+
+<h1 id="export-html-slide:a5ea6a661ec970ab6e9fbdd82bb7f6a8">Export HTML Slide</h1>
+
+<p>そんなTool作ろうとしたところで、とりあえず調べてみると
+<a href="https://github.com/astefanutti/decktape">DeckTape</a> というProjectが見つかった.</p>
+
+<h2 id="about-decktape:a5ea6a661ec970ab6e9fbdd82bb7f6a8">About DeckTape</h2>
+
+<p>DeckTapeは</p>
+
+<blockquote>
+<p>DeckTape is a high-quality PDF exporter for HTML5 presentation frameworks.</p>
+</blockquote>
+
+<p>らしい.</p>
+
+<p>SupportしているFrameworkは</p>
+
+<ul>
+<li><a href="http://leaverou.github.io/csss/">CSSS</a></li>
+<li><a href="http://imakewebthings.com/deck.js/">deck.js</a></li>
+<li><a href="http://paulrouget.com/dzslides/">DZSlides</a></li>
+<li><a href="http://flowtime-js.marcolago.com/">flowtime.js</a></li>
+<li><a href="http://www.w3.org/Talks/Tools/">HTML Slidy</a></li>
+<li><a href="http://impress.github.io/impress.js">impress.js</a></li>
+<li><a href="http://remarkjs.com/">remark.js</a></li>
+<li><a href="http://lab.hakim.se/reveal-js">reveal.js</a></li>
+<li><a href="http://shwr.me/">Shower</a></li>
+</ul>
+
+<p>で、使用していた Remark.js もsupportされていた.</p>
+
+<p>とりあえずこれを使ってSpeaker Deckにuploadしてみる.</p>
+
+<h2 id="install:a5ea6a661ec970ab6e9fbdd82bb7f6a8">Install</h2>
+
+<p>DeckTapeのREADMEの <a href="https://github.com/astefanutti/decktape#install">Install</a> sectionを見ると、PhantomJSのforked versionを使用しているとのこと.
+これを見てやめようかと思ったが、READMEを少し読んでいくと <a href="https://github.com/astefanutti/decktape#docker">Docker</a> なるsectionがあり、どうもDocker imageを配布しているようなので、Docker imageでInstallすることにする.</p>
+
+<pre><code class="language-sh">$ docker pull astefanutti/decktape
+</code></pre>
+
+<p>簡単だ.</p>
+
+<h2 id="run:a5ea6a661ec970ab6e9fbdd82bb7f6a8">Run</h2>
+
+<p>とりあえず</p>
+
+<pre><code class="language-sh">$ docker run astefanutti/decktape -h
+</code></pre>
+
+<p>してみると、</p>
+
+<pre><code class="language-sh">$ docker run astefanutti/decktape -h
+
+Usage: phantomjs decktape.js [options] [command] &lt;url&gt; &lt;filename&gt;
+
+command      one of: automatic, csss, deck, dzslides, flowtime, generic, impress, remark, reveal, shower, slidy
+url          URL of the slides deck
+filename     Filename of the output PDF file
+
+Options:
+   -s, --size                Size of the slides deck viewport: &lt;width&gt;x&lt;height&gt;  [1280x720]
+   -p, --pause               Duration in milliseconds before each slide is exported  [1000]
+   --screenshots             Capture each slide as an image  [false]
+   --screenshots-directory   Screenshots output directory  [screenshots]
+   --screenshots-size        Screenshots resolution, can be repeated
+   --screenshots-format      Screenshots image format, one of [jpg, png]  [png]
+
+Defaults to the automatic command.
+Iterates over the available plugins, picks the compatible one for presentation at the 
+specified &lt;url&gt; and uses it to export and write the PDF into the specified &lt;filename&gt;.
+</code></pre>
+
+<p>と表示され、ちゃんと動いてることが分かった.</p>
+
+<p>Docker imageなので良い感じににcurrent directoryをmountして、さらにScreen sizeを指定して</p>
+
+<pre><code class="language-sh">$ docker run --rm -v `pwd`:/pwd astefanutti/decktape -s 1240x930 https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/ /pwd/lisp.pdf
+</code></pre>
+
+<p>を実行すると</p>
+
+<pre><code class="language-sh">Loading page https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/ ...
+
+Loading page finished with status: success
+Remark JS DeckTape plugin activated
+Printing slide #88      (1/88) ...
+</code></pre>
+
+<p>と読み込まれ、Remark.js製ということも判別でき、処理が始まったようだ.</p>
+
+<p>最後に</p>
+
+<pre><code class="language-sh">Printed 88 slides
+</code></pre>
+
+<p>と表示されて、処理は終了. <code>lisp.pdf</code> にPDFが生成されていた.</p>
+
+<h2 id="upload:a5ea6a661ec970ab6e9fbdd82bb7f6a8">Upload</h2>
+
+<p>あとはこの生成された <code>lisp.pdf</code> をSpeaker Deckにuploadすると、</p>
+
+<script async class="speakerdeck-embed" data-id="77ce6ba2d6134d94a77e432f0246cd06" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>のようにちゃんと処理できていることが分かる.</p>
+
+<hr />
+
+<p>これでなんの気兼ねもなく、これからもMarkdownでSlideを作れる.</p>
+
+<p>めでたし.</p>
+
+<hr />
+
+<h1 id="see-also:a5ea6a661ec970ab6e9fbdd82bb7f6a8">See Also</h1>
+
+<ul>
+<li><a href="https://github.com/yusukebe/revealgo">yusukebe/revealgo</a></li>
+<li><a href="https://github.com/astefanutti/decktape">DeckTape</a></li>
+<li><a href="/slide/2015/10/29/about-lisp/">Tech Talk About Lisp - Slide</a></li>
+<li><a href="/2015/11/01/tech-talk-about-lisp/">Tech Talk About Lisp - Blog post</a></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+        <img alt="Author Avatar" src="/images/logo.png" />
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        <h1 class="author-name text-primary">Rudolph Miller</h1>
+        
+        
+        <div class="author-bio">Common Lisp Player.</div>
+        
+      </div>
+      
+      <div class="author-contact col-md-4">
+        <a href="mailto:lisper@rudolph-miller.com">
+          <i class="fa fa-envelope-o"></i>
+          &nbsp;Contact me
+        </a>
+      </div>
+      
+    </section>
+    <section class="social-buttons row">
+      
+      <div class="social-button">
+        <ul class="twitter-share-button-with-balloon">
+          <li>
+          <a href="https://twitter.com/search?q=%2f2016%2f02%2f13%2fexport-html-slide-as-pdf%2f" target="_blank">
+              <span class="balloon-bottom">list</span>
+            </a>
+          </li>
+          <li>
+          <a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true" data-count="vertical" data-text="HTMLなSlideをPDFにexportする.">Tweet</a>
+          </li>
+        </ul>
+      </div>
+
+      
+      <div class="social-button">
+        <a class='hatena-bookmark-button' data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en" expr:data-hatena-bookmark-title="data:post.title" expr:href='"http://b.hatena.ne.jp/entry/" + data:post.canonicalUrl' title='このエントリーをはてなブックマークに追加'>
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
+        </a>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="fb-like" data-href="/2016/02/13/export-html-slide-as-pdf/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+      </div>
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="/2016/01/31/detect-js-changes/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      
+      var disqus_shortname = 'rudolph-miller';
+      (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })()
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+    
+    <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
+
+    
+    <script type='text/javascript' src='//b.st-hatena.com/js/bookmark_button.js' charset='utf-8' async='async'></script>
+
+    
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; 2015 Rudolph Miller
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="/js/highlight.pack.js"></script>
+  <script src="/highlight-lisp/highlight-lisp.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    HighlightLisp.highlight_auto({className: "language-common-lisp"});
+    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
+  </script>
+  
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47602577-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+</body>
+</html>
+
