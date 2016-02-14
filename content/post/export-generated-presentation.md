@@ -154,7 +154,7 @@ Printed 88 slides
 ---
 
 # See Also
-- [yusukebe/revealgo](https://github.com/yusukebe/revealgo)
 - [DeckTape](https://github.com/astefanutti/decktape)
+- [yusukebe/revealgo](https://github.com/yusukebe/revealgo)
 - [Tech Talk About Lisp - Slide]({{< relref "slide/about-lisp.md" >}})
 - [Tech Talk About Lisp - Blog post]({{< relref "post/tech-talk-about-lisp.md" >}})
