@@ -10,3 +10,5 @@ slug = "deep-neural-network-in-common-lisp"
 Deep Neural NetworkをCommon Lispで実装してみた話.
 
 <!--more-->
+
+Multi-class classificationをやってみた.
