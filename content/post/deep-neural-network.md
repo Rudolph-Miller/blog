@@ -12,3 +12,8 @@ Deep Neural NetworkをCommon Lispで実装してみた話.
 <!--more-->
 
 Multi-class classificationをやってみた.
+
+TODO:
+- 自動微分
+- MNIST
+- 畳み込み層
