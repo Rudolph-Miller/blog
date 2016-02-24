@@ -133,8 +133,8 @@ $$
 $n$ はTrainig dataにおけるTraining sampleの番号、
 $K$ はOutput LayerのUnit数、
 $k$ はOutput LayerのUnit番号、
-$d _{nk}$ は n 番目のData sampleの k 番目のUnitの目標値、
-$y _{nk}$ は n 番目のData sampleの k 番目のUnitのOutput.
+$d _{nk}$ は n 番目のTraining sampleの k 番目のUnitの目標値、
+$y _{nk}$ は n 番目のTraining sampleの k 番目のUnitのOutput.
 
 今回はMulti-class classificationなので、 $d _{nk}$ は
 
@@ -169,7 +169,7 @@ Gradient Descent Method は $W$ を $- \nabla E$ 方向に動かし、
 現在の重みを $W^{(t)}$ 、動かした後の重みを $W^{(t+1)}$ とすると
 
 $$
-W^{(t+1)} = W^{(t)} - \epsilon \nabla E
+W^{(t+1)} = W^{(t)} - \epsilon \nabla E \tag{10}
 $$
 
 とあらわされる.
@@ -180,9 +180,130 @@ $$
 
 Learing rateの決定にも手法があるが、今回はとりあえず定数で指定することにする.
 
+Gradient Descent Method はTraining data全体に対してError functionの値を最小化する.
+
+$$
+E(W) = \sum _{n=1}^{N} E_n(w) \tag{11}
+$$
+
+これに対してTraining dataの一部を使って $W$ の更新を行う (さらに更新ごとにTraining samplesを取り替える) 手法を
+__Stochastic Gradient Descent (確率的勾配降下法)__ と呼ぶ.
+
+Stochastic Gradient Descent を使うと、 Gradient Descent Method に潜在する
+*相対的に小さくない局所的な極小解にはまるリスク* を小さくできる.
+
+
+## Back propagation
+
+Gradient Descent Method を実行するには
+
+$$
+\nabla E = \frac{\partial W}{\partial E} = [\frac{\partial E}{\partial w_1} ... \frac{\partial E}{\partial w _M}]^{T} \tag{9}
+$$
+
+を計算する必要があるが、微分の連鎖規則のため、Output Layerから遠いLayerになると微分計算が困難になる.
+
+これを解決するのが __Back propagation (誤差逆伝播法)__.
+Back propagation はOutput LayerからInput Layerに向かって、連鎖的に勾配を計算していく方法.
+
+n 番目のTraining sampleのError functionの値 $E_n$ をLayer $p$ におけるParameter $w _{ji}^{(p)}$ に関して微分すると、
+$w _{ji}^{(p)}$ は
+
+$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} \tag{4}
+$$
+
+により $u_j^{(p)}$ の中にのみ存在するので、
+
+$$
+\frac{\partial E_n}{\partial w _{ji}^{(p)}} = \frac{\partial E_n}{\partial u _{j}^{(p)}} \frac{\partial u _{j}^{(p)}}{\partial w _{ji}^{(p)}} \tag{12}
+$$
+
+となる.
+
+$u_j^{(p)}$ の変動が $E_n$ に与える影響は、
+このUnit $j$からのOutput $z_j^{(p)}$ を通じて、$p+1$ LayerのOutputを変化させることによってのみ生じるので、
+(12) の右辺第1項は
+
+$$
+\frac{\partial E_n}{\partial u _{j}^{(p)}} = \sum _k \frac{\partial E_n}{\partial u_k^{(p+1)}} \frac{\partial u_k^{(p+1)}}{\partial u_j^{(p)}} \tag{13}
+$$
+
+となる.
+
+左辺の $\frac{\partial E_n}{\partial u _{j}^{(p)}}$ と右辺の $\frac{\partial E_n}{\partial u _{j}^{(p+1)}}$ に注目して、
+
+$$
+\delta _j^{p} = \frac{\partial E_n}{\partial u _{j}^{(p)}} \tag{14}
+$$
+
+とおく.
+
+$$
+u_k^{(p+1)} = \sum _j w _{kj}^{(p+1)} z_j^{(p)} = \sum _j w _{kj}^{(p+1)} f(u_j^{(p)}) \tag{15}
+$$
+
+より、
+
+$$
+\frac{\partial u_k^{(p+1)}}{\partial u_j^{(p)}} = w _{kj}^{(p+1)} f'(u_j^{(p)}) \tag{16}
+$$
+
+となるので、 (13) は
+
+$$
+\delta _j^{(p)} = \sum _k \delta _j^{(p+1)} (w _{kj}^{(p+1)} f'(u_j^{(p)})) \tag{17}
+$$
+
+となる. これは $\delta _j^{(p)}$ が $\delta _k^{(p+1)} (k = 1, 2, ...)$ から計算できることを意味する.
+
+(12) の右辺第1項はこのように $\delta$ を計算することで得られる.
+第2項は $u_j^{(p)} = \sum _i w _{ji}^{(p)} z_i^{(p-1)}$ から
+
+$$
+\frac{\partial u _{j}^{(p)}}{\partial w _{ji}^{(p)}} = z_i^{(p-1)} \tag{18}
+$$
+
+が得られるので、目的の微分は
+
+$$
+\frac{\partial E_n}{\partial w _{ji}^{(p)}} = \delta _j^{(p)} z_i{(p-1)} \tag{19}
+$$
+
+となり、 $p-1$ Layerと $p$ LayerをつなぐConnectionの重み $w _{ji}^{(p)}$ に関する微分は、
+Unit $j$ に関する $\delta _j^{(p)}$ と Unit $i$ のOutput $z_i^{(p-1)}$ のただの積で与えられる.
+$\delta$ はOutput LayerからInput Layerに順に (17) を適用すれば求められる.
+Output Layerでの $\delta$ は
+
+$$
+\delta _j^{(P)} = \frac{\partial E_n}{\partial u_j^{(P)}} \tag{20}
+$$
+
+で計算できる.
+
+今回はOutput LayerのError functionは (7) を使用し
+( n 番目のTrainig sampleに関しては $-\sum _{k=1}^{K} d _{nk} \log y _{nk}$)、
+Activation functionにSoftmax functionを使用しているので、
+
+$$
+E_n = - \sum _k d_k \log y_k = - \sum _k d_k log (\frac{e^{u_k^{(P)}}}{\sum _i e^{u_i^{(P)}}}) \tag{21}
+$$
+
+となり、
+
+$$
+\delta _j^{(P)} = - \sum _k d_k \frac{1}{y_k} \frac{\partial y_k}{\partial u_j^{(P)}}
+= -d_j(1-y_j) - \sum _{k \neq j} d_k(-y_j)
+= \sum _k d_k (y_j - d_j)
+\tag{22}
+$$
+
+で $\delta$ が求められる.
+
+(22) と (17) により任意のLayerの $\delta$ が求められるので、 (19) により任意のConnectionの重み $w$ を更新できる.
+
 
 # Impl
-
 
 # Test
 
@@ -197,6 +318,10 @@ Multi-class classificationをやってみた.
 - autoencoder
 - Deep LearingではHello, world的な MNIST の手書き文字データの画像解析
 - 学習係数の決定
+- regularization
+    - weight decay
+    - weight restriction
+    - drop out
 
 # See Also
 
