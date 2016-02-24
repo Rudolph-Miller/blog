@@ -19,14 +19,32 @@ Deep Neural Network (Multi-layer perceptroy) をCommon Lispで実装してみた
 今回実装したのは順伝播型ニューラルネットワーク (Feed Forward Neural Network) で、
 テストしたのは `Fisher's iris flower data set` (統計の有名なデータセット) の多クラス分類 (Multi-class classification) .
 
-1. [Math]({{< relref "#math" >}})
-2. [Impl]({{< relref "#impl" >}})
-3. [Test]({{< relref "#test" >}})
-4. [TODO]({{< relref "#todo" >}})
-5. [See Also]({{< relref "#see-also" >}})
+
+1. [Deep Neural Netwok]({{< relref "#deep-neural-network" >}})
+2. [Math]({{< relref "#math" >}})
+3. [Impl]({{< relref "#impl" >}})
+4. [Test]({{< relref "#test" >}})
+5. [TODO]({{< relref "#todo" >}})
+6. [See Also]({{< relref "#see-also" >}})
+
+
+# Deep Neural Network
+
+Deep Neural Networkは多層構造のNeural Network.
+
+{{% image "/20160224/dnn.png" %}}
+
+Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
+それぞれの層は単数または複数のUnitで構成される.
+
+順電波型ニューラルネットワークではすべてのUnitがその前後の層のすべてのUnitと結合している.
+
+学習というのは、ネットワークに与えたInputからのOutputを正解に近づけるようにParameterを調整すること.
 
 
 # Math
+
+とりあえず数式として俯瞰する.
 
 
 # Impl
