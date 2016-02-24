@@ -324,3 +324,13 @@ img {
 .twitter-share-button-with-balloon > :first-child + * {
   margin-top: 7px;
 }
+
+/* MathJax */
+
+code.has-jax {
+  font: inherit;
+  font-size: 100%;
+  background: inherit;
+  border: inherit;
+  color: #515151;
+}
