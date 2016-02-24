@@ -19,15 +19,93 @@ Deep Neural Network (Multi-layer perceptroy) をCommon Lispで実装してみた
 今回実装したのは順伝播型ニューラルネットワーク (Feed Forward Neural Network) で、
 テストしたのは `Fisher's iris flower data set` (統計の有名なデータセット) の多クラス分類 (Multi-class classification) .
 
-1. [Math]({{< relref "#math" >}})
-2. [Impl]({{< relref "#impl" >}})
-3. [Test]({{< relref "#test" >}})
-4. [TODO]({{< relref "#todo" >}})
-5. [See Also]({{< relref "#see-also" >}})
+
+1. [Deep Neural Netwok]({{< relref "#deep-neural-network" >}})
+2. [Math]({{< relref "#math" >}})
+3. [Impl]({{< relref "#impl" >}})
+4. [Test]({{< relref "#test" >}})
+5. [TODO]({{< relref "#todo" >}})
+6. [See Also]({{< relref "#see-also" >}})
+
+
+# Deep Neural Network
+
+Deep Neural Networkは多層構造のNeural Network.
+
+{{% image "/20160224/dnn.png" %}}
+
+Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
+それぞれの層は単数または複数のUnitで構成される.
+
+順電波型ニューラルネットワークではすべてのUnitがその前後の層のすべてのUnitと結合している.
+
+学習というのは、ネットワークに与えたInputからのOutputを正解に近づけるようにParameterを調整すること.
 
 
 # Math
 
+とりあえず数式として俯瞰する.
+
+
+## Activation function
+
+{{% image "/20160224/math_1.png" %}}
+
+連続した$p-1$層と$p$層を考える.
+
+$u$はUnitの入力、$z$はUnitの出力、$w$はUnit間のConnectionの重みを表す.
+
+これらの関係は
+
+$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} + b_j^{(p)} \tag{1}
+$$
+
+$$
+z_j^{(p)} = f(u_j^{(p)}) \tag{2}
+$$
+
+のようにあらわせる.
+
+(1) における $b$ はBiasで、
+UnitのInputは前層のOutputにConnectionの重みを掛けたものの和にBiasを足したものである.
+
+ここで
+
+{{% image "/20160224/math_2.png" %}}
+
+のようにBias Unitという特別なUnit (Outputが常に $1$) を導入して、
+
+$$
+b_j^{(p)} = w _{j0} z _{0}^{(p-1)} \tag{3}
+$$
+
+のように $b$ をあらわすと (1) は
+
+$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} \tag{4}
+$$
+
+のように書ける.
+
+(2) における $f$ は __Activation function (活性化関数)__ と呼ばれる.
+Activation functionはUnitへの入力から出力を計算する関数で
+通常は単調増加する日線形関数を使用し、
+一般にHidden LayerとOutput Layerで別の関数を使用する.
+
+今回はHidden Layerで
+
+$$
+f(u) = \max(u, 0) \tag{5}
+$$
+
+のRectified Linear Unit (正規化線形関数)を使用し、Output Layerで
+
+$$
+f(u_k) = \frac{e^{u_k}} {\sum _{j=1}^{K} e^{u_j}} \tag{6}
+$$
+
+のSoftmax functionを使用する. ( $K$ はOutput LayerのUnit数.)
 
 # Impl
 
