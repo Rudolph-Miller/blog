@@ -169,7 +169,7 @@ Gradient Descent Method は $W$ を $- \nabla E$ 方向に動かし、
 現在の重みを $W^{(t)}$ 、動かした後の重みを $W^{(t+1)}$ とすると
 
 $$
-W^{(t+1)} = W^{(t)} - \epsilon \nabla E
+W^{(t+1)} = W^{(t)} - \epsilon \nabla E \tag{10}
 $$
 
 とあらわされる.
@@ -179,6 +179,18 @@ $$
 大きいと極小点に収束しない可能性があり、小さいと収束までの反復回数が多くなる.
 
 Learing rateの決定にも手法があるが、今回はとりあえず定数で指定することにする.
+
+Gradient Descent Method はTraining data全体に対してError functionの値を最小化する.
+
+$$
+E(W) = \sum _{n=1}^{N} E_n(w) \tag{11}
+$$
+
+これに対してTraining dataの一部を使って $W$ の更新を行う (さらに更新ごとにTraining samplesを取り替える) 手法を
+__Stochastic Gradient Descent (確率的勾配降下法)__ と呼ぶ.
+
+Stochastic Gradient Descent を使うと、 Gradient Descent Method に潜在する
+*相対的に小さくない局所的な極小解にはまるリスク* を小さくできる.
 
 
 # Impl
@@ -197,6 +209,10 @@ Multi-class classificationをやってみた.
 - autoencoder
 - Deep LearingではHello, world的な MNIST の手書き文字データの画像解析
 - 学習係数の決定
+- regularization
+    - weight decay
+    - weight restriction
+    - drop out
 
 # See Also
 
