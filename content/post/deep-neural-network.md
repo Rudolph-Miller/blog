@@ -47,6 +47,46 @@ Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出
 とりあえず数式として俯瞰する.
 
 
+## Activation function
+
+{{% image "/20160224/math_1.png" %}}
+
+連続した$p-1$層と$p$層を考える.
+
+$u$はUnitの入力、$z$はUnitの出力、$w$はUnit間のConnectionの重みを表す.
+
+これらの関係は
+
+$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} + b_j^{(p)} \tag{1}
+$$
+
+$$
+z_j^{(p)} = f(u_j^{(p)}) \tag{2}
+$$
+
+のようにあらわせる.
+
+(1) における $b$ はBiasで、UnitのInputは前層のOutputにConnectionの重みを掛けたものの和にBiasを足したものである.
+
+(2) における $f$ は __Activation function (活性化関数)__ と呼ばれる.
+
+ここで
+
+{{% image "/20160224/math_2.png" %}}
+
+のようにBias Unitという特別なUnit (出力が常に $1$ となる) を導入して、
+
+$$
+b_j^{(p)} = w _{j0} z _{0}^{(p-1)} \tag{3}
+$$
+
+のように $b$ をあらわすと (1) は
+
+$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} \tag{4}
+$$
+
 # Impl
 
 
