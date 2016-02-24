@@ -102,7 +102,7 @@ $$
 のRectified Linear Unit (正規化線形関数)を使用し、Output Layerで
 
 $$
-f(u_k) = \frac{e^{u_k}} {\sum _{j=1}^{K} e^{u_j}} \tag{6}
+f(u_k) = \frac{e^{u_k}}{\sum _{j=1}^{K} e^{u_j}} \tag{6}
 $$
 
 のSoftmax functionを使用する. ( $K$ はOutput LayerのUnit数、 $k$ はOutput LayerのUnit番号.)
@@ -143,6 +143,42 @@ $$
 $$
 
 で、正解のclassに対応する一つのUnitのOutputが 1 で、残りのUnitのOutputが 0 となる.
+
+
+## Stachastic Gradient Descent
+
+ネットワークの目的はError functionの値を小さくすることだが、
+Error functionは一般に凸関数ではなく、大域的な最小解を直接得ることは通常不可能.
+
+代わりに局所的な極小点を求める.
+一般に $E(W)$ の極小点は複数存在するため、得た極小点が大域的な最小解となることはほぼ無いが、
+それでもその極小点が十分小さい値ならば目的に貢献し得る.
+
+局所的な極小点の探索方法はいくつかあるが、最も簡単なのが __Gradient Descent Method (勾配降下法)__.
+
+Gradientというのは $W$ の成分数を $M$ として、
+
+$$
+\nabla E = \frac{\partial W}{\partial E} = [\frac{\partial E}{\partial w_1} ... \frac{\partial E}{\partial w _M}]^{T} \tag{9}
+$$
+
+というVectorで、
+Gradient Descent Method は $W$ を $- \nabla E$ 方向に動かし、
+これをなんども繰り返すことで局所的な極小点を探索する.
+
+現在の重みを $W^{(t)}$ 、動かした後の重みを $W^{(t+1)}$ とすると
+
+$$
+W^{(t+1)} = W^{(t)} - \epsilon \nabla E
+$$
+
+とあらわされる.
+
+このときの $\epsilon$ を __Learning rate (学習係数)__ と呼び、
+一回の更新での $W$ の更新量を決める定数.
+大きいと極小点に収束しない可能性があり、小さいと収束までの反復回数が多くなる.
+
+Learing rateの決定にも手法があるが、今回はとりあえず定数で指定することにする.
 
 
 # Impl
