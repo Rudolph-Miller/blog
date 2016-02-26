@@ -41,7 +41,7 @@ Deep Learning は Deep Neural Network (Multi-layer perceptron, 多層構造のNe
 Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
 それぞれの層は単数または複数のUnitで構成される.
 
-順電波型ニューラルネットワークではすべてのUnitがその前後の層のすべてのUnitと結合している.
+順伝播型ニューラルネットワークではすべてのUnitがその前後の層のすべてのUnitと結合している.
 
 学習というのは、ネットワークに与えたInputからのOutputを正解に近づけるようにParameterを調整すること.
 
@@ -114,7 +114,7 @@ $$
 
 ## Error function
 
-順電波型ニューラルネットワークはParameter $w$ を変えるとOutputが変化し、
+順伝播型ニューラルネットワークはParameter $w$ を変えるとOutputが変化し、
 良い $w$ を選ぶとネットワーク全体として望みの関数として振る舞うようになる.
 
 __Traiting data__を用いて $w$ を調整することを学習という.
@@ -309,7 +309,7 @@ $$
 
 # Impl
 
-順電波型ニューラルネットワークのcoreなところを追ったところで実装.
+順伝播型ニューラルネットワークのcoreなところを追ったところで実装.
 数式の流れをちゃんと理解できてたら大したこと無い.
 
 ※以下のCodeはそのままで動くようには書いてない.
@@ -446,7 +446,7 @@ Back propagationで `connection` の `weight` を更新すれば学習ができ�
           (setf (connection-weight-diff connection) 0))))))
 ```
 
-これだけで順電波型ニューラルネットワークが実装できる.  
+これだけで順伝播型ニューラルネットワークが実装できる.  
 (実際は `connection` の `weight` を平均0で分散1の正規乱数で初期化や、
 Inputの正規化や、Mini-batchで学習の実装もしている.)
 
