@@ -101,6 +101,9 @@ end
 task edit: :vim
 
 def edit(argv, command, type='post')
+  if command == :vim
+    command = :nvim
+  end
   title, _ = extract_title argv, ignore_error: true
   command = command.to_s
   type = type.to_s
