@@ -16,13 +16,14 @@ Deep Neural Network (Multi-layer perceptroy) をCommon Lispで実装してみた
 という本を読んでいて、
 ほんまにこんなんで学習できるんかいなと思ったので実装してみた.
 
+
 <a rel="nofollow" href="http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018K6C99A&linkCode=as2&tag=rudolph-miller-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B018K6C99A&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=rudolph-miller-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=rudolph-miller-22&l=as2&o=9&a=B018K6C99A" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 今回実装したのは順伝播型ニューラルネットワーク (Feed Forward Neural Network) で、
 テストしたのは `Fisher's iris flower data set` (統計の有名なデータセット) の多クラス分類 (Multi-class classification) .
 
 
-1. [Deep Neural Netwok]({{< relref "#deep-neural-network" >}})
+1. [Deep Neural Network]({{< relref "#deep-neural-network" >}})
 2. [Math]({{< relref "#math" >}})
 3. [Impl]({{< relref "#impl" >}})
 4. [Test]({{< relref "#test" >}})
@@ -101,7 +102,7 @@ $$
 f(u) = \max(u, 0) \tag{5}
 $$
 
-のRectified Linear Unit (正規化線形関数)を使用し、Output Layerで
+のRectified Linear Unit (正規化線形関数, ReLU, ランプ関数)を使用し、Output Layerで
 
 $$
 f(u_k) = \frac{e^{u_k}}{\sum _{j=1}^{K} e^{u_j}} \tag{6}
@@ -457,8 +458,8 @@ Inputの正規化や、Mini-batchで学習の実装もしている.)
 `iris dataset` とかで検索すれば手に入る.
 
 どういうデータかというと、4つのInputと1つのLabelの集まりで、Labelは3種類ある.
-そのためテストではInput Layerは4 Units、Hidden Layerは10 Units、Output Layerは3 Unitsで組んだ.
-Hidden LayerのLayer数やUnit数は適当.
+そのためテストではInput Layerは4 Units、Hidden Layerは10 Units、Output Layerは3 Units、学習係数は0.001で組んだ.
+(Hidden LayerのLayer数やUnit数と学習係数は適当.)
 
 今回使ったデータセットは150サンプルあるので、それを15サンプルずつの10セットに分ける.
 そのうち1セットをテストデータとして取り、残りを教師データとして学習に使用する.
@@ -511,30 +512,55 @@ Hidden LayerのLayer数やUnit数は適当.
 結果は
 
 ```
+TIMES: 0
+Accuracy: 33.33%
+Accuracy: 33.33%
+Accuracy: 33.33%
+TIMES: 10
+Accuracy: 50.00%
+Accuracy: 54.00%
+Accuracy: 60.00%
+TIMES: 100
+Accuracy: 89.33%
+Accuracy: 82.00%
+Accuracy: 86.67%
+TIMES: 1000
+Accuracy: 95.33%
+Accuracy: 97.33%
+Accuracy: 95.33%
+TIMES: 10000
+Accuracy: 97.33%
+Accuracy: 97.33%
+Accuracy: 96.67%
 ```
 
+ちゃんと学習できてるっぽい.
+
+Codeは [CLDL](https://github.com/Rudolph-Miller/cldl) に置いてるけど、
+まぁとくに汎用的なLibraryにするつもりは無いし参考程度に.
+(Common LispでDeep Learningしたいだけなら、もっとちゃんとしたLibraryがあるはず.)
 
 
 # TODO
 
+まだ実装し残してることがあるのでリストアップする.
 
-- 自動微分
-- MNIST
-- 畳み込み層
-- autoencoder
-- Deep LearingではHello, world的な MNIST の手書き文字データの画像解析
+- Convolution Layer (畳み込み層)
+- Pooling Layer (プーリング層)
+- MNISTの画像解析
+- Recurrent Neural Network (再帰型ニューラルネットワーク)
+- Autoencoder (自己符号化器)
+- Automatic Differentiation (自動微分)
 - 学習係数の決定
-- regularization
-    - weight decay
-    - weight restriction
-    - drop out
+- Regularization (正則化)
+    - Weight restriction
+    - Weight decay
+    - Dropout
 
-組織も理想に近い人からちゃんと (理想の方向に向かって) 学習していけば末端まで学習でき、
-それを繰り返せば極小点が見つかる.
-いくらやってもだめなときは相対的に小さく無い極小点にはまってるから、
-別のsampleで学習する必要がある.
+当分やることには困らなそう.
 
 
 # See Also
 
 - [深層学習](http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018K6C99A&linkCode=as2&tag=rudolph-miller-22)
+- [CLDL](https://github.com/Rudolph-Miller/cldl)
