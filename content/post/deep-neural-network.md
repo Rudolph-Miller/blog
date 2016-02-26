@@ -11,7 +11,9 @@ Deep Neural Network (Multi-layer perceptroy) をCommon Lispで実装してみた
 
 <!--more-->
 
-そろそろ Deep Learing ぐらい勉強するかと思い [深層学習](http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018K6C99A&linkCode=as2&tag=rudolph-miller-22) という本を読んでいて、
+そろそろ Deep Learing ぐらい勉強するかと思い
+[深層学習](http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018K6C99A&linkCode=as2&tag=rudolph-miller-22)
+という本を読んでいて、
 ほんまにこんなんで学習できるんかいなと思ったので実装してみた.
 
 <a rel="nofollow" href="http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018K6C99A&linkCode=as2&tag=rudolph-miller-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B018K6C99A&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=rudolph-miller-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=rudolph-miller-22&l=as2&o=9&a=B018K6C99A" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
@@ -305,9 +307,38 @@ $$
 
 # Impl
 
+順電波型ニューラルネットワークのcoreなところを追ったところで実装.
+数式の流れをちゃんと理解できてたら大したこと無い.
+
+{{% image "/20160226/impl_1.png" %}}
+
+```common-lisp
+(defclass dnn ()
+  ((layers ...)
+   (connections ...)))
+
+(defclass layer ()
+  ((units ...)))
+
+(defclass connection ()
+  ((left-unit ...)
+   (right-unit ...)
+   (weight ...)
+   (weight-diff ...)))
+
+(defclass unit ()
+  ((input-value ...)
+   (output-value ...)
+   (left-connections ...)
+   (right-connections ...)
+   (delta ...))
+```
+
+
 # Test
 
 Multi-class classificationをやってみた.
+
 
 # TODO
 
@@ -322,6 +353,12 @@ Multi-class classificationをやってみた.
     - weight decay
     - weight restriction
     - drop out
+
+組織も理想に近い人からちゃんと (理想の方向に向かって) 学習していけば末端まで学習でき、
+それを繰り返せば極小点が見つかる.
+いくらやってもだめなときは相対的に小さく無い極小点にはまってるから、
+別のsampleで学習する必要がある.
+
 
 # See Also
 
