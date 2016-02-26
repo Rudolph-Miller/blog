@@ -1,26 +1,27 @@
 +++
-Description = "Deep Neural NetworkをCommon Lispで実装してみた話."
+Description = "Deep LearningをCommon Lispで実装してみた."
 Tags = ["Common Lisp", "Deep Learning"]
 date = "2016-02-23T23:10:20+09:00"
 draft = true
-title = "Deep Neural Network in Common Lisp"
-slug = "deep-neural-network-in-common-lisp"
+title = "Deep Learning in Common Lisp"
+slug = "deep-learning-in-common-lisp"
 +++
 
-Deep Neural Network (Multi-layer perceptroy) をCommon Lispで実装してみた話.
+Deep Learning をCommon Lispで実装してみた.
 
 <!--more-->
 
-そろそろ Deep Learing ぐらい勉強するかと思い
+そろそろ Deep Learning の実装ぐらい教養かなと思ったので、
 [深層学習](http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018K6C99A&linkCode=as2&tag=rudolph-miller-22)
-という本を読んでいて、
-ほんまにこんなんで学習できるんかいなと思ったので実装してみた.
+という本を読みながら実装してみた.
 
 
 <a rel="nofollow" href="http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018K6C99A&linkCode=as2&tag=rudolph-miller-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B018K6C99A&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=rudolph-miller-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=rudolph-miller-22&l=as2&o=9&a=B018K6C99A" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 今回実装したのは順伝播型ニューラルネットワーク (Feed Forward Neural Network) で、
 テストしたのは `Fisher's iris flower data set` (統計の有名なデータセット) の多クラス分類 (Multi-class classification) .
+
+[CLDL](https://github.com/Rudolph-Miller/cldl)
 
 
 1. [Deep Neural Network]({{< relref "#deep-neural-network" >}})
@@ -33,7 +34,7 @@ Deep Neural Network (Multi-layer perceptroy) をCommon Lispで実装してみた
 
 # Deep Neural Network
 
-Deep Neural Networkは多層構造のNeural Network.
+Deep Learning は Deep Neural Network (Multi-layer perceptron, 多層構造のNeural Network) の機械学習の事.
 
 {{% image "/20160224/dnn.png" %}}
 
@@ -311,7 +312,7 @@ $$
 順電波型ニューラルネットワークのcoreなところを追ったところで実装.
 数式の流れをちゃんと理解できてたら大したこと無い.
 
-※以下のCodeは動く状態では書いてないので脳内である程度補完.
+※以下のCodeはそのままで動くようには書いてない.
 
 {{% image "/20160226/impl_1.png" %}}
 
@@ -500,7 +501,7 @@ Inputの正規化や、Mini-batchで学習の実装もしている.)
     (format t "Accuracy: ~,2f%~%" (* 100 (/ correc-count test-count)))))
 ```
 
-学習回数を0から10000で増やしながら順に実行する.
+学習回数を0から10000で変えながら順に実行する.
 
 ```common-lisp
 (dolist (times (list 0 10 100 1000 10000))
