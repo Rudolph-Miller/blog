@@ -50,7 +50,7 @@
 &lt;p&gt;Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
 それぞれの層は単数または複数のUnitで構成される.&lt;/p&gt;
 
-&lt;p&gt;順電波型ニューラルネットワークではすべてのUnitがその前後の層のすべてのUnitと結合している.&lt;/p&gt;
+&lt;p&gt;順伝播型ニューラルネットワークではすべてのUnitがその前後の層のすべてのUnitと結合している.&lt;/p&gt;
 
 &lt;p&gt;学習というのは、ネットワークに与えたInputからのOutputを正解に近づけるようにParameterを調整すること.&lt;/p&gt;
 
@@ -122,7 +122,7 @@ $$&lt;/p&gt;
 
 &lt;h2 id=&#34;error-function:99621a27901250e81c3c36481758f611&#34;&gt;Error function&lt;/h2&gt;
 
-&lt;p&gt;順電波型ニューラルネットワークはParameter $w$ を変えるとOutputが変化し、
+&lt;p&gt;順伝播型ニューラルネットワークはParameter $w$ を変えるとOutputが変化し、
 良い $w$ を選ぶとネットワーク全体として望みの関数として振る舞うようになる.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Traiting data&lt;/strong&gt;を用いて $w$ を調整することを学習という.&lt;/p&gt;
@@ -314,7 +314,7 @@ $$&lt;/p&gt;
 
 &lt;h1 id=&#34;impl:99621a27901250e81c3c36481758f611&#34;&gt;Impl&lt;/h1&gt;
 
-&lt;p&gt;順電波型ニューラルネットワークのcoreなところを追ったところで実装.
+&lt;p&gt;順伝播型ニューラルネットワークのcoreなところを追ったところで実装.
 数式の流れをちゃんと理解できてたら大したこと無い.&lt;/p&gt;
 
 &lt;p&gt;※以下のCodeはそのままで動くようには書いてない.&lt;/p&gt;
@@ -445,7 +445,7 @@ $$&lt;/p&gt;
           (setf (connection-weight-diff connection) 0))))))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;これだけで順電波型ニューラルネットワークが実装できる.&lt;br /&gt;
+&lt;p&gt;これだけで順伝播型ニューラルネットワークが実装できる.&lt;br /&gt;
 (実際は &lt;code&gt;connection&lt;/code&gt; の &lt;code&gt;weight&lt;/code&gt; を平均0で分散1の正規乱数で初期化や、
 Inputの正規化や、Mini-batchで学習の実装もしている.)&lt;/p&gt;
 
