@@ -302,7 +302,7 @@ $$
 
 で $\delta$ が求められる.
 
-(22) と (17) により任意のLayerの $\delta$ が求められるので、 (19) により任意のConnectionの重み $w$ を更新できる.
+(20) ( 今回は具体的には (22) ) と (17) により任意のLayerの $\delta$ が求められるので、 (19) により任意のConnectionの重み $w$ を更新できる.
 
 
 # Impl
@@ -373,17 +373,146 @@ Input Layer以外のLayerのUnitのInputは (4) なので
 
 のように計算できる.
 
-これをInput LayerからOutput Layerまで繰り返してネットワークの出力を得ると
+これをInput LayerからOutput Layerまで繰り返してネットワークの出力を得る.
 
 ```common-lisp
+(defun predict (dnn input)
+  (dolist (layer (dnn-layers dnn))
+    (etypecase layer
+      (input-layer
+       (map nil
+            #'(lambda (input-unit value)
+                (setf (unit-input-value input-unit) value
+                      (unit-output-value input-unit) value))
+            (layer-units layer)
+            input))
+      ((or hidden-layer output-layer)
+       (let ((units (layer-units layer)))
+         (dolist (unit units)
+           (let ((input-value (calculate-unit-output-value unit)))
+             (setf (unit-input-value unit) input-value
+                   (unit-output-value unit)
+                   (calculate-unit-output-value unit))))))))
+  (mapcar #'unit-output-value
+          (layer-units (output-layer (dnn-layers dnn)))))
 ```
 
+これにError functionを適用する.
 
+```common-lisp
+(defun test (dnn data-set)
+  (/ (reduce #'+
+             (mapcar #'(lambda (data)
+                         (funcall error-function
+                                  (predict dnn (data-input data))
+                                  (data-expected data)))
+                     data-set))
+     (length data-set)))
+```
+
+あとは (20) と (17) で $\delta$ を計算し、
+
+```common-lisp
+(defgeneric calculate-delta (layer unit)
+  (:method ((layer output-layer) unti)
+    ...)
+  (:method ((layer hidden-layer) unit)
+    ...))
+```
+
+Back propagationで `connection` の `weight` を更新すれば学習ができる.
+
+```common-lisp
+(defun train (dnn data-set)
+  (dolist (data data-set)
+    (predict dnn (data-input data))
+    (dolist (layer (reverse (cdr (dnn-layers dnn))))
+      (dolist (unit (layer-units layer))
+        (let ((delta (calculate-delta layer unit)))
+          (setf (unit-delta unit) delta)
+          (dolist (connection (unit-left-connections unit))
+            (incf (connection-weight-diff connection)
+                  (* delta
+                     (unit-output-value
+                      (connection-left-unit connection))))))))
+    (dolist (outer-connections (dnn-connections dnn))
+      (dolist (inner-connectios outer-connections)
+        (dolist (connection inner-connectios)
+          (decf (connection-weight connection)
+                (* (dnn-learning-coefficient dnn)
+                   (connection-weight-diff connection)))
+          (setf (connection-weight-diff connection) 0))))))
+```
+
+これだけで順電波型ニューラルネットワークが実装できる.  
+(実際は `connection` の `weight` を平均0で分散1の正規乱数で初期化や、
+Inputの正規化や、Mini-batchで学習の実装もしている.)
 
 
 # Test
 
-Multi-class classificationをやってみた.
+`Fisher's iris flower data set` (統計の有名なデータセット) の多クラス分類 (Multi-class classification) をやってみる.
+
+データセット自体は R で `iris` とかやると出てくるもので、
+`iris dataset` とかで検索すれば手に入る.
+
+どういうデータかというと、4つのInputと1つのLabelの集まりで、Labelは3種類ある.
+そのためテストではInput Layerは4 Units、Hidden Layerは10 Units、Output Layerは3 Unitsで組んだ.
+Hidden LayerのLayer数やUnit数は適当.
+
+今回使ったデータセットは150サンプルあるので、それを15サンプルずつの10セットに分ける.
+そのうち1セットをテストデータとして取り、残りを教師データとして学習に使用する.
+教師データでの学習の度に学習データを `test` にかけ Error function の値をとり、
+それが一定以下になるか、指定の学習回数を経るとと学習を打ち切る.
+学習のあとにテストデータで `predict` を行って正解数を記録する.
+それを10セット繰り返す.
+最後に正解率を出す.
+
+
+```common-lisp
+(defun data-sets ()
+  ...)
+
+(defun main (&optional (training-count 0))
+  (let* ((layers (make-layers (list (list 'input-layer 4)
+                                    (list 'hidden-layer 10 'rectified-linear-unit)
+                                    (list 'output-layer 3 'softmax))))
+         (connections (connect layers))
+         (dnn (make-instance 'dnn
+                             :layers layers
+                             :connections connections
+                             :learning-coefficient 0.001))
+         (data-sets (data-sets))
+         (correc-count 0)
+         (test-count 0))
+    (dolist (test-data-set data-sets)
+      (let ((train-data-set (apply #'append (remove test-data-set data-sets))))
+        (loop repeat training-count
+              do (train dnn train-data-set)
+              until (< (test dnn train-data-set) 0.01))
+        (dolist (data test-data-set)
+          (incf test-count)
+          (let ((result (predict dnn (data-input data))))
+            (when (= (position (apply #'max result) result)
+                     (data-expected data))
+              (incf correc-count))))))
+    (format t "Accuracy: ~,2f%~%" (* 100 (/ correc-count test-count)))))
+```
+
+学習回数を0から10000で増やしながら順に実行する.
+
+```common-lisp
+(dolist (times (list 0 10 100 1000 10000))
+  (format t "TIMES: ~a~%" times)
+  (loop repeat 3
+        do (main times)))
+```
+
+結果は
+
+```
+```
+
 
 
 # TODO
