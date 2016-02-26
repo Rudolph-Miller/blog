@@ -310,15 +310,21 @@ $$
 順電波型ニューラルネットワークのcoreなところを追ったところで実装.
 数式の流れをちゃんと理解できてたら大したこと無い.
 
+※以下のCodeは動く状態では書いてないので脳内である程度補完.
+
 {{% image "/20160226/impl_1.png" %}}
 
-```common-lisp
-(defclass dnn ()
-  ((layers ...)
-   (connections ...)))
+上の図を `CLOS` に落とし込む.
 
-(defclass layer ()
-  ((units ...)))
+```common-lisp
+(defclass unit ()
+  ((input-value ...)
+   (output-value ...)
+   (left-connections ...)
+   (right-connections ...)
+   (delta ...)))
+
+(defclass bias-unit (unit) ())
 
 (defclass connection ()
   ((left-unit ...)
@@ -326,13 +332,53 @@ $$
    (weight ...)
    (weight-diff ...)))
 
-(defclass unit ()
-  ((input-value ...)
-   (output-value ...)
-   (left-connections ...)
-   (right-connections ...)
-   (delta ...))
+(defclass layer ()
+  ((bias-unit ...)
+   (units ...)))
+
+(defclass input-layer (layer) ())
+
+(defclass hidden-layer (layer)
+  ((bias-unit :initform (make-instance 'bias-unit))))
+
+(defclass output-layer (layer)
+  ((bias-unit :initform (make-instance 'bias-unit))))
+
+(defclass dnn ()
+  ((layers ...)
+   (connections ...)))
 ```
+
+Input Layer以外のLayerのUnitのInputは (4) なので
+
+```common-lisp
+(defun calculate-unit-input-value (unit)
+  (reduce #'+
+          (mapcar #'(lambda (connection)
+                      (* (unit-output-value (connection-left-unit connection))
+                         (connection-weight connection)))
+                  (unit-left-connections unit))))
+```
+
+で、OutputはBias Unit (Outputが1) 以外は (2) なので
+
+```common-lisp
+(defgeneric calculate-unit-output-value (unit)
+  (:method ((unit unit))
+    (funcall activatinon-function (unit-input-value unit)))
+  (:method ((unit bias-unit))
+    (declare (ignore unit))
+    1))
+```
+
+のように計算できる.
+
+これをInput LayerからOutput Layerまで繰り返してネットワークの出力を得ると
+
+```common-lisp
+```
+
+
 
 
 # Test
