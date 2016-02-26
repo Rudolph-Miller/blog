@@ -3,8 +3,13 @@
   
   <url>
     <loc>https://blog.rudolph-miller.com/</loc>
-    <lastmod>2016-02-13T01:17:33+09:00</lastmod>
+    <lastmod>2016-02-26T20:30:37+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</loc>
+    <lastmod>2016-02-26T20:30:37+09:00</lastmod>
   </url>
   
   <url>
