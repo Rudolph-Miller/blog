@@ -416,7 +416,7 @@ $$&lt;/p&gt;
 &lt;p&gt;あとは (20) と (17) で $\delta$ を計算し、&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defgeneric calculate-delta (layer unit)
-  (:method ((layer output-layer) unti)
+  (:method ((layer output-layer) unit)
     ...)
   (:method ((layer hidden-layer) unit)
     ...))
