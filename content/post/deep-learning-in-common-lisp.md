@@ -416,7 +416,7 @@ Input Layer以外のLayerのUnitのInputは (4) なので
 
 ```common-lisp
 (defgeneric calculate-delta (layer unit)
-  (:method ((layer output-layer) unti)
+  (:method ((layer output-layer) unit)
     ...)
   (:method ((layer hidden-layer) unit)
     ...))
