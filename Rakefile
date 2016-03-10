@@ -120,8 +120,15 @@ def edit(argv, command, type='post')
 end
 
 task vi: :vim
+task nvi: :vim
 
 namespace :vi do
+  task :slide do
+    edit ARGV, :vim, :slide
+  end
+end
+
+namespace :nvim do
   task :slide do
     edit ARGV, :vim, :slide
   end
