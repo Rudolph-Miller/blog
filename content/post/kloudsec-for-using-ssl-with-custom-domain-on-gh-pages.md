@@ -7,7 +7,7 @@ slug = "kloudsec-for-ssl-with-custom-domain-on-gh-pages"
 title = "Kloundsec for SSL with Custom Domain on GitHub Pages"
 +++
 
-Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.
+[Kloudsec](https://kloudsec.com/) を使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.
 
 <!--more-->
 
@@ -17,22 +17,25 @@ Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.
 2. [3 steps Integration]({{% relref "#3-steps-integration" %}})
 3. [See Also]({{% relref "#see-also" %}})
 
+
 # Kloudsec
 
-KloudsecはDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.
+[Kloudsec](https://kloudsec.com/) はDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.
 
 [以前]({{% relref "post/use-ssl-with-custom-domain-on-gh-pages.md" %}})
 にCloudFlareでCustom domainなGitHub PagesのSSL対応をする記事を書いたが、
 CloudFlareを使おうとすると DNS server (Name server) をCloudFlareのDNS serverに切り替えないといけなく、
 これが結構負担になった.
 
-Kloudsec for GitHub Pagesを使用すると、既存のDNS serverのままで、
+[Kloudsec for GitHub Pages](https://kloudsec.com/github-pages/new) を使用すると、既存のDNS serverのままで、
 DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応ができる.
 
 
 # 3 steps Integration
 
 GitHub PageのKloudsecへの登録は __3 steps__ で完了する.
+
+[Kloudsec for GitHub Pages](https://kloudsec.com/github-pages/new)
 
 
 ## Register a Kloudsec account
@@ -76,11 +79,11 @@ FormのInput要素をClickするとClipboardにcopyされる.
 
 Kloudsecを使うととてつもなく簡単にCustom domainなGitHub PagesをSSL対応できた.
 
-Kloudsecはそれだけではなく、 __Page Optimizer__ (Page毎のPerformanceのAnalizingや、CDN cacheやImage optimizerで高速化.)
-や __Offline Protection__ (Original pageの障害時にStatic backupを配信する.) などの機能がPluginsとして用意されている.
+Kloudsecはそれだけではなく、 __Page Optimizer__ (Page毎のPerformance analizingや、CDN cacheやImage optimizerによるPage optimizing.)
+や __Offline Protection__ (Original pageの障害時にStatic backupを配信.) などの機能がPluginsとして用意されている.
 
-まだβらしいので、なにかあったらSupportにfeedbackすると良さそう.
-(CEOが直で対応してくれた.)
+まだβらしいので、そのリスクは認識した上で使用して下さい.
+(このBlogはKloudsecを使用.)
 
 
 # See Also
