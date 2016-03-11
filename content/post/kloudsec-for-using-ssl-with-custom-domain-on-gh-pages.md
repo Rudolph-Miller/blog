@@ -44,6 +44,12 @@ EmailとPasswordを入力.
 
 ## Configure your Github Page
 
+{{% image "/20160311/configure_github_page.png" %}}
+
+登録するGitHub PageのRepositoryのURLと登録するCustom domainを入力.
+登録するRepositioryに `CNAME` fileを追加.
+([Quick start: Setting up a custom domain](https://help.github.com/articles/quick-start-setting-up-a-custom-domain/))
+
 ## Configure your DNS settings
 
 
