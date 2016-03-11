@@ -18,7 +18,7 @@
       <guid>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</guid>
       <description>
 
-&lt;p&gt;Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kloudsec.com/&#34;&gt;Kloudsec&lt;/a&gt; を使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.&lt;/p&gt;
 
 &lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/eyecatch.png&#34; alt=&#34;/20160311/eyecatch.png&#34;&gt;
 
@@ -31,19 +31,21 @@
 
 &lt;h1 id=&#34;kloudsec:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Kloudsec&lt;/h1&gt;
 
-&lt;p&gt;KloudsecはDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kloudsec.com/&#34;&gt;Kloudsec&lt;/a&gt; はDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/&#34;&gt;以前&lt;/a&gt;
 にCloudFlareでCustom domainなGitHub PagesのSSL対応をする記事を書いたが、
 CloudFlareを使おうとすると DNS server (Name server) をCloudFlareのDNS serverに切り替えないといけなく、
 これが結構負担になった.&lt;/p&gt;
 
-&lt;p&gt;Kloudsec for GitHub Pagesを使用すると、既存のDNS serverのままで、
+&lt;p&gt;&lt;a href=&#34;https://kloudsec.com/github-pages/new&#34;&gt;Kloudsec for GitHub Pages&lt;/a&gt; を使用すると、既存のDNS serverのままで、
 DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応ができる.&lt;/p&gt;
 
 &lt;h1 id=&#34;3-steps-integration:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;3 steps Integration&lt;/h1&gt;
 
 &lt;p&gt;GitHub PageのKloudsecへの登録は &lt;strong&gt;3 steps&lt;/strong&gt; で完了する.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://kloudsec.com/github-pages/new&#34;&gt;Kloudsec for GitHub Pages&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;register-a-kloudsec-account:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Register a Kloudsec account&lt;/h2&gt;
 
