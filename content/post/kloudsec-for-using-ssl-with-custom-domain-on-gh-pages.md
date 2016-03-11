@@ -14,7 +14,7 @@ Custom domainなGitHub PagesのSSL化にKloudsecを使ってみた.
 {{% image "/20160311/eyecatch.png" %}}
 
 1. [Kloudsec]({{% relref "#kloudsec" %}})
-2. [Integration]({{% relref "#integration" %}})
+2. [3 steps Integration]({{% relref "#3-steps-integration" %}})
 3. [See Also]({{% relref "#see-also" %}})
 
 # Kloudsec
@@ -30,7 +30,21 @@ Kloudsec for GitHub Pagesを使用すると、既存のDNS serverのままで、
 DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応ができる.
 
 
-# Integration
+# 3 steps Integration
+
+GitHub PageのKloudsecへの登録は __3 steps__ で完了する.
+
+
+## Register a Kloudsec account
+
+{{% image "/20160311/register_account.png" %}}
+
+EmailとPasswordを入力.
+
+
+## Configure your Github Page
+
+## Configure your DNS settings
 
 
 # See Also
