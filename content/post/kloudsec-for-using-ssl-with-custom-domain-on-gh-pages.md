@@ -1,5 +1,5 @@
 +++
-Description = "Custom domainなGitHub PagesのSSL化にKloudsecを使ってみた."
+Description = "Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする."
 Tags = ["GitHub Pages"]
 date = "2016-03-11T16:30:07+09:00"
 draft = true
@@ -7,7 +7,7 @@ title = "Kloundsec for SSL with Custom Domain on GitHub Pages"
 slug = "kloudsec-for-ssl-with-custom-domain-on-gh-pages"
 +++
 
-Custom domainなGitHub PagesのSSL化にKloudsecを使ってみた.
+Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.
 
 <!--more-->
 
@@ -19,7 +19,7 @@ Custom domainなGitHub PagesのSSL化にKloudsecを使ってみた.
 
 # Kloudsec
 
-KloudsecはdomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.
+KloudsecはDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.
 
 [以前]({{% relref "post/use-ssl-with-custom-domain-on-gh-pages.md" %}})
 にCloudFlareでCustom domainなGitHub PagesのSSL対応をする記事を書いたが、
@@ -50,8 +50,25 @@ EmailとPasswordを入力.
 登録するRepositioryに `CNAME` fileを追加.
 ([Quick start: Setting up a custom domain](https://help.github.com/articles/quick-start-setting-up-a-custom-domain/))
 
+
 ## Configure your DNS settings
 
+{{% image "/20160311/configure_dns.png" %}}
+
+最後に表示されている設定を使用しているDNS serverに登録する.
+FormのInput要素をClickするとClipboardにcopyされる.
+
+※Record 2の登録の際はSubdomainに注意. ↑の画像の場合、登録するSubdomainは `kloudsecurity****.gh-pages` となる.
+
+最後に **I'm done! Bring me to my dashboard.** をClickすれば完了.
+
+これだけでCDNの接続は完了.
+
+すこし待つと
+
+{{% image "/20160311/ssl_certificate_ready.png" %}}
+
+の様なEmailが届きSSLの設定も完了.
 
 # See Also
 
