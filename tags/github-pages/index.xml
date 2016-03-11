@@ -88,11 +88,11 @@ FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
 
 &lt;p&gt;Kloudsecを使うととてつもなく簡単にCustom domainなGitHub PagesをSSL対応できた.&lt;/p&gt;
 
-&lt;p&gt;Kloudsecはそれだけではなく、 &lt;strong&gt;Page Optimizer&lt;/strong&gt; (Page毎のPerformanceのAnalizingや、CDN cacheやImage optimizerで高速化.)
-や &lt;strong&gt;Offline Protection&lt;/strong&gt; (Original pageの障害時にStatic backupを配信する.) などの機能がPluginsとして用意されている.&lt;/p&gt;
+&lt;p&gt;Kloudsecはそれだけではなく、 &lt;strong&gt;Page Optimizer&lt;/strong&gt; (Page毎のPerformance analizingや、CDN cacheやImage optimizerによるPage optimizing.)
+や &lt;strong&gt;Offline Protection&lt;/strong&gt; (Original pageの障害時にStatic backupを配信.) などの機能がPluginsとして用意されている.&lt;/p&gt;
 
-&lt;p&gt;まだβらしいので、なにかあったらSupportにfeedbackすると良さそう.
-(CEOが直で対応してくれた.)&lt;/p&gt;
+&lt;p&gt;まだβらしいので、そのリスクは認識した上で使用して下さい.
+(このBlogはKloudsecを使用.)&lt;/p&gt;
 
 &lt;h1 id=&#34;see-also:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;See Also&lt;/h1&gt;
 
