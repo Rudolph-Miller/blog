@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="Kloundsec for SSL with Custom Domain on GitHub Pages - (rudolph-miller)" />
+  
+  <meta property="og:site_name" content="(rudolph-miller)" />
+  <meta property="og:url" content="https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/" />
+  
+  <meta property="og:description" content="Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする." />
+  
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2016-03-11T21:54:27&#43;09:00" />
+  
+  <meta property="og:article:tag" content="GitHub Pages" />
+  
+  
+
+  <title>
+    Kloundsec for SSL with Custom Domain on GitHub Pages - (rudolph-miller)
+  </title>
+  
+  <meta name="description" content="Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする." />
+  
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/highlight-lisp/themes/github.css" />
+  <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/earlyaccess/notosansjp.css' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/images/favicon.png" />
+  <link rel="icon" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  
+  <link rel="canonical" href="https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/">
+</head>
+
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="https://blog.rudolph-miller.com/">(rudolph-miller)</a></h1>
+      
+      <div class="tag-line">
+        NO LISP, NO LIFE.
+      </div>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="https://blog.rudolph-miller.com/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Kloundsec for SSL with Custom Domain on GitHub Pages</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2016-03-11T21:54:27&#43;09:00">
+          Mar 11, 2016
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="https://blog.rudolph-miller.com//tags/github-pages">#GitHub Pages</a></span>
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.</p>
+
+<img src="/images//20160311/eyecatch.png" alt="/20160311/eyecatch.png">
+
+
+<ol>
+<li><a href="#kloudsec:e6ae5c71a14d7c514ac98a7919ffceb2">Kloudsec</a></li>
+<li><a href="#3-steps-integration:e6ae5c71a14d7c514ac98a7919ffceb2">3 steps Integration</a></li>
+<li><a href="#see-also:e6ae5c71a14d7c514ac98a7919ffceb2">See Also</a></li>
+</ol>
+
+<h1 id="kloudsec:e6ae5c71a14d7c514ac98a7919ffceb2">Kloudsec</h1>
+
+<p>KloudsecはDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.</p>
+
+<p><a href="/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/">以前</a>
+にCloudFlareでCustom domainなGitHub PagesのSSL対応をする記事を書いたが、
+CloudFlareを使おうとすると DNS server (Name server) をCloudFlareのDNS serverに切り替えないといけなく、
+これが結構負担になった.</p>
+
+<p>Kloudsec for GitHub Pagesを使用すると、既存のDNS serverのままで、
+DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応ができる.</p>
+
+<h1 id="3-steps-integration:e6ae5c71a14d7c514ac98a7919ffceb2">3 steps Integration</h1>
+
+<p>GitHub PageのKloudsecへの登録は <strong>3 steps</strong> で完了する.</p>
+
+<h2 id="register-a-kloudsec-account:e6ae5c71a14d7c514ac98a7919ffceb2">Register a Kloudsec account</h2>
+
+<img src="/images//20160311/register_account.png" alt="/20160311/register_account.png">
+
+
+<p>EmailとPasswordを入力.</p>
+
+<h2 id="configure-your-github-page:e6ae5c71a14d7c514ac98a7919ffceb2">Configure your Github Page</h2>
+
+<img src="/images//20160311/configure_github_page.png" alt="/20160311/configure_github_page.png">
+
+
+<p>登録するGitHub PageのRepositoryのURLと登録するCustom domainを入力.
+登録するRepositioryに <code>CNAME</code> fileを追加.
+(<a href="https://help.github.com/articles/quick-start-setting-up-a-custom-domain/">Quick start: Setting up a custom domain</a>)</p>
+
+<h2 id="configure-your-dns-settings:e6ae5c71a14d7c514ac98a7919ffceb2">Configure your DNS settings</h2>
+
+<img src="/images//20160311/configure_dns.png" alt="/20160311/configure_dns.png">
+
+
+<p>最後に表示されている設定を使用しているDNS serverに登録する.
+FormのInput要素をClickするとClipboardにcopyされる.</p>
+
+<p>※Record 2の登録の際はSubdomainに注意. ↑の画像の場合、登録するSubdomainは <code>kloudsecurity****.gh-pages</code> となる.</p>
+
+<p>最後に <strong>I&rsquo;m done! Bring me to my dashboard.</strong> をClickすれば完了.</p>
+
+<p>これだけでCDNの接続は完了.</p>
+
+<p>すこし待つと</p>
+
+<img src="/images//20160311/ssl_certificate_ready.png" alt="/20160311/ssl_certificate_ready.png">
+
+
+<p>の様なEmailが届きSSLの設定も完了.</p>
+
+<p>裏では <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a> を使用しているらしい.</p>
+
+<hr />
+
+<p>Kloudsecを使うととてつもなく簡単にCustom domainなGitHub PagesをSSL対応できた.</p>
+
+<p>Kloudsecはそれだけではなく、 <strong>Page Optimizer</strong> (Page毎のPerformanceのAnalizingや、CDN cacheやImage optimizerで高速化.)
+や <strong>Offline Protection</strong> (Original pageの障害時にStatic backupを配信する.) などの機能がPluginsとして用意されている.</p>
+
+<p>まだβらしいので、なにかあったらSupportにfeedbackすると良さそう.
+(CEOが直で対応してくれた.)</p>
+
+<h1 id="see-also:e6ae5c71a14d7c514ac98a7919ffceb2">See Also</h1>
+
+<ul>
+<li><a href="https://kloudsec.com/">Kloudsec</a></li>
+<li><a href="https://kloudsec.com/github-pages/new">Kloudsec for GitHub Pages</a></li>
+<li><a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+        <img alt="Author Avatar" src="/images/logo.png" />
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        <h1 class="author-name text-primary">Rudolph Miller</h1>
+        
+        
+        <div class="author-bio">Common Lisp Player.</div>
+        
+      </div>
+      
+      <div class="author-contact col-md-4">
+        <a href="mailto:lisper@rudolph-miller.com">
+          <i class="fa fa-envelope-o"></i>
+          &nbsp;Contact me
+        </a>
+      </div>
+      
+    </section>
+    <section class="social-buttons row">
+      
+      <div class="social-button">
+        <ul class="twitter-share-button-with-balloon">
+          <li>
+          <a href="https://twitter.com/search?q=%2f2016%2f03%2f11%2fkloudsec-for-ssl-with-custom-domain-on-gh-pages%2f" target="_blank">
+              <span class="balloon-bottom">list</span>
+            </a>
+          </li>
+          <li>
+          <a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true" data-count="vertical" data-text="Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.">Tweet</a>
+          </li>
+        </ul>
+      </div>
+
+      
+      <div class="social-button">
+        <a class='hatena-bookmark-button' data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en" expr:data-hatena-bookmark-title="data:post.title" expr:href='"http://b.hatena.ne.jp/entry/" + data:post.canonicalUrl' title='このエントリーをはてなブックマークに追加'>
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
+        </a>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="fb-like" data-href="/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+      </div>
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="/2016/02/26/deep-learning-in-common-lisp/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      
+      var disqus_shortname = 'rudolph-miller';
+      (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })()
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+    
+    <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
+
+    
+    <script type='text/javascript' src='//b.st-hatena.com/js/bookmark_button.js' charset='utf-8' async='async'></script>
+
+    
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; 2015 Rudolph Miller
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/Rudolph_Miller" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://github.com/Rudolph-Miller" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="mailto:lisper@rudolph-miller.com">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  <a href="https://www.amazon.co.jp/gp/registry/wishlist/?ie=UTF8&cid=A3RNOUU855C76" target="_blank">
+    <i class="fa fa-gift"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script type="text/javascript" src="/highlight-lisp/highlight-lisp.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    HighlightLisp.highlight_auto({className: "language-common-lisp"});
+    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
+  </script>
+
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47602577-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+</body>
+</html>
+

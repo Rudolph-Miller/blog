@@ -7,8 +7,102 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 29 Jan 2016 17:18:42 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 11 Mar 2016 21:54:27 +0900</lastBuildDate>
     <atom:link href="https://blog.rudolph-miller.com/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Kloundsec for SSL with Custom Domain on GitHub Pages</title>
+      <link>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</link>
+      <pubDate>Fri, 11 Mar 2016 21:54:27 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</guid>
+      <description>
+
+&lt;p&gt;Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/eyecatch.png&#34; alt=&#34;/20160311/eyecatch.png&#34;&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#kloudsec:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Kloudsec&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-steps-integration:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;3 steps Integration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;kloudsec:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Kloudsec&lt;/h1&gt;
+
+&lt;p&gt;KloudsecはDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/&#34;&gt;以前&lt;/a&gt;
+にCloudFlareでCustom domainなGitHub PagesのSSL対応をする記事を書いたが、
+CloudFlareを使おうとすると DNS server (Name server) をCloudFlareのDNS serverに切り替えないといけなく、
+これが結構負担になった.&lt;/p&gt;
+
+&lt;p&gt;Kloudsec for GitHub Pagesを使用すると、既存のDNS serverのままで、
+DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応ができる.&lt;/p&gt;
+
+&lt;h1 id=&#34;3-steps-integration:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;3 steps Integration&lt;/h1&gt;
+
+&lt;p&gt;GitHub PageのKloudsecへの登録は &lt;strong&gt;3 steps&lt;/strong&gt; で完了する.&lt;/p&gt;
+
+&lt;h2 id=&#34;register-a-kloudsec-account:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Register a Kloudsec account&lt;/h2&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/register_account.png&#34; alt=&#34;/20160311/register_account.png&#34;&gt;
+
+
+&lt;p&gt;EmailとPasswordを入力.&lt;/p&gt;
+
+&lt;h2 id=&#34;configure-your-github-page:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Configure your Github Page&lt;/h2&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/configure_github_page.png&#34; alt=&#34;/20160311/configure_github_page.png&#34;&gt;
+
+
+&lt;p&gt;登録するGitHub PageのRepositoryのURLと登録するCustom domainを入力.
+登録するRepositioryに &lt;code&gt;CNAME&lt;/code&gt; fileを追加.
+(&lt;a href=&#34;https://help.github.com/articles/quick-start-setting-up-a-custom-domain/&#34;&gt;Quick start: Setting up a custom domain&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h2 id=&#34;configure-your-dns-settings:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Configure your DNS settings&lt;/h2&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/configure_dns.png&#34; alt=&#34;/20160311/configure_dns.png&#34;&gt;
+
+
+&lt;p&gt;最後に表示されている設定を使用しているDNS serverに登録する.
+FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
+
+&lt;p&gt;※Record 2の登録の際はSubdomainに注意. ↑の画像の場合、登録するSubdomainは &lt;code&gt;kloudsecurity****.gh-pages&lt;/code&gt; となる.&lt;/p&gt;
+
+&lt;p&gt;最後に &lt;strong&gt;I&amp;rsquo;m done! Bring me to my dashboard.&lt;/strong&gt; をClickすれば完了.&lt;/p&gt;
+
+&lt;p&gt;これだけでCDNの接続は完了.&lt;/p&gt;
+
+&lt;p&gt;すこし待つと&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/ssl_certificate_ready.png&#34; alt=&#34;/20160311/ssl_certificate_ready.png&#34;&gt;
+
+
+&lt;p&gt;の様なEmailが届きSSLの設定も完了.&lt;/p&gt;
+
+&lt;p&gt;裏では &lt;a href=&#34;https://letsencrypt.org/&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt; を使用しているらしい.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Kloudsecを使うととてつもなく簡単にCustom domainなGitHub PagesをSSL対応できた.&lt;/p&gt;
+
+&lt;p&gt;Kloudsecはそれだけではなく、 &lt;strong&gt;Page Optimizer&lt;/strong&gt; (Page毎のPerformanceのAnalizingや、CDN cacheやImage optimizerで高速化.)
+や &lt;strong&gt;Offline Protection&lt;/strong&gt; (Original pageの障害時にStatic backupを配信する.) などの機能がPluginsとして用意されている.&lt;/p&gt;
+
+&lt;p&gt;まだβらしいので、なにかあったらSupportにfeedbackすると良さそう.
+(CEOが直で対応してくれた.)&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kloudsec.com/&#34;&gt;Kloudsec&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kloudsec.com/github-pages/new&#34;&gt;Kloudsec for GitHub Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://letsencrypt.org/&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Use SSL with Custom Domain on GitHub Pages</title>

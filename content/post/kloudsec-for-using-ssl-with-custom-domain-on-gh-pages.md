@@ -1,10 +1,10 @@
 +++
 Description = "Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする."
 Tags = ["GitHub Pages"]
-date = "2016-03-11T16:30:07+09:00"
-draft = true
-title = "Kloundsec for SSL with Custom Domain on GitHub Pages"
+date = "2016-03-11T21:54:27+09:00"
+draft = false
 slug = "kloudsec-for-ssl-with-custom-domain-on-gh-pages"
+title = "Kloundsec for SSL with Custom Domain on GitHub Pages"
 +++
 
 Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.
@@ -70,7 +70,21 @@ FormのInput要素をClickするとClipboardにcopyされる.
 
 の様なEmailが届きSSLの設定も完了.
 
+裏では [Let's Encrypt](https://letsencrypt.org/) を使用しているらしい.
+
+---
+
+Kloudsecを使うととてつもなく簡単にCustom domainなGitHub PagesをSSL対応できた.
+
+Kloudsecはそれだけではなく、 __Page Optimizer__ (Page毎のPerformanceのAnalizingや、CDN cacheやImage optimizerで高速化.)
+や __Offline Protection__ (Original pageの障害時にStatic backupを配信する.) などの機能がPluginsとして用意されている.
+
+まだβらしいので、なにかあったらSupportにfeedbackすると良さそう.
+(CEOが直で対応してくれた.)
+
+
 # See Also
 
 - [Kloudsec](https://kloudsec.com/)
 - [Kloudsec for GitHub Pages](https://kloudsec.com/github-pages/new)
+- [Let's Encrypt](https://letsencrypt.org/)

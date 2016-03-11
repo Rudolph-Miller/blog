@@ -7,8 +7,102 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 26 Feb 2016 20:30:37 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 11 Mar 2016 21:54:27 +0900</lastBuildDate>
     <atom:link href="https://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Kloundsec for SSL with Custom Domain on GitHub Pages</title>
+      <link>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</link>
+      <pubDate>Fri, 11 Mar 2016 21:54:27 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</guid>
+      <description>
+
+&lt;p&gt;Kloudsecを使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/eyecatch.png&#34; alt=&#34;/20160311/eyecatch.png&#34;&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#kloudsec:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Kloudsec&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-steps-integration:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;3 steps Integration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;kloudsec:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Kloudsec&lt;/h1&gt;
+
+&lt;p&gt;KloudsecはDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/&#34;&gt;以前&lt;/a&gt;
+にCloudFlareでCustom domainなGitHub PagesのSSL対応をする記事を書いたが、
+CloudFlareを使おうとすると DNS server (Name server) をCloudFlareのDNS serverに切り替えないといけなく、
+これが結構負担になった.&lt;/p&gt;
+
+&lt;p&gt;Kloudsec for GitHub Pagesを使用すると、既存のDNS serverのままで、
+DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応ができる.&lt;/p&gt;
+
+&lt;h1 id=&#34;3-steps-integration:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;3 steps Integration&lt;/h1&gt;
+
+&lt;p&gt;GitHub PageのKloudsecへの登録は &lt;strong&gt;3 steps&lt;/strong&gt; で完了する.&lt;/p&gt;
+
+&lt;h2 id=&#34;register-a-kloudsec-account:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Register a Kloudsec account&lt;/h2&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/register_account.png&#34; alt=&#34;/20160311/register_account.png&#34;&gt;
+
+
+&lt;p&gt;EmailとPasswordを入力.&lt;/p&gt;
+
+&lt;h2 id=&#34;configure-your-github-page:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Configure your Github Page&lt;/h2&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/configure_github_page.png&#34; alt=&#34;/20160311/configure_github_page.png&#34;&gt;
+
+
+&lt;p&gt;登録するGitHub PageのRepositoryのURLと登録するCustom domainを入力.
+登録するRepositioryに &lt;code&gt;CNAME&lt;/code&gt; fileを追加.
+(&lt;a href=&#34;https://help.github.com/articles/quick-start-setting-up-a-custom-domain/&#34;&gt;Quick start: Setting up a custom domain&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h2 id=&#34;configure-your-dns-settings:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Configure your DNS settings&lt;/h2&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/configure_dns.png&#34; alt=&#34;/20160311/configure_dns.png&#34;&gt;
+
+
+&lt;p&gt;最後に表示されている設定を使用しているDNS serverに登録する.
+FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
+
+&lt;p&gt;※Record 2の登録の際はSubdomainに注意. ↑の画像の場合、登録するSubdomainは &lt;code&gt;kloudsecurity****.gh-pages&lt;/code&gt; となる.&lt;/p&gt;
+
+&lt;p&gt;最後に &lt;strong&gt;I&amp;rsquo;m done! Bring me to my dashboard.&lt;/strong&gt; をClickすれば完了.&lt;/p&gt;
+
+&lt;p&gt;これだけでCDNの接続は完了.&lt;/p&gt;
+
+&lt;p&gt;すこし待つと&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/ssl_certificate_ready.png&#34; alt=&#34;/20160311/ssl_certificate_ready.png&#34;&gt;
+
+
+&lt;p&gt;の様なEmailが届きSSLの設定も完了.&lt;/p&gt;
+
+&lt;p&gt;裏では &lt;a href=&#34;https://letsencrypt.org/&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt; を使用しているらしい.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Kloudsecを使うととてつもなく簡単にCustom domainなGitHub PagesをSSL対応できた.&lt;/p&gt;
+
+&lt;p&gt;Kloudsecはそれだけではなく、 &lt;strong&gt;Page Optimizer&lt;/strong&gt; (Page毎のPerformanceのAnalizingや、CDN cacheやImage optimizerで高速化.)
+や &lt;strong&gt;Offline Protection&lt;/strong&gt; (Original pageの障害時にStatic backupを配信する.) などの機能がPluginsとして用意されている.&lt;/p&gt;
+
+&lt;p&gt;まだβらしいので、なにかあったらSupportにfeedbackすると良さそう.
+(CEOが直で対応してくれた.)&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kloudsec.com/&#34;&gt;Kloudsec&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kloudsec.com/github-pages/new&#34;&gt;Kloudsec for GitHub Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://letsencrypt.org/&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Deep Learning in Common Lisp</title>
@@ -3304,137 +3398,6 @@ class App extends Component {
 &lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/react-bootstrap-star-rating&#34;&gt;React Bootstrap Star Rating&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://plugins.krajee.com/star-rating&#34;&gt;Bootstrap Star Rating&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/kartik-v/bootstrap-star-rating&#34;&gt;bootstrap-star-rating&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>React Redux Rails</title>
-      <link>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</link>
-      <pubDate>Fri, 11 Dec 2015 00:00:06 +0900</pubDate>
-      
-      <guid>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</guid>
-      <description>
-
-&lt;p&gt;React.js &amp;amp; Redux &amp;amp; Ruby on Railsでserver-side rendering.&lt;/p&gt;
-
-&lt;p&gt;この記事は&lt;a href=&#34;http://qiita.com/advent-calendar/2015/reactjs&#34;&gt;React.js Advent Calendar 2015&lt;/a&gt;の10日目の記事であり、&lt;br /&gt;
-&lt;a href=&#34;http://qiita.com/advent-calendar/2015/vdom-flux&#34;&gt;仮想DOM/Flux Advent Calendar 2015&lt;/a&gt;の10日目の記事です. (欲張り.)&lt;/p&gt;
-
-&lt;p&gt;Source codeは&lt;a href=&#34;https://github.com/Rudolph-Miller/react_rails_example&#34;&gt;React Rails Example&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#react-redux-rails:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;React Redux Rails&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;react-redux-rails:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;React Redux Rails&lt;/h1&gt;
-
-&lt;h2 id=&#34;react-js:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;React.js&lt;/h2&gt;
-
-&lt;p&gt;React.jsはFacebook製のJavaScriptのUI Library.&lt;br /&gt;
-Viewの状態管理をさぼれる.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://qiita.com/advent-calendar/2014/reactjs&#34;&gt;一人React.js Advent Calendar 2014&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;redux:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;Redux&lt;/h2&gt;
-
-&lt;p&gt;Reduxは今一番熱いFlux architecture frameworkで状態管理をatomitにする.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-redux&#34;&gt;React Redux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://amagitakayosi.hatenablog.com/entry/2015/07/30/000000&#34;&gt;人気のFluxフレームワークReduxをさわってみた&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;react-rails:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;react-rails&lt;/h2&gt;
-
-&lt;p&gt;Ruby on RailsにはReact.jsのserver-side renderingを容易にするGemがある.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-rb&#34;&gt;&amp;lt;%= react_component(&#39;HelloMessage&#39;, name: &#39;John&#39;) %&amp;gt;
-&amp;lt;!-- becomes: --&amp;gt;
-&amp;lt;div data-react-class=&amp;quot;HelloMessage&amp;quot; data-react-props=&amp;quot;{&amp;amp;quot;name&amp;amp;quot;:&amp;amp;quot;John&amp;amp;quot;}&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;こんな感じにViewにReact.jsのComponentを埋め込むことができる.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;react_component&lt;/code&gt; の3つ目の引数として &lt;code&gt;{prerender: true}&lt;/code&gt; を渡すだけで、server-side renderingができる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-rb&#34;&gt;&amp;lt;%= react_component(&#39;HelloMessage&#39;, {name: &#39;John&#39;}, {prerender: true}) %&amp;gt;
-&amp;lt;!-- becomes: --&amp;gt;
-&amp;lt;div data-react-class=&amp;quot;HelloMessage&amp;quot; data-react-props=&amp;quot;{&amp;amp;quot;name&amp;amp;quot;:&amp;amp;quot;John&amp;amp;quot;}&amp;quot;&amp;gt;
-  &amp;lt;h1&amp;gt;Hello, John!&amp;lt;/h1&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/reactjs/react-rails&#34;&gt;react-rails&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://qiita.com/joe-re/items/96f12dda4a62470d1d7c&#34;&gt;react-railsを使ってReactのTutorialをやってみる&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;try:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;Try&lt;/h2&gt;
-
-&lt;p&gt;これらを合わせて、Reduxで状態管理をして、ReactでComponentを組み立て、Ruby on Railsでserver-side renderingをしてみた.&lt;/p&gt;
-
-&lt;p&gt;BaseのAppはReduxのBasic tutorialになっている&lt;a href=&#34;http://rackt.org/redux/docs/basics/ExampleTodoList.html&#34;&gt;tiny todo app&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-rb&#34;&gt;&amp;lt;%= react_component(&#39;Root&#39;, {presetTodos: @todos}, {prerender: true}) %&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/react_rails_example/blob/ab95d682a10b91358f01bb431be2cdb397795cdd/app/views/todos/index.html.erb#L1&#34;&gt;app/views/todos/index.html.erb&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;とRuby on RailsのViewに埋め込むことにより、初回は server-side renderingで &lt;code&gt;@todos&lt;/code&gt; を &lt;code&gt;props&lt;/code&gt; に渡して &lt;code&gt;componentDidMount&lt;/code&gt; でDataをsetし、
-それ以外で &lt;code&gt;Root&lt;/code&gt; をrenderした時は &lt;code&gt;componentDidMount&lt;/code&gt; でDataをfetchする.&lt;br /&gt;
-(今回のExampleではこの遷移は実装していないが、 &lt;code&gt;{presetTodos: @todos}&lt;/code&gt; をはずぜばこの挙動となる.)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;componentDidMount() {
-	const { dispatch, presetTodos } = this.props;
-	if (presetTodos) {
-		dispatch(setTodos(presetTodos));
-	} else {
-		dispatch(fetchTodos());
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/react_rails_example/blob/ab95d682a10b91358f01bb431be2cdb397795cdd/app/assets/javascripts/containers/App.js#L38-L45&#34;&gt;app/assets/javascripts/containers/App.js&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;軽くポイントを掻い摘む.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;JavaScriptのLibrary管理はnpmでbrowserify-railsを使ってBabelでbuildした.
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;application.js&lt;/code&gt; は &lt;code&gt;//= require react_ujs&lt;/code&gt; と &lt;code&gt;//= require components&lt;/code&gt; のみ. (&lt;a href=&#34;https://github.com/Rudolph-Miller/react_rails_example/blob/c07553236da0464393fccf75ecb6a3d61f48b4e2/app/assets/javascripts/application.js#L1-L2&#34;&gt;app/assets/javascripts/application.js&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Babel 6だとDecorationが未supportだったため、Babel 5を使用した. (&lt;a href=&#34;http://phabricator.babeljs.io/T2645&#34;&gt;Implement new decorator proposal when finalized&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;ReduxでAsync.
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://rackt.org/redux/docs/advanced/AsyncActions.html&#34;&gt;Async Actions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/react_rails_example/blob/ab95d682a10b91358f01bb431be2cdb397795cdd/app/assets/javascripts/actions/index.js#L34-L54&#34;&gt;app/assets/javascripts/actions/index.js&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;詳しくはSourceに.
-質問があればTwitterで &lt;a href=&#34;https://twitter.com/Rudolph_Miller&#34;&gt;#Rudolph_Miller&lt;/a&gt; に聞いて下さい.&lt;/p&gt;
-
-&lt;p&gt;意外とすんなり書け、すんなり動いたので、どこかで実戦投入したいと思う.&lt;/p&gt;
-
-&lt;h1 id=&#34;see-also:982e6b4bd120a43daf7d20e0e817411f&#34;&gt;See Also&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/react_rails_example&#34;&gt;React Rails Example&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/facebook/flux&#34;&gt;Flux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-redux&#34;&gt;React Redux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/reactjs/react-rails&#34;&gt;react-rails&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/browserify-rails/browserify-rails&#34;&gt;Babel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/browserify-rails/browserify-rails&#34;&gt;browserify-rails&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
