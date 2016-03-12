@@ -149,7 +149,7 @@ $$
 で、正解のclassに対応する一つのUnitのOutputが 1 で、残りのUnitのOutputが 0 となる.
 
 
-## Stachastic Gradient Descent
+## Stochastic Gradient Descent
 
 ネットワークの目的はError functionの値を小さくすることだが、
 Error functionは一般に凸関数ではなく、大域的な最小解を直接得ることは通常不可能.
