@@ -10,3 +10,6 @@ slug = "math-random-in-browser"
 `Math.random` がBrowserによっては偏っている気がしたので調査.
 
 <!--more-->
+
+# 調査方法
+# 対象 Browsers
