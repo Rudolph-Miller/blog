@@ -13,3 +13,4 @@ slug = "math-random-in-browser"
 
 # 調査方法
 # 対象 Browsers
+# どういうサイト、プログラムに影響があるか
