@@ -1,3 +1,3 @@
 # Blog
 
-[(rudolph-miller)](http://blog.rudolph-miller.com/).
+[(rudolph-miller)](https://blog.rudolph-miller.com/).
