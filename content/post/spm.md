@@ -10,3 +10,10 @@ slug = "spm"
 Sketch Plugin Managerを作った.
 
 <!--more-->
+
+https://github.com/Rudolph-Miller/spm
+
+# Sketch Plugin Manager
+
+
+# See Also
