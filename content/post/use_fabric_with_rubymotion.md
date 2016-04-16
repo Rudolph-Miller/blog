@@ -1,8 +1,8 @@
 +++
-Description = "WIP"
+Description = "Use Fabric with RubyMotion"
 Tags = ["WIP"]
 date = "2016-04-15T09:15:08+09:00"
 draft = true
-title = "use_fabric_with_rubymotion"
+title = "Use Fabric with RubyMotion"
 +++
 
