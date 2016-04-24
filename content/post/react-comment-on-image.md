@@ -1,5 +1,5 @@
 +++
-Description = "React Comment on Image"
+Description = "React Comment on Image を作った."
 Tags = ["React.js"]
 date = "2016-04-21T10:58:27+09:00"
 draft = true
@@ -7,6 +7,6 @@ title = "React Comment on Image"
 slug = "react-comment-on-image"
 +++
 
-React Comment on Image
+React Comment on Image を作った.
 
 <!--more-->
