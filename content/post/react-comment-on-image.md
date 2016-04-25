@@ -9,4 +9,10 @@ slug = "react-comment-on-image"
 
 React Comment on Image を作った.
 
+[react-comment-on-image](https://github.com/Rudolph-Miller/react-comment-on-image)
+
 <!--more-->
+
+# See Also
+
+- [React Comment on Image](https://github.com/Rudolph-Miller/react-comment-on-image)
