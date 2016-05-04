@@ -15,3 +15,6 @@ slug = "create-regexp-engine"
 放置している間に作り方を忘れかけていたので備忘録として残そうと思って書いた.
 
 というかlast commitが11 months agoで、すでに大半忘れてる.
+
+regexp -> AST -> NFA -> DFA -> exec
+regexp -> AST -> bytecode -> exec via VM
