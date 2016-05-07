@@ -14,5 +14,23 @@ slug = "create-regexp-engine"
 以前正規表現エンジンを作成して、
 放置している間に作り方を忘れかけていたので備忘録として残そうと思って書いた.
 
+
+1. [Regexp]({{< relref "#regexp" >}})
+2. [NFA]({{<relref "#nfa" >}})
+3. [DFA]({{<relref "#dfa" >}})
+4. [VM]({{< relref "#vm" >}})
+
+
+# Regexp
+
 regexp -> AST -> NFA -> minimum NFA -> DFA -> exec
 regexp -> AST -> bytecode -> exec via VM
+
+
+# NFA
+
+
+# DFA
+
+
+# VM
