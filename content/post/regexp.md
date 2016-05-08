@@ -3,7 +3,7 @@ Description = "正規表現エンジンの作成."
 Tags = ["Common Lisp", "Regexp"]
 date = "2016-05-04T22:14:57+09:00"
 draft = true
-title = "Create Regexp engine."
+title = "Create Regexp engine"
 slug = "create-regexp-engine"
 +++
 
