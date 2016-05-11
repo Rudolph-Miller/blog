@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Deep Learning on </title>
-    <link>/tags/deep-learning/</link>
-    <description>Recent content in Deep Learning on </description>
+    <title>Deep Learning on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/deep-learning/</link>
+    <description>Recent content in Deep Learning on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 26 Feb 2016 20:30:37 +0900</lastBuildDate>
-    <atom:link href="/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Deep Learning in Common Lisp</title>
-      <link>/post/deep-learning-in-common-lisp/</link>
+      <link>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</link>
       <pubDate>Fri, 26 Feb 2016 20:30:37 +0900</pubDate>
       
-      <guid>/post/deep-learning-in-common-lisp/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</guid>
       <description>
 
 &lt;p&gt;Deep Learning をCommon Lispで実装してみた.&lt;/p&gt;
@@ -42,7 +44,7 @@
 
 &lt;p&gt;Deep Learning は Deep Neural Network (Multi-layer perceptron, 多層構造のNeural Network) の機械学習の事.&lt;/p&gt;
 
-&lt;img src=&#34;/images//20160224/dnn.png&#34; alt=&#34;/20160224/dnn.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/dnn.png&#34; alt=&#34;/20160224/dnn.png&#34;&gt;
 
 
 &lt;p&gt;Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
@@ -58,7 +60,7 @@
 
 &lt;h2 id=&#34;activation-function:99621a27901250e81c3c36481758f611&#34;&gt;Activation function&lt;/h2&gt;
 
-&lt;img src=&#34;/images//20160224/math_1.png&#34; alt=&#34;/20160224/math_1.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/math_1.png&#34; alt=&#34;/20160224/math_1.png&#34;&gt;
 
 
 &lt;p&gt;連続した$p-1$層と$p$層を考える.&lt;/p&gt;
@@ -82,7 +84,7 @@ UnitのInputは前層のOutputにConnectionの重みを掛けたものの和にB
 
 &lt;p&gt;ここで&lt;/p&gt;
 
-&lt;img src=&#34;/images//20160224/math_2.png&#34; alt=&#34;/20160224/math_2.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/math_2.png&#34; alt=&#34;/20160224/math_2.png&#34;&gt;
 
 
 &lt;p&gt;のようにBias Unitという特別なUnit (Outputが常に $1$) を導入して、&lt;/p&gt;
@@ -317,7 +319,7 @@ $$&lt;/p&gt;
 
 &lt;p&gt;※以下のCodeはそのままで動くようには書いてない.&lt;/p&gt;
 
-&lt;img src=&#34;/images//20160226/impl_1.png&#34; alt=&#34;/20160226/impl_1.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160226/impl_1.png&#34; alt=&#34;/20160226/impl_1.png&#34;&gt;
 
 
 &lt;p&gt;上の図を &lt;code&gt;CLOS&lt;/code&gt; に落とし込む.&lt;/p&gt;

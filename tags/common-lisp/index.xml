@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Common Lisp on </title>
-    <link>/tags/common-lisp/</link>
-    <description>Recent content in Common Lisp on </description>
+    <title>Common Lisp on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/common-lisp/</link>
+    <description>Recent content in Common Lisp on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 26 Feb 2016 20:30:37 +0900</lastBuildDate>
-    <atom:link href="/tags/common-lisp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/common-lisp/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Deep Learning in Common Lisp</title>
-      <link>/post/deep-learning-in-common-lisp/</link>
+      <link>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</link>
       <pubDate>Fri, 26 Feb 2016 20:30:37 +0900</pubDate>
       
-      <guid>/post/deep-learning-in-common-lisp/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</guid>
       <description>
 
 &lt;p&gt;Deep Learning をCommon Lispで実装してみた.&lt;/p&gt;
@@ -42,7 +44,7 @@
 
 &lt;p&gt;Deep Learning は Deep Neural Network (Multi-layer perceptron, 多層構造のNeural Network) の機械学習の事.&lt;/p&gt;
 
-&lt;img src=&#34;/images//20160224/dnn.png&#34; alt=&#34;/20160224/dnn.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/dnn.png&#34; alt=&#34;/20160224/dnn.png&#34;&gt;
 
 
 &lt;p&gt;Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
@@ -58,7 +60,7 @@
 
 &lt;h2 id=&#34;activation-function:99621a27901250e81c3c36481758f611&#34;&gt;Activation function&lt;/h2&gt;
 
-&lt;img src=&#34;/images//20160224/math_1.png&#34; alt=&#34;/20160224/math_1.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/math_1.png&#34; alt=&#34;/20160224/math_1.png&#34;&gt;
 
 
 &lt;p&gt;連続した$p-1$層と$p$層を考える.&lt;/p&gt;
@@ -82,7 +84,7 @@ UnitのInputは前層のOutputにConnectionの重みを掛けたものの和にB
 
 &lt;p&gt;ここで&lt;/p&gt;
 
-&lt;img src=&#34;/images//20160224/math_2.png&#34; alt=&#34;/20160224/math_2.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/math_2.png&#34; alt=&#34;/20160224/math_2.png&#34;&gt;
 
 
 &lt;p&gt;のようにBias Unitという特別なUnit (Outputが常に $1$) を導入して、&lt;/p&gt;
@@ -317,7 +319,7 @@ $$&lt;/p&gt;
 
 &lt;p&gt;※以下のCodeはそのままで動くようには書いてない.&lt;/p&gt;
 
-&lt;img src=&#34;/images//20160226/impl_1.png&#34; alt=&#34;/20160226/impl_1.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160226/impl_1.png&#34; alt=&#34;/20160226/impl_1.png&#34;&gt;
 
 
 &lt;p&gt;上の図を &lt;code&gt;CLOS&lt;/code&gt; に落とし込む.&lt;/p&gt;
@@ -567,10 +569,10 @@ Accuracy: 96.67%
     
     <item>
       <title>Jonathan unescapes Unicode Escape Sequence</title>
-      <link>/post/jonathan-unescapes-unicode-escape-sequence/</link>
+      <link>https://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</link>
       <pubDate>Mon, 16 Nov 2015 15:33:08 +0900</pubDate>
       
-      <guid>/post/jonathan-unescapes-unicode-escape-sequence/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/11/16/jonathan-unescapes-unicode-escape-sequence/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan&#34;&gt;Jonathan&lt;/a&gt;にUnicode Escape Sequenceをunescapeする機能を入れた.&lt;/p&gt;
@@ -621,10 +623,10 @@ SlackのAPIのResponseにUnicode Escape Sequenceがあり、&lt;a href=&#34;http
     
     <item>
       <title>Daily Log in Slack</title>
-      <link>/post/daily-log-in-slack/</link>
+      <link>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</link>
       <pubDate>Sat, 14 Nov 2015 23:02:13 +0900</pubDate>
       
-      <guid>/post/daily-log-in-slack/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</guid>
       <description>
 
 &lt;p&gt;Slackでの社内Twitterを日報にするToolを作っている.&lt;/p&gt;
@@ -641,7 +643,7 @@ SlackのAPIのResponseにUnicode Escape Sequenceがあり、&lt;a href=&#34;http
 
 &lt;p&gt;先日こんな記事があり、Kaizen Platform社内Slackにも&lt;strong&gt;技術顧問の先導&lt;/strong&gt;により &lt;code&gt;#times_${username}&lt;/code&gt; channelが開設された.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;やってみて感じたことと、これに関してのToolを作っているので報告する.&lt;/p&gt;
 
@@ -670,7 +672,7 @@ SlackのAPIのResponseにUnicode Escape Sequenceがあり、&lt;a href=&#34;http
 
 &lt;p&gt;ということで、一日の終わりにこの &lt;code&gt;#times_${username}&lt;/code&gt; をまとめて日報とするToolを作っている.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;タスク管理はTrelloを使用しており、そのログを &lt;code&gt;#times_${username}&lt;/code&gt; に流すようにした.&lt;br /&gt;
 今はこのMarkdownを&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿している.&lt;/p&gt;
@@ -697,10 +699,10 @@ Serverとして機能をつけたらDocker Imageも&lt;a href=&#34;https://hub.d
     
     <item>
       <title>About Lisp</title>
-      <link>/slide/about-lisp/</link>
+      <link>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</link>
       <pubDate>Thu, 29 Oct 2015 00:34:45 +0900</pubDate>
       
-      <guid>/slide/about-lisp/</guid>
+      <guid>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</guid>
       <description>
 
 &lt;p&gt;layout: true
@@ -1525,10 +1527,10 @@ template: lisp&lt;/p&gt;
     
     <item>
       <title>Integral-Rest</title>
-      <link>/post/integral-rest/</link>
+      <link>https://blog.rudolph-miller.com/2015/08/21/integral-rest/</link>
       <pubDate>Fri, 21 Aug 2015 11:20:54 +0900</pubDate>
       
-      <guid>/post/integral-rest/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/08/21/integral-rest/</guid>
       <description>
 
 &lt;p&gt;稚拙のIntegral-Restを紹介.&lt;/p&gt;
@@ -1618,10 +1620,10 @@ template: lisp&lt;/p&gt;
     
     <item>
       <title>Docker image for Clack Application</title>
-      <link>/post/dockerfile-clack/</link>
+      <link>https://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</link>
       <pubDate>Thu, 20 Aug 2015 10:10:48 +0900</pubDate>
       
-      <guid>/post/dockerfile-clack/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</guid>
       <description>
 
 &lt;p&gt;Clack Application用のDocker base imageを作成したので紹介.&lt;/p&gt;
@@ -1680,10 +1682,10 @@ docker run -d -p 5000:5000 clack-sample
     
     <item>
       <title>Clipper</title>
-      <link>/post/introduction-to-clipper/</link>
+      <link>https://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</link>
       <pubDate>Mon, 10 Aug 2015 13:53:10 +0900</pubDate>
       
-      <guid>/post/introduction-to-clipper/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/</guid>
       <description>
 
 &lt;p&gt;稚作のClipperを紹介.&lt;/p&gt;

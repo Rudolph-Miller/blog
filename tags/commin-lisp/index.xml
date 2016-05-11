@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Commin Lisp on </title>
-    <link>/tags/commin-lisp/</link>
-    <description>Recent content in Commin Lisp on </description>
+    <title>Commin Lisp on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/commin-lisp/</link>
+    <description>Recent content in Commin Lisp on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Sun, 01 Nov 2015 22:38:10 +0900</lastBuildDate>
-    <atom:link href="/tags/commin-lisp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/commin-lisp/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Tech Talk About Lisp</title>
-      <link>/post/tech-talk-about-lisp/</link>
+      <link>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</link>
       <pubDate>Sun, 01 Nov 2015 22:38:10 +0900</pubDate>
       
-      <guid>/post/tech-talk-about-lisp/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</guid>
       <description>&lt;p&gt;社内のTech Talk #4でLispについて発表した.&lt;/p&gt;
 
 &lt;p&gt;LispやS-expressionについての軽い話をした.&lt;br /&gt;

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Slack on </title>
-    <link>/tags/slack/</link>
-    <description>Recent content in Slack on </description>
+    <title>Slack on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/slack/</link>
+    <description>Recent content in Slack on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Sat, 14 Nov 2015 23:02:13 +0900</lastBuildDate>
-    <atom:link href="/tags/slack/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/slack/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Daily Log in Slack</title>
-      <link>/post/daily-log-in-slack/</link>
+      <link>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</link>
       <pubDate>Sat, 14 Nov 2015 23:02:13 +0900</pubDate>
       
-      <guid>/post/daily-log-in-slack/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/11/14/daily-log-in-slack/</guid>
       <description>
 
 &lt;p&gt;Slackでの社内Twitterを日報にするToolを作っている.&lt;/p&gt;
@@ -30,7 +32,7 @@
 
 &lt;p&gt;先日こんな記事があり、Kaizen Platform社内Slackにも&lt;strong&gt;技術顧問の先導&lt;/strong&gt;により &lt;code&gt;#times_${username}&lt;/code&gt; channelが開設された.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20151114/channel.png&#34; alt=&#34;channel&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;やってみて感じたことと、これに関してのToolを作っているので報告する.&lt;/p&gt;
 
@@ -59,7 +61,7 @@
 
 &lt;p&gt;ということで、一日の終わりにこの &lt;code&gt;#times_${username}&lt;/code&gt; をまとめて日報とするToolを作っている.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20151114/daily_log.png&#34; alt=&#34;daily log&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;タスク管理はTrelloを使用しており、そのログを &lt;code&gt;#times_${username}&lt;/code&gt; に流すようにした.&lt;br /&gt;
 今はこのMarkdownを&lt;a href=&#34;https://teams.qiita.com/&#34;&gt;Qiita:Team&lt;/a&gt;に投稿している.&lt;/p&gt;

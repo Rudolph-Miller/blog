@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docker on </title>
-    <link>/tags/docker/</link>
-    <description>Recent content in Docker on </description>
+    <title>Docker on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/docker/</link>
+    <description>Recent content in Docker on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Thu, 20 Aug 2015 10:10:48 +0900</lastBuildDate>
-    <atom:link href="/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Docker image for Clack Application</title>
-      <link>/post/dockerfile-clack/</link>
+      <link>https://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</link>
       <pubDate>Thu, 20 Aug 2015 10:10:48 +0900</pubDate>
       
-      <guid>/post/dockerfile-clack/</guid>
+      <guid>https://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/</guid>
       <description>
 
 &lt;p&gt;Clack Application用のDocker base imageを作成したので紹介.&lt;/p&gt;

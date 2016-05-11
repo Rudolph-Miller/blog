@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kaizen Platform on </title>
-    <link>/tags/kaizen-platform/</link>
-    <description>Recent content in Kaizen Platform on </description>
+    <title>Kaizen Platform on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/kaizen-platform/</link>
+    <description>Recent content in Kaizen Platform on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Sun, 31 Jan 2016 21:39:15 +0900</lastBuildDate>
-    <atom:link href="/tags/kaizen-platform/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/kaizen-platform/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>detect-js-changes</title>
-      <link>/post/detect-js-changes/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/</link>
       <pubDate>Sun, 31 Jan 2016 21:39:15 +0900</pubDate>
       
-      <guid>/post/detect-js-changes/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/detect-js-changes&#34;&gt;detect-js-changes&lt;/a&gt;という業務Toolを作ってKaizenの業務をKAIZENした話.&lt;/p&gt;
@@ -372,10 +374,10 @@ func main() {
     
     <item>
       <title>Import Query Result to BigQuery</title>
-      <link>/post/import-query-result-to-bigquery/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</link>
       <pubDate>Fri, 15 Jan 2016 18:45:16 +0900</pubDate>
       
-      <guid>/post/import-query-result-to-bigquery/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</guid>
       <description>
 
 &lt;p&gt;特定DirectoryにあるSQL fileを実行して、結果をBigQueryに入れるScriptを書いた.&lt;/p&gt;

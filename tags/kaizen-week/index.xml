@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kaizen Week on </title>
-    <link>/tags/kaizen-week/</link>
-    <description>Recent content in Kaizen Week on </description>
+    <title>Kaizen Week on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/kaizen-week/</link>
+    <description>Recent content in Kaizen Week on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 15 Jan 2016 15:03:17 +0900</lastBuildDate>
-    <atom:link href="/tags/kaizen-week/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/kaizen-week/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>kaizen week 2</title>
-      <link>/slide/kaizen-week-2/</link>
+      <link>https://blog.rudolph-miller.com/slide/2016/01/15/kaizen-week-2/</link>
       <pubDate>Fri, 15 Jan 2016 15:03:17 +0900</pubDate>
       
-      <guid>/slide/kaizen-week-2/</guid>
+      <guid>https://blog.rudolph-miller.com/slide/2016/01/15/kaizen-week-2/</guid>
       <description>
 
 &lt;p&gt;name: inverse

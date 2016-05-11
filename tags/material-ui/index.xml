@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Material Ui on </title>
-    <link>/tags/material-ui/</link>
-    <description>Recent content in Material Ui on </description>
+    <title>Material Ui on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/material-ui/</link>
+    <description>Recent content in Material Ui on (rudolph-miller)</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Mon, 11 Jan 2016 21:15:39 +0900</lastBuildDate>
-    <atom:link href="/tags/material-ui/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rudolph-miller.com/tags/material-ui/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Theme of Material-UI</title>
-      <link>/post/theme-of-material-ui/</link>
+      <link>https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</link>
       <pubDate>Mon, 11 Jan 2016 21:15:39 +0900</pubDate>
       
-      <guid>/post/theme-of-material-ui/</guid>
+      <guid>https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</guid>
       <description>
 
 &lt;p&gt;Material-UIのThemeの使い方を紹介.&lt;/p&gt;
@@ -26,7 +28,7 @@
 
 &lt;h1 id=&#34;material-ui:2974f27f4339877b24e592c5128f86c3&#34;&gt;Material-UI&lt;/h1&gt;
 
-&lt;p&gt;Material-UIとMaterial Designについては&lt;a href=&#34;/post/material-ui/&#34;&gt;前回&lt;/a&gt;の記事を参照.&lt;/p&gt;
+&lt;p&gt;Material-UIとMaterial Designについては&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事を参照.&lt;/p&gt;
 
 &lt;h1 id=&#34;theme:2974f27f4339877b24e592c5128f86c3&#34;&gt;Theme&lt;/h1&gt;
 
@@ -37,7 +39,7 @@
 
 &lt;h2 id=&#34;color:2974f27f4339877b24e592c5128f86c3&#34;&gt;Color&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;/post/material-ui/&#34;&gt;前回&lt;/a&gt;の記事の&lt;a href=&#34;/post/material-ui/#example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/a&gt;にThemeを適用し、Colorを変更する.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事の&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/#example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/a&gt;にThemeを適用し、Colorを変更する.&lt;/p&gt;
 
 &lt;p&gt;Colorの指定は&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;とMaterial-UIの&lt;a href=&#34;http://www.material-ui.com/#/customization/colors&#34;&gt;customization/colors&lt;/a&gt;を参照.&lt;/p&gt;
 
@@ -92,7 +94,7 @@ export default ThemeManager.modifyRawThemePalette(
 
 &lt;p&gt;&lt;code&gt;@ThemeDecorator&lt;/code&gt; で適用する.&lt;/p&gt;
 
-&lt;img src=&#34;/images//20160111/theme-applied.png&#34; alt=&#34;/20160111/theme-applied.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/theme-applied.png&#34; alt=&#34;/20160111/theme-applied.png&#34;&gt;
 
 
 &lt;p&gt;簡単にColorなどを変更できるが、Themeとして管理することにより、統一感が崩れない.&lt;/p&gt;
@@ -124,16 +126,16 @@ export default ThemeManager.modifyRawThemePalette(
 
 &lt;p&gt;のように &lt;code&gt;ThemeManager.modifyRawThemeFontFamily&lt;/code&gt; で &lt;code&gt;font-family&lt;/code&gt; を変更する.&lt;/p&gt;
 
-&lt;img src=&#34;/images//20160111/font-family-not-changed.png&#34; alt=&#34;/20160111/font-family-not-changed.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/font-family-not-changed.png&#34; alt=&#34;/20160111/font-family-not-changed.png&#34;&gt;
 
 
-&lt;img src=&#34;/images//20160111/font-family-changed.png&#34; alt=&#34;/20160111/font-family-changed.png&#34;&gt;
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/font-family-changed.png&#34; alt=&#34;/20160111/font-family-changed.png&#34;&gt;
 
 
 &lt;h1 id=&#34;see-also:2974f27f4339877b24e592c5128f86c3&#34;&gt;See Also&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;/post/material-ui/&#34;&gt;Material-UIの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;Material-UIの紹介&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.material-ui.com/#/customization/colors&#34;&gt;Material-UI customization/colors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/typography.html#typography-typeface&#34;&gt;Typography&lt;/a&gt;&lt;/li&gt;
