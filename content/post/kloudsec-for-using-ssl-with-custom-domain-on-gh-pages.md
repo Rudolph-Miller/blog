@@ -5,7 +5,7 @@ date = "2016-03-11T21:54:27+09:00"
 draft = false
 slug = "kloudsec-for-ssl-with-custom-domain-on-gh-pages"
 title = "Kloundsec for SSL with Custom Domain on GitHub Pages"
-images = ["/images/20160311/eyecatch.png"]
+images = ["/20160311/eyecatch.png"]
 +++
 
 [Kloudsec](https://kloudsec.com/) を使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.
