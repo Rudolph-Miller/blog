@@ -32,5 +32,9 @@ regexp -> AST -> bytecode -> exec via VM
 
 # DFA
 
+NFA->DFA
+
 
 # VM
+
+instrument list
