@@ -39,6 +39,7 @@ def edit_metadata
   yield hash
   hash['Description'] ||= 'WIP'
   hash['Tags'] ||= ['WIP']
+  hash['images'] ||= []
   edited_metadata = TOML.dump(hash)
   edited_metadata = "+++\n#{edited_metadata}+++\n"
   content_regex = /^\+\+\+\n([\s\S]*)\n\+\+\+\n/
