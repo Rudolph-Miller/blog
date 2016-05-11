@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bigquery on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/tags/bigquery/</link>
-    <description>Recent content in Bigquery on (rudolph-miller)</description>
+    <title>Bigquery on </title>
+    <link>/tags/bigquery/</link>
+    <description>Recent content in Bigquery on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 15 Jan 2016 18:45:16 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/tags/bigquery/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/bigquery/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Import Query Result to BigQuery</title>
-      <link>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</link>
+      <link>/post/import-query-result-to-bigquery/</link>
       <pubDate>Fri, 15 Jan 2016 18:45:16 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</guid>
+      <guid>/post/import-query-result-to-bigquery/</guid>
       <description>
 
 &lt;p&gt;特定DirectoryにあるSQL fileを実行して、結果をBigQueryに入れるScriptを書いた.&lt;/p&gt;

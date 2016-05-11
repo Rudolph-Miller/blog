@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Github Pages on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/tags/github-pages/</link>
-    <description>Recent content in Github Pages on (rudolph-miller)</description>
+    <title>Github Pages on </title>
+    <link>/tags/github-pages/</link>
+    <description>Recent content in Github Pages on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 11 Mar 2016 21:54:27 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Kloundsec for SSL with Custom Domain on GitHub Pages</title>
-      <link>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</link>
+      <link>/post/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</link>
       <pubDate>Fri, 11 Mar 2016 21:54:27 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</guid>
+      <guid>/post/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;https://kloudsec.com/&#34;&gt;Kloudsec&lt;/a&gt; を使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/eyecatch.png&#34; alt=&#34;/20160311/eyecatch.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/eyecatch.png&#34; alt=&#34;/20160311/eyecatch.png&#34;&gt;
 
 
 &lt;ol&gt;
@@ -33,7 +31,7 @@
 
 &lt;p&gt;&lt;a href=&#34;https://kloudsec.com/&#34;&gt;Kloudsec&lt;/a&gt; はDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/&#34;&gt;以前&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;/post/use-ssl-with-custom-domain-on-gh-pages/&#34;&gt;以前&lt;/a&gt;
 にCloudFlareでCustom domainなGitHub PagesのSSL対応をする記事を書いたが、
 CloudFlareを使おうとすると DNS server (Name server) をCloudFlareのDNS serverに切り替えないといけなく、
 これが結構負担になった.&lt;/p&gt;
@@ -49,14 +47,14 @@ DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応がで
 
 &lt;h2 id=&#34;register-a-kloudsec-account:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Register a Kloudsec account&lt;/h2&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/register_account.png&#34; alt=&#34;/20160311/register_account.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/register_account.png&#34; alt=&#34;/20160311/register_account.png&#34;&gt;
 
 
 &lt;p&gt;EmailとPasswordを入力.&lt;/p&gt;
 
 &lt;h2 id=&#34;configure-your-github-page:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Configure your Github Page&lt;/h2&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/configure_github_page.png&#34; alt=&#34;/20160311/configure_github_page.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/configure_github_page.png&#34; alt=&#34;/20160311/configure_github_page.png&#34;&gt;
 
 
 &lt;p&gt;登録するGitHub PageのRepositoryのURLと登録するCustom domainを入力.
@@ -65,7 +63,7 @@ DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応がで
 
 &lt;h2 id=&#34;configure-your-dns-settings:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Configure your DNS settings&lt;/h2&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/configure_dns.png&#34; alt=&#34;/20160311/configure_dns.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/configure_dns.png&#34; alt=&#34;/20160311/configure_dns.png&#34;&gt;
 
 
 &lt;p&gt;最後に表示されている設定を使用しているDNS serverに登録する.
@@ -79,7 +77,7 @@ FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
 
 &lt;p&gt;すこし待つと&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/ssl_certificate_ready.png&#34; alt=&#34;/20160311/ssl_certificate_ready.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/ssl_certificate_ready.png&#34; alt=&#34;/20160311/ssl_certificate_ready.png&#34;&gt;
 
 
 &lt;p&gt;の様なEmailが届きSSLの設定も完了.&lt;/p&gt;
@@ -108,10 +106,10 @@ FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
     
     <item>
       <title>Use SSL with Custom Domain on GitHub Pages</title>
-      <link>https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/</link>
+      <link>/post/use-ssl-with-custom-domain-on-gh-pages/</link>
       <pubDate>Fri, 29 Jan 2016 17:18:42 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/</guid>
+      <guid>/post/use-ssl-with-custom-domain-on-gh-pages/</guid>
       <description>
 
 &lt;p&gt;Custom domainなGitHub PagesをSSL対応する.&lt;/p&gt;
@@ -147,19 +145,19 @@ Freeプランがあり、基本無料で使える.&lt;/p&gt;
 &lt;p&gt;今回した設定は &lt;code&gt;SSL&lt;/code&gt;, &lt;code&gt;HSTS&lt;/code&gt;, &lt;code&gt;Subdomain&lt;/code&gt;.
 基本的にはCloudFlareの管理画面のDomain毎のOverviewの上のMenuから入って設定する.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/menu.png&#34; alt=&#34;20160129/menu.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/menu.png&#34; alt=&#34;20160129/menu.png&#34;&gt;
 
 
 &lt;h3 id=&#34;ssl:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;SSL&lt;/h3&gt;
 
 &lt;p&gt;SSLの設定は上のMenuの &lt;code&gt;Crypto&lt;/code&gt;&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
 
 
 &lt;p&gt;から行う.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/ssl.png&#34; alt=&#34;20160129/ssl.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/ssl.png&#34; alt=&#34;20160129/ssl.png&#34;&gt;
 
 
 &lt;p&gt;SSLの設定は &lt;code&gt;Off&lt;/code&gt;, &lt;code&gt;Flexible&lt;/code&gt;, &lt;code&gt;Full&lt;/code&gt;, &lt;code&gt;Strict&lt;/code&gt; と選べる.&lt;/p&gt;
@@ -203,41 +201,41 @@ Web serverがWeb browserに対して、次回以降HTTPの代わりにHTTPSを�
 
 &lt;p&gt;HSTSの設定は &lt;code&gt;SSL&lt;/code&gt; 同様に上のMenuの &lt;code&gt;Crypto&lt;/code&gt;&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
 
 
 &lt;p&gt;から行う.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/hsts.png&#34; alt=&#34;20160129/hsts.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/hsts.png&#34; alt=&#34;20160129/hsts.png&#34;&gt;
 
 
 &lt;h3 id=&#34;subdomain:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;Subdomain&lt;/h3&gt;
 
 &lt;p&gt;Subdomainの設定は上のMenuの &lt;code&gt;DNS&lt;/code&gt;&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns.png&#34; alt=&#34;20160129/dns.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/dns.png&#34; alt=&#34;20160129/dns.png&#34;&gt;
 
 
 &lt;p&gt;から行う.&lt;/p&gt;
 
 &lt;p&gt;今回はSubdomainが &lt;em&gt;blog.rudolph-miller.com&lt;/em&gt; でGitHub PagesのDomainが &lt;em&gt;rudolph-miller.github.io&lt;/em&gt; なので、&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns_input.png&#34; alt=&#34;20160129/dns_input.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/dns_input.png&#34; alt=&#34;20160129/dns_input.png&#34;&gt;
 
 
 &lt;p&gt;こんな感じに &lt;code&gt;CNAME&lt;/code&gt; を登録し、&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns_status.png&#34; alt=&#34;20160129/dns_status.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/dns_status.png&#34; alt=&#34;20160129/dns_status.png&#34;&gt;
 
 
 &lt;p&gt;&lt;code&gt;Status&lt;/code&gt; を&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/not_penetrating.png&#34; alt=&#34;20160129/not_penetrating.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/not_penetrating.png&#34; alt=&#34;20160129/not_penetrating.png&#34;&gt;
 
 
 &lt;p&gt;から&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/penetrating.png&#34; alt=&#34;20160129/penetrating.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/penetrating.png&#34; alt=&#34;20160129/penetrating.png&#34;&gt;
 
 
 &lt;p&gt;にClickで変更すると完了.&lt;/p&gt;

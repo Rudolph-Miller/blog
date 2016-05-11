@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Redux on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/tags/redux/</link>
-    <description>Recent content in Redux on (rudolph-miller)</description>
+    <title>Redux on </title>
+    <link>/tags/redux/</link>
+    <description>Recent content in Redux on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Mon, 25 Jan 2016 21:46:15 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/tags/redux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/redux/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Scroll to the top with Redux Router</title>
-      <link>https://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</link>
+      <link>/post/scroll-to-the-top-with-redux-router/</link>
       <pubDate>Mon, 25 Jan 2016 21:46:15 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</guid>
+      <guid>/post/scroll-to-the-top-with-redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux RouterでLocationの変更時にScrollをtopに持っていく方法.&lt;/p&gt;
@@ -28,7 +26,7 @@
 
 &lt;h1 id=&#34;scroll-position-after-transition:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll position after transition&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt; は &lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt; で紹介した通り、React.jsでde facto standardとなっているRouting libraryの &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt; の &lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt; は &lt;a href=&#34;/post/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt; で紹介した通り、React.jsでde facto standardとなっているRouting libraryの &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt; の &lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
 
 &lt;p&gt;Redux Routerを実際にApplicationで使用していると &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままで困ったので、 &lt;code&gt;Link&lt;/code&gt; での遷移で &lt;code&gt;window.scrollTo(0, 0)&lt;/code&gt; するよう実装した.&lt;/p&gt;
 
@@ -121,7 +119,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160125/scroll_step1.gif&#34; alt=&#34;20160125/scroll_step1.gif&#34;&gt;
+&lt;img src=&#34;/images/20160125/scroll_step1.gif&#34; alt=&#34;20160125/scroll_step1.gif&#34;&gt;
 
 
 &lt;p&gt;上のGIFの通り、このままだと &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままだ.&lt;br /&gt;
@@ -170,19 +168,19 @@ const reducer = combineReducers({
 
 &lt;p&gt;だけ.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160125/scroll_step2.gif&#34; alt=&#34;20160125/scroll_step2.gif&#34;&gt;
+&lt;img src=&#34;/images/20160125/scroll_step2.gif&#34; alt=&#34;20160125/scroll_step2.gif&#34;&gt;
 
 
 &lt;h2 id=&#34;pushstate:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;pushState&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
+&lt;p&gt;&lt;a href=&#34;/post/push-state-in-redux-router/&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
 Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&gt;pushState&lt;/code&gt; ででもPageの遷移ができるが、
 この改修により &lt;code&gt;pushState&lt;/code&gt; での遷移でもScrollを最上部に持っていくことができる.&lt;/p&gt;
 
 &lt;h1 id=&#34;see-also:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;See Also&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/post/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
@@ -192,10 +190,10 @@ Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&g
     
     <item>
       <title>pushState in Redux Router</title>
-      <link>https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</link>
+      <link>/post/push-state-in-redux-router/</link>
       <pubDate>Fri, 25 Dec 2015 12:34:52 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</guid>
+      <guid>/post/push-state-in-redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; の使い方と、 React Reduxの&lt;code&gt;connect&lt;/code&gt; の &lt;code&gt;mapDispatchToProps&lt;/code&gt; について、
@@ -345,7 +343,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151225/without-push-state.gif&#34; alt=&#34;/20151225/without-push-state.gif&#34;&gt;
+&lt;img src=&#34;/images//20151225/without-push-state.gif&#34; alt=&#34;/20151225/without-push-state.gif&#34;&gt;
 
 
 &lt;p&gt;これに &lt;code&gt;pushState&lt;/code&gt; で、 &lt;code&gt;/decr&lt;/code&gt; を1秒後に &lt;code&gt;/incr&lt;/code&gt; にredirectするという無駄な機能をつける.&lt;/p&gt;
@@ -377,7 +375,7 @@ class Decrement extends Component {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151225/with-push-state.gif&#34; alt=&#34;/20151225/with-push-state.gif&#34;&gt;
+&lt;img src=&#34;/images//20151225/with-push-state.gif&#34; alt=&#34;/20151225/with-push-state.gif&#34;&gt;
 
 
 &lt;p&gt;&lt;code&gt;pushState&lt;/code&gt; をRedux Routerから &lt;code&gt;import&lt;/code&gt; し、 &lt;code&gt;pushState&lt;/code&gt; を &lt;code&gt;connect&lt;/code&gt; の第二引数に &lt;code&gt;{ pushState: pushState }&lt;/code&gt; の形で渡し、
@@ -517,10 +515,10 @@ class Decrement extends Component {
     
     <item>
       <title>Redux Router</title>
-      <link>https://blog.rudolph-miller.com/2015/12/23/redux-router/</link>
+      <link>/post/redux-router/</link>
       <pubDate>Wed, 23 Dec 2015 00:01:34 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/23/redux-router/</guid>
+      <guid>/post/redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux Routerの紹介.&lt;/p&gt;
@@ -545,7 +543,7 @@ class Decrement extends Component {
 &lt;a href=&#34;https://github.com/rackt/redux-simple-router&#34;&gt;redux-simple-router&lt;/a&gt;もあるが、Redux Routerの方が現時点でGitHubのStar数は多い.
 (名前の通り、redux-simple-routerの方がよりsimpleで、Redux Routerはfatでcomplexだが機能は多い.)&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/rackt.gif&#34; alt=&#34;/20151222/rackt.gif&#34;&gt;
+&lt;img src=&#34;/images//20151222/rackt.gif&#34; alt=&#34;/20151222/rackt.gif&#34;&gt;
 
 
 &lt;p&gt;これは&lt;a href=&#34;http://rackt.org/&#34;&gt;rackt.org&lt;/a&gt;. サイトではもっと綺麗にうねうねしてる.&lt;/p&gt;
@@ -623,7 +621,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/initial-impl.gif&#34; alt=&#34;/20151222/initial-impl.gif&#34;&gt;
+&lt;img src=&#34;/images//20151222/initial-impl.gif&#34; alt=&#34;/20151222/initial-impl.gif&#34;&gt;
 
 
 &lt;p&gt;&lt;code&gt;@connect&lt;/code&gt; して &lt;code&gt;state.counter&lt;/code&gt; を表示し、その &lt;code&gt;state.counter&lt;/code&gt; を増減させるボタンがあるだけのApplicationで、とくに解説することはない.&lt;/p&gt;
@@ -746,7 +744,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/second-impl.gif&#34; alt=&#34;/20151222/second-impl.gif&#34;&gt;
+&lt;img src=&#34;/images//20151222/second-impl.gif&#34; alt=&#34;/20151222/second-impl.gif&#34;&gt;
 
 
 &lt;p&gt;React Routerを導入して &lt;code&gt;Increment&lt;/code&gt; と &lt;code&gt;Decrement&lt;/code&gt; をRoutingで分けただけ.&lt;br /&gt;
@@ -911,10 +909,10 @@ class CounterButton extends Component {
     
     <item>
       <title>Redux Fetch Action</title>
-      <link>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</link>
+      <link>/post/redux-fetch-action/</link>
       <pubDate>Tue, 15 Dec 2015 12:53:17 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</guid>
+      <guid>/post/redux-fetch-action/</guid>
       <description>
 
 &lt;p&gt;Redux Fetch ActionというReduxのFetch actionのutilityを作った.&lt;/p&gt;
@@ -1087,10 +1085,10 @@ RECEIVED 2
     
     <item>
       <title>React Redux Rails</title>
-      <link>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</link>
+      <link>/post/react-redux-rails/</link>
       <pubDate>Fri, 11 Dec 2015 00:00:06 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</guid>
+      <guid>/post/react-redux-rails/</guid>
       <description>
 
 &lt;p&gt;React.js &amp;amp; Redux &amp;amp; Ruby on Railsでserver-side rendering.&lt;/p&gt;

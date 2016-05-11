@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="React Native on Android device - " />
+  
+  <meta property="og:site_name" content="" />
+  <meta property="og:url" content="/post/react-native-on-android-device/" />
+  
+  <meta property="og:description" content="React Native on Android device." />
+  
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2015-09-16T10:06:16&#43;09:00" />
+  
+  <meta property="og:article:tag" content="React.js" />
+  
+  <meta property="og:article:tag" content="JavaScript" />
+  
+  <meta property="og:article:tag" content="React Native" />
+  
+  <meta property="og:article:tag" content="Android" />
+  
+  
+
+  <title>
+    React Native on Android device - 
+  </title>
+  
+  <meta name="description" content="React Native on Android device." />
+  
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/highlight-lisp/themes/github.css" />
+  <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/earlyaccess/notosansjp.css' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/images/favicon.png" />
+  <link rel="icon" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  
+  <link rel="canonical" href="/post/react-native-on-android-device/">
+</head>
+
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href=""></a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      
+      <a href="" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">React Native on Android device</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2015-09-16T10:06:16&#43;09:00">
+          Sep 16, 2015
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="/tags/react.js">#React.js</a></span>
+        
+        <span class="post-tag small"><a href="/tags/javascript">#JavaScript</a></span>
+        
+        <span class="post-tag small"><a href="/tags/react-native">#React Native</a></span>
+        
+        <span class="post-tag small"><a href="/tags/android">#Android</a></span>
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>React Native for Androidを実機で動かす.</p>
+
+<ol>
+<li><a href="#run-on-device:60c6196952e7045685a1de9e62046e9b">Run on device</a></li>
+<li><a href="#see-also:60c6196952e7045685a1de9e62046e9b">See Also</a></li>
+</ol>
+
+<h2 id="run-on-device:60c6196952e7045685a1de9e62046e9b">Run on device</h2>
+
+<p>まずUSB Debugging ModeをONにする.</p>
+
+<p>するとAndroid端末を開発機にUSBで接続して、<code>react-native run-android</code>を実行すると、
+端末にApplicationのインストールが可能と起動が可能となる.</p>
+
+<p>そしてこの真っ赤なエラー画面に遭遇して面食らう.</p>
+
+<p><img src="/images/20150916/error.png" alt="Error on device" /></p>
+
+<p>なにが起こっているか.</p>
+
+<p><code>index.android.bundle</code>を<code>localhost:8081</code>から取ってこようとして、接続できなくエラーとなっている.
+つまりbundleしたJavaScriptファイルを開発機から取ってこようとして失敗したと.</p>
+
+<p>そのため開発サーバーに接続すれば良く、とりあえず2通りの方法がある.</p>
+
+<h3 id="using-adb-reverse:60c6196952e7045685a1de9e62046e9b">Using adb reverse</h3>
+
+<p><code>adb reverse</code>を使用して、端末の<code>tcp:8081</code>で開発機の<code>tpc:8081</code>を参照できるようにする.</p>
+
+<pre><code class="language-sh">adb reverse tcp:8081 tcp:8081
+</code></pre>
+
+<p>これだけで他の設定を変更することなく端末上で<code>Reload JS</code>などの開発オプションが使用できるようになる.</p>
+
+<h3 id="configure-device-to-connect-to-the-dev-server-via-wi-fi:60c6196952e7045685a1de9e62046e9b">Configure device to connect to the dev server via Wi-Fi</h3>
+
+<p>端末の<code>Dev Settings</code>で<code>Debug server host</code>の設定を変更する.
+この方法で開発機に接続するためには端末と開発機が同じWi-Fiに接続している必要がある.</p>
+
+<p>Applicationで<code>menu</code>を表示する.
+(端末のメニューボタンを押すかApplicationを開いた状態で端末を振ると表示される.)</p>
+
+<p><code>Dev Settings</code>、<code>Debug server host for device</code>と遷移し、開発機のIPアドレスを入力する.<br />
+(OS XのIPアドレスは<code>システム環境設定</code>、<code>ネットワーク</code>と遷移して、接続中のネットワークのタブで確認できる.)</p>
+
+<p>すると端末上で<code>Reload JS</code>などの開発オプションが使用できるようになる.</p>
+
+<h2 id="see-also:60c6196952e7045685a1de9e62046e9b">See Also</h2>
+
+<ul>
+<li><a href="http://facebook.github.io/react-native/docs/running-on-device-android.html">Running On Device(Android)</a></li>
+<li><a href="http://developer.android.com/tools/device.html">Using Handware Devices</a></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <section class="social-buttons row">
+      
+      <div class="social-button">
+        <ul class="twitter-share-button-with-balloon">
+          <li>
+          <a href="https://twitter.com/search?q=%2fpost%2freact-native-on-android-device%2f" target="_blank">
+              <span class="balloon-bottom">list</span>
+            </a>
+          </li>
+          <li>
+          <a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true" data-count="vertical" data-text="React Native on Android device.">Tweet</a>
+          </li>
+        </ul>
+      </div>
+
+      
+      <div class="social-button">
+        <a class='hatena-bookmark-button' data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en" expr:data-hatena-bookmark-title="data:post.title" expr:href='"http://b.hatena.ne.jp/entry/" + data:post.canonicalUrl' title='このエントリーをはてなブックマークに追加'>
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
+        </a>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="fb-like" data-href="/post/react-native-on-android-device/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+      </div>
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="/post/setup-react-native-for-android/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="/slide/upgrade_ruby_on_rails/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+
+    
+    <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
+
+    
+    <script type='text/javascript' src='//b.st-hatena.com/js/bookmark_button.js' charset='utf-8' async='async'></script>
+
+    
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script type="text/javascript" src="/highlight-lisp/highlight-lisp.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    HighlightLisp.highlight_auto({className: "language-common-lisp"});
+    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
+  </script>
+
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+
+
+
+  
+</body>
+</html>
+

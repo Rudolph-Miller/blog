@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tech Talk on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/tags/tech-talk/</link>
-    <description>Recent content in Tech Talk on (rudolph-miller)</description>
+    <title>Tech Talk on </title>
+    <link>/tags/tech-talk/</link>
+    <description>Recent content in Tech Talk on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Sun, 01 Nov 2015 22:38:10 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/tags/tech-talk/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/tech-talk/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Tech Talk About Lisp</title>
-      <link>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</link>
+      <link>/post/tech-talk-about-lisp/</link>
       <pubDate>Sun, 01 Nov 2015 22:38:10 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/</guid>
+      <guid>/post/tech-talk-about-lisp/</guid>
       <description>&lt;p&gt;社内のTech Talk #4でLispについて発表した.&lt;/p&gt;
 
 &lt;p&gt;LispやS-expressionについての軽い話をした.&lt;br /&gt;
@@ -30,10 +28,10 @@ LispとCommin Lispをごっちゃに扱っているのはワザと.&lt;br /&gt;
     
     <item>
       <title>About Lisp</title>
-      <link>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</link>
+      <link>/slide/about-lisp/</link>
       <pubDate>Thu, 29 Oct 2015 00:34:45 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</guid>
+      <guid>/slide/about-lisp/</guid>
       <description>
 
 &lt;p&gt;layout: true

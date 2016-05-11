@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="detect-js-changes - " />
+  
+  <meta property="og:site_name" content="" />
+  <meta property="og:url" content="/post/detect-js-changes/" />
+  
+  <meta property="og:description" content="detect-js-changesという業務Toolを作ってKaizenの業務をKAIZENした話." />
+  
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2016-01-31T21:39:15&#43;09:00" />
+  
+  <meta property="og:article:tag" content="Go" />
+  
+  <meta property="og:article:tag" content="CLI" />
+  
+  <meta property="og:article:tag" content="Kaizen Platform" />
+  
+  
+
+  <title>
+    detect-js-changes - 
+  </title>
+  
+  <meta name="description" content="detect-js-changesという業務Toolを作ってKaizenの業務をKAIZENした話." />
+  
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/highlight-lisp/themes/github.css" />
+  <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/earlyaccess/notosansjp.css' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/images/favicon.png" />
+  <link rel="icon" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  
+  <link rel="canonical" href="/post/detect-js-changes/">
+</head>
+
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href=""></a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      
+      <a href="" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">detect-js-changes</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2016-01-31T21:39:15&#43;09:00">
+          Jan 31, 2016
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="/tags/go">#Go</a></span>
+        
+        <span class="post-tag small"><a href="/tags/cli">#CLI</a></span>
+        
+        <span class="post-tag small"><a href="/tags/kaizen-platform">#Kaizen Platform</a></span>
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p><a href="https://github.com/Rudolph-Miller/detect-js-changes">detect-js-changes</a>という業務Toolを作ってKaizenの業務をKAIZENした話.</p>
+
+<ol>
+<li><a href="#background:344e738fbd9ca3a556971580ada8f1e4">Background</a></li>
+<li><a href="#detect-js-changes:344e738fbd9ca3a556971580ada8f1e4">detect-js-changes</a></li>
+<li><a href="#go:344e738fbd9ca3a556971580ada8f1e4">Go</a></li>
+<li><a href="#see-also:344e738fbd9ca3a556971580ada8f1e4">See Also</a></li>
+</ol>
+
+<h1 id="background:344e738fbd9ca3a556971580ada8f1e4">Background</h1>
+
+<h2 id="javascript-file:344e738fbd9ca3a556971580ada8f1e4">JavaScript file</h2>
+
+<p>Kaizen PlatformではAB TestのJavaScript fileをBaseのfileにClient毎のDataを書き出して生成している.
+生成後、JavaScript fileをClient毎のS3 ObjectにUploadしている.</p>
+
+<h2 id="e2e:344e738fbd9ca3a556971580ada8f1e4">E2E</h2>
+
+<p>このAB TestのJavaScriptに対してPhantomJSやBrowserStack上でのE2E Testを行っている.</p>
+
+<p>DeployのタイミングでこのE2E Testを実施しているのだが、
+そもそも生成されるJavaScript fileに変更がなかった場合Test結果は変わらないのでskipすることになっている.</p>
+
+<h2 id="until-now:344e738fbd9ca3a556971580ada8f1e4">Until now</h2>
+
+<p>このJavaScript fileに変更があるかないかの確認フローは、</p>
+
+<ol>
+<li>今までは対象のJavaScript files (16 files) のURLに対して <code>wget</code> .</li>
+<li>Depoly.</li>
+<li>再度 <code>wget</code> .</li>
+<li>末尾にJavaScript file生成日時のTimestampと、ClientのDataに書き出した日時のTimestampがあるので、それら意外に差分がないかを <code>diff</code> で確認.</li>
+</ol>
+
+<p>となっていて、</p>
+
+<ul>
+<li>何回も <code>wget</code> する.
+
+<ul>
+<li>Deploy環境によってURLが変わる. (QA用やProduction用など.)</li>
+<li>Timestampの差分すら出なかった場合はS3の反映待ちだったりするので、再度 <code>wget</code> する.</li>
+</ul></li>
+<li>JavaScript fileはminifyしてあるので、<code>diff</code> をとるにはunminifyしないといけない.</li>
+<li>Timestampの差分はでるので、 <code>diff</code> の結果をTimestampの差分かどうか確認しないといけない.</li>
+</ul>
+
+<p>あたりが面倒くさい.</p>
+
+<p>ひとつひとつのStepはScriptが用意されていたりするが、それでも面倒くさい.</p>
+
+<p>Depoly (基本は週2回) 毎にこれを誰かが実行している.</p>
+
+<h1 id="detect-js-changes:344e738fbd9ca3a556971580ada8f1e4">detect-js-changes</h1>
+
+<p>この面倒くささを解消するために作ったのが <code>detect-js-changes</code> だ.</p>
+
+<pre><code class="language-sh">$ go get github.com/Rudolph-Miller/detect-js-changes
+</code></pre>
+
+<p>でinstallできる.</p>
+
+<p><code>detect-js-changes</code> を使うと上の確認フローが、</p>
+
+<ol>
+<li><code>detect-js-changes download</code></li>
+<li>Deploy.</li>
+<li><code>detect-js-changes download</code></li>
+<li><code>detect-js-changes detect</code></li>
+</ol>
+
+<p>となる.</p>
+
+<p>Deploy環境ごとのURLは <code>config.yml</code> に</p>
+
+<pre><code class="language-yml">qa:
+  urls:
+  - https://qa.kaizenplatform.com/file1.js
+  - https://qa.kaizenplatform.com/file2.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file1.js
+  - https://production.kaizenplatform.com/file2.js
+</code></pre>
+
+<p>とYAMLで記述し、</p>
+
+<pre><code>detect-js-changes -e qa -c config.yml
+</code></pre>
+
+<p>と環境やConfig fileを指定できる.</p>
+
+<p><code>config.yml</code> でどういうKeywordをignoreするか
+(今回は末尾のTimestampとClientのDataのTimestampを特定するKeyword)
+も指定できる.</p>
+
+<pre><code class="language-yml">default:
+  ignore_keywords:
+  - Timestamp
+  - generated_at
+qa:
+  urls:
+  - https://qa.kaizenplatform.com/file1.js
+  - https://qa.kaizenplatform.com/file2.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file1.js
+  - https://production.kaizenplatform.com/file2.js
+</code></pre>
+
+<h1 id="go:344e738fbd9ca3a556971580ada8f1e4">Go</h1>
+
+<p>軽く実装に触れておく.</p>
+
+<p>言語は <code>Go</code> を使用しており、採用理由はなんとなくである.</p>
+
+<h2 id="cli:344e738fbd9ca3a556971580ada8f1e4">CLI</h2>
+
+<p>CLIには <a href="https://github.com/codegangsta/cli"><code>codegangsta/cli</code></a> を使用した.</p>
+
+<p>感想は特にない.</p>
+
+<h2 id="yaml:344e738fbd9ca3a556971580ada8f1e4">YAML</h2>
+
+<p>YAML formatのConfig fileのparseには <a href="https://github.com/go-yaml/yaml">gopkg.in/yaml.v2</a> を使用した.</p>
+
+<pre><code class="language-go">package main
+
+import (
+  &quot;fmt&quot;
+  &quot;gopkg.in/yaml.v2&quot;
+  &quot;os&quot;
+)
+
+var data = `
+key1: value1
+key2:
+  key3:
+  - value2
+  - value3
+`
+
+type T struct {
+  Key1 string
+  Key2 struct {
+    Key3 []string
+  }
+}
+
+func main() {
+  t := T{}
+  err := yaml.Unmarshal([]byte(data), &amp;t)
+  if err != nil {
+    fmt.Println(err)
+    os.Exit(1)
+  }
+
+  fmt.Println(t)
+  // {value1 {[value2 value3]}}
+}
+</code></pre>
+
+<p>の様にOutputの <code>struct</code> を用意して <code>yaml.Unmarshal</code> するのだが、今回のConfig fileは</p>
+
+<pre><code class="language-yaml">default:
+  ignore_keywords:
+  - sample keyword
+development:
+  urls:
+  - https://development.kaizenplatform.com/file0.js
+  - https://development.kaizenplatform.com/file1.js
+production:
+  urls:
+  - https://production.kaizenplatform.com/file0.js
+  - https://production.kaizenplatform.com/file1.js
+</code></pre>
+
+<p>の様に環境名がTop levelのKeyとなりその下に特定のKVが入る形式で、
+環境名はUserが自由に指定でき、Top levelのKeyが指定できない.</p>
+
+<p>この場合は</p>
+
+<pre><code class="language-go">package main
+
+import (
+  &quot;fmt&quot;
+  &quot;gopkg.in/yaml.v2&quot;
+  &quot;os&quot;
+)
+
+var data = `
+default:
+  key1: value1
+  key2:
+    key3:
+    - value2
+    - value3
+development:
+  key1: value1
+  key2:
+    key3:
+    - value2
+    - value3
+`
+
+type T struct {
+  Key1 string
+  Key2 struct {
+    Key3 []string
+  }
+}
+
+func main() {
+  m := make(map[string]T)
+  err := yaml.Unmarshal([]byte(data), &amp;m)
+  if err != nil {
+    fmt.Println(err)
+    os.Exit(1)
+  }
+
+  fmt.Println(m)
+  // map[default:{value1 {[value2 value3]}} development:{value1 {[value2 value3]}}]
+}
+</code></pre>
+
+<p>の様に <code>map</code> で指定する.</p>
+
+<h2 id="unminify:344e738fbd9ca3a556971580ada8f1e4">Unminify</h2>
+
+<p>minified fileのunminifyには <a href="https://github.com/ditashi/jsbeautifier-go"><code>ditashi/jsbeautifier-go</code></a> と言う <a href="http://jsbeautifier.org">jsbeautifier</a> のGo port (CLI tool) の内部APIを使用した.</p>
+
+<pre><code class="language-js">function main(){var e={key1:&quot;value1&quot;,key2:{key3:[&quot;value2&quot;,&quot;value3&quot;]}};console.log(e)}
+</code></pre>
+
+<p>の様なminifiedなJavaScriptを <code>example.min.js</code> として用意して、</p>
+
+<pre><code class="language-go">package main
+
+import (
+  &quot;fmt&quot;
+  &quot;github.com/ditashi/jsbeautifier-go/jsbeautifier&quot;
+)
+
+func beautify(src string) *string {
+  options := jsbeautifier.DefaultOptions()
+  return jsbeautifier.BeautifyFile(src, options)
+}
+
+func main() {
+  filename := &quot;example.min.js&quot;
+  fmt.Println(*beautify(filename))
+}
+</code></pre>
+
+<p>を <code>go run</code> すると、</p>
+
+<pre><code class="language-js">function main() {
+    var e = {
+        key1: &quot;value1&quot;,
+        key2: {
+            key3: [&quot;value2&quot;, &quot;value3&quot;]
+        }
+    };
+    console.log(e)
+}
+</code></pre>
+
+<p>とunminifyできる.</p>
+
+<h2 id="diff:344e738fbd9ca3a556971580ada8f1e4">Diff</h2>
+
+<p>diffには <a href="https://github.com/sergi/go-diff">sergi/go-diff/diffmatchpatch</a> を使用した.</p>
+
+<pre><code class="language-go">package main
+
+import (
+  &quot;fmt&quot;
+  &quot;github.com/sergi/go-diff/diffmatchpatch&quot;
+  &quot;strings&quot;
+)
+
+func lineDiff(src1, src2 string) []diffmatchpatch.Diff {
+  dmp := diffmatchpatch.New()
+  a, b, c := dmp.DiffLinesToChars(src1, src2)
+  diffs := dmp.DiffMain(a, b, false)
+  result := dmp.DiffCharsToLines(diffs, c)
+  return result
+}
+
+func prefix(diff diffmatchpatch.Diff) string {
+  switch diff.Type {
+  case diffmatchpatch.DiffEqual:
+    return &quot; &quot;
+  case diffmatchpatch.DiffInsert:
+    return &quot;+&quot;
+
+  case diffmatchpatch.DiffDelete:
+    return &quot;-&quot;
+  }
+  return &quot; &quot;
+}
+
+var src1 = `
+abc
+def
+ghi
+`
+
+var src2 = `
+abc
+defg
+hi
+`
+
+func main() {
+  result := lineDiff(src1, src2)
+
+  for _, diff := range result {
+    for _, string := range strings.Split(diff.Text, &quot;\n&quot;) {
+      if len(string) &gt; 0 {
+        fmt.Println(prefix(diff) + string)
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>を <code>go run</code> すると、</p>
+
+<pre><code class="language-diff"> abc
+-def
+-ghi
++defg
++hi
+</code></pre>
+
+<p>となり、行単位のdiffが取れている.</p>
+
+<hr />
+
+<p><strong>業務KAIZEN! ╭( ･ㅂ･)و</strong></p>
+
+<h1 id="see-also:344e738fbd9ca3a556971580ada8f1e4">See Also</h1>
+
+<ul>
+<li><a href="https://github.com/Rudolph-Miller/detect-js-changes">detect-js-changes</a></li>
+<li><a href="https://github.com/codegangsta/cli">codegangsta/cli</a></li>
+<li><a href="https://github.com/go-yaml/yaml">gopkg.in/yaml.v2</a></li>
+<li><a href="https://github.com/ditashi/jsbeautifier-go">ditashi/jsbeautifier-go</a></li>
+<li><a href="https://github.com/sergi/go-diff">sergi/go-diff/diffmatchpatch</a></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <section class="social-buttons row">
+      
+      <div class="social-button">
+        <ul class="twitter-share-button-with-balloon">
+          <li>
+          <a href="https://twitter.com/search?q=%2fpost%2fdetect-js-changes%2f" target="_blank">
+              <span class="balloon-bottom">list</span>
+            </a>
+          </li>
+          <li>
+          <a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true" data-count="vertical" data-text="detect-js-changesという業務Toolを作ってKaizenの業務をKAIZENした話.">Tweet</a>
+          </li>
+        </ul>
+      </div>
+
+      
+      <div class="social-button">
+        <a class='hatena-bookmark-button' data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en" expr:data-hatena-bookmark-title="data:post.title" expr:href='"http://b.hatena.ne.jp/entry/" + data:post.canonicalUrl' title='このエントリーをはてなブックマークに追加'>
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
+        </a>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="fb-like" data-href="/post/detect-js-changes/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+      </div>
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="/post/use-ssl-with-custom-domain-on-gh-pages/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="/post/export-html-slide-as-pdf/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+
+    
+    <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
+
+    
+    <script type='text/javascript' src='//b.st-hatena.com/js/bookmark_button.js' charset='utf-8' async='async'></script>
+
+    
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script type="text/javascript" src="/highlight-lisp/highlight-lisp.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    HighlightLisp.highlight_auto({className: "language-common-lisp"});
+    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
+  </script>
+
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+
+
+
+  
+</body>
+</html>
+

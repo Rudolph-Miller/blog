@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Slide on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/tags/slide/</link>
-    <description>Recent content in Slide on (rudolph-miller)</description>
+    <title>Slide on </title>
+    <link>/tags/slide/</link>
+    <description>Recent content in Slide on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Thu, 29 Oct 2015 00:34:45 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/tags/slide/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/slide/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>About Lisp</title>
-      <link>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</link>
+      <link>/slide/about-lisp/</link>
       <pubDate>Thu, 29 Oct 2015 00:34:45 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/</guid>
+      <guid>/slide/about-lisp/</guid>
       <description>
 
 &lt;p&gt;layout: true

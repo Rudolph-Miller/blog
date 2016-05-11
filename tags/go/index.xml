@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/tags/go/</link>
-    <description>Recent content in Go on (rudolph-miller)</description>
+    <title>Go on </title>
+    <link>/tags/go/</link>
+    <description>Recent content in Go on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Sun, 31 Jan 2016 21:39:15 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>detect-js-changes</title>
-      <link>https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/</link>
+      <link>/post/detect-js-changes/</link>
       <pubDate>Sun, 31 Jan 2016 21:39:15 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/</guid>
+      <guid>/post/detect-js-changes/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/detect-js-changes&#34;&gt;detect-js-changes&lt;/a&gt;という業務Toolを作ってKaizenの業務をKAIZENした話.&lt;/p&gt;

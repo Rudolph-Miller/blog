@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Presentation on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/tags/presentation/</link>
-    <description>Recent content in Presentation on (rudolph-miller)</description>
+    <title>Presentation on </title>
+    <link>/tags/presentation/</link>
+    <description>Recent content in Presentation on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Sat, 13 Feb 2016 01:17:33 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/tags/presentation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/presentation/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Export HTML Slide as PDF</title>
-      <link>https://blog.rudolph-miller.com/2016/02/13/export-html-slide-as-pdf/</link>
+      <link>/post/export-html-slide-as-pdf/</link>
       <pubDate>Sat, 13 Feb 2016 01:17:33 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/02/13/export-html-slide-as-pdf/</guid>
+      <guid>/post/export-html-slide-as-pdf/</guid>
       <description>
 
 &lt;p&gt;HTMLなSlideをPDFにexportする.&lt;/p&gt;
@@ -33,11 +31,11 @@ MarkdownでHTML Slideのgenerateが再燃(?)しているが、
 HTML Slideで困るのがSlideの共有だ.&lt;/p&gt;
 
 &lt;p&gt;普段Remark.jsを使ってMarkdownからHTML Slideをgenerateしているのだが、
-以前Kaizen PlatformでのTech Talk #4で &lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;&gt;Slide&lt;/a&gt;
+以前Kaizen PlatformでのTech Talk #4で &lt;a href=&#34;/slide/about-lisp/&#34;&gt;Slide&lt;/a&gt;
 を発表した際、共有のために &lt;code&gt;iframe&lt;/code&gt; でこのSlideを埋め込んだ
-&lt;a href=&#34;https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/&#34;&gt;Blog post&lt;/a&gt; を作り共有していた.&lt;/p&gt;
+&lt;a href=&#34;/post/tech-talk-about-lisp/&#34;&gt;Blog post&lt;/a&gt; を作り共有していた.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160213/share_lisp_1.gif&#34; alt=&#34;20160213/share_lisp_1.gif&#34;&gt;
+&lt;img src=&#34;/images/20160213/share_lisp_1.gif&#34; alt=&#34;20160213/share_lisp_1.gif&#34;&gt;
 
 
 &lt;p&gt;今更ながらふと、PhantomJSなどでScreenshotを撮り、それをPDFに変換し、
@@ -162,8 +160,8 @@ Printing slide #88      (1/88) ...
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/astefanutti/decktape&#34;&gt;DeckTape&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/yusukebe/revealgo&#34;&gt;yusukebe/revealgo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;&gt;Tech Talk About Lisp - Slide&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/&#34;&gt;Tech Talk About Lisp - Blog post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/slide/about-lisp/&#34;&gt;Tech Talk About Lisp - Slide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/post/tech-talk-about-lisp/&#34;&gt;Tech Talk About Lisp - Blog post&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

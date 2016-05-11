@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="Deep Learning in Common Lisp - " />
+  
+  <meta property="og:site_name" content="" />
+  <meta property="og:url" content="/post/deep-learning-in-common-lisp/" />
+  
+  <meta property="og:description" content="Deep LearningをCommon Lispで実装してみた." />
+  
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2016-02-26T20:30:37&#43;09:00" />
+  
+  <meta property="og:article:tag" content="Common Lisp" />
+  
+  <meta property="og:article:tag" content="Deep Learning" />
+  
+  
+
+  <title>
+    Deep Learning in Common Lisp - 
+  </title>
+  
+  <meta name="description" content="Deep LearningをCommon Lispで実装してみた." />
+  
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/highlight-lisp/themes/github.css" />
+  <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/earlyaccess/notosansjp.css' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/images/favicon.png" />
+  <link rel="icon" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  
+  <link rel="canonical" href="/post/deep-learning-in-common-lisp/">
+</head>
+
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href=""></a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      
+      <a href="" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Deep Learning in Common Lisp</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2016-02-26T20:30:37&#43;09:00">
+          Feb 26, 2016
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="/tags/common-lisp">#Common Lisp</a></span>
+        
+        <span class="post-tag small"><a href="/tags/deep-learning">#Deep Learning</a></span>
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>Deep Learning をCommon Lispで実装してみた.</p>
+
+<p>そろそろ Deep Learning の実装ぐらい教養かなと思ったので、
+<a href="http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B018K6C99A&amp;linkCode=as2&amp;tag=rudolph-miller-22">深層学習</a>
+という本を読みながら実装してみた.</p>
+
+<p><a rel="nofollow" href="http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018K6C99A&linkCode=as2&tag=rudolph-miller-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B018K6C99A&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=rudolph-miller-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=rudolph-miller-22&l=as2&o=9&a=B018K6C99A" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
+
+<p>今回実装したのは順伝播型ニューラルネットワーク (Feed Forward Neural Network) で、
+テストしたのは <code>Fisher's iris flower data set</code> (統計の有名なデータセット) の多クラス分類 (Multi-class classification) .</p>
+
+<p><a href="https://github.com/Rudolph-Miller/cldl">CLDL</a></p>
+
+<ol>
+<li><a href="#deep-neural-network:99621a27901250e81c3c36481758f611">Deep Neural Network</a></li>
+<li><a href="#math:99621a27901250e81c3c36481758f611">Math</a></li>
+<li><a href="#impl:99621a27901250e81c3c36481758f611">Impl</a></li>
+<li><a href="#test:99621a27901250e81c3c36481758f611">Test</a></li>
+<li><a href="#todo:99621a27901250e81c3c36481758f611">TODO</a></li>
+<li><a href="#see-also:99621a27901250e81c3c36481758f611">See Also</a></li>
+</ol>
+
+<h1 id="deep-neural-network:99621a27901250e81c3c36481758f611">Deep Neural Network</h1>
+
+<p>Deep Learning は Deep Neural Network (Multi-layer perceptron, 多層構造のNeural Network) の機械学習の事.</p>
+
+<img src="/images//20160224/dnn.png" alt="/20160224/dnn.png">
+
+
+<p>Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
+それぞれの層は単数または複数のUnitで構成される.</p>
+
+<p>順伝播型ニューラルネットワークではすべてのUnitがその前後の層のすべてのUnitと結合している.</p>
+
+<p>学習というのは、ネットワークに与えたInputからのOutputを正解に近づけるようにParameterを調整すること.</p>
+
+<h1 id="math:99621a27901250e81c3c36481758f611">Math</h1>
+
+<p>とりあえず数式として俯瞰する.</p>
+
+<h2 id="activation-function:99621a27901250e81c3c36481758f611">Activation function</h2>
+
+<img src="/images//20160224/math_1.png" alt="/20160224/math_1.png">
+
+
+<p>連続した$p-1$層と$p$層を考える.</p>
+
+<p>$u$はUnitの入力、$z$はUnitの出力、$w$はUnit間のConnectionの重みを表す.</p>
+
+<p>これらの関係は</p>
+
+<p>$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} + b_j^{(p)} \tag{1}
+$$</p>
+
+<p>$$
+z_j^{(p)} = f(u_j^{(p)}) \tag{2}
+$$</p>
+
+<p>のようにあらわせる.</p>
+
+<p>(1) における $b$ はBiasで、
+UnitのInputは前層のOutputにConnectionの重みを掛けたものの和にBiasを足したものである.</p>
+
+<p>ここで</p>
+
+<img src="/images//20160224/math_2.png" alt="/20160224/math_2.png">
+
+
+<p>のようにBias Unitという特別なUnit (Outputが常に $1$) を導入して、</p>
+
+<p>$$
+b_j^{(p)} = w _{j0} z _{0}^{(p-1)} \tag{3}
+$$</p>
+
+<p>のように $b$ をあらわすと (1) は</p>
+
+<p>$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} \tag{4}
+$$</p>
+
+<p>のように書ける.</p>
+
+<p>(2) における $f$ は <strong>Activation function (活性化関数)</strong> と呼ばれる.
+Activation functionはUnitへの入力から出力を計算する関数で
+通常は単調増加する日線形関数を使用し、
+一般にHidden LayerとOutput Layerで別の関数を使用する.</p>
+
+<p>今回はHidden Layerで</p>
+
+<p>$$
+f(u) = \max(u, 0) \tag{5}
+$$</p>
+
+<p>のRectified Linear Unit (正規化線形関数, ReLU, ランプ関数)を使用し、Output Layerで</p>
+
+<p>$$
+f(u_k) = \frac{e^{u_k}}{\sum _{j=1}^{K} e^{u_j}} \tag{6}
+$$</p>
+
+<p>のSoftmax functionを使用する. ( $K$ はOutput LayerのUnit数、 $k$ はOutput LayerのUnit番号.)</p>
+
+<h2 id="error-function:99621a27901250e81c3c36481758f611">Error function</h2>
+
+<p>順伝播型ニューラルネットワークはParameter $w$ を変えるとOutputが変化し、
+良い $w$ を選ぶとネットワーク全体として望みの関数として振る舞うようになる.</p>
+
+<p><strong>Traiting data</strong>を用いて $w$ を調整することを学習という.</p>
+
+<p>このときそれぞれのTraining sampleでのOutputと目標値の近さをあらわす関数を
+<strong>Error function (誤差関数)</strong> と呼ぶ</p>
+
+<p>Error functionはHidden LayerのActivation functionとセットで設計され、
+それらは問題の種類ごとに異なる.</p>
+
+<p>今回は Multi-class classification なのでActivation functionにSoftmax functionを使用し、
+Error functionには</p>
+
+<p>$$
+E(W) = - \sum _{n=1}^{N} \sum _{k=1}^{K} d _{nk} \log y _{nk} \tag{7}
+$$</p>
+
+<p>を使用する.
+ここで $W$ はネットワークの全体の重みをまとめた行列で (3) によりBiasもここに入る、
+$n$ はTrainig dataにおけるTraining sampleの番号、
+$K$ はOutput LayerのUnit数、
+$k$ はOutput LayerのUnit番号、
+$d _{nk}$ は n 番目のTraining sampleの k 番目のUnitの目標値、
+$y _{nk}$ は n 番目のTraining sampleの k 番目のUnitのOutput.</p>
+
+<p>今回はMulti-class classificationなので、 $d _{nk}$ は</p>
+
+<p>$$
+\sum _{k=1}^{K} d _{k} = 1 \tag{8}
+$$</p>
+
+<p>で、正解のclassに対応する一つのUnitのOutputが 1 で、残りのUnitのOutputが 0 となる.</p>
+
+<h2 id="stochastic-gradient-descent:99621a27901250e81c3c36481758f611">Stochastic Gradient Descent</h2>
+
+<p>ネットワークの目的はError functionの値を小さくすることだが、
+Error functionは一般に凸関数ではなく、大域的な最小解を直接得ることは通常不可能.</p>
+
+<p>代わりに局所的な極小点を求める.
+一般に $E(W)$ の極小点は複数存在するため、得た極小点が大域的な最小解となることはほぼ無いが、
+それでもその極小点が十分小さい値ならば目的に貢献し得る.</p>
+
+<p>局所的な極小点の探索方法はいくつかあるが、最も簡単なのが <strong>Gradient Descent Method (勾配降下法)</strong>.</p>
+
+<p>Gradientというのは $W$ の成分数を $M$ として、</p>
+
+<p>$$
+\nabla E = \frac{\partial W}{\partial E} = [\frac{\partial E}{\partial w_1} &hellip; \frac{\partial E}{\partial w _M}]^{T} \tag{9}
+$$</p>
+
+<p>というVectorで、
+Gradient Descent Method は $W$ を $- \nabla E$ 方向に動かし、
+これをなんども繰り返すことで局所的な極小点を探索する.</p>
+
+<p>現在の重みを $W^{(t)}$ 、動かした後の重みを $W^{(t+1)}$ とすると</p>
+
+<p>$$
+W^{(t+1)} = W^{(t)} - \epsilon \nabla E \tag{10}
+$$</p>
+
+<p>とあらわされる.</p>
+
+<p>このときの $\epsilon$ を <strong>Learning rate (学習係数)</strong> と呼び、
+一回の更新での $W$ の更新量を決める定数.
+大きいと極小点に収束しない可能性があり、小さいと収束までの反復回数が多くなる.</p>
+
+<p>Learing rateの決定にも手法があるが、今回はとりあえず定数で指定することにする.</p>
+
+<p>Gradient Descent Method はTraining data全体に対してError functionの値を最小化する.</p>
+
+<p>$$
+E(W) = \sum _{n=1}^{N} E_n(w) \tag{11}
+$$</p>
+
+<p>これに対してTraining dataの一部を使って $W$ の更新を行う (さらに更新ごとにTraining samplesを取り替える) 手法を
+<strong>Stochastic Gradient Descent (確率的勾配降下法)</strong> と呼ぶ.</p>
+
+<p>Stochastic Gradient Descent を使うと、 Gradient Descent Method に潜在する
+<em>相対的に小さくない局所的な極小解にはまるリスク</em> を小さくできる.</p>
+
+<h2 id="back-propagation:99621a27901250e81c3c36481758f611">Back propagation</h2>
+
+<p>Gradient Descent Method を実行するには</p>
+
+<p>$$
+\nabla E = \frac{\partial W}{\partial E} = [\frac{\partial E}{\partial w_1} &hellip; \frac{\partial E}{\partial w _M}]^{T} \tag{9}
+$$</p>
+
+<p>を計算する必要があるが、微分の連鎖規則のため、Output Layerから遠いLayerになると微分計算が困難になる.</p>
+
+<p>これを解決するのが <strong>Back propagation (誤差逆伝播法)</strong>.
+Back propagation はOutput LayerからInput Layerに向かって、連鎖的に勾配を計算していく方法.</p>
+
+<p>n 番目のTraining sampleのError functionの値 $E_n$ をLayer $p$ におけるParameter $w _{ji}^{(p)}$ に関して微分すると、
+$w _{ji}^{(p)}$ は</p>
+
+<p>$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} \tag{4}
+$$</p>
+
+<p>により $u_j^{(p)}$ の中にのみ存在するので、</p>
+
+<p>$$
+\frac{\partial E_n}{\partial w _{ji}^{(p)}} = \frac{\partial E_n}{\partial u _{j}^{(p)}} \frac{\partial u _{j}^{(p)}}{\partial w _{ji}^{(p)}} \tag{12}
+$$</p>
+
+<p>となる.</p>
+
+<p>$u_j^{(p)}$ の変動が $E_n$ に与える影響は、
+このUnit $j$からのOutput $z_j^{(p)}$ を通じて、$p+1$ LayerのOutputを変化させることによってのみ生じるので、
+(12) の右辺第1項は</p>
+
+<p>$$
+\frac{\partial E_n}{\partial u _{j}^{(p)}} = \sum _k \frac{\partial E_n}{\partial u_k^{(p+1)}} \frac{\partial u_k^{(p+1)}}{\partial u_j^{(p)}} \tag{13}
+$$</p>
+
+<p>となる.</p>
+
+<p>左辺の $\frac{\partial E_n}{\partial u _{j}^{(p)}}$ と右辺の $\frac{\partial E_n}{\partial u _{j}^{(p+1)}}$ に注目して、</p>
+
+<p>$$
+\delta _j^{p} = \frac{\partial E_n}{\partial u _{j}^{(p)}} \tag{14}
+$$</p>
+
+<p>とおく.</p>
+
+<p>$$
+u_k^{(p+1)} = \sum _j w _{kj}^{(p+1)} z_j^{(p)} = \sum _j w _{kj}^{(p+1)} f(u_j^{(p)}) \tag{15}
+$$</p>
+
+<p>より、</p>
+
+<p>$$
+\frac{\partial u_k^{(p+1)}}{\partial u_j^{(p)}} = w _{kj}^{(p+1)} f&rsquo;(u_j^{(p)}) \tag{16}
+$$</p>
+
+<p>となるので、 (13) は</p>
+
+<p>$$
+\delta _j^{(p)} = \sum _k \delta _j^{(p+1)} (w _{kj}^{(p+1)} f&rsquo;(u_j^{(p)})) \tag{17}
+$$</p>
+
+<p>となる. これは $\delta _j^{(p)}$ が $\delta _k^{(p+1)} (k = 1, 2, &hellip;)$ から計算できることを意味する.</p>
+
+<p>(12) の右辺第1項はこのように $\delta$ を計算することで得られる.
+第2項は $u_j^{(p)} = \sum _i w _{ji}^{(p)} z_i^{(p-1)}$ から</p>
+
+<p>$$
+\frac{\partial u _{j}^{(p)}}{\partial w _{ji}^{(p)}} = z_i^{(p-1)} \tag{18}
+$$</p>
+
+<p>が得られるので、目的の微分は</p>
+
+<p>$$
+\frac{\partial E_n}{\partial w _{ji}^{(p)}} = \delta _j^{(p)} z_i{(p-1)} \tag{19}
+$$</p>
+
+<p>となり、 $p-1$ Layerと $p$ LayerをつなぐConnectionの重み $w _{ji}^{(p)}$ に関する微分は、
+Unit $j$ に関する $\delta _j^{(p)}$ と Unit $i$ のOutput $z_i^{(p-1)}$ のただの積で与えられる.
+$\delta$ はOutput LayerからInput Layerに順に (17) を適用すれば求められる.
+Output Layerでの $\delta$ は</p>
+
+<p>$$
+\delta _j^{(P)} = \frac{\partial E_n}{\partial u_j^{(P)}} \tag{20}
+$$</p>
+
+<p>で計算できる.</p>
+
+<p>今回はOutput LayerのError functionは (7) を使用し
+( n 番目のTrainig sampleに関しては $-\sum _{k=1}^{K} d _{nk} \log y _{nk}$)、
+Activation functionにSoftmax functionを使用しているので、</p>
+
+<p>$$
+E_n = - \sum _k d_k \log y_k = - \sum _k d_k log (\frac{e^{u_k^{(P)}}}{\sum _i e^{u_i^{(P)}}}) \tag{21}
+$$</p>
+
+<p>となり、</p>
+
+<p>$$
+\delta _j^{(P)} = - \sum _k d_k \frac{1}{y_k} \frac{\partial y_k}{\partial u_j^{(P)}}
+= -d_j(1-y_j) - \sum _{k \neq j} d_k(-y_j)
+= \sum _k d_k (y_j - d_j)
+\tag{22}
+$$</p>
+
+<p>で $\delta$ が求められる.</p>
+
+<p>(20) ( 今回は具体的には (22) ) と (17) により任意のLayerの $\delta$ が求められるので、 (19) により任意のConnectionの重み $w$ を更新できる.</p>
+
+<h1 id="impl:99621a27901250e81c3c36481758f611">Impl</h1>
+
+<p>順伝播型ニューラルネットワークのcoreなところを追ったところで実装.
+数式の流れをちゃんと理解できてたら大したこと無い.</p>
+
+<p>※以下のCodeはそのままで動くようには書いてない.</p>
+
+<img src="/images//20160226/impl_1.png" alt="/20160226/impl_1.png">
+
+
+<p>上の図を <code>CLOS</code> に落とし込む.</p>
+
+<pre><code class="language-common-lisp">(defclass unit ()
+  ((input-value ...)
+   (output-value ...)
+   (left-connections ...)
+   (right-connections ...)
+   (delta ...)))
+
+(defclass bias-unit (unit) ())
+
+(defclass connection ()
+  ((left-unit ...)
+   (right-unit ...)
+   (weight ...)
+   (weight-diff ...)))
+
+(defclass layer ()
+  ((bias-unit ...)
+   (units ...)))
+
+(defclass input-layer (layer) ())
+
+(defclass hidden-layer (layer)
+  ((bias-unit :initform (make-instance 'bias-unit))))
+
+(defclass output-layer (layer)
+  ((bias-unit :initform (make-instance 'bias-unit))))
+
+(defclass dnn ()
+  ((layers ...)
+   (connections ...)))
+</code></pre>
+
+<p>Input Layer以外のLayerのUnitのInputは (4) なので</p>
+
+<pre><code class="language-common-lisp">(defun calculate-unit-input-value (unit)
+  (reduce #'+
+          (mapcar #'(lambda (connection)
+                      (* (unit-output-value (connection-left-unit connection))
+                         (connection-weight connection)))
+                  (unit-left-connections unit))))
+</code></pre>
+
+<p>で、OutputはBias Unit (Outputが1) 以外は (2) なので</p>
+
+<pre><code class="language-common-lisp">(defgeneric calculate-unit-output-value (unit)
+  (:method ((unit unit))
+    (funcall activatinon-function (unit-input-value unit)))
+  (:method ((unit bias-unit))
+    (declare (ignore unit))
+    1))
+</code></pre>
+
+<p>のように計算できる.</p>
+
+<p>これをInput LayerからOutput Layerまで繰り返してネットワークの出力を得る.</p>
+
+<pre><code class="language-common-lisp">(defun predict (dnn input)
+  (dolist (layer (dnn-layers dnn))
+    (etypecase layer
+      (input-layer
+       (map nil
+            #'(lambda (input-unit value)
+                (setf (unit-input-value input-unit) value
+                      (unit-output-value input-unit) value))
+            (layer-units layer)
+            input))
+      ((or hidden-layer output-layer)
+       (let ((units (layer-units layer)))
+         (dolist (unit units)
+           (let ((input-value (calculate-unit-output-value unit)))
+             (setf (unit-input-value unit) input-value
+                   (unit-output-value unit)
+                   (calculate-unit-output-value unit))))))))
+  (mapcar #'unit-output-value
+          (layer-units (output-layer (dnn-layers dnn)))))
+</code></pre>
+
+<p>これにError functionを適用する.</p>
+
+<pre><code class="language-common-lisp">(defun test (dnn data-set)
+  (/ (reduce #'+
+             (mapcar #'(lambda (data)
+                         (funcall error-function
+                                  (predict dnn (data-input data))
+                                  (data-expected data)))
+                     data-set))
+     (length data-set)))
+</code></pre>
+
+<p>あとは (20) と (17) で $\delta$ を計算し、</p>
+
+<pre><code class="language-common-lisp">(defgeneric calculate-delta (layer unit)
+  (:method ((layer output-layer) unit)
+    ...)
+  (:method ((layer hidden-layer) unit)
+    ...))
+</code></pre>
+
+<p>Back propagationで <code>connection</code> の <code>weight</code> を更新すれば学習ができる.</p>
+
+<pre><code class="language-common-lisp">(defun train (dnn data-set)
+  (dolist (data data-set)
+    (predict dnn (data-input data))
+    (dolist (layer (reverse (cdr (dnn-layers dnn))))
+      (dolist (unit (layer-units layer))
+        (let ((delta (calculate-delta layer unit)))
+          (setf (unit-delta unit) delta)
+          (dolist (connection (unit-left-connections unit))
+            (incf (connection-weight-diff connection)
+                  (* delta
+                     (unit-output-value
+                      (connection-left-unit connection))))))))
+    (dolist (outer-connections (dnn-connections dnn))
+      (dolist (inner-connectios outer-connections)
+        (dolist (connection inner-connectios)
+          (decf (connection-weight connection)
+                (* (dnn-learning-coefficient dnn)
+                   (connection-weight-diff connection)))
+          (setf (connection-weight-diff connection) 0))))))
+</code></pre>
+
+<p>これだけで順伝播型ニューラルネットワークが実装できる.<br />
+(実際は <code>connection</code> の <code>weight</code> を平均0で分散1の正規乱数で初期化や、
+Inputの正規化や、Mini-batchで学習の実装もしている.)</p>
+
+<h1 id="test:99621a27901250e81c3c36481758f611">Test</h1>
+
+<p><code>Fisher's iris flower data set</code> (統計の有名なデータセット) の多クラス分類 (Multi-class classification) をやってみる.</p>
+
+<p>データセット自体は R で <code>iris</code> とかやると出てくるもので、
+<code>iris dataset</code> とかで検索すれば手に入る.</p>
+
+<p>どういうデータかというと、4つのInputと1つのLabelの集まりで、Labelは3種類ある.
+そのためテストではInput Layerは4 Units、Hidden Layerは10 Units、Output Layerは3 Units、学習係数は0.001で組んだ.
+(Hidden LayerのLayer数やUnit数と学習係数は適当.)</p>
+
+<p>今回使ったデータセットは150サンプルあるので、それを15サンプルずつの10セットに分ける.
+そのうち1セットをテストデータとして取り、残りを教師データとして学習に使用する.
+教師データでの学習の度に学習データを <code>test</code> にかけ Error function の値をとり、
+それが一定以下になるか、指定の学習回数を経るとと学習を打ち切る.
+学習のあとにテストデータで <code>predict</code> を行って正解数を記録する.
+それを10セット繰り返す.
+最後に正解率を出す.</p>
+
+<pre><code class="language-common-lisp">(defun data-sets ()
+  ...)
+
+(defun main (&amp;optional (training-count 0))
+  (let* ((layers (make-layers (list (list 'input-layer 4)
+                                    (list 'hidden-layer 10 'rectified-linear-unit)
+                                    (list 'output-layer 3 'softmax))))
+         (connections (connect layers))
+         (dnn (make-instance 'dnn
+                             :layers layers
+                             :connections connections
+                             :learning-coefficient 0.001))
+         (data-sets (data-sets))
+         (correc-count 0)
+         (test-count 0))
+    (dolist (test-data-set data-sets)
+      (let ((train-data-set (apply #'append (remove test-data-set data-sets))))
+        (loop repeat training-count
+              do (train dnn train-data-set)
+              until (&lt; (test dnn train-data-set) 0.01))
+        (dolist (data test-data-set)
+          (incf test-count)
+          (let ((result (predict dnn (data-input data))))
+            (when (= (position (apply #'max result) result)
+                     (data-expected data))
+              (incf correc-count))))))
+    (format t &quot;Accuracy: ~,2f%~%&quot; (* 100 (/ correc-count test-count)))))
+</code></pre>
+
+<p>学習回数を0から10000で変えながら順に実行する.</p>
+
+<pre><code class="language-common-lisp">(dolist (times (list 0 10 100 1000 10000))
+  (format t &quot;TIMES: ~a~%&quot; times)
+  (loop repeat 3
+        do (main times)))
+</code></pre>
+
+<p>結果は</p>
+
+<pre><code>TIMES: 0
+Accuracy: 33.33%
+Accuracy: 33.33%
+Accuracy: 33.33%
+TIMES: 10
+Accuracy: 50.00%
+Accuracy: 54.00%
+Accuracy: 60.00%
+TIMES: 100
+Accuracy: 89.33%
+Accuracy: 82.00%
+Accuracy: 86.67%
+TIMES: 1000
+Accuracy: 95.33%
+Accuracy: 97.33%
+Accuracy: 95.33%
+TIMES: 10000
+Accuracy: 97.33%
+Accuracy: 97.33%
+Accuracy: 96.67%
+</code></pre>
+
+<p>ちゃんと学習できてるっぽい.</p>
+
+<p>Codeは <a href="https://github.com/Rudolph-Miller/cldl">CLDL</a> に置いてるけど、
+まぁとくに汎用的なLibraryにするつもりは無いし参考程度に.
+(Common LispでDeep Learningしたいだけなら、もっとちゃんとしたLibraryがあるはず.)</p>
+
+<h1 id="todo:99621a27901250e81c3c36481758f611">TODO</h1>
+
+<p>まだ実装し残してることがあるのでリストアップする.</p>
+
+<ul>
+<li>Convolution Layer (畳み込み層)</li>
+<li>Pooling Layer (プーリング層)</li>
+<li>MNISTの画像解析</li>
+<li>Recurrent Neural Network (再帰型ニューラルネットワーク)</li>
+<li>Autoencoder (自己符号化器)</li>
+<li>Automatic Differentiation (自動微分)</li>
+<li>学習係数の決定</li>
+<li>Regularization (正則化)
+
+<ul>
+<li>Weight restriction</li>
+<li>Weight decay</li>
+<li>Dropout</li>
+</ul></li>
+</ul>
+
+<p>当分やることには困らなそう.</p>
+
+<h1 id="see-also:99621a27901250e81c3c36481758f611">See Also</h1>
+
+<ul>
+<li><a href="http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B018K6C99A&amp;linkCode=as2&amp;tag=rudolph-miller-22">深層学習</a></li>
+<li><a href="https://github.com/Rudolph-Miller/cldl">CLDL</a></li>
+</ul>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <section class="social-buttons row">
+      
+      <div class="social-button">
+        <ul class="twitter-share-button-with-balloon">
+          <li>
+          <a href="https://twitter.com/search?q=%2fpost%2fdeep-learning-in-common-lisp%2f" target="_blank">
+              <span class="balloon-bottom">list</span>
+            </a>
+          </li>
+          <li>
+          <a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true" data-count="vertical" data-text="Deep LearningをCommon Lispで実装してみた.">Tweet</a>
+          </li>
+        </ul>
+      </div>
+
+      
+      <div class="social-button">
+        <a class='hatena-bookmark-button' data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en" expr:data-hatena-bookmark-title="data:post.title" expr:href='"http://b.hatena.ne.jp/entry/" + data:post.canonicalUrl' title='このエントリーをはてなブックマークに追加'>
+          <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
+        </a>
+      </div>
+
+      
+      <div class="social-button">
+        <div class="fb-like" data-href="/post/deep-learning-in-common-lisp/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-type></div>
+      </div>
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="/post/export-html-slide-as-pdf/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="/post/kloudsec-for-ssl-with-custom-domain-on-gh-pages/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+
+    
+    <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
+
+    
+    <script type='text/javascript' src='//b.st-hatena.com/js/bookmark_button.js' charset='utf-8' async='async'></script>
+
+    
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script type="text/javascript" src="/highlight-lisp/highlight-lisp.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    HighlightLisp.highlight_auto({className: "language-common-lisp"});
+    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
+  </script>
+
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+
+
+
+  
+</body>
+</html>
+

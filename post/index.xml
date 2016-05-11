@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/post/</link>
-    <description>Recent content in Posts on (rudolph-miller)</description>
+    <title>Posts on </title>
+    <link>/post/</link>
+    <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Fri, 11 Mar 2016 21:54:27 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Kloundsec for SSL with Custom Domain on GitHub Pages</title>
-      <link>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</link>
+      <link>/post/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</link>
       <pubDate>Fri, 11 Mar 2016 21:54:27 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/03/11/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</guid>
+      <guid>/post/kloudsec-for-ssl-with-custom-domain-on-gh-pages/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;https://kloudsec.com/&#34;&gt;Kloudsec&lt;/a&gt; を使って3 stepsでCustom domainなGitHub PagesのSSL対応をする.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/eyecatch.png&#34; alt=&#34;/20160311/eyecatch.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/eyecatch.png&#34; alt=&#34;/20160311/eyecatch.png&#34;&gt;
 
 
 &lt;ol&gt;
@@ -33,7 +31,7 @@
 
 &lt;p&gt;&lt;a href=&#34;https://kloudsec.com/&#34;&gt;Kloudsec&lt;/a&gt; はDomainをKloudsecのCDNのIPに向けるだけで、サイトの問題点の分析と修正をしてくれるサービス.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/&#34;&gt;以前&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;/post/use-ssl-with-custom-domain-on-gh-pages/&#34;&gt;以前&lt;/a&gt;
 にCloudFlareでCustom domainなGitHub PagesのSSL対応をする記事を書いたが、
 CloudFlareを使おうとすると DNS server (Name server) をCloudFlareのDNS serverに切り替えないといけなく、
 これが結構負担になった.&lt;/p&gt;
@@ -49,14 +47,14 @@ DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応がで
 
 &lt;h2 id=&#34;register-a-kloudsec-account:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Register a Kloudsec account&lt;/h2&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/register_account.png&#34; alt=&#34;/20160311/register_account.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/register_account.png&#34; alt=&#34;/20160311/register_account.png&#34;&gt;
 
 
 &lt;p&gt;EmailとPasswordを入力.&lt;/p&gt;
 
 &lt;h2 id=&#34;configure-your-github-page:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Configure your Github Page&lt;/h2&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/configure_github_page.png&#34; alt=&#34;/20160311/configure_github_page.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/configure_github_page.png&#34; alt=&#34;/20160311/configure_github_page.png&#34;&gt;
 
 
 &lt;p&gt;登録するGitHub PageのRepositoryのURLと登録するCustom domainを入力.
@@ -65,7 +63,7 @@ DNS recordを変更するだけでCustom domainなGitHub PagesのSSL対応がで
 
 &lt;h2 id=&#34;configure-your-dns-settings:e6ae5c71a14d7c514ac98a7919ffceb2&#34;&gt;Configure your DNS settings&lt;/h2&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/configure_dns.png&#34; alt=&#34;/20160311/configure_dns.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/configure_dns.png&#34; alt=&#34;/20160311/configure_dns.png&#34;&gt;
 
 
 &lt;p&gt;最後に表示されている設定を使用しているDNS serverに登録する.
@@ -79,7 +77,7 @@ FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
 
 &lt;p&gt;すこし待つと&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160311/ssl_certificate_ready.png&#34; alt=&#34;/20160311/ssl_certificate_ready.png&#34;&gt;
+&lt;img src=&#34;/images//20160311/ssl_certificate_ready.png&#34; alt=&#34;/20160311/ssl_certificate_ready.png&#34;&gt;
 
 
 &lt;p&gt;の様なEmailが届きSSLの設定も完了.&lt;/p&gt;
@@ -108,10 +106,10 @@ FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
     
     <item>
       <title>Deep Learning in Common Lisp</title>
-      <link>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</link>
+      <link>/post/deep-learning-in-common-lisp/</link>
       <pubDate>Fri, 26 Feb 2016 20:30:37 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</guid>
+      <guid>/post/deep-learning-in-common-lisp/</guid>
       <description>
 
 &lt;p&gt;Deep Learning をCommon Lispで実装してみた.&lt;/p&gt;
@@ -140,7 +138,7 @@ FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
 
 &lt;p&gt;Deep Learning は Deep Neural Network (Multi-layer perceptron, 多層構造のNeural Network) の機械学習の事.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/dnn.png&#34; alt=&#34;/20160224/dnn.png&#34;&gt;
+&lt;img src=&#34;/images//20160224/dnn.png&#34; alt=&#34;/20160224/dnn.png&#34;&gt;
 
 
 &lt;p&gt;Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
@@ -156,7 +154,7 @@ FormのInput要素をClickするとClipboardにcopyされる.&lt;/p&gt;
 
 &lt;h2 id=&#34;activation-function:99621a27901250e81c3c36481758f611&#34;&gt;Activation function&lt;/h2&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/math_1.png&#34; alt=&#34;/20160224/math_1.png&#34;&gt;
+&lt;img src=&#34;/images//20160224/math_1.png&#34; alt=&#34;/20160224/math_1.png&#34;&gt;
 
 
 &lt;p&gt;連続した$p-1$層と$p$層を考える.&lt;/p&gt;
@@ -180,7 +178,7 @@ UnitのInputは前層のOutputにConnectionの重みを掛けたものの和にB
 
 &lt;p&gt;ここで&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/math_2.png&#34; alt=&#34;/20160224/math_2.png&#34;&gt;
+&lt;img src=&#34;/images//20160224/math_2.png&#34; alt=&#34;/20160224/math_2.png&#34;&gt;
 
 
 &lt;p&gt;のようにBias Unitという特別なUnit (Outputが常に $1$) を導入して、&lt;/p&gt;
@@ -415,7 +413,7 @@ $$&lt;/p&gt;
 
 &lt;p&gt;※以下のCodeはそのままで動くようには書いてない.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160226/impl_1.png&#34; alt=&#34;/20160226/impl_1.png&#34;&gt;
+&lt;img src=&#34;/images//20160226/impl_1.png&#34; alt=&#34;/20160226/impl_1.png&#34;&gt;
 
 
 &lt;p&gt;上の図を &lt;code&gt;CLOS&lt;/code&gt; に落とし込む.&lt;/p&gt;
@@ -665,10 +663,10 @@ Accuracy: 96.67%
     
     <item>
       <title>Export HTML Slide as PDF</title>
-      <link>https://blog.rudolph-miller.com/2016/02/13/export-html-slide-as-pdf/</link>
+      <link>/post/export-html-slide-as-pdf/</link>
       <pubDate>Sat, 13 Feb 2016 01:17:33 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/02/13/export-html-slide-as-pdf/</guid>
+      <guid>/post/export-html-slide-as-pdf/</guid>
       <description>
 
 &lt;p&gt;HTMLなSlideをPDFにexportする.&lt;/p&gt;
@@ -686,11 +684,11 @@ MarkdownでHTML Slideのgenerateが再燃(?)しているが、
 HTML Slideで困るのがSlideの共有だ.&lt;/p&gt;
 
 &lt;p&gt;普段Remark.jsを使ってMarkdownからHTML Slideをgenerateしているのだが、
-以前Kaizen PlatformでのTech Talk #4で &lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;&gt;Slide&lt;/a&gt;
+以前Kaizen PlatformでのTech Talk #4で &lt;a href=&#34;/slide/about-lisp/&#34;&gt;Slide&lt;/a&gt;
 を発表した際、共有のために &lt;code&gt;iframe&lt;/code&gt; でこのSlideを埋め込んだ
-&lt;a href=&#34;https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/&#34;&gt;Blog post&lt;/a&gt; を作り共有していた.&lt;/p&gt;
+&lt;a href=&#34;/post/tech-talk-about-lisp/&#34;&gt;Blog post&lt;/a&gt; を作り共有していた.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160213/share_lisp_1.gif&#34; alt=&#34;20160213/share_lisp_1.gif&#34;&gt;
+&lt;img src=&#34;/images/20160213/share_lisp_1.gif&#34; alt=&#34;20160213/share_lisp_1.gif&#34;&gt;
 
 
 &lt;p&gt;今更ながらふと、PhantomJSなどでScreenshotを撮り、それをPDFに変換し、
@@ -815,18 +813,18 @@ Printing slide #88      (1/88) ...
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/astefanutti/decktape&#34;&gt;DeckTape&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/yusukebe/revealgo&#34;&gt;yusukebe/revealgo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/slide/2015/10/29/about-lisp/&#34;&gt;Tech Talk About Lisp - Slide&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/11/01/tech-talk-about-lisp/&#34;&gt;Tech Talk About Lisp - Blog post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/slide/about-lisp/&#34;&gt;Tech Talk About Lisp - Slide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/post/tech-talk-about-lisp/&#34;&gt;Tech Talk About Lisp - Blog post&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>detect-js-changes</title>
-      <link>https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/</link>
+      <link>/post/detect-js-changes/</link>
       <pubDate>Sun, 31 Jan 2016 21:39:15 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/</guid>
+      <guid>/post/detect-js-changes/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/detect-js-changes&#34;&gt;detect-js-changes&lt;/a&gt;という業務Toolを作ってKaizenの業務をKAIZENした話.&lt;/p&gt;
@@ -1185,10 +1183,10 @@ func main() {
     
     <item>
       <title>Use SSL with Custom Domain on GitHub Pages</title>
-      <link>https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/</link>
+      <link>/post/use-ssl-with-custom-domain-on-gh-pages/</link>
       <pubDate>Fri, 29 Jan 2016 17:18:42 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/29/use-ssl-with-custom-domain-on-gh-pages/</guid>
+      <guid>/post/use-ssl-with-custom-domain-on-gh-pages/</guid>
       <description>
 
 &lt;p&gt;Custom domainなGitHub PagesをSSL対応する.&lt;/p&gt;
@@ -1224,19 +1222,19 @@ Freeプランがあり、基本無料で使える.&lt;/p&gt;
 &lt;p&gt;今回した設定は &lt;code&gt;SSL&lt;/code&gt;, &lt;code&gt;HSTS&lt;/code&gt;, &lt;code&gt;Subdomain&lt;/code&gt;.
 基本的にはCloudFlareの管理画面のDomain毎のOverviewの上のMenuから入って設定する.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/menu.png&#34; alt=&#34;20160129/menu.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/menu.png&#34; alt=&#34;20160129/menu.png&#34;&gt;
 
 
 &lt;h3 id=&#34;ssl:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;SSL&lt;/h3&gt;
 
 &lt;p&gt;SSLの設定は上のMenuの &lt;code&gt;Crypto&lt;/code&gt;&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
 
 
 &lt;p&gt;から行う.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/ssl.png&#34; alt=&#34;20160129/ssl.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/ssl.png&#34; alt=&#34;20160129/ssl.png&#34;&gt;
 
 
 &lt;p&gt;SSLの設定は &lt;code&gt;Off&lt;/code&gt;, &lt;code&gt;Flexible&lt;/code&gt;, &lt;code&gt;Full&lt;/code&gt;, &lt;code&gt;Strict&lt;/code&gt; と選べる.&lt;/p&gt;
@@ -1280,41 +1278,41 @@ Web serverがWeb browserに対して、次回以降HTTPの代わりにHTTPSを�
 
 &lt;p&gt;HSTSの設定は &lt;code&gt;SSL&lt;/code&gt; 同様に上のMenuの &lt;code&gt;Crypto&lt;/code&gt;&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/crypto.png&#34; alt=&#34;20160129/crypto.png&#34;&gt;
 
 
 &lt;p&gt;から行う.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/hsts.png&#34; alt=&#34;20160129/hsts.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/hsts.png&#34; alt=&#34;20160129/hsts.png&#34;&gt;
 
 
 &lt;h3 id=&#34;subdomain:cf68b4f8581564027f3288c1c2c90b3d&#34;&gt;Subdomain&lt;/h3&gt;
 
 &lt;p&gt;Subdomainの設定は上のMenuの &lt;code&gt;DNS&lt;/code&gt;&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns.png&#34; alt=&#34;20160129/dns.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/dns.png&#34; alt=&#34;20160129/dns.png&#34;&gt;
 
 
 &lt;p&gt;から行う.&lt;/p&gt;
 
 &lt;p&gt;今回はSubdomainが &lt;em&gt;blog.rudolph-miller.com&lt;/em&gt; でGitHub PagesのDomainが &lt;em&gt;rudolph-miller.github.io&lt;/em&gt; なので、&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns_input.png&#34; alt=&#34;20160129/dns_input.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/dns_input.png&#34; alt=&#34;20160129/dns_input.png&#34;&gt;
 
 
 &lt;p&gt;こんな感じに &lt;code&gt;CNAME&lt;/code&gt; を登録し、&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/dns_status.png&#34; alt=&#34;20160129/dns_status.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/dns_status.png&#34; alt=&#34;20160129/dns_status.png&#34;&gt;
 
 
 &lt;p&gt;&lt;code&gt;Status&lt;/code&gt; を&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/not_penetrating.png&#34; alt=&#34;20160129/not_penetrating.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/not_penetrating.png&#34; alt=&#34;20160129/not_penetrating.png&#34;&gt;
 
 
 &lt;p&gt;から&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160129/penetrating.png&#34; alt=&#34;20160129/penetrating.png&#34;&gt;
+&lt;img src=&#34;/images/20160129/penetrating.png&#34; alt=&#34;20160129/penetrating.png&#34;&gt;
 
 
 &lt;p&gt;にClickで変更すると完了.&lt;/p&gt;
@@ -1336,10 +1334,10 @@ Web serverがWeb browserに対して、次回以降HTTPの代わりにHTTPSを�
     
     <item>
       <title>Scroll to the top with Redux Router</title>
-      <link>https://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</link>
+      <link>/post/scroll-to-the-top-with-redux-router/</link>
       <pubDate>Mon, 25 Jan 2016 21:46:15 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/25/scroll-to-the-top-with-redux-router/</guid>
+      <guid>/post/scroll-to-the-top-with-redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux RouterでLocationの変更時にScrollをtopに持っていく方法.&lt;/p&gt;
@@ -1352,7 +1350,7 @@ Web serverがWeb browserに対して、次回以降HTTPの代わりにHTTPSを�
 
 &lt;h1 id=&#34;scroll-position-after-transition:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;Scroll position after transition&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt; は &lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt; で紹介した通り、React.jsでde facto standardとなっているRouting libraryの &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt; の &lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt; は &lt;a href=&#34;/post/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt; で紹介した通り、React.jsでde facto standardとなっているRouting libraryの &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt; の &lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt; bindings.&lt;/p&gt;
 
 &lt;p&gt;Redux Routerを実際にApplicationで使用していると &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままで困ったので、 &lt;code&gt;Link&lt;/code&gt; での遷移で &lt;code&gt;window.scrollTo(0, 0)&lt;/code&gt; するよう実装した.&lt;/p&gt;
 
@@ -1445,7 +1443,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160125/scroll_step1.gif&#34; alt=&#34;20160125/scroll_step1.gif&#34;&gt;
+&lt;img src=&#34;/images/20160125/scroll_step1.gif&#34; alt=&#34;20160125/scroll_step1.gif&#34;&gt;
 
 
 &lt;p&gt;上のGIFの通り、このままだと &lt;code&gt;Link&lt;/code&gt; での遷移時にScrollが元の位置のままだ.&lt;br /&gt;
@@ -1494,19 +1492,19 @@ const reducer = combineReducers({
 
 &lt;p&gt;だけ.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160125/scroll_step2.gif&#34; alt=&#34;20160125/scroll_step2.gif&#34;&gt;
+&lt;img src=&#34;/images/20160125/scroll_step2.gif&#34; alt=&#34;20160125/scroll_step2.gif&#34;&gt;
 
 
 &lt;h2 id=&#34;pushstate:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;pushState&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
+&lt;p&gt;&lt;a href=&#34;/post/push-state-in-redux-router/&#34;&gt;pushState in Redux Router&lt;/a&gt; で紹介した通り、
 Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&gt;pushState&lt;/code&gt; ででもPageの遷移ができるが、
 この改修により &lt;code&gt;pushState&lt;/code&gt; での遷移でもScrollを最上部に持っていくことができる.&lt;/p&gt;
 
 &lt;h1 id=&#34;see-also:8c6698fca28b5f763bfcc5cf03efbc9c&#34;&gt;See Also&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/12/23/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/post/redux-router/&#34;&gt;Redux Routerの紹介&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-router&#34;&gt;Redux Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
@@ -1516,10 +1514,10 @@ Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&g
     
     <item>
       <title>Add List-balloon to Twitter share button</title>
-      <link>https://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</link>
+      <link>/post/add-list-balloon-to-twitter-share-button/</link>
       <pubDate>Mon, 25 Jan 2016 00:01:11 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</guid>
+      <guid>/post/add-list-balloon-to-twitter-share-button/</guid>
       <description>
 
 &lt;p&gt;Twitterのshare buttonにlist balloonを追加する.&lt;/p&gt;
@@ -1534,13 +1532,13 @@ Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&g
 
 &lt;p&gt;Blogなどに埋め込まれているTwitterのshareボタンだが、以前は上にBalloonでTweet数が表示されていた.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/previous_twitter.png&#34; alt=&#34;20160124/previous_twitter.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/previous_twitter.png&#34; alt=&#34;20160124/previous_twitter.png&#34;&gt;
 
 
 &lt;p&gt;それがTwitter内部でのCassandraの廃止に付随して、昨年末なくなった.&lt;br /&gt;
 (参照: &lt;a href=&#34;https://blog.twitter.com/ja/2015/buttons&#34;&gt;持続的なプラットフォームのための難しい決断&lt;/a&gt;)&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
 
 
 &lt;p&gt;Twitter、 はてなブックマーク、Facebook、Google+のshareボタンがBalloon付きでならんでいたのだが、TwitterのshareボタンだけがBalloonが無くなり、統一感が失われた.
@@ -1567,7 +1565,7 @@ Redux Routerにも &lt;code&gt;pushState&lt;/code&gt; のAPIがあり &lt;code&g
 
 &lt;p&gt;以前は一つ目のHTML codeの &lt;code&gt;a&lt;/code&gt; tagの &lt;code&gt;data-conut=&amp;quot;vertical&amp;quot;&lt;/code&gt; によりTweet数のBalloon付きでshareボタンが表示されていたが、今はこのように表示される.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
 
 
 &lt;p&gt;とりあえず、Balloonを表示する.&lt;br /&gt;
@@ -1579,7 +1577,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
  &amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step1.png&#34; alt=&#34;20160124/step1.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/step1.png&#34; alt=&#34;20160124/step1.png&#34;&gt;
 
 
 &lt;p&gt;これにBalloonを描くようCSSを当てる.&lt;/p&gt;
@@ -1629,7 +1627,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step2.png&#34; alt=&#34;20160124/step2.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/step2.png&#34; alt=&#34;20160124/step2.png&#34;&gt;
 
 
 &lt;p&gt;(下の吹き出しの大きさの変更は &lt;code&gt;:before&lt;/code&gt; と &lt;code&gt;:after&lt;/code&gt; の &lt;code&gt;bottom&lt;/code&gt;, &lt;code&gt;margin-left&lt;/code&gt;, &lt;code&gt;border-width&lt;/code&gt; をsynchronouslyに変更する.)&lt;/p&gt;
@@ -1659,7 +1657,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step3.png&#34; alt=&#34;20160124/step3.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/step3.png&#34; alt=&#34;20160124/step3.png&#34;&gt;
 
 
 &lt;p&gt;見た目はこれで完成.&lt;br /&gt;
@@ -1691,10 +1689,10 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
     
     <item>
       <title>Import Query Result to BigQuery</title>
-      <link>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</link>
+      <link>/post/import-query-result-to-bigquery/</link>
       <pubDate>Fri, 15 Jan 2016 18:45:16 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/15/import-query-result-to-bigquery/</guid>
+      <guid>/post/import-query-result-to-bigquery/</guid>
       <description>
 
 &lt;p&gt;特定DirectoryにあるSQL fileを実行して、結果をBigQueryに入れるScriptを書いた.&lt;/p&gt;
@@ -1861,10 +1859,10 @@ done
     
     <item>
       <title>Theme of Material-UI</title>
-      <link>https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</link>
+      <link>/post/theme-of-material-ui/</link>
       <pubDate>Mon, 11 Jan 2016 21:15:39 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/</guid>
+      <guid>/post/theme-of-material-ui/</guid>
       <description>
 
 &lt;p&gt;Material-UIのThemeの使い方を紹介.&lt;/p&gt;
@@ -1877,7 +1875,7 @@ done
 
 &lt;h1 id=&#34;material-ui:2974f27f4339877b24e592c5128f86c3&#34;&gt;Material-UI&lt;/h1&gt;
 
-&lt;p&gt;Material-UIとMaterial Designについては&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事を参照.&lt;/p&gt;
+&lt;p&gt;Material-UIとMaterial Designについては&lt;a href=&#34;/post/material-ui/&#34;&gt;前回&lt;/a&gt;の記事を参照.&lt;/p&gt;
 
 &lt;h1 id=&#34;theme:2974f27f4339877b24e592c5128f86c3&#34;&gt;Theme&lt;/h1&gt;
 
@@ -1888,7 +1886,7 @@ done
 
 &lt;h2 id=&#34;color:2974f27f4339877b24e592c5128f86c3&#34;&gt;Color&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;前回&lt;/a&gt;の記事の&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/#example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/a&gt;にThemeを適用し、Colorを変更する.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;/post/material-ui/&#34;&gt;前回&lt;/a&gt;の記事の&lt;a href=&#34;/post/material-ui/#example:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Example&lt;/a&gt;にThemeを適用し、Colorを変更する.&lt;/p&gt;
 
 &lt;p&gt;Colorの指定は&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;とMaterial-UIの&lt;a href=&#34;http://www.material-ui.com/#/customization/colors&#34;&gt;customization/colors&lt;/a&gt;を参照.&lt;/p&gt;
 
@@ -1943,7 +1941,7 @@ export default ThemeManager.modifyRawThemePalette(
 
 &lt;p&gt;&lt;code&gt;@ThemeDecorator&lt;/code&gt; で適用する.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/theme-applied.png&#34; alt=&#34;/20160111/theme-applied.png&#34;&gt;
+&lt;img src=&#34;/images//20160111/theme-applied.png&#34; alt=&#34;/20160111/theme-applied.png&#34;&gt;
 
 
 &lt;p&gt;簡単にColorなどを変更できるが、Themeとして管理することにより、統一感が崩れない.&lt;/p&gt;
@@ -1975,16 +1973,16 @@ export default ThemeManager.modifyRawThemePalette(
 
 &lt;p&gt;のように &lt;code&gt;ThemeManager.modifyRawThemeFontFamily&lt;/code&gt; で &lt;code&gt;font-family&lt;/code&gt; を変更する.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/font-family-not-changed.png&#34; alt=&#34;/20160111/font-family-not-changed.png&#34;&gt;
+&lt;img src=&#34;/images//20160111/font-family-not-changed.png&#34; alt=&#34;/20160111/font-family-not-changed.png&#34;&gt;
 
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160111/font-family-changed.png&#34; alt=&#34;/20160111/font-family-changed.png&#34;&gt;
+&lt;img src=&#34;/images//20160111/font-family-changed.png&#34; alt=&#34;/20160111/font-family-changed.png&#34;&gt;
 
 
 &lt;h1 id=&#34;see-also:2974f27f4339877b24e592c5128f86c3&#34;&gt;See Also&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/04/material-ui/&#34;&gt;Material-UIの紹介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/post/material-ui/&#34;&gt;Material-UIの紹介&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/color.html#color-color-palette&#34;&gt;Color palette&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.material-ui.com/#/customization/colors&#34;&gt;Material-UI customization/colors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.google.com/design/spec/style/typography.html#typography-typeface&#34;&gt;Typography&lt;/a&gt;&lt;/li&gt;
@@ -1994,10 +1992,10 @@ export default ThemeManager.modifyRawThemePalette(
     
     <item>
       <title>Material-UI</title>
-      <link>https://blog.rudolph-miller.com/2016/01/04/material-ui/</link>
+      <link>/post/material-ui/</link>
       <pubDate>Mon, 04 Jan 2016 20:54:36 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/04/material-ui/</guid>
+      <guid>/post/material-ui/</guid>
       <description>
 
 &lt;p&gt;Material-UIの紹介.&lt;/p&gt;
@@ -2021,7 +2019,7 @@ export default ThemeManager.modifyRawThemePalette(
 &lt;p&gt;&lt;a href=&#34;https://github.com/callemall/material-ui&#34;&gt;Material-UI&lt;/a&gt;はMaterial DesignのReact.js実装.&lt;/p&gt;
 
 &lt;p&gt;ComponentとThemeで簡単にMaterial Designを試すことができる.&lt;br /&gt;
-(Themeについては今回は触れず、&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/11/theme-of-material-ui/&#34;&gt;Theme of Material-ui&lt;/a&gt;で紹介.)&lt;/p&gt;
+(Themeについては今回は触れず、&lt;a href=&#34;/post/theme-of-material-ui/&#34;&gt;Theme of Material-ui&lt;/a&gt;で紹介.)&lt;/p&gt;
 
 &lt;h2 id=&#34;install:685cc0a50b9186931af118d17b9d18fd&#34;&gt;Install&lt;/h2&gt;
 
@@ -2097,7 +2095,7 @@ class App extends Component {
 render(&amp;lt;App /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160104/example.png&#34; alt=&#34;20160104/example.png&#34;&gt;
+&lt;img src=&#34;/images/20160104/example.png&#34; alt=&#34;20160104/example.png&#34;&gt;
 
 
 &lt;p&gt;こんな感じにComponentに &lt;code&gt;props&lt;/code&gt; を渡すだけ.&lt;/p&gt;
@@ -2115,10 +2113,10 @@ render(&amp;lt;App /&amp;gt;, document.getElementById(&#39;app&#39;));
     
     <item>
       <title>pushState in Redux Router</title>
-      <link>https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</link>
+      <link>/post/push-state-in-redux-router/</link>
       <pubDate>Fri, 25 Dec 2015 12:34:52 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/25/pushstate-in-redux-router/</guid>
+      <guid>/post/push-state-in-redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux Routerの &lt;code&gt;pushState&lt;/code&gt; の使い方と、 React Reduxの&lt;code&gt;connect&lt;/code&gt; の &lt;code&gt;mapDispatchToProps&lt;/code&gt; について、
@@ -2268,7 +2266,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151225/without-push-state.gif&#34; alt=&#34;/20151225/without-push-state.gif&#34;&gt;
+&lt;img src=&#34;/images//20151225/without-push-state.gif&#34; alt=&#34;/20151225/without-push-state.gif&#34;&gt;
 
 
 &lt;p&gt;これに &lt;code&gt;pushState&lt;/code&gt; で、 &lt;code&gt;/decr&lt;/code&gt; を1秒後に &lt;code&gt;/incr&lt;/code&gt; にredirectするという無駄な機能をつける.&lt;/p&gt;
@@ -2300,7 +2298,7 @@ class Decrement extends Component {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151225/with-push-state.gif&#34; alt=&#34;/20151225/with-push-state.gif&#34;&gt;
+&lt;img src=&#34;/images//20151225/with-push-state.gif&#34; alt=&#34;/20151225/with-push-state.gif&#34;&gt;
 
 
 &lt;p&gt;&lt;code&gt;pushState&lt;/code&gt; をRedux Routerから &lt;code&gt;import&lt;/code&gt; し、 &lt;code&gt;pushState&lt;/code&gt; を &lt;code&gt;connect&lt;/code&gt; の第二引数に &lt;code&gt;{ pushState: pushState }&lt;/code&gt; の形で渡し、
@@ -2440,10 +2438,10 @@ class Decrement extends Component {
     
     <item>
       <title>Redux Router</title>
-      <link>https://blog.rudolph-miller.com/2015/12/23/redux-router/</link>
+      <link>/post/redux-router/</link>
       <pubDate>Wed, 23 Dec 2015 00:01:34 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/23/redux-router/</guid>
+      <guid>/post/redux-router/</guid>
       <description>
 
 &lt;p&gt;Redux Routerの紹介.&lt;/p&gt;
@@ -2468,7 +2466,7 @@ class Decrement extends Component {
 &lt;a href=&#34;https://github.com/rackt/redux-simple-router&#34;&gt;redux-simple-router&lt;/a&gt;もあるが、Redux Routerの方が現時点でGitHubのStar数は多い.
 (名前の通り、redux-simple-routerの方がよりsimpleで、Redux Routerはfatでcomplexだが機能は多い.)&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/rackt.gif&#34; alt=&#34;/20151222/rackt.gif&#34;&gt;
+&lt;img src=&#34;/images//20151222/rackt.gif&#34; alt=&#34;/20151222/rackt.gif&#34;&gt;
 
 
 &lt;p&gt;これは&lt;a href=&#34;http://rackt.org/&#34;&gt;rackt.org&lt;/a&gt;. サイトではもっと綺麗にうねうねしてる.&lt;/p&gt;
@@ -2546,7 +2544,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/initial-impl.gif&#34; alt=&#34;/20151222/initial-impl.gif&#34;&gt;
+&lt;img src=&#34;/images//20151222/initial-impl.gif&#34; alt=&#34;/20151222/initial-impl.gif&#34;&gt;
 
 
 &lt;p&gt;&lt;code&gt;@connect&lt;/code&gt; して &lt;code&gt;state.counter&lt;/code&gt; を表示し、その &lt;code&gt;state.counter&lt;/code&gt; を増減させるボタンがあるだけのApplicationで、とくに解説することはない.&lt;/p&gt;
@@ -2669,7 +2667,7 @@ class Root extends Component {
 render(&amp;lt;Root /&amp;gt;, document.getElementById(&#39;app&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151222/second-impl.gif&#34; alt=&#34;/20151222/second-impl.gif&#34;&gt;
+&lt;img src=&#34;/images//20151222/second-impl.gif&#34; alt=&#34;/20151222/second-impl.gif&#34;&gt;
 
 
 &lt;p&gt;React Routerを導入して &lt;code&gt;Increment&lt;/code&gt; と &lt;code&gt;Decrement&lt;/code&gt; をRoutingで分けただけ.&lt;br /&gt;
@@ -2834,10 +2832,10 @@ class CounterButton extends Component {
     
     <item>
       <title>Redux Fetch Action</title>
-      <link>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</link>
+      <link>/post/redux-fetch-action/</link>
       <pubDate>Tue, 15 Dec 2015 12:53:17 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</guid>
+      <guid>/post/redux-fetch-action/</guid>
       <description>
 
 &lt;p&gt;Redux Fetch ActionというReduxのFetch actionのutilityを作った.&lt;/p&gt;
@@ -3010,10 +3008,10 @@ RECEIVED 2
     
     <item>
       <title>React Bootstrap Star Rating</title>
-      <link>https://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</link>
+      <link>/post/react-bootstrap-star-rating/</link>
       <pubDate>Sun, 13 Dec 2015 23:00:37 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/13/react-bootstrap-star-rating/</guid>
+      <guid>/post/react-bootstrap-star-rating/</guid>
       <description>
 
 &lt;p&gt;React Bootstrap Star Ratingを作った.&lt;/p&gt;
@@ -3040,13 +3038,13 @@ commitするにあたってそれらを殲滅しnpmとReactを導入しようと
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/react-star-rating&#34;&gt;react-star-rating&lt;/a&gt;はどうかというと、GitHubのcommitはa month agoで&lt;a href=&#34;http://cameronjroe.com/react-star-rating/&#34;&gt;Project page&lt;/a&gt;もあり、
 ある程度は開発されていそうだったが、どうも件のProjectのowner曰くstyleがイケていないらしい.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151213/react-star-rating.png&#34; alt=&#34;/20151213/react-star-rating.png&#34;&gt;
+&lt;img src=&#34;/images//20151213/react-star-rating.png&#34; alt=&#34;/20151213/react-star-rating.png&#34;&gt;
 
 
 &lt;p&gt;ということで、件のProjectで使用していたjQuery pluginをReactでwrapして使うことした.
 (&lt;a href=&#34;http://plugins.krajee.com/star-rating/demo&#34;&gt;DEMO&lt;/a&gt;をみる限り、色々customizableっぽい.)&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images//20151213/bootstrap-star-rating.gif&#34; alt=&#34;/20151213/bootstrap-star-rating.gif&#34;&gt;
+&lt;img src=&#34;/images//20151213/bootstrap-star-rating.gif&#34; alt=&#34;/20151213/bootstrap-star-rating.gif&#34;&gt;
 
 
 &lt;h2 id=&#34;wrap-jquery-plugin:159d3cf4b915f27af0ae75de76a3186a&#34;&gt;Wrap jQuery plugin&lt;/h2&gt;
@@ -3136,10 +3134,10 @@ class App extends Component {
     
     <item>
       <title>React Redux Rails</title>
-      <link>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</link>
+      <link>/post/react-redux-rails/</link>
       <pubDate>Fri, 11 Dec 2015 00:00:06 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2015/12/11/react-redux-rails/</guid>
+      <guid>/post/react-redux-rails/</guid>
       <description>
 
 &lt;p&gt;React.js &amp;amp; Redux &amp;amp; Ruby on Railsでserver-side rendering.&lt;/p&gt;

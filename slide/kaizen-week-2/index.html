@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="kaizen week 2 - " />
+  
+  <meta property="og:site_name" content="" />
+  <meta property="og:url" content="/slide/kaizen-week-2/" />
+  
+  <meta property="og:description" content="Kaizen Week #2" />
+  
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2016-01-15T15:03:17&#43;09:00" />
+  
+  <meta property="og:article:tag" content="Kaizen Week" />
+  
+  
+
+  <title>
+    kaizen week 2 - 
+  </title>
+  
+  <meta name="description" content="Kaizen Week #2" />
+  
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/highlight-lisp/themes/github.css" />
+  <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/earlyaccess/notosansjp.css' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/images/favicon.png" />
+  <link rel="icon" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300|Ubuntu+Mono:400,700,400italic|Yanone+Kaffeesatz|Droid+Serif:400,700,400italic' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="/css/remark.css" />
+  
+  <link rel="canonical" href="/slide/kaizen-week-2/">
+</head>
+
+<body>
+  <script src="/js/remark-latest.min.js"></script>
+  <textarea id="source" style="display: none;">
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+
+# Kaizen Week #2
+
+---
+
+# @Rudolph-Miller
+
+---
+
+layout: false
+class: middle
+
+.left-column[
+# List
+]
+
+--
+
+.right-column[
+## Make Editor Textarea of Editor resizable
+]
+
+--
+
+.right-column[
+## Script to import results of any SQL files to BigQuery
+]
+
+---
+
+template: inverse
+
+# Make Editor Textarea of Editor resizable
+
+---
+
+background-image: url(/images/20160115/resizable_textarea.gif)
+
+---
+
+template: inverse
+
+# Script to import results of any SQL files to BigQuery
+
+---
+
+class: middle, center
+
+## Background: [次元テーブル管理の要件](https://kaizen.qiita.com/YuKawabe/items/45f9c12b1c2865195fa4#1-2)
+
+---
+
+.left-column[
+# Tools
+]
+
+--
+
+.right-column[
+* Go
+]
+
+---
+
+.left-column[
+# Tools
+]
+
+.right-column[
+* ~~Go~~
+]
+
+--
+
+.right-column[
+* Embulk
+]
+
+--
+
+.right-column[
+* embulk-input-mysql
+]
+
+--
+
+.right-column[
+* embul-output-bigquery
+]
+
+--
+
+.right-column[
+* Liquid Template Engine
+]
+
+--
+
+.right-column[
+* Shell script
+]
+
+---
+
+`config.yml.liquid`
+
+```liquid
+in:
+  type: mysql
+  host: {{ env.mysql_host }}
+  user: {{ env.mysql_user }}
+  {% if env.mysql_password %}
+    password: {{ env.mysql_password }}
+  {% endif %}
+  database:  {{ env.mysql_database }}
+  query: {{ env.query }}
+out:
+  type: bigquery
+  file_ext: csv
+  auth_method: private_key
+  service_account_email: {{ env.service_account_email }}
+  p12_keyfile: {{ env.p12_keyfile }}
+  path_prefix: /tmp/import_query_result_to_bq/
+  file_ext: csv
+  delete_from_local_when_job_end: 1
+  project: kaizen-analytics
+  dataset: {{ env.dataset }}
+  table: {{ env.table }}_%Y%m%d
+  source_format: CSV
+  formatter:
+    type: csv
+    header_line: false
+  schema_file: {{ env.schema_file }}
+  auto_create_table: 1
+```
+
+---
+
+`import_query_result_to_bq`
+
+```sh
+#!/bin/bash
+
+QUERY_DIR=query
+DATASET=tmp
+
+export service_account_email=example@developer.gserviceaccount.com
+export p12_keyfile=/path/to/p12_keyfile.p12
+
+export mysql_host=localhost
+export mysql_user=root
+export mysql_password=password
+export mysql_database=your_database
+export dataset=$DATASET
+
+for file in $QUERY_DIR/*.sql; do
+  export query=`cat $file`
+  filename=${file##*/}
+  basename=${filename%.*}
+  dir=$(cd $(dirname $file) &amp;&amp; pwd)
+  export table=$basename
+  export schema_file=$dir/$basename.schema.json
+  embulk run config.yml.liquid
+done
+```
+
+---
+
+class: middle
+
+`@query/not_admin_users.sql`
+
+```sql
+SELECT id FROM users WHERE email NOT LIKE &#39;%kaizenplatform%&#39;;
+```
+
+`@query/not_admin_users.schema.json`
+
+```json
+[
+ {&#34;name&#34;: &#34;id&#34;, &#34;type&#34;: &#34;integer&#34;}
+]
+```
+
+---
+
+class: middle
+
+```sh
+$ ./import_query_result_to_bq
+```
+
+---
+
+```sh
+2016-01-15 12:07:15.267 &#43;0900: Embulk v0.7.10
+2016-01-15 12:07:17.987 &#43;0900 [INFO] (transaction): Loaded plugin embulk-input-mysql (0.6.2)
+2016-01-15 12:07:18.061 &#43;0900 [INFO] (transaction): Loaded plugin embulk-output-bigquery (0.1.11)
+2016-01-15 12:07:18.121 &#43;0900 [INFO] (transaction): Fetch size is 10000. Using server-side prepared statement.
+2016-01-15 12:07:20.034 &#43;0900 [INFO] (transaction): {done:  0 / 1, running: 0}
+2016-01-15 12:07:20.187 &#43;0900 [INFO] (task-0000): Writing file [/tmp/import_query_result_to_bq/.000.00.csv]
+2016-01-15 12:07:20.244 &#43;0900 [INFO] (task-0000): Fetch size is 10000. Using server-side prepared statement.
+2016-01-15 12:07:20.257 &#43;0900 [INFO] (task-0000): SQL: SELECT id FROM users WHERE email NOT LIKE &#39;%kaizenplatform%&#39;;
+2016-01-15 12:07:20.269 &#43;0900 [INFO] (task-0000): &gt; 0.01 seconds
+2016-01-15 12:07:20.297 &#43;0900 [INFO] (task-0000): Fetched 500 rows.
+2016-01-15 12:07:20.303 &#43;0900 [INFO] (task-0000): Fetched 1,000 rows.
+2016-01-15 12:07:20.328 &#43;0900 [INFO] (task-0000): Fetched 2,000 rows.
+2016-01-15 12:07:20.369 &#43;0900 [INFO] (task-0000): Job preparing... project:kaizen-analytics dataset:tmp table:_20160115
+2016-01-15 12:07:20.410 &#43;0900 [INFO] (task-0000): table:[_20160115] will be create if not exists
+2016-01-15 12:07:20.439 &#43;0900 [INFO] (task-0000): Upload start [/tmp/import_query_result_to_bq/.000.00.csv]
+2016-01-15 12:07:28.980 &#43;0900 [INFO] (task-0000): Upload completed [/tmp/import_query_result_to_bq/.000.00.csv]
+```
+
+---
+
+```sh
+2016-01-15 12:07:28.985 &#43;0900 [INFO] (task-0000): Job executed. job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] file:[/tmp/import_query_result_to_bq/.000.00.csv]
+2016-01-15 12:07:29.158 &#43;0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:173ms status:[PENDING]
+2016-01-15 12:07:39.339 &#43;0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:10354ms status:[PENDING]
+2016-01-15 12:07:49.523 &#43;0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:20538ms status:[PENDING]
+2016-01-15 12:07:59.704 &#43;0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:30719ms status:[PENDING]
+2016-01-15 12:08:09.887 &#43;0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:40902ms status:[RUNNING]
+2016-01-15 12:08:20.117 &#43;0900 [INFO] (task-0000): Checking job status... job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:51132ms status:[RUNNING]
+2016-01-15 12:08:30.295 &#43;0900 [INFO] (task-0000): Job statistics [{&#34;inputFileBytes&#34;:&#34;20837&#34;,&#34;inputFiles&#34;:&#34;1&#34;,&#34;outputBytes&#34;:&#34;29144&#34;,&#34;outputRows&#34;:&#34;3643&#34;}]
+2016-01-15 12:08:30.295 &#43;0900 [INFO] (task-0000): Job completed successfully. job id:[job_jv3ahl8c1h-g38h1jTnOGKIrUIc] elapsed_time:61310ms status:[SUCCESS]
+2016-01-15 12:08:30.296 &#43;0900 [INFO] (task-0000): Delete local file [/tmp/import_query_result_to_bq/.000.00.csv]
+2016-01-15 12:08:30.296 &#43;0900 [INFO] (transaction): {done:  1 / 1, running: 0}
+2016-01-15 12:08:30.304 &#43;0900 [INFO] (main): Committed.
+2016-01-15 12:08:30.304 &#43;0900 [INFO] (main): Next config diff: {&#34;in&#34;:{},&#34;out&#34;:{}}
+```
+
+---
+
+background-image: url(/images/20160115/not_admin_users_table_info.png)
+
+---
+
+class: middle
+
+```sql
+AND user_id NOT IN ( 1490 rows )
+```
+
+--
+
+↓
+
+```sql
+INNER JOIN tmp.not_admin_users_20160114 not_admin_users ON not_admin_users.id = user_id
+```
+
+---
+
+background-image: url(/images/20160115/logo.jpg)
+
+  </textarea>
+  <script>
+    var slideshow = remark.create({
+      navigation: {
+        scroll: true,
+        touch: true,
+        click: false
+      }
+    });
+    if (!window.TouchEvent){
+    var slideArea = document.getElementsByClassName('remark-slides-area')[0]
+      var threshold = window.innerWidth / 2;
+      slideArea.onclick = function(event) {
+        if (event.target.nodeName === 'A') {
+          return;
+        }
+        else if (event.button === 0) {
+          if ((event.x - threshold) > 0) {
+            slideshow.gotoNextSlide();
+          } else {
+            slideshow.gotoPreviousSlide();
+          }
+        };
+      }
+    }
+    </script>
+    
+
+
+
+  </body>
+</html>

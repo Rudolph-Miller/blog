@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Css on (rudolph-miller)</title>
-    <link>https://blog.rudolph-miller.com/tags/css/</link>
-    <description>Recent content in Css on (rudolph-miller)</description>
+    <title>Css on </title>
+    <link>/tags/css/</link>
+    <description>Recent content in Css on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language>
-    <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
     <lastBuildDate>Mon, 25 Jan 2016 00:01:11 +0900</lastBuildDate>
-    <atom:link href="https://blog.rudolph-miller.com/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/css/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Add List-balloon to Twitter share button</title>
-      <link>https://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</link>
+      <link>/post/add-list-balloon-to-twitter-share-button/</link>
       <pubDate>Mon, 25 Jan 2016 00:01:11 +0900</pubDate>
       
-      <guid>https://blog.rudolph-miller.com/2016/01/25/add-list-balloon-to-twitter-share-button/</guid>
+      <guid>/post/add-list-balloon-to-twitter-share-button/</guid>
       <description>
 
 &lt;p&gt;Twitterのshare buttonにlist balloonを追加する.&lt;/p&gt;
@@ -30,13 +28,13 @@
 
 &lt;p&gt;Blogなどに埋め込まれているTwitterのshareボタンだが、以前は上にBalloonでTweet数が表示されていた.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/previous_twitter.png&#34; alt=&#34;20160124/previous_twitter.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/previous_twitter.png&#34; alt=&#34;20160124/previous_twitter.png&#34;&gt;
 
 
 &lt;p&gt;それがTwitter内部でのCassandraの廃止に付随して、昨年末なくなった.&lt;br /&gt;
 (参照: &lt;a href=&#34;https://blog.twitter.com/ja/2015/buttons&#34;&gt;持続的なプラットフォームのための難しい決断&lt;/a&gt;)&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
 
 
 &lt;p&gt;Twitter、 はてなブックマーク、Facebook、Google+のshareボタンがBalloon付きでならんでいたのだが、TwitterのshareボタンだけがBalloonが無くなり、統一感が失われた.
@@ -63,7 +61,7 @@
 
 &lt;p&gt;以前は一つ目のHTML codeの &lt;code&gt;a&lt;/code&gt; tagの &lt;code&gt;data-conut=&amp;quot;vertical&amp;quot;&lt;/code&gt; によりTweet数のBalloon付きでshareボタンが表示されていたが、今はこのように表示される.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/new_twitter.png&#34; alt=&#34;20160124/new_twitter.png&#34;&gt;
 
 
 &lt;p&gt;とりあえず、Balloonを表示する.&lt;br /&gt;
@@ -75,7 +73,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
  &amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step1.png&#34; alt=&#34;20160124/step1.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/step1.png&#34; alt=&#34;20160124/step1.png&#34;&gt;
 
 
 &lt;p&gt;これにBalloonを描くようCSSを当てる.&lt;/p&gt;
@@ -125,7 +123,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step2.png&#34; alt=&#34;20160124/step2.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/step2.png&#34; alt=&#34;20160124/step2.png&#34;&gt;
 
 
 &lt;p&gt;(下の吹き出しの大きさの変更は &lt;code&gt;:before&lt;/code&gt; と &lt;code&gt;:after&lt;/code&gt; の &lt;code&gt;bottom&lt;/code&gt;, &lt;code&gt;margin-left&lt;/code&gt;, &lt;code&gt;border-width&lt;/code&gt; をsynchronouslyに変更する.)&lt;/p&gt;
@@ -155,7 +153,7 @@ BalloonはCSSで一つの &lt;code&gt;span&lt;/code&gt; とその &lt;code&gt;::
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160124/step3.png&#34; alt=&#34;20160124/step3.png&#34;&gt;
+&lt;img src=&#34;/images/20160124/step3.png&#34; alt=&#34;20160124/step3.png&#34;&gt;
 
 
 &lt;p&gt;見た目はこれで完成.&lt;br /&gt;

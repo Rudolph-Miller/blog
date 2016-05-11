@@ -35,11 +35,11 @@
         <div class="author-bio">{{ . }}</div>
         {{ end }}
       </div>
-      {{ with .Site.Params.contact }}
+      {{ with .Site.Params.twitter }}
       <div class="author-contact col-md-4">
-        <a href="{{ . }}">
-          <i class="fa fa-envelope-o"></i>
-          &nbsp;Contact me
+        <a href="https://twitter.com/{{ . }}">
+          <i class="fa fa-twitter"></i>
+          &nbsp;{{ . }}
         </a>
       </div>
       {{ end }}
