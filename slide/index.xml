@@ -7,8 +7,134 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 Rudolph Miller</copyright>
-    <lastBuildDate>Fri, 15 Jan 2016 15:03:17 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 13 May 2016 11:48:41 +0900</lastBuildDate>
     <atom:link href="https://blog.rudolph-miller.com/slide/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Kaizen Week #3</title>
+      <link>https://blog.rudolph-miller.com/slide/2016/05/13/kaizen-week-3/</link>
+      <pubDate>Fri, 13 May 2016 11:48:41 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/slide/2016/05/13/kaizen-week-3/</guid>
+      <description>
+
+&lt;p&gt;name: inverse
+layout: true&lt;/p&gt;
+
+&lt;h2 id=&#34;class-center-middle-inverse:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;class: center, middle, inverse&lt;/h2&gt;
+
+&lt;h1 id=&#34;kaizen-week-3:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Kaizen Week #3&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;rudoplh-miller:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;@Rudoplh-Miller&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;layout: false&lt;/p&gt;
+
+&lt;p&gt;background-image: url( /images/20160513/planbcd-editor.png )&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;background-image: url( /images/20160513/prs.png )&lt;/p&gt;
+
+&lt;h3 id=&#34;https-github-com-kaizenplatform-planbcd-editor-pulls-rudolph-miller:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;&lt;a href=&#34;https://github.com/kaizenplatform/planbcd-editor/pulls/Rudolph-Miller&#34;&gt;https://github.com/kaizenplatform/planbcd-editor/pulls/Rudolph-Miller&lt;/a&gt;&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;name: center
+class: center, middle&lt;/p&gt;
+
+&lt;h2 id=&#34;layout-true:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;layout: true&lt;/h2&gt;
+
+&lt;h1 id=&#34;add-copy-image-url-button:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Add copy image url button&lt;/h1&gt;
+
+&lt;h3 id=&#34;uploadした画像のurlをコピーするボタンを追加:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Uploadした画像のURLをコピーするボタンを追加&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img class=&#34;gif&#34; width=&#34;100%&#34; data-gif=&#34;/images/20160513/copy-image-url-button.gif&#34;&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;add-show-images-button:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Add show images button&lt;/h1&gt;
+
+&lt;h3 id=&#34;uploadした画像一覧を表示するボタンを追加:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Uploadした画像一覧を表示するボタンを追加&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160513/show-images-button.png&#34; width=&#34;100%&#34;&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;add-responsive-window-size:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Add responsive window size&lt;/h1&gt;
+
+&lt;h3 id=&#34;windowのサイズにレスポンシブを追加:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Windowのサイズにレスポンシブを追加&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img class=&#34;gif&#34; width=&#34;100%&#34; data-gif=&#34;/images/20160513/responsive.gif&#34;&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;add-rotate-button:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Add rotate button&lt;/h1&gt;
+
+&lt;h3 id=&#34;windowのサイズの縦横回転のボタンを追加:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Windowのサイズの縦横回転のボタンを追加&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img class=&#34;gif&#34; width=&#34;100%&#34; data-gif=&#34;/images/20160513/rotate-button.gif&#34;&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;remove-iphone4-mock-and-show-size-switcher:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Remove iphone4 mock and show size switcher&lt;/h1&gt;
+
+&lt;h3 id=&#34;spの時のiphone4のmockを無くし-サイズを変更可能にした:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;SPの時のiPhone4のmockを無くし、サイズを変更可能にした&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img class=&#34;gif&#34; width=&#34;100%&#34; data-gif=&#34;/images/20160513/remove-iphone4-mock.gif&#34;&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;add-vim-mode:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Add vim-mode&lt;/h1&gt;
+
+&lt;h3 id=&#34;vim-modeにできるようにした:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Vim modeにできるようにした&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img class=&#34;gif&#34; width=&#34;100%&#34; data-gif=&#34;/images/20160513/vim-mode.gif&#34;&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;add-editor-config-widget:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Add editor config widget&lt;/h1&gt;
+
+&lt;h3 id=&#34;エディター設定用のwidgetを追加:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;エディター設定用のWidgetを追加&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img class=&#34;gif&#34; width=&#34;100%&#34; data-gif=&#34;/images/20160513/editor-config-widget.gif&#34;&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;add-empty-lines-at-the-bottom-setting:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;Add empty lines at the bottom setting&lt;/h1&gt;
+
+&lt;h3 id=&#34;最下部の余白設定を追加:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;最下部の余白設定を追加&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160513/empty-lines.png&#34; width=&#34;100%&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;(設定できるようになっただけ.)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;template: inverse&lt;/p&gt;
+
+&lt;h1 id=&#34;おわり:e091ecf72b56a59d0e98c7f8289b8b80&#34;&gt;おわり&lt;/h1&gt;
+</description>
+    </item>
     
     <item>
       <title>kaizen week 2</title>

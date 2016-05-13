@@ -2,7 +2,7 @@
 Description = "Kaize Week #3"
 Tags = ["Kaizen Week"]
 date = "2016-05-13T11:48:41+09:00"
-draft = true
+draft = false
 images = []
 title = "Kaizen Week #3"
 slug = "kaizen-week-3"
