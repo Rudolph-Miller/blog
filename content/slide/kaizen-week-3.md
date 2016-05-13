@@ -116,3 +116,5 @@ layout: true
 ---
 
 <img src="/images/20160513/empty-lines.png" width="100%">
+
+(設定できるようになっただけ.)
