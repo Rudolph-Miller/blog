@@ -19,3 +19,55 @@ class: center, middle, inverse
 ---
 
 # @Rudoplh-Miller
+
+---
+
+layout: false
+
+background-image: url( /images/20160513/planbcd-editor.png )
+
+---
+
+background-image: url( /images/20160513/prs.png )
+
+### https://github.com/kaizenplatform/planbcd-editor/pulls/Rudolph-Miller
+
+---
+
+name: center
+class: center, middle
+layout: true
+---
+
+# Add copy image url button
+
+### Uploadした画像のURLをコピーするボタン
+
+---
+
+
+<img class="gif" width="100%" data-gif="/images/20160513/copy-image-url-button.gif">
+
+---
+
+# Add show images button
+
+---
+
+# Add responsive window size
+
+---
+
+# Add rotate button
+
+---
+
+# Remove iphone4 mock and show size switcher
+
+---
+
+# Add vim-mode
+
+---
+
+# Add editor config widget
