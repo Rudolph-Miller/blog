@@ -10,7 +10,7 @@ def extract_title(argv, options = {})
   commands = argv.first.split(':')
   unless title and argv.length >= 2
     if options[:ignore_error]
-      return [nil, type]
+      return [nil, @type]
     else
       abort 'Please specify TITLE.' 
     end
