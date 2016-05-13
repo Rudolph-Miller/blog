@@ -3,14 +3,11 @@ require 'toml'
 SCREENSHOT_DIR = '~/Pictures/Screenshots'
 GIF_DIR = '~/Pictures/gif'
 
+@type = 'post'
+
 def extract_title(argv, options = {})
   title = argv.last
   commands = argv.first.split(':')
-  if commands.length > 1
-    type = commands[1]
-  else
-    type = 'post'
-  end
   unless title and argv.length >= 2
     if options[:ignore_error]
       return [nil, type]
@@ -19,7 +16,7 @@ def extract_title(argv, options = {})
     end
   end
   argv.slice(1,argv.size).each{|v| task v.to_sym do; end}
-  [title, type]
+  [title, @type]
 end
 
 def edit_metadata
@@ -54,26 +51,9 @@ task :publish do
   end
 end
 
-namespace :publish do
-  task :slide do
-    edit_metadata do |hash|
-      hash['date'] = Time.now.strftime('%FT%T%:z')
-      hash['draft'] = false
-    end
-  end
-end
-
 task :unpublish do
   edit_metadata do |hash|
     hash['draft'] = true
-  end
-end
-
-namespace :unpublish do
-  task :slide do
-    edit_metadata do |hash|
-      hash['draft'] = true
-    end
   end
 end
 
@@ -83,75 +63,86 @@ task :post do
   Rake::Task['unpublish'].invoke(title)
 end
 
-task :slide do
-  title, _ = extract_title ARGV
-  sh "hugo new slide/#{title}.md"
-  `rake unpublish:slide #{title}`
-end
-
-namespace :ls do
-  task :slide do
-    sh 'ls -t content/slide'
-  end
-end
-
 task :ls do
   sh 'ls -t content/post'
 end
 
+task :slide do
+  @type = 'slide'
+  title, _ = extract_title ARGV
+  sh "hugo new slide/#{title}.md"
+  Rake::Task['slide:unpublish'].invoke(title)
+end
+
+namespace :slide do
+  @type = 'slide'
+
+  task :publish do
+    edit_metadata do |hash|
+      hash['date'] = Time.now.strftime('%FT%T%:z')
+      hash['draft'] = false
+    end
+  end
+
+  task :unpublish do
+    edit_metadata do |hash|
+      hash['draft'] = true
+    end
+  end
+
+  task :ls do
+    sh 'ls -t content/slide'
+  end
+end
+
 task edit: :vim
 
-def edit(argv, command, type='post')
-  if command == :vim
-    command = :nvim
-  end
+def edit(argv, command)
   title, _ = extract_title argv, ignore_error: true
   command = command.to_s
-  type = type.to_s
   if title
     if %w(last latest).include? title
-      title = `ls -t content/#{type} | head -1 | cut -f 1 -d '.' | tr -d '\n'`
+      title = `ls -t content/#{@type} | head -1 | cut -f 1 -d '.' | tr -d '\n'`
     end
-    filename = "content/#{type}/#{title}.md"
+    filename = "content/#{@type}/#{title}.md"
     abort "No such file: #{filename}." unless File.exists?(filename)
     sh "#{command} #{filename}"
   else
-    sh "ls -t content/#{type} | peco | pbcopy && #{command} content/#{type}/`pbpaste`"
+    sh "ls -t content/#{@type} | peco | pbcopy && #{command} content/#{@type}/`pbpaste`"
   end
 end
 
 task vi: :vim
-task nvi: :vim
-
-namespace :vi do
-  task :slide do
-    edit ARGV, :vim, :slide
-  end
-end
-
-namespace :nvim do
-  task :slide do
-    edit ARGV, :vim, :slide
-  end
-end
 
 task :vim do
   edit ARGV, :vim
 end
 
-namespace :vim do
-  task :slide do
-    edit ARGV, :vim, :slide
-  end
+task :nvim do
+  edit ARGV, :nvim
 end
 
 task :emacs do
   edit ARGV, :emacs
 end
 
-namespace :emacs do
-  task :slide do
-    edit ARGV, :emacs, :slide
+namespace :slide do
+  @type = 'slide'
+
+  task :vi do
+    edit ARGV, :vim
+  end
+
+  task :vim do
+    edit ARGV, :vim
+  end
+
+  task :nvim do
+    edit ARGV, :nvim
+  end
+
+  task :emacs do
+    edit ARGV, :emacs
   end
 end
 
