@@ -41,7 +41,7 @@ layout: true
 
 # Add copy image url button
 
-### Uploadした画像のURLをコピーするボタン
+### Uploadした画像のURLをコピーするボタンを追加
 
 ---
 
@@ -52,22 +52,57 @@ layout: true
 
 # Add show images button
 
+### Uploadした画像一覧を表示するボタンを追加
+
+---
+
+background-image: url( /images/20160513/show-images-button.png )
+
 ---
 
 # Add responsive window size
+
+### Windowのサイズにレスポンシブを追加
+
+---
+
+<img class="gif" width="100%" data-gif="/images/20160513/responsive.gif">
 
 ---
 
 # Add rotate button
 
+### Windowのサイズの縦横回転のボタンを追加
+
+---
+
+<img class="gif" width="100%" data-gif="/images/20160513/rotate-button.gif">
+
 ---
 
 # Remove iphone4 mock and show size switcher
+
+### SPの時のiPhone4のmockを無くし、サイズを変更可能にした
+
+---
+
+<img class="gif" width="100%" data-gif="/images/20160513/remove-iphone4-mock.gif">
 
 ---
 
 # Add vim-mode
 
+### Vim modeにできるようにした
+---
+
+<img class="gif" width="100%" data-gif="/images/20160513/vim-mode.gif">
+
 ---
 
 # Add editor config widget
+
+### エディター設定用のWidgetを追加
+
+---
+
+<img class="gif" width="100%" data-gif="/images/20160513/editor-config-widget.gif">
