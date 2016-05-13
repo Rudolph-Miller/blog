@@ -329,6 +329,15 @@ docker run -d -p 5000:5000 clack-sample
       }
     });
   </script>
+  <script>
+  var elements = document.getElementsByClassName('gif');
+  elements.map(function(element) {
+    element.src = '/images/play-mark.png';
+    element.onclick = function() {
+      element.setAttribute('src', this.dataset.gif);
+    };
+  });
+</script>
 
   
 

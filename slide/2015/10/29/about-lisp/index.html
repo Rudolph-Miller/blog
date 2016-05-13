@@ -866,6 +866,16 @@ background-image: url( /images/20151029/angel7.jpg )
       }
     }
     </script>
+    <script>
+  var elements = document.getElementsByClassName('gif');
+  elements.map(function(element) {
+    element.src = '/images/play-mark.png';
+    element.onclick = function() {
+      element.setAttribute('src', this.dataset.gif);
+    };
+  });
+</script>
+
     
 
 <script>
