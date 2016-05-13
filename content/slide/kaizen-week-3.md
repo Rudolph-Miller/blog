@@ -56,7 +56,7 @@ layout: true
 
 ---
 
-background-image: url( /images/20160513/show-images-button.png )
+<img src="/images/20160513/show-images-button.png" width="100%">
 
 ---
 
@@ -106,3 +106,13 @@ background-image: url( /images/20160513/show-images-button.png )
 ---
 
 <img class="gif" width="100%" data-gif="/images/20160513/editor-config-widget.gif">
+
+---
+
+# Add empty lines at the bottom setting
+
+### 最下部の余白設定を追加
+
+---
+
+<img src="/images/20160513/empty-lines.png" width="100%">
