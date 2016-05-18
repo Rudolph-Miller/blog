@@ -447,12 +447,14 @@ test時は開発環境を壊したくないため<code>t/images/icons</code>に�
   </script>
   <script>
   var elements = document.getElementsByClassName('gif');
-  elements.map(function(element) {
-    element.src = '/images/play-mark.png';
-    element.onclick = function() {
-      element.setAttribute('src', this.dataset.gif);
-    };
-  });
+  if (elements && elements.length > 0) {
+    elements.map(function(element) {
+      element.src = '/images/play-mark.png';
+      element.onclick = function() {
+        element.setAttribute('src', this.dataset.gif);
+      };
+    });
+  }
 </script>
 
   
