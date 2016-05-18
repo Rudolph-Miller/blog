@@ -6,6 +6,7 @@ general:
 dependencies:
   pre:
     - go get -v github.com/spf13/hugo
+    - sudo apt-get install optipng
 
 checkout:
   post:

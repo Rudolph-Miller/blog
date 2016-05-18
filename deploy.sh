@@ -7,6 +7,7 @@ HUGO_ENV=production hugo
 mv public/* ./
 cp -rf public/* ./
 rm -rf highlight-lisp/.git
+optipng -i 1 -strip all images/**/*.png
 git add -A
 git commit -m "Update $(date +%s). [ci skip]"
 git push origin gh-pages
