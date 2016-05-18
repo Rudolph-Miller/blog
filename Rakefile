@@ -184,3 +184,7 @@ task :cp_gif do
 
   sh "cp #{GIF_DIR}/#{last_gif} #{dir}/#{name}"
 end
+
+task :optipng do
+  sh 'optipng -i 1 -strip all static/images/**/*.png'
+end
