@@ -23,3 +23,4 @@ title = "blog gh pages and ci"
     - iPhone Appとかで更新.
       - ちなみにSlideもMarkdownでBlogの `content/slide/` 以下において、Remark.jsでrenderしてる.
       - ちょっと更新してみる.
+- Kaizenが人を募集してるよ!
