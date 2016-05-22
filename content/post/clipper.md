@@ -17,7 +17,7 @@ slug = "introduction-to-clipper"
 Clipper
 ---
 
-例えばMicro Blogサービスを作るとしよう.
+例えばMicro blogサービスを作るとしよう.
 
 ```Common-Lisp
 (defpackage sample.models

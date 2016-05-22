@@ -182,7 +182,7 @@ docker run -d -p 5000:5000 clack-sample
 
 &lt;h2 id=&#34;clipper:5bbeb7a83ef521a35f8ff56c6ff34120&#34;&gt;Clipper&lt;/h2&gt;
 
-&lt;p&gt;例えばMicro Blogサービスを作るとしよう.&lt;/p&gt;
+&lt;p&gt;例えばMicro blogサービスを作るとしよう.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-Common-Lisp&#34;&gt;(defpackage sample.models
   (:use :cl
