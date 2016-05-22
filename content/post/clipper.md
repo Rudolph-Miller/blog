@@ -1,5 +1,5 @@
 +++
-Description = "Introduction to Clipper."
+Description = "稚拙のClipperを紹介."
 Tags = ["Common Lisp", "Library", "Clipper", "mine"]
 date = "2015-08-10T13:53:10+09:00"
 title = "Clipper"
