@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/page/</link>
+    <description>Recent content in Pages on (rudolph-miller)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 - 2016 Rudolph Miller</copyright>
+    <lastBuildDate>Tue, 11 Aug 2015 07:32:04 +0900</lastBuildDate>
+    <atom:link href="https://blog.rudolph-miller.com/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Abount me</title>
+      <link>https://blog.rudolph-miller.com/page/me/</link>
+      <pubDate>Tue, 11 Aug 2015 07:32:04 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/page/me/</guid>
+      <description>
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#bio:bb648bec966dae0af211bdd2f5351101&#34;&gt;Bio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#social:bb648bec966dae0af211bdd2f5351101&#34;&gt;Social&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#works:bb648bec966dae0af211bdd2f5351101&#34;&gt;Works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#media:bb648bec966dae0af211bdd2f5351101&#34;&gt;Media&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Software Engineer in Tokyo, Japan.&lt;/p&gt;
+
+&lt;p&gt;大学時代は代数的整数論にはまる.&lt;br /&gt;
+現在はKaizen Platform, Inc.でTech leadを務める.&lt;br /&gt;
+プライベートでは最近はCompiler作りやらなんやら.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&#34;author-avatar&#34;&gt;
+  &lt;img src=&#34;https://blog.rudolph-miller.com/images/logo.png&#34; alt=&#34;logo.png&#34;&gt;
+
+&lt;/div&gt;
+&lt;span class=&#34;author-avatar&#34;&gt;
+  &lt;img src=&#34;https://blog.rudolph-miller.com/images/me.png&#34; alt=&#34;me.png&#34;&gt;
+
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;bio:bb648bec966dae0af211bdd2f5351101&#34;&gt;Bio&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2011/04/01 京都大学法学部に入学.&lt;/li&gt;
+&lt;li&gt;2012/04/01 京都大学総合人間学部 数理情報学科に転学部.&lt;/li&gt;
+&lt;li&gt;2014/05/01 サムライト株式会社に参画.&lt;/li&gt;
+&lt;li&gt;2014/11/01 サムライト株式会社でCTOに就任.&lt;/li&gt;
+&lt;li&gt;2015/08/31 サムライト株式会社を退職.&lt;/li&gt;
+&lt;li&gt;2015/09/01 Kaizen Platform, Inc.に参画. (Application Engineer)&lt;/li&gt;
+&lt;li&gt;2016/03/01 Kaizen Platform, Inc.でTech leadに就任.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;projects:bb648bec966dae0af211bdd2f5351101&#34;&gt;Projects&lt;/h1&gt;
+
+&lt;h2 id=&#34;サムライト株式会社:bb648bec966dae0af211bdd2f5351101&#34;&gt;サムライト株式会社&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Native AD Networkの0からの構築.
+
+&lt;ul&gt;
+&lt;li&gt;最高で 40k req/min.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;インフラの設計、構築.
+
+&lt;ul&gt;
+&lt;li&gt;ADの急なrequest増加に耐えうるインフラを構築.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Configuration as Code&amp;rdquo; を採用.&lt;/li&gt;
+&lt;li&gt;使用技術:&lt;/li&gt;
+&lt;li&gt;AWS
+
+&lt;ul&gt;
+&lt;li&gt;EC2&lt;/li&gt;
+&lt;li&gt;RDS&lt;/li&gt;
+&lt;li&gt;Route 53&lt;/li&gt;
+&lt;li&gt;Elastic Load Balancing&lt;/li&gt;
+&lt;li&gt;Elastic Beanstalk&lt;/li&gt;
+&lt;li&gt;DynamoDB&lt;/li&gt;
+&lt;li&gt;Auto Scaling&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Chef&lt;/li&gt;
+&lt;li&gt;Ansible&lt;/li&gt;
+&lt;li&gt;Docker&lt;/li&gt;
+&lt;li&gt;Itamae&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;管理 Applicationの設計、実装.
+
+&lt;ul&gt;
+&lt;li&gt;DB設計.&lt;/li&gt;
+&lt;li&gt;初期はRuby on Railsで構築. 後に、Caveman2 (Common LispのWeb application framework) でreplace.&lt;/li&gt;
+&lt;li&gt;後半はFront-endのFrameworkとしてReact.jsを採用.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;配信 Applicationの設計、実装.
+
+&lt;ul&gt;
+&lt;li&gt;初期はNode.js (http モジュールを使用.) で構築. 後に、Caveman2 (Common LispのWeb application framework) でreplace.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;採用活動を行う.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;kaizen-platform-inc:bb648bec966dae0af211bdd2f5351101&#34;&gt;Kaizen Platform, Inc.&lt;/h2&gt;
+
+&lt;h1 id=&#34;social:bb648bec966dae0af211bdd2f5351101&#34;&gt;Social&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/Rudolph_Miller&#34;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.linkedin.com/in/tomoya-kawanishi-1ab963b7&#34;&gt;LinkedIn&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;works:bb648bec966dae0af211bdd2f5351101&#34;&gt;Works&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/clipper&#34;&gt;Clipper&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby on Railsの&lt;a href=&#34;https://github.com/thoughtbot/paperclip&#34;&gt;Paperclip&lt;/a&gt;のCommon Lispでの簡易実装.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/08/10/introduction-to-clipper/&#34;&gt;Blog - Clipper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/react-sortable-table&#34;&gt;React Sortable Table&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/react-simple-tab&#34;&gt;React Simple Tab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/cl-gists&#34;&gt;Cl-Gists&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GitHubのGistsの&lt;a href=&#34;https://developer.github.com/v3/gists/&#34;&gt;API&lt;/a&gt;のCommon Lisp wrapper.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/cl-annot-prove&#34;&gt;Cl-Annot-Prove&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/jonathan&#34;&gt;Jonathan&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Common Lisp最速のJSON serializer/deserializer.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/elb-log&#34;&gt;Elb-Log&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/dyna&#34;&gt;Dyna&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DynamoDBのCommon Lisp wrapper.&lt;/li&gt;
+&lt;li&gt;SimpleなAPIのwrappingだけではなく、ORM interfaceも実装.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/dockerfile-clack&#34;&gt;Dockerfile-Clack&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Common LispのWeb application environmentであるClack上に作られたWeb applicationをDocker上で動かすためのBase docker image.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/08/20/docker-image-for-clack-application/&#34;&gt;Blog - Docker image for Clack Application&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/integral-rest&#34;&gt;Integral-Rest&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2015/08/21/integral-rest/&#34;&gt;Blog - Integral-Rest&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/detect-js-changes&#34;&gt;Detect JS Changes&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;minifiedな複数のJS fileのdeploy前後の差分を確認するTool.&lt;/li&gt;
+&lt;li&gt;Go製.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rudolph-miller.com/2016/01/31/detect-js-changes/&#34;&gt;Blog - detect-js-changes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;media:bb648bec966dae0af211bdd2f5351101&#34;&gt;Media&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://type.jp/et/log/article/somewrite_cto&#34;&gt;好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
