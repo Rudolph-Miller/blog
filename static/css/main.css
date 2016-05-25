@@ -213,12 +213,6 @@ a.btn-me:hover {
   text-align: center;
 }
 
-.author-info {
-  padding: 25px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
 .author-name {
   margin: 0 0 5px 0;
   font-size: 30px;
@@ -289,6 +283,7 @@ article section img {
 }
 
 .social-buttons {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 15px 0px;
 }
