@@ -34,7 +34,7 @@ body {
 }
 
 .header-text .sns-links {
-  margin: 20px auto;
+  display: inline-block;
   text-align: center;
 }
 
@@ -94,6 +94,46 @@ a.btn-subscribe {
 
 a.btn-back {
   left: 20px;
+}
+
+.header-center {
+  text-align: center;
+  margin: 20px auto;
+  height: 31px;
+}
+
+.header-me {
+  position: relative;
+  top: -4px;
+  display: inline-block;
+}
+
+.header-links {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+a.btn-me {
+  display: inline-block;
+  padding: 4px 16px;
+  border: 1px solid rgba(255, 255, 255, 1.0);
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 1.0);
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 13px;
+  transition: color,background-color 0.1s linear;
+  height: 31px;
+}
+
+a.btn-me:hover {
+  background-color: rgba(255, 255, 255, 1.0);
+  color: rgba(0, 0, 0, 1.0);
+}
+
+.fa-me:before {
+  content: "λ"
 }
 
 /* Footer */
