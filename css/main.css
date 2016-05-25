@@ -12,7 +12,7 @@ body {
 /* Header */
 
 .global-header {
-  background-image: url(/images/bg.jpg);
+  background-image: url(/images/bg.png);
   background-size: cover;
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .header-text .sns-links {
-  margin: 20px auto;
+  display: inline-block;
   text-align: center;
 }
 
@@ -94,6 +94,46 @@ a.btn-subscribe {
 
 a.btn-back {
   left: 20px;
+}
+
+.header-center {
+  text-align: center;
+  margin: 20px auto;
+  height: 31px;
+}
+
+.header-me {
+  position: relative;
+  top: -4px;
+  display: inline-block;
+}
+
+.header-links {
+  display: inline-block;
+  margin-left: 45px;
+}
+
+a.btn-me {
+  display: inline-block;
+  padding: 4px 16px;
+  border: 1px solid rgba(255, 255, 255, 1.0);
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 1.0);
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 13px;
+  transition: color,background-color 0.1s linear;
+  height: 31px;
+}
+
+a.btn-me:hover {
+  background-color: rgba(255, 255, 255, 1.0);
+  color: rgba(0, 0, 0, 1.0);
+}
+
+.fa-me:before {
+  content: "λ"
 }
 
 /* Footer */
@@ -173,55 +213,6 @@ a.btn-back {
   text-align: center;
 }
 
-.author-info {
-  padding: 25px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.author-name {
-  margin: 0 0 5px 0;
-  font-size: 30px;
-}
-
-.author-bio {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.author-avatar img {
-  max-width: 100px;
-  max-height: 100px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-}
-
-.author-contact {
-  position: relative;
-  display: inline-block;
-  padding-top: 10px;
-  height: 100px;
-  text-align: center;
-}
-
-.author-contact a {
-  display: inline-block;
-  padding: 7px 16px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  color: rgba(0, 0, 0, 0.7);
-  text-decoration: none;
-  font-weight: 300;
-  font-size: 13px;
-  transition: background-color,border-color,color 0.1s linear;
-}
-
-.author-contact a:hover {
-  border: 1px solid rgba(51, 122, 182, 1.0);
-  background-color: rgba(51, 122, 183, 1.0);
-  color: rgba(255, 255, 255, 1.0);
-}
-
 /* Override some of Bootstrap's styles */
 
 pre {
@@ -249,6 +240,7 @@ article section img {
 }
 
 .social-buttons {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 15px 0px;
 }
@@ -333,4 +325,15 @@ code.has-jax {
   background: inherit;
   border: inherit;
   color: #515151;
+}
+
+/* Me */
+
+.author-avatar img {
+  max-width: 100px;
+  max-height: 100px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  display: inline-block;
 }

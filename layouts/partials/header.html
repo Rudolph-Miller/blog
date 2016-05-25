@@ -8,7 +8,16 @@
         {{ . }}
       </div>
       {{ end }}
-      {{ partial "link.html" . }}
+      <div class="header-center">
+        <span class="header-me">
+          <a href="/page/me" class="btn-me">
+            &nbsp;About me
+          </a>
+        </span>
+        <span class="header-links">
+          {{ partial "link.html" . }}
+        </span>
+      </div>
       {{ if ne .URL "/" }}
       <a href="{{ .Site.BaseURL }}" class="btn-header btn-back hidden-xs">
         <i class="fa fa-angle-left"></i>
