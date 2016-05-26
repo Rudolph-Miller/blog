@@ -8,16 +8,21 @@
           {{ .Date.Format "Jan 2, 2006" }}
         </time>
       </div>
+      {{ with .Params.tags }}
+      <div class="post-tags pull-right">
+        {{ range . }}
+        <span class="post-tag small"><a href="/tags/{{ . | urlize }}">#{{ . }}</a></span>
+        {{ end }}
+      </div>
+      {{ end }}
     </div>
   </header>
   <div>
     {{ .Summary }}
   </div>
-  {{ if .Truncated }}
   <footer>
     <ul class="pager">
       <li class="next"><a href="{{ .RelPermalink }}">Read more &raquo;</a></li>
     </ul>
   </footer>
-  {{ end }}
 </article>
