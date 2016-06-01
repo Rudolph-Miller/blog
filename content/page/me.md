@@ -14,7 +14,7 @@ slug = "me"
 
 Software Engineer in Tokyo, Japan.
 
-大学時代は代数的整数論にはまる.  
+大学では代数的整数論にはまる.  
 現在はKaizen Platform, Inc.でTech leadを務める.  
 プライベートでは最近はCompiler作りやらなんやら.
 
@@ -40,6 +40,7 @@ Software Engineer in Tokyo, Japan.
 
 ## サムライト株式会社
 
+- Native AD Network.
 - Native AD Networkの0からの構築.
   - 最高で 40k req/min.
 - インフラの設計、構築.
@@ -68,8 +69,10 @@ Software Engineer in Tokyo, Japan.
 
 ## Kaizen Platform, Inc.
 
+- Web siteのOptimizing platform.
 - Application Engineer.
   - 2016/03/01からTech lead.
+- Web application "Kaizen Platform"の設計・開発.
 
 # Social
 
