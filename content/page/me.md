@@ -68,6 +68,8 @@ Software Engineer in Tokyo, Japan.
 
 ## Kaizen Platform, Inc.
 
+- Application Engineer.
+  - 2016/03/01からTech lead.
 
 # Social
 
