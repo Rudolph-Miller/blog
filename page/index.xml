@@ -118,6 +118,7 @@
 &lt;li&gt;設計が理想的かどうかだけでなく、納期や実現したい価値の程度に対して妥当な設計規模に収まっているかについても判断する.&lt;/li&gt;
 &lt;li&gt;コード品質が維持できているか.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/higepon/20150806/1438844046&#34;&gt;Tech Lead（TL/テックリード）の役割 - サンフランシスコではたらくソフトウェアエンジニア&lt;/a&gt; からProject leaderの役割を引いたもの.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Web application &amp;ldquo;Kaizen Platform&amp;rdquo;のserver-sideの設計・開発.
 
