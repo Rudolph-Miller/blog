@@ -80,10 +80,18 @@ Software Engineer in Tokyo, Japan.
       - コード品質が維持できているか.
     - [Tech Lead（TL/テックリード）の役割 - サンフランシスコではたらくソフトウェアエンジニア](http://d.hatena.ne.jp/higepon/20150806/1438844046) からProject leaderの役割を引いたもの.
 - Web application "Kaizen Platform"のserver-sideの設計・開発.
+  - Ruby
   - Ruby on Rails
 - Web application "Kaizen Platform"のfront-endの設計・開発.
+  - CoffeeScript
   - Angular.js
 - A/B test coreのJavaScript programの設計・開発.
+  - CoffeeScript
+- A/B test coreのログ取得・解析 programの設計・開発.
+  - CoffeeScript
+  - Koa
+- A/B testデザイン案作成 GUI editorの設計・開発.
+  - CoffeeScript
 - Ruby on Railsのupgrade.
   - 3.2 -> 4.2
   - UpgradeにおけるApplicationの変更を担当.

@@ -123,14 +123,31 @@
 &lt;li&gt;Web application &amp;ldquo;Kaizen Platform&amp;rdquo;のserver-sideの設計・開発.
 
 &lt;ul&gt;
+&lt;li&gt;Ruby&lt;/li&gt;
 &lt;li&gt;Ruby on Rails&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Web application &amp;ldquo;Kaizen Platform&amp;rdquo;のfront-endの設計・開発.
 
 &lt;ul&gt;
+&lt;li&gt;CoffeeScript&lt;/li&gt;
 &lt;li&gt;Angular.js&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;A/B test coreのJavaScript programの設計・開発.&lt;/li&gt;
+&lt;li&gt;A/B test coreのJavaScript programの設計・開発.
+
+&lt;ul&gt;
+&lt;li&gt;CoffeeScript&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;A/B test coreのログ取得・解析 programの設計・開発.
+
+&lt;ul&gt;
+&lt;li&gt;CoffeeScript&lt;/li&gt;
+&lt;li&gt;Koa&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;A/B testデザイン案作成 GUI editorの設計・開発.
+
+&lt;ul&gt;
+&lt;li&gt;CoffeeScript&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Ruby on Railsのupgrade.
 
 &lt;ul&gt;
