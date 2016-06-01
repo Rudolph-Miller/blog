@@ -27,7 +27,7 @@
 
 &lt;p&gt;Software Engineer in Tokyo, Japan.&lt;/p&gt;
 
-&lt;p&gt;大学時代は代数的整数論にはまる.&lt;br /&gt;
+&lt;p&gt;大学では代数的整数論にはまる.&lt;br /&gt;
 現在はKaizen Platform, Inc.でTech leadを務める.&lt;br /&gt;
 プライベートでは最近はCompiler作りやらなんやら.&lt;/p&gt;
 
@@ -58,6 +58,7 @@
 &lt;h2 id=&#34;サムライト株式会社:bb648bec966dae0af211bdd2f5351101&#34;&gt;サムライト株式会社&lt;/h2&gt;
 
 &lt;ul&gt;
+&lt;li&gt;Native AD Network.&lt;/li&gt;
 &lt;li&gt;Native AD Networkの0からの構築.
 
 &lt;ul&gt;
@@ -103,10 +104,43 @@
 &lt;h2 id=&#34;kaizen-platform-inc:bb648bec966dae0af211bdd2f5351101&#34;&gt;Kaizen Platform, Inc.&lt;/h2&gt;
 
 &lt;ul&gt;
+&lt;li&gt;Web siteのOptimizing platform.&lt;/li&gt;
 &lt;li&gt;Application Engineer.
 
 &lt;ul&gt;
 &lt;li&gt;2016/03/01からTech lead.&lt;/li&gt;
+&lt;li&gt;担当システムの技術デザイン、採用技術について責任を負う.
+
+&lt;ul&gt;
+&lt;li&gt;正しい設計が行われているか.&lt;/li&gt;
+&lt;li&gt;設計が崩れていないか.&lt;/li&gt;
+&lt;li&gt;その設計は過剰ではないか / 抽象化の程度は良いバランスを保っているか.&lt;/li&gt;
+&lt;li&gt;設計が理想的かどうかだけでなく、納期や実現したい価値の程度に対して妥当な設計規模に収まっているかについても判断する.&lt;/li&gt;
+&lt;li&gt;コード品質が維持できているか.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Web application &amp;ldquo;Kaizen Platform&amp;rdquo;のserver-sideの設計・開発.
+
+&lt;ul&gt;
+&lt;li&gt;Ruby on Rails&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Web application &amp;ldquo;Kaizen Platform&amp;rdquo;のfront-endの設計・開発.
+
+&lt;ul&gt;
+&lt;li&gt;Angular.js&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;A/B test coreのJavaScript programの設計・開発.&lt;/li&gt;
+&lt;li&gt;Ruby on Railsのupgrade.
+
+&lt;ul&gt;
+&lt;li&gt;3.2 -&amp;gt; 4.2&lt;/li&gt;
+&lt;li&gt;UpgradeにおけるApplicationの変更を担当.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;UI/UX見直しProjectのPM (Product Manager).
+
+&lt;ul&gt;
+&lt;li&gt;On-boardig flowを設計することにより、Userがカンタンに改善活動を始められるようにする.&lt;/li&gt;
+&lt;li&gt;合わせて全体のUX設計を見直す.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 

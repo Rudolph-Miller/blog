@@ -14,7 +14,7 @@ slug = "me"
 
 Software Engineer in Tokyo, Japan.
 
-大学時代は代数的整数論にはまる.  
+大学では代数的整数論にはまる.  
 現在はKaizen Platform, Inc.でTech leadを務める.  
 プライベートでは最近はCompiler作りやらなんやら.
 
@@ -40,6 +40,7 @@ Software Engineer in Tokyo, Japan.
 
 ## サムライト株式会社
 
+- Native AD Network.
 - Native AD Networkの0からの構築.
   - 最高で 40k req/min.
 - インフラの設計、構築.
@@ -68,8 +69,26 @@ Software Engineer in Tokyo, Japan.
 
 ## Kaizen Platform, Inc.
 
+- Web siteのOptimizing platform.
 - Application Engineer.
   - 2016/03/01からTech lead.
+    - 担当システムの技術デザイン、採用技術について責任を負う.
+      - 正しい設計が行われているか.
+      - 設計が崩れていないか.
+      - その設計は過剰ではないか / 抽象化の程度は良いバランスを保っているか.
+        - 設計が理想的かどうかだけでなく、納期や実現したい価値の程度に対して妥当な設計規模に収まっているかについても判断する.
+      - コード品質が維持できているか.
+- Web application "Kaizen Platform"のserver-sideの設計・開発.
+  - Ruby on Rails
+- Web application "Kaizen Platform"のfront-endの設計・開発.
+  - Angular.js
+- A/B test coreのJavaScript programの設計・開発.
+- Ruby on Railsのupgrade.
+  - 3.2 -> 4.2
+  - UpgradeにおけるApplicationの変更を担当.
+- UI/UX見直しProjectのPM (Product Manager).
+  - On-boardig flowを設計することにより、Userがカンタンに改善活動を始められるようにする.
+  - 合わせて全体のUX設計を見直す.
 
 # Social
 
