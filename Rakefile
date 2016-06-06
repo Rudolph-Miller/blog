@@ -74,25 +74,30 @@ task :slide do
   Rake::Task['slide:unpublish'].invoke(title)
 end
 
-namespace :slide do
-  @type = 'slide'
-
-  task :publish do
-    edit_metadata do |hash|
-      hash['date'] = Time.now.strftime('%FT%T%:z')
-      hash['draft'] = false
+def slide_task(task_name, &block)
+  namespace :slide do
+    task task_name do
+      @type = 'slide'
+      block.call
     end
   end
+end
 
-  task :unpublish do
-    edit_metadata do |hash|
-      hash['draft'] = true
-    end
+slide_task :publish do
+  edit_metadata do |hash|
+    hash['date'] = Time.now.strftime('%FT%T%:z')
+    hash['draft'] = false
   end
+end
 
-  task :ls do
-    sh 'ls -t content/slide'
+slide_task :unpublish do
+  edit_metadata do |hash|
+    hash['draft'] = true
   end
+end
+
+slide_task :ls do
+  sh 'ls -t content/slide'
 end
 
 task edit: :vim
@@ -126,24 +131,20 @@ task :emacs do
   edit ARGV, :emacs
 end
 
-namespace :slide do
-  @type = 'slide'
+slide_task :vi do
+  edit ARGV, :vim
+end
 
-  task :vi do
-    edit ARGV, :vim
-  end
+slide_task :vim do
+  edit ARGV, :vim
+end
 
-  task :vim do
-    edit ARGV, :vim
-  end
+slide_task :nvim do
+  edit ARGV, :nvim
+end
 
-  task :nvim do
-    edit ARGV, :nvim
-  end
-
-  task :emacs do
-    edit ARGV, :emacs
-  end
+slide_task :emacs do
+  edit ARGV, :emacs
 end
 
 task :server do
