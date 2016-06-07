@@ -20,6 +20,7 @@ slug = "create-regexp-engine"
 
 # Regexp
 
+正規表現 世紀言語 形式的定義
 regexp -> AST -> NFA -> minimum NFA -> DFA -> exec
 regexp -> AST -> bytecode -> exec via VM
 
