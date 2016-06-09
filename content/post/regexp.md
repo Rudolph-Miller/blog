@@ -13,9 +13,30 @@ images = ["/20160608/regexp.png"]
 <!--more-->
 
 1. [Regexp]({{< relref "#regexp" >}})
-2. [NFA]({{<relref "#nfa" >}})
-3. [DFA]({{<relref "#dfa" >}})
-4. [VM]({{< relref "#vm" >}})
+2. [History]({{< relref "#history" >}})
+3. [Math]({{< relref "#math" >}})
+    1. [Regular Language & Regular Expression]({{< relref "#regular-language-regular-expression" >}})
+        1. [Ring]({{< relref "#ring" >}})
+        2. [Semi-ring]({{< relref "#semi-ring" >}})
+        3. [Idempotent semi-ring]({{< relref "#idempotent-semi-ring" >}})
+        4. [Kleene algebra]({{< relref "#kleene-algebra" >}})
+        5. [Language]({{< relref "#language" >}})
+        6. [Regular Language]({{< relref "#regular-language" >}})
+        7. [Pure Regular Expression]({{< relref "#pure-regular-expression" >}})
+        8. [Regular Expression => Regular Language]({{< relref "#regular-expression-regular-language" >}})
+        9. [Regular Language => Regular Expression]({{< relref "#regular-language-regular-expression-1" >}})
+    2. [Regula Language & Finite Automaton]({{< relref "#regular-language-finite-automaton" >}})
+        1. [Abstract machine]({{< relref "#abstract-machine" >}})
+        2. [Finite automaton]({{< relref "#finite-automaton" >}})
+        3. [Deterministic Finite Automaton]({{< relref "#deterministic-finite-automaton" >}})
+        4. [Deterministic vs. Non-deterministic]({{< relref "#deterministic-non-deterministic" >}})
+          1. [DFA => NFA]({{< relref "#dfa-nfa" >}})
+          2. [NFA => DFA]({{< relref "#nfa-dfa" >}})
+              1. [記号列遷移の1記号遷移化]({{< relref "#記号列遷移の1記号遷移化" >}})
+              2. [$\epsilon$ 遷移の除去]({{< relref "#epsilon-遷移の除去" >}})
+              3. [Subset construction (部分集合構成法) により DFA の構成]({{< relref "#subset-construction-により-dfa-の構成" >}})
+        5. [FA's Language]({{< relref "#fa-s-language" >}})
+4. [Implementation]({{< relref "#Implementation" >}})
 5. [See Also]({{< relref "#see-also" >}})
 
 Programmerなら親しみのある正規表現だが、
@@ -31,7 +52,7 @@ regular (正規) に深い意味はないらしい.
 数学では "正則" で統一されている (はず) .
 
 
-## History
+# History
 
 1943年、Waren McCullochとWalter Pittsが
 [A Logical Calculus of the Ideas Immanent in Nervous Activity](http://cns-classes.bu.edu/cn550/Readings/mcculloch-pitts-43.pdf)
@@ -69,6 +90,11 @@ Formal neurons が Finite automatonに変換できることを示した.
 を示した.  
 最後のはつまり Regular expression のJIT compiler. 世界初のRegular expressionの実装の論文にも関わらず、
 JIT compilerまで実装して発表していた.
+
+
+# Math
+
+Regular expression と Finite automaton の関係について Regular language を経由して述べる.
 
 
 ## Regular Language & Regular Expression
@@ -173,7 +199,8 @@ $\Sigma$ 上の Language $L$ に Kleene algebra を展開する.
 
 ### Pure Regular Expression
 
-pure な Regular expression は文字と3つの基本演算で定義される.
+pure な Regular expression は文字と3つの基本演算で定義される.  
+(ここで pure といってるのは、Repular expression engine の実装依存の拡張と区別するため.)
 
 3つの基本演算:
 
@@ -223,7 +250,7 @@ $L _{RE} \subseteq L _{RL}$ かつ $L _{RL} \subseteq L _{RE}$ より $L _{RE} =
 つまり、 Regular expression が定義する Language と Regular language は同じ.
 
 
-## Regular Language & NFA
+## Regular Language & Finite Automaton
 
 ### Abstract machine
 
@@ -252,7 +279,7 @@ Turing machine | 制御機構、入力テープ、作業テープ
 以上より Abstract machine ($M$) は次の5つの組 $M = (Q, \Sigma, \delta, q_0, F)$ で定義される.
 
 - $Q$ は有限な状態の集合.
-- $\Sigma$ は文字の集合.
+- $\Sigma$ は記号の集合.
 - $\delta$ は State transition function (状態遷移関数) で deterministic machine の動作 step を定義する.
     - Non-deterministic machine の場合は $\Delta$ で表され、 State transition relation (状態遷移関係) と呼ばれる.
 - $q_0 \in Q$ は Initial state (初期状態) .
@@ -261,23 +288,197 @@ Turing machine | 制御機構、入力テープ、作業テープ
 
 ### Finite automaton
 
-Finite automaton (FA, 有限オートマトン, Finite State Machine, FSM, 有限状態機械) は Abstract machine の一つ.
+Finite automaton (FA, 有限オートマトン, Finite State Machine, FSM, 有限状態機械) は Abstract machine の一つで、制御機構と入力テープの二つから構成される. 状態遷移は現状態と入力記号の2つにより決定される. つまり、状態遷移は現状態と入力記号と次状態の3要素の組の集合として定義される.
 
-正規言語とKleen algebraのつながりからオートマトンへ
-正規表現で表現可能な言語 => 正規言語じゃん http://www.eonet.ne.jp/~tktkhaya/flaa_files/L&A-05.pdf
+deterministic な Finite automaton を Deterministic finite automaton (DFA, 決定性有限オートマトン)、 non-Deterministic なものを Non-deterministic finite automaton (NFA, 非決定性有限オートマトン) と呼ぶ.
+
+### Deterministic Finite Automaton
+
+DFA は $(Q, \Sigma, \delta, q_0, F)$ により以下のように形式的に定義される.
+
+- $Q$ は有限な状態の集合.
+- $\Sigma$ は記号の集合.
+- $q, q' \in Q, \sigma \in \Sigma\ で\ \delta: (q, \sigma) \to q'$
+- $q_0 \in Q$ は Initial state.
+- $F \subseteq Q$ は Final state set.
+
+DFA が定義する Language は DFA が accept する記号列の集合.
+
+DFA の動作は Machine configulation (動作状態) とその Machine configulation の step を与える演算子により形式的に定義できる.
+
+- DFA ($M$) の Machine configulation ($C$) は DFA の state とテープの state で定義できる.
+    - $q \in Q, [p, x]: Tape configulation\ で\ C = (q, [p, x])$
+        - $[p, x]$ は Tape configulation (テープ構成) と呼び、 $x$ がそのテープの記号列で $p$ がその記号列上の現在位置. $x(p)$ で $p$ の位置の記号を表す.
+    - $M$ の Machine configulation の集合を $C(M)$ で表す.
+        - $C(M) = \lbrace (q, [p, x]) \mid q \in Q, x \in \Sigma^*, 1 \leq p \leq |x| + 1 \rbrace$
+- DFA の Machine configulation の 1 step 進行を表す関係演算子を $\vdash_M: C(M) \to C(M)$ とする.
+    - $C_1, C_2 \in C(M)\ で\ p_1 + 1 = p_2\ かつ\ \delta(q_1, x(p_1)) = q_2$ が成り立つとき $C_1 \vdash_M C_2$ と表す.
+- DFA は $C_h = (q, [p, x])$ で $\delta(q, x(p))$ が未定義なときに停止する.
+    - $C_h = (q, [|x| + 1, x])$ を Final configulation (最終状態) と呼び、テープの最後に到達した状態を表す.
+
+$C_i \subseteq C(M), 0 \leq i \leq n$ を一連の Machine configulation としたとき、
+
+$$
+C _0 \vdash _M C _1, C _1 \vdash _M C _2, \cdots, C _{n-1} \vdash _M C _n
+$$
+
+が成立するとき
+
+$$
+C_0 \vdash_M^* C
+$$
+
+のように表示する. この式は Computation (計算過程) を表す.
+
+DFA ($M$) で入力 ($x$) について、
+
+$$
+f \in F\ で\ (q_0, [1, x]) \vdash _M^* (f, [|x| + 1, x])
+$$
+
+が成立するとき $M$ は $x$ を accept するという.
 
 
-# NFA
+### Deterministic vs. Non-deterministic
+
+決定性と非決定性.
+
+種類|状態遷移|入力|次状態
+----|--------|----|------
+DFA|関数|現状態、1記号|1状態
+NFA|関係|現状態、記号列($\epsilon$ を含む)|複数の状態が可能
+
+DFA と NFA は状態遷移が異なるだけ.
+
+- NFA は次状態が複数ある場合がある.
+- DFA は常にテープが1つ進むが、NFA は記号列の長さ分一気にすすんだり、 $\epsilon$ が入力と成り得る場合は進まなかったりする.
+- Non-deterministic な動作では可能なすべての状態遷移を試みる. 試みたすべての Machine configulation 中に1個でも accept な Machine configulation があれば全体で $x$ を accept とする. そうでなければ reject とする.
+
+DFA が定義する Language ($L _{DFA}$) と NFA が定義する Language ($L _{NFA}$) に差をみていく.
 
 
-# DFA
+#### DFA => NFA
 
-NFA->DFA
+DFA が定義する言語
+NFA の定義は DFA の定義を包含しているため
+
+$$
+L _{DFA} \subseteq L _{NFA}
+$$
+
+が成立する.
 
 
-# VM
+#### NFA => DFA
 
-instrument list
+与えられた NFA に対して同一な Language を accept する DFA が以下の手順で構成できる.
+
+1. [記号列遷移の1記号遷移化]({{< relref "#記号列遷移の1記号遷移化" >}})
+2. [$\epsilon$ 遷移の除去]({{< relref "#epsilon-遷移の除去" >}})
+3. [Subset construction (部分集合構成法) により DFA の構成]({{< relref "#subset-construction-により-dfa-の構成" >}})
+
+当初の NFA を $M = (Q, \Sigma, \Delta, q_0, F)$ とし、各段階で得られる NFA をそれぞれ $M_1$, $M_2$, $M_3$ とする.
+
+
+##### 記号列遷移の1記号遷移化
+
+1. $M_1 = (Q_1, \Sigma, \Delta_1, q_0, F)$ として、 $Q_1$, $\Delta_1$ をそれぞれ $Q$, $\Delta$ と等しくする.
+2. $\forall (q, \sigma, q') \in \Delta, |\sigma| \geq 1$ について
+    - $\Delta_1$ から $(q, \sigma, q')$ を取り除く.
+    - $|\sigma| = k$ として新規状態 $q_1, q_2, \cdots, q_k$ を $Q_1$ に追加する.
+    - $\Delta_1$ に遷移 $(q, \sigma(1), q_1), (q1, \sigma(2), q_2), \cdots, (q _{k-1}, \sigma(k), q')$ を追加する.
+
+これらを行うことによって、 $M$ と $M_1$ は同一となることは明らか.
+
+
+##### $\epsilon$ 遷移の除去
+
+1. $M_2 = (Q_2, \Sigma, \Delta_2, q_0,F_2)$ として定義し $\Delta_2 = \emptyset$ とする.
+2. $\forall q \in Q_1, \forall a \in \Sigma\ で\ (q, [1, a]) \vdash _{M_1}^* (q', [2, a])$ を満たす $(q, a, q')$ により $\Delta_2 = \Delta_2 \cup \lbrace (q, a, q') \rbrace$ とする.
+3. $Q_2$ を 2. で構築した $\Delta_2$ の下で $q_0$ から到達可能な状態の集合とする.
+4. $F_2 = \lbrace q \mid q \in Q_2, f \in F_1, (q, [1, \epsilon]) \vdash _m^* (f, [1, \epsilon]) \rbrace$ のように $F_2$ を定義する.
+
+これらを行うことによって、 $M_1$ と $M_2$ は同一となることは明らか.
+
+
+##### Subset construction により DFA の構成
+
+$M_3 = (Q_3, \Sigma, \delta_3, \lbrace q_0 \rbrace, F)$ とする.
+
+1. $Q_3$ は集合を要素とする集合で、 $Q_2$ の Power set (冪集合) の Subset (部分集合) .
+    - $Q_3 \subseteq \mathcal{P}(Q_2)$
+2. Initial state は $\lbrace q_0 \rbrace$ .
+3. $F_3 = \lbrace Q' \mid Q' \subseteq Q_3, Q' \cap F2 \neq \emptyset \rbrace$ とする.
+4. $\delta_3$ を次のように構成する.
+    - $Q_3$ のInital state $\lbrace q_0 \rbrace$ だけからなる遷移表を初期値として $\delta_3$ を構成する.
+    - $(q_0, a_i, q') \in \Delta_2$ に対して $\delta_3$ の遷移 $(\lbrace q_0 \rbrace, a_i, Q')$ の遷移先 $Q'$ に $q'$ を追加する.
+    - $Q'$ が $\delta_3$ に含まれていなければ、表に $Q'$ を追加する.
+    - 追加された $Q'$ について、 $\forall q \in Q', \forall a_i \in \Sigma$ について $(q, a_i, q') \in \Delta_2$ を調べる、追加する.
+    - 表に新規に追加される State が無くなれば $\delta_3$ は完成.
+
+これらを行うことによって、 $M_2$ と $M_3$ は同一となることは明らか.
+
+
+これら 1 - 3 の操作により、
+
+$$
+L _{NFA} \subseteq L _{DFA}
+$$
+
+が成立する. よって、
+
+$$
+L _{DFA} = L _{NFA}
+$$
+
+が証明された.
+
+
+### FA's Language
+
+Finite automaton が定義する言語は
+
+加法
+
+乗法
+
+Kleene star
+
+で閉じてる
+
+
+### Regular Lanugage => FA's Language
+
+任意の Regular language からその言語を accept する Finite automaton を構成する.
+
+Regular expression engine 作るだけならこっちだけいっとけばいい.
+
+
+### FA's Language => Regular Language
+
+Finite automaton の accept する言語を Regular language で表現する.
+
+
+よって Regular language と Finite automaton は対応する.
+
+---
+
+このあと Pumping theorem (ポンピング補題) とかの説明をしたり、
+Finite automaton 以外の Abstract machine の紹介をしてもいいけど、
+そろそろ当初の Regular expression engine の実装を終わらようと思う.
+
+
+# Implementation
+
+## AST
+
+加法、乗法、Kleene star
+
+## Parser
+
+## NFA
+
+## DFA
 
 
 # See Also
