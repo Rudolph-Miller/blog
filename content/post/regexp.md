@@ -40,7 +40,7 @@ Formal Neurons は論理回路で言うところのORゲート、ANDゲート、
 
 {{% image "20160608/formal_neurons.png" %}}
 
-Kleeneが [Representation of Events in Nerve Nets and Finite Automata](https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf) で Formal Neurons の表現として Regular Expression を提案し、さらに同論文の中で Finite Automaton (有限オートマトン) という計算モデルの導入を行い、Formal Neurons が Finite Automatonに変換できることを示した.
+1951年、Kleeneが [Representation of Events in Nerve Nets and Finite Automata](https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf) で Formal Neurons の表現として Regular Expression を提案し、さらに同論文の中で Finite Automaton (有限オートマトン) という計算モデルの導入を行い、Formal Neurons が Finite Automatonに変換できることを示した.
 
 {{% image "20160608/regexp.png" %}}
 
@@ -63,6 +63,35 @@ Kenneth Thompsonが [Regular Expression Search Algorithm](http://www.fing.edu.uy
 
 ## Pure Regular Expression
 
+純粋な正規表現の定義.
+
+
+### Ring
+
+まず Ring (環) とは、
+
+Set $R$上の加法 $+: R \times R \to R$ と乗法 $*: R \times R \to R$ の組 $(R, +, *)$ で、
+加法群かつ乗法反群なもので以下の分配法則を満たすもの.
+
+$$
+a, b, c \in Rに対して、\ a * (b + c) = a * b + a * c \ が成立する.
+$$
+
+$$
+a, b, c \in Rに対して、\ (a + b) * c = a * c + b * c \ が成立する.
+$$
+
+群？反群？ ggrks.
+というか、環論は大学さえ入ってれば文理系問わず (Programmerなら大学入ってなくても)
+常識としていいはずだ (と思ってる) から環とか半環の説明もいらなかったかもしれない.
+
+### Semi-ring
+
+### Kleene algebra
+
+### Language
+
+### Regular Expression
 
 ---
 
