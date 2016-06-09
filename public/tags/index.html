@@ -212,6 +212,18 @@
 
   </footer>
 
+  <script>
+  var tables = document.getElementsByTagName('table');
+  for (var i = 0; i < tables.length; i++) {
+    var table = tables[i];
+    var className = table.className;
+    if (className.split(' ').indexOf('table') < 0) {
+      table.className = className + ' table';
+    }
+  }
+</script>
+
+
   <script type="text/javascript" src="/js/highlight.pack.js"></script>
   <script type="text/javascript" src="/highlight-lisp/highlight-lisp.min.js"></script>
   <script>
