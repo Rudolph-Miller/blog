@@ -13,9 +13,9 @@ images = ["/20160608/regexp.png"]
 <!--more-->
 
 1. [Regexp]({{< relref "#regexp" >}})
-2. [VM]({{< relref "#vm" >}})
-3. [NFA]({{<relref "#nfa" >}})
-4. [DFA]({{<relref "#dfa" >}})
+2. [NFA]({{<relref "#nfa" >}})
+3. [DFA]({{<relref "#dfa" >}})
+4. [VM]({{< relref "#vm" >}})
 5. [See Also]({{< relref "#see-also" >}})
 
 Programmerなら親しみのある正規表現だが、
@@ -71,9 +71,9 @@ Formal neurons が Finite automatonに変換できることを示した.
 JIT compilerまで実装して発表していた.
 
 
-## Pure Regular Expression
+## Regular Language & Regular Expression
 
-__純粋な__正規表現の定義.
+Regular Language と Regular Expression の定義と関係.
 
 
 ### Ring
@@ -166,6 +166,8 @@ $\Sigma$ 上の Language $L$ に Kleene algebra を展開する.
     - $A \cup B \subseteq L$
     - $A \cdot B \subseteq L$
     - $A^* \subseteq L$
+        - $A^* = \lbrace \epsilon \rbrace \cup A \cup A \cdot A \cup \cdots$
+        - Kleene closure (クリーネ閉包) と呼ぶ.
 
 これらを満たす Language をRelugar language (正規言語, $L_{RL}$) と呼ぶ.
 
@@ -221,6 +223,45 @@ $L _{RE} \subseteq L _{RL}$ かつ $L _{RL} \subseteq L _{RE}$ より $L _{RE} =
 つまり、 Regular expression が定義する Language と Regular language は同じ.
 
 
+## Regular Language & NFA
+
+### Abstract machine
+
+Abstract machine (抽象機械) は計算システムを形式的に扱うために考えられた数学的モデルで、
+計算可能性などを分析するのに思考実験で利用される.
+
+この Machine は Finite control (有限制御機構) と External storage (外部記憶装置) から構成される.  
+制御機構が有限であるとは制御機構が備えている記憶容量が有限で、有限の状態しか取り得ないことを意味する.  
+外部記憶には形式的扱いが容易なテープが通常用いられる.
+
+Abstract machineには次のような種類がある.
+
+種類             | 構成
+-----------------|----
+Finite automaton | 制御機構、入力テープ
+Push down automaton | 制御機構、入力テープ、制限付き作業テープ
+Turing machine | 制御機構、入力テープ、作業テープ
+
+制御機構はあらかじめ定義された State (状態) のいずれかをとる.  
+この機械が取り得る状態の集合は $Q = \lbrace q_0, q_1, q_2, \cdots \rbrace$ と表される.  
+機械は一時に一状態しか取れない.  
+機械の動作は機械の状態と入力情報 (入力テープから読み込んだ記号) により状態を変化したり、テープを操作したりすること.  
+機械は一定の状態になるか次状態が定義されていないため動作が継続できなくなると停止し、停止時の状態やテープ構成により様々な判定が行われる.  
+動作が一意に決まるとき deterministic (決定的) といい、そうでない場合を non-deterministic (非決定的) という.
+
+以上より Abstract machine ($M$) は次の5つの組 $M = (Q, \Sigma, \delta, q_0, F)$ で定義される.
+
+- $Q$ は有限な状態の集合.
+- $\Sigma$ は文字の集合.
+- $\delta$ は State transition function (状態遷移関数) で deterministic machine の動作 step を定義する.
+    - Non-deterministic machine の場合は $\Delta$ で表され、 State transition relation (状態遷移関係) と呼ばれる.
+- $q_0 \in Q$ は Initial state (初期状態) .
+- $F \subseteq Q$ は Final state set (終了状態集合) で $F$ の要素は Final state (終了状態) と呼ばれ、機械が停止した時の状態が Final state であれば、機械は入力を accept (受理) したという. そうでない場合を reject (拒否) したという.
+
+
+### Finite automaton
+
+Finite automaton (FA, 有限オートマトン, Finite State Machine, FSM, 有限状態機械) は Abstract machine の一つ.
 
 正規言語とKleen algebraのつながりからオートマトンへ
 正規表現で表現可能な言語 => 正規言語じゃん http://www.eonet.ne.jp/~tktkhaya/flaa_files/L&A-05.pdf
