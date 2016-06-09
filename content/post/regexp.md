@@ -63,31 +63,62 @@ Kenneth Thompsonが [Regular Expression Search Algorithm](http://www.fing.edu.uy
 
 ## Pure Regular Expression
 
-純粋な正規表現の定義.
+__純粋な__正規表現の定義.
 
 
 ### Ring
 
-まず Ring (環) とは、
+Ring (環) とは、
 
-Set $R$上の加法 $+: R \times R \to R$ と乗法 $*: R \times R \to R$ の組 $(R, +, *)$ で、
-加法群かつ乗法反群なもので以下の分配法則を満たすもの.
-
-$$
-a, b, c \in Rに対して、\ a * (b + c) = a * b + a * c \ が成立する.
-$$
+Set $R$上の加法 $+: R \times R \to R$ と乗法 $\cdot: R \times R \to R$ の組 $(R, +, \cdot)$ で、
+$(R, +)$ が Abelian group (アーベル群) で $(R, \cdot)$ が Monoid (モノイド) なもので以下の分配法則を満たすもの.
 
 $$
-a, b, c \in Rに対して、\ (a + b) * c = a * c + b * c \ が成立する.
+a, b, c \in Rに対して、\ a \cdot (b + c) = a \cdot b + a \cdot c \ が成立する.
 $$
 
-群？反群？ ggrks.
-というか、環論は大学さえ入ってれば文理系問わず (Programmerなら大学入ってなくても)
-常識としていいはずだ (と思ってる) から環とか半環の説明もいらなかったかもしれない.
+$$
+a, b, c \in Rに対して、\ (a + b) \cdot c = a \cdot c + b \cdot c \ が成立する.
+$$
+
+アーベル群？モノイド？ ggrks.  
+というか環の定義ぐらいは前提として良かったかもしれない.
+
 
 ### Semi-ring
 
+Semi-ring (半環) は Ring で $(R, +)$ の要求をモノイドとしたもの.
+
+
+### Idempotent semi-ring
+
+Idempotent semi-ring (冪等半環) は Semi-ring の加法に以下のように冪等演算であることを要求したもの.
+
+$$
+\forall a \in R,\ a + a = a
+$$
+
+
 ### Kleene algebra
+
+Kleene algebra (クリーネ代数) は Idempotent semi-ring に 以下の性質を持つ Kleene star $^*: R \to R$ を導入したもの.
+
+$$
+a, b \in R\ で、a \leq b \iff a + b = b\ として以下が成立する. \\\
+1 + a \cdot a^* \leq a^* \\\
+1 + a^* \cdot a \leq a^* \\\
+a \cdot b \leq b \Rightarrow a^* \cdot b \leq b \\\
+b \cdot a \leq b \Rightarrow b \cdot a^* \leq b
+$$
+
+Kleene star は
+
+$$
+a^* = 1 + a + a \cdot a + a \cdot a \cdot a \cdots
+$$
+
+のようにも表せる.
+
 
 ### Language
 
