@@ -1,5 +1,5 @@
 +++
-Description = "正規表現エンジンの作り方."
+Description = "正規表現エンジンの作り方 (と形式言語とオートマトン)."
 Tags = ["Common Lisp", "Regexp"]
 date = "2016-05-04T22:14:57+09:00"
 draft = true
@@ -8,11 +8,11 @@ slug = "create-regexp-engine"
 images = ["/20160608/regexp.png"]
 +++
 
-正規表現エンジンの作り方.
+正規表現エンジンの作り方 (と形式言語とオートマトン).
 
 <!--more-->
 
-1. [Regexp]({{< relref "#regexp" >}})
+1. [Regular Expression]({{< relref "#regular-expression" >}})
 2. [History]({{< relref "#history" >}})
 3. [Math]({{< relref "#math" >}})
     1. [Regular Language & Regular Expression]({{< relref "#regular-language-regular-expression" >}})
@@ -25,25 +25,25 @@ images = ["/20160608/regexp.png"]
         7. [Pure Regular Expression]({{< relref "#pure-regular-expression" >}})
         8. [Regular Expression => Regular Language]({{< relref "#regular-expression-regular-language" >}})
         9. [Regular Language => Regular Expression]({{< relref "#regular-language-regular-expression-1" >}})
-    2. [Regula Language & Finite Automaton]({{< relref "#regular-language-finite-automaton" >}})
+    2. [Regular Language & Finite Automaton]({{< relref "#regular-language-finite-automaton" >}})
         1. [Abstract machine]({{< relref "#abstract-machine" >}})
         2. [Finite automaton]({{< relref "#finite-automaton" >}})
         3. [Deterministic Finite Automaton]({{< relref "#deterministic-finite-automaton" >}})
-        4. [Deterministic vs. Non-deterministic]({{< relref "#deterministic-non-deterministic" >}})
+        4. [Deterministic vs. Non-deterministic]({{< relref "#deterministic-vs-non-deterministic" >}})
           1. [DFA => NFA]({{< relref "#dfa-nfa" >}})
           2. [NFA => DFA]({{< relref "#nfa-dfa" >}})
               1. [記号列遷移の1記号遷移化]({{< relref "#記号列遷移の1記号遷移化" >}})
               2. [$\epsilon$ 遷移の除去]({{< relref "#epsilon-遷移の除去" >}})
-              3. [Subset construction (部分集合構成法) により DFA の構成]({{< relref "#subset-construction-により-dfa-の構成" >}})
+              3. [Subset construction により DFA の構成]({{< relref "#subset-construction-により-dfa-の構成" >}})
         5. [FA's Language]({{< relref "#fa-s-language" >}})
 4. [Implementation]({{< relref "#Implementation" >}})
 5. [See Also]({{< relref "#see-also" >}})
 
-Programmerなら親しみのある正規表現だが、
-そういえば正規表現エンジンは作ったことないやと思ったので調べながら作ってみた.
+そういえば正規表現エンジン作ったことないやと思ったので作ってみた.  
+index みれば気がつくと思うけど、実際に作るとこより理論の解説が多め.
 
 
-# Regexp
+# Regular Expression
 
 Regular expression (正規表現) は文字列のパターンの表現.
 
@@ -463,9 +463,11 @@ Finite automaton の accept する言語を Regular language で表現する.
 
 ---
 
-このあと Pumping theorem (ポンピング補題) とかの説明をしたり、
-Finite automaton 以外の Abstract machine の紹介をしてもいいけど、
-そろそろ当初の Regular expression engine の実装を終わらようと思う.
+このあと Pumping theorem (ポンピング補題) の説明をしたり、
+Finite automaton 以外の Abstract machine の紹介をしたりしてもいいけど、
+そろそろ当初の Regular expression engine の実装をして終わらせようと思う.  
+(正直、もう実装なんてしなくてもいいんじゃないかとすら思ってる.  
+Regular language => Finite automaton の Language と NFA => DFA で algorithm は出尽くしてるし.)
 
 
 # Implementation
