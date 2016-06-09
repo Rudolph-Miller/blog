@@ -1,6 +1,6 @@
 +++
 Description = "Deep LearningをCommon Lispで実装してみた."
-Tags = ["Common Lisp", "Deep Learning"]
+Tags = ["Common Lisp", "Deep Learning", "Math"]
 date = "2016-02-26T20:30:37+09:00"
 draft = false
 slug = "deep-learning-in-common-lisp"

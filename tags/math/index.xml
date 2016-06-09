@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on (rudolph-miller)</title>
+    <link>https://blog.rudolph-miller.com/tags/math/</link>
+    <description>Recent content in Math on (rudolph-miller)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2015 - 2016 Rudolph Miller</copyright>
+    <lastBuildDate>Fri, 26 Feb 2016 20:30:37 +0900</lastBuildDate>
+    <atom:link href="https://blog.rudolph-miller.com/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deep Learning in Common Lisp</title>
+      <link>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</link>
+      <pubDate>Fri, 26 Feb 2016 20:30:37 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/2016/02/26/deep-learning-in-common-lisp/</guid>
+      <description>
+
+&lt;p&gt;Deep Learning をCommon Lispで実装してみた.&lt;/p&gt;
+
+&lt;p&gt;そろそろ Deep Learning の実装ぐらい教養かなと思ったので、
+&lt;a href=&#34;http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&amp;amp;camp=247&amp;amp;creative=1211&amp;amp;creativeASIN=B018K6C99A&amp;amp;linkCode=as2&amp;amp;tag=rudolph-miller-22&#34;&gt;深層学習&lt;/a&gt;
+という本を読みながら実装してみた.&lt;/p&gt;
+
+&lt;p&gt;&lt;a rel=&#34;nofollow&#34; href=&#34;http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B018K6C99A&amp;linkCode=as2&amp;tag=rudolph-miller-22&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=B018K6C99A&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=rudolph-miller-22&#34; &gt;&lt;/a&gt;&lt;img src=&#34;http://ir-jp.amazon-adsystem.com/e/ir?t=rudolph-miller-22&amp;l=as2&amp;o=9&amp;a=B018K6C99A&#34; width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; alt=&#34;&#34; style=&#34;border:none !important; margin:0px !important;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今回実装したのは順伝播型ニューラルネットワーク (Feed Forward Neural Network) で、
+テストしたのは &lt;code&gt;Fisher&#39;s iris flower data set&lt;/code&gt; (統計の有名なデータセット) の多クラス分類 (Multi-class classification) .&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/cldl&#34;&gt;CLDL&lt;/a&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#deep-neural-network:99621a27901250e81c3c36481758f611&#34;&gt;Deep Neural Network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#math:99621a27901250e81c3c36481758f611&#34;&gt;Math&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#impl:99621a27901250e81c3c36481758f611&#34;&gt;Impl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#test:99621a27901250e81c3c36481758f611&#34;&gt;Test&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#todo:99621a27901250e81c3c36481758f611&#34;&gt;TODO&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:99621a27901250e81c3c36481758f611&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;deep-neural-network:99621a27901250e81c3c36481758f611&#34;&gt;Deep Neural Network&lt;/h1&gt;
+
+&lt;p&gt;Deep Learning は Deep Neural Network (Multi-layer perceptron, 多層構造のNeural Network) の機械学習の事.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/dnn.png&#34; alt=&#34;/20160224/dnn.png&#34;&gt;
+
+
+&lt;p&gt;Input Layer (入力層)、多層の Hidden Layer (中間層)、Output Layer (出力層) で構成され、
+それぞれの層は単数または複数のUnitで構成される.&lt;/p&gt;
+
+&lt;p&gt;順伝播型ニューラルネットワークではすべてのUnitがその前後の層のすべてのUnitと結合している.&lt;/p&gt;
+
+&lt;p&gt;学習というのは、ネットワークに与えたInputからのOutputを正解に近づけるようにParameterを調整すること.&lt;/p&gt;
+
+&lt;h1 id=&#34;math:99621a27901250e81c3c36481758f611&#34;&gt;Math&lt;/h1&gt;
+
+&lt;p&gt;とりあえず数式として俯瞰する.&lt;/p&gt;
+
+&lt;h2 id=&#34;activation-function:99621a27901250e81c3c36481758f611&#34;&gt;Activation function&lt;/h2&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/math_1.png&#34; alt=&#34;/20160224/math_1.png&#34;&gt;
+
+
+&lt;p&gt;連続した$p-1$層と$p$層を考える.&lt;/p&gt;
+
+&lt;p&gt;$u$はUnitの入力、$z$はUnitの出力、$w$はUnit間のConnectionの重みを表す.&lt;/p&gt;
+
+&lt;p&gt;これらの関係は&lt;/p&gt;
+
+&lt;p&gt;$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} + b_j^{(p)} \tag{1}
+$$&lt;/p&gt;
+
+&lt;p&gt;$$
+z_j^{(p)} = f(u_j^{(p)}) \tag{2}
+$$&lt;/p&gt;
+
+&lt;p&gt;のようにあらわせる.&lt;/p&gt;
+
+&lt;p&gt;(1) における $b$ はBiasで、
+UnitのInputは前層のOutputにConnectionの重みを掛けたものの和にBiasを足したものである.&lt;/p&gt;
+
+&lt;p&gt;ここで&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160224/math_2.png&#34; alt=&#34;/20160224/math_2.png&#34;&gt;
+
+
+&lt;p&gt;のようにBias Unitという特別なUnit (Outputが常に $1$) を導入して、&lt;/p&gt;
+
+&lt;p&gt;$$
+b_j^{(p)} = w _{j0} z _{0}^{(p-1)} \tag{3}
+$$&lt;/p&gt;
+
+&lt;p&gt;のように $b$ をあらわすと (1) は&lt;/p&gt;
+
+&lt;p&gt;$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} \tag{4}
+$$&lt;/p&gt;
+
+&lt;p&gt;のように書ける.&lt;/p&gt;
+
+&lt;p&gt;(2) における $f$ は &lt;strong&gt;Activation function (活性化関数)&lt;/strong&gt; と呼ばれる.
+Activation functionはUnitへの入力から出力を計算する関数で
+通常は単調増加する日線形関数を使用し、
+一般にHidden LayerとOutput Layerで別の関数を使用する.&lt;/p&gt;
+
+&lt;p&gt;今回はHidden Layerで&lt;/p&gt;
+
+&lt;p&gt;$$
+f(u) = \max(u, 0) \tag{5}
+$$&lt;/p&gt;
+
+&lt;p&gt;のRectified Linear Unit (正規化線形関数, ReLU, ランプ関数)を使用し、Output Layerで&lt;/p&gt;
+
+&lt;p&gt;$$
+f(u_k) = \frac{e^{u_k}}{\sum _{j=1}^{K} e^{u_j}} \tag{6}
+$$&lt;/p&gt;
+
+&lt;p&gt;のSoftmax functionを使用する. ( $K$ はOutput LayerのUnit数、 $k$ はOutput LayerのUnit番号.)&lt;/p&gt;
+
+&lt;h2 id=&#34;error-function:99621a27901250e81c3c36481758f611&#34;&gt;Error function&lt;/h2&gt;
+
+&lt;p&gt;順伝播型ニューラルネットワークはParameter $w$ を変えるとOutputが変化し、
+良い $w$ を選ぶとネットワーク全体として望みの関数として振る舞うようになる.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Traiting data&lt;/strong&gt;を用いて $w$ を調整することを学習という.&lt;/p&gt;
+
+&lt;p&gt;このときそれぞれのTraining sampleでのOutputと目標値の近さをあらわす関数を
+&lt;strong&gt;Error function (誤差関数)&lt;/strong&gt; と呼ぶ&lt;/p&gt;
+
+&lt;p&gt;Error functionはHidden LayerのActivation functionとセットで設計され、
+それらは問題の種類ごとに異なる.&lt;/p&gt;
+
+&lt;p&gt;今回は Multi-class classification なのでActivation functionにSoftmax functionを使用し、
+Error functionには&lt;/p&gt;
+
+&lt;p&gt;$$
+E(W) = - \sum _{n=1}^{N} \sum _{k=1}^{K} d _{nk} \log y _{nk} \tag{7}
+$$&lt;/p&gt;
+
+&lt;p&gt;を使用する.
+ここで $W$ はネットワークの全体の重みをまとめた行列で (3) によりBiasもここに入る、
+$n$ はTrainig dataにおけるTraining sampleの番号、
+$K$ はOutput LayerのUnit数、
+$k$ はOutput LayerのUnit番号、
+$d _{nk}$ は n 番目のTraining sampleの k 番目のUnitの目標値、
+$y _{nk}$ は n 番目のTraining sampleの k 番目のUnitのOutput.&lt;/p&gt;
+
+&lt;p&gt;今回はMulti-class classificationなので、 $d _{nk}$ は&lt;/p&gt;
+
+&lt;p&gt;$$
+\sum _{k=1}^{K} d _{k} = 1 \tag{8}
+$$&lt;/p&gt;
+
+&lt;p&gt;で、正解のclassに対応する一つのUnitのOutputが 1 で、残りのUnitのOutputが 0 となる.&lt;/p&gt;
+
+&lt;h2 id=&#34;stochastic-gradient-descent:99621a27901250e81c3c36481758f611&#34;&gt;Stochastic Gradient Descent&lt;/h2&gt;
+
+&lt;p&gt;ネットワークの目的はError functionの値を小さくすることだが、
+Error functionは一般に凸関数ではなく、大域的な最小解を直接得ることは通常不可能.&lt;/p&gt;
+
+&lt;p&gt;代わりに局所的な極小点を求める.
+一般に $E(W)$ の極小点は複数存在するため、得た極小点が大域的な最小解となることはほぼ無いが、
+それでもその極小点が十分小さい値ならば目的に貢献し得る.&lt;/p&gt;
+
+&lt;p&gt;局所的な極小点の探索方法はいくつかあるが、最も簡単なのが &lt;strong&gt;Gradient Descent Method (勾配降下法)&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Gradientというのは $W$ の成分数を $M$ として、&lt;/p&gt;
+
+&lt;p&gt;$$
+\nabla E = \frac{\partial W}{\partial E} = [\frac{\partial E}{\partial w_1} &amp;hellip; \frac{\partial E}{\partial w _M}]^{T} \tag{9}
+$$&lt;/p&gt;
+
+&lt;p&gt;というVectorで、
+Gradient Descent Method は $W$ を $- \nabla E$ 方向に動かし、
+これをなんども繰り返すことで局所的な極小点を探索する.&lt;/p&gt;
+
+&lt;p&gt;現在の重みを $W^{(t)}$ 、動かした後の重みを $W^{(t+1)}$ とすると&lt;/p&gt;
+
+&lt;p&gt;$$
+W^{(t+1)} = W^{(t)} - \epsilon \nabla E \tag{10}
+$$&lt;/p&gt;
+
+&lt;p&gt;とあらわされる.&lt;/p&gt;
+
+&lt;p&gt;このときの $\epsilon$ を &lt;strong&gt;Learning rate (学習係数)&lt;/strong&gt; と呼び、
+一回の更新での $W$ の更新量を決める定数.
+大きいと極小点に収束しない可能性があり、小さいと収束までの反復回数が多くなる.&lt;/p&gt;
+
+&lt;p&gt;Learing rateの決定にも手法があるが、今回はとりあえず定数で指定することにする.&lt;/p&gt;
+
+&lt;p&gt;Gradient Descent Method はTraining data全体に対してError functionの値を最小化する.&lt;/p&gt;
+
+&lt;p&gt;$$
+E(W) = \sum _{n=1}^{N} E_n(w) \tag{11}
+$$&lt;/p&gt;
+
+&lt;p&gt;これに対してTraining dataの一部を使って $W$ の更新を行う (さらに更新ごとにTraining samplesを取り替える) 手法を
+&lt;strong&gt;Stochastic Gradient Descent (確率的勾配降下法)&lt;/strong&gt; と呼ぶ.&lt;/p&gt;
+
+&lt;p&gt;Stochastic Gradient Descent を使うと、 Gradient Descent Method に潜在する
+&lt;em&gt;相対的に小さくない局所的な極小解にはまるリスク&lt;/em&gt; を小さくできる.&lt;/p&gt;
+
+&lt;h2 id=&#34;back-propagation:99621a27901250e81c3c36481758f611&#34;&gt;Back propagation&lt;/h2&gt;
+
+&lt;p&gt;Gradient Descent Method を実行するには&lt;/p&gt;
+
+&lt;p&gt;$$
+\nabla E = \frac{\partial W}{\partial E} = [\frac{\partial E}{\partial w_1} &amp;hellip; \frac{\partial E}{\partial w _M}]^{T} \tag{9}
+$$&lt;/p&gt;
+
+&lt;p&gt;を計算する必要があるが、微分の連鎖規則のため、Output Layerから遠いLayerになると微分計算が困難になる.&lt;/p&gt;
+
+&lt;p&gt;これを解決するのが &lt;strong&gt;Back propagation (誤差逆伝播法)&lt;/strong&gt;.
+Back propagation はOutput LayerからInput Layerに向かって、連鎖的に勾配を計算していく方法.&lt;/p&gt;
+
+&lt;p&gt;n 番目のTraining sampleのError functionの値 $E_n$ をLayer $p$ におけるParameter $w _{ji}^{(p)}$ に関して微分すると、
+$w _{ji}^{(p)}$ は&lt;/p&gt;
+
+&lt;p&gt;$$
+u_j^{(p)} = \sum _{i=0}^{I} w _{ji} z _{i}^{(p-1)} \tag{4}
+$$&lt;/p&gt;
+
+&lt;p&gt;により $u_j^{(p)}$ の中にのみ存在するので、&lt;/p&gt;
+
+&lt;p&gt;$$
+\frac{\partial E_n}{\partial w _{ji}^{(p)}} = \frac{\partial E_n}{\partial u _{j}^{(p)}} \frac{\partial u _{j}^{(p)}}{\partial w _{ji}^{(p)}} \tag{12}
+$$&lt;/p&gt;
+
+&lt;p&gt;となる.&lt;/p&gt;
+
+&lt;p&gt;$u_j^{(p)}$ の変動が $E_n$ に与える影響は、
+このUnit $j$からのOutput $z_j^{(p)}$ を通じて、$p+1$ LayerのOutputを変化させることによってのみ生じるので、
+(12) の右辺第1項は&lt;/p&gt;
+
+&lt;p&gt;$$
+\frac{\partial E_n}{\partial u _{j}^{(p)}} = \sum _k \frac{\partial E_n}{\partial u_k^{(p+1)}} \frac{\partial u_k^{(p+1)}}{\partial u_j^{(p)}} \tag{13}
+$$&lt;/p&gt;
+
+&lt;p&gt;となる.&lt;/p&gt;
+
+&lt;p&gt;左辺の $\frac{\partial E_n}{\partial u _{j}^{(p)}}$ と右辺の $\frac{\partial E_n}{\partial u _{j}^{(p+1)}}$ に注目して、&lt;/p&gt;
+
+&lt;p&gt;$$
+\delta _j^{p} = \frac{\partial E_n}{\partial u _{j}^{(p)}} \tag{14}
+$$&lt;/p&gt;
+
+&lt;p&gt;とおく.&lt;/p&gt;
+
+&lt;p&gt;$$
+u_k^{(p+1)} = \sum _j w _{kj}^{(p+1)} z_j^{(p)} = \sum _j w _{kj}^{(p+1)} f(u_j^{(p)}) \tag{15}
+$$&lt;/p&gt;
+
+&lt;p&gt;より、&lt;/p&gt;
+
+&lt;p&gt;$$
+\frac{\partial u_k^{(p+1)}}{\partial u_j^{(p)}} = w _{kj}^{(p+1)} f&amp;rsquo;(u_j^{(p)}) \tag{16}
+$$&lt;/p&gt;
+
+&lt;p&gt;となるので、 (13) は&lt;/p&gt;
+
+&lt;p&gt;$$
+\delta _j^{(p)} = \sum _k \delta _j^{(p+1)} (w _{kj}^{(p+1)} f&amp;rsquo;(u_j^{(p)})) \tag{17}
+$$&lt;/p&gt;
+
+&lt;p&gt;となる. これは $\delta _j^{(p)}$ が $\delta _k^{(p+1)} (k = 1, 2, &amp;hellip;)$ から計算できることを意味する.&lt;/p&gt;
+
+&lt;p&gt;(12) の右辺第1項はこのように $\delta$ を計算することで得られる.
+第2項は $u_j^{(p)} = \sum _i w _{ji}^{(p)} z_i^{(p-1)}$ から&lt;/p&gt;
+
+&lt;p&gt;$$
+\frac{\partial u _{j}^{(p)}}{\partial w _{ji}^{(p)}} = z_i^{(p-1)} \tag{18}
+$$&lt;/p&gt;
+
+&lt;p&gt;が得られるので、目的の微分は&lt;/p&gt;
+
+&lt;p&gt;$$
+\frac{\partial E_n}{\partial w _{ji}^{(p)}} = \delta _j^{(p)} z_i{(p-1)} \tag{19}
+$$&lt;/p&gt;
+
+&lt;p&gt;となり、 $p-1$ Layerと $p$ LayerをつなぐConnectionの重み $w _{ji}^{(p)}$ に関する微分は、
+Unit $j$ に関する $\delta _j^{(p)}$ と Unit $i$ のOutput $z_i^{(p-1)}$ のただの積で与えられる.
+$\delta$ はOutput LayerからInput Layerに順に (17) を適用すれば求められる.
+Output Layerでの $\delta$ は&lt;/p&gt;
+
+&lt;p&gt;$$
+\delta _j^{(P)} = \frac{\partial E_n}{\partial u_j^{(P)}} \tag{20}
+$$&lt;/p&gt;
+
+&lt;p&gt;で計算できる.&lt;/p&gt;
+
+&lt;p&gt;今回はOutput LayerのError functionは (7) を使用し
+( n 番目のTrainig sampleに関しては $-\sum _{k=1}^{K} d _{nk} \log y _{nk}$)、
+Activation functionにSoftmax functionを使用しているので、&lt;/p&gt;
+
+&lt;p&gt;$$
+E_n = - \sum _k d_k \log y_k = - \sum _k d_k log (\frac{e^{u_k^{(P)}}}{\sum _i e^{u_i^{(P)}}}) \tag{21}
+$$&lt;/p&gt;
+
+&lt;p&gt;となり、&lt;/p&gt;
+
+&lt;p&gt;$$
+\delta _j^{(P)} = - \sum _k d_k \frac{1}{y_k} \frac{\partial y_k}{\partial u_j^{(P)}}
+= -d_j(1-y_j) - \sum _{k \neq j} d_k(-y_j)
+= \sum _k d_k (y_j - d_j)
+\tag{22}
+$$&lt;/p&gt;
+
+&lt;p&gt;で $\delta$ が求められる.&lt;/p&gt;
+
+&lt;p&gt;(20) ( 今回は具体的には (22) ) と (17) により任意のLayerの $\delta$ が求められるので、 (19) により任意のConnectionの重み $w$ を更新できる.&lt;/p&gt;
+
+&lt;h1 id=&#34;impl:99621a27901250e81c3c36481758f611&#34;&gt;Impl&lt;/h1&gt;
+
+&lt;p&gt;順伝播型ニューラルネットワークのcoreなところを追ったところで実装.
+数式の流れをちゃんと理解できてたら大したこと無い.&lt;/p&gt;
+
+&lt;p&gt;※以下のCodeはそのままで動くようには書いてない.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.rudolph-miller.com/images//20160226/impl_1.png&#34; alt=&#34;/20160226/impl_1.png&#34;&gt;
+
+
+&lt;p&gt;上の図を &lt;code&gt;CLOS&lt;/code&gt; に落とし込む.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defclass unit ()
+  ((input-value ...)
+   (output-value ...)
+   (left-connections ...)
+   (right-connections ...)
+   (delta ...)))
+
+(defclass bias-unit (unit) ())
+
+(defclass connection ()
+  ((left-unit ...)
+   (right-unit ...)
+   (weight ...)
+   (weight-diff ...)))
+
+(defclass layer ()
+  ((bias-unit ...)
+   (units ...)))
+
+(defclass input-layer (layer) ())
+
+(defclass hidden-layer (layer)
+  ((bias-unit :initform (make-instance &#39;bias-unit))))
+
+(defclass output-layer (layer)
+  ((bias-unit :initform (make-instance &#39;bias-unit))))
+
+(defclass dnn ()
+  ((layers ...)
+   (connections ...)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Input Layer以外のLayerのUnitのInputは (4) なので&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defun calculate-unit-input-value (unit)
+  (reduce #&#39;+
+          (mapcar #&#39;(lambda (connection)
+                      (* (unit-output-value (connection-left-unit connection))
+                         (connection-weight connection)))
+                  (unit-left-connections unit))))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、OutputはBias Unit (Outputが1) 以外は (2) なので&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defgeneric calculate-unit-output-value (unit)
+  (:method ((unit unit))
+    (funcall activatinon-function (unit-input-value unit)))
+  (:method ((unit bias-unit))
+    (declare (ignore unit))
+    1))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように計算できる.&lt;/p&gt;
+
+&lt;p&gt;これをInput LayerからOutput Layerまで繰り返してネットワークの出力を得る.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defun predict (dnn input)
+  (dolist (layer (dnn-layers dnn))
+    (etypecase layer
+      (input-layer
+       (map nil
+            #&#39;(lambda (input-unit value)
+                (setf (unit-input-value input-unit) value
+                      (unit-output-value input-unit) value))
+            (layer-units layer)
+            input))
+      ((or hidden-layer output-layer)
+       (let ((units (layer-units layer)))
+         (dolist (unit units)
+           (let ((input-value (calculate-unit-output-value unit)))
+             (setf (unit-input-value unit) input-value
+                   (unit-output-value unit)
+                   (calculate-unit-output-value unit))))))))
+  (mapcar #&#39;unit-output-value
+          (layer-units (output-layer (dnn-layers dnn)))))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これにError functionを適用する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defun test (dnn data-set)
+  (/ (reduce #&#39;+
+             (mapcar #&#39;(lambda (data)
+                         (funcall error-function
+                                  (predict dnn (data-input data))
+                                  (data-expected data)))
+                     data-set))
+     (length data-set)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとは (20) と (17) で $\delta$ を計算し、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defgeneric calculate-delta (layer unit)
+  (:method ((layer output-layer) unit)
+    ...)
+  (:method ((layer hidden-layer) unit)
+    ...))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Back propagationで &lt;code&gt;connection&lt;/code&gt; の &lt;code&gt;weight&lt;/code&gt; を更新すれば学習ができる.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defun train (dnn data-set)
+  (dolist (data data-set)
+    (predict dnn (data-input data))
+    (dolist (layer (reverse (cdr (dnn-layers dnn))))
+      (dolist (unit (layer-units layer))
+        (let ((delta (calculate-delta layer unit)))
+          (setf (unit-delta unit) delta)
+          (dolist (connection (unit-left-connections unit))
+            (incf (connection-weight-diff connection)
+                  (* delta
+                     (unit-output-value
+                      (connection-left-unit connection))))))))
+    (dolist (outer-connections (dnn-connections dnn))
+      (dolist (inner-connectios outer-connections)
+        (dolist (connection inner-connectios)
+          (decf (connection-weight connection)
+                (* (dnn-learning-coefficient dnn)
+                   (connection-weight-diff connection)))
+          (setf (connection-weight-diff connection) 0))))))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これだけで順伝播型ニューラルネットワークが実装できる.&lt;br /&gt;
+(実際は &lt;code&gt;connection&lt;/code&gt; の &lt;code&gt;weight&lt;/code&gt; を平均0で分散1の正規乱数で初期化や、
+Inputの正規化や、Mini-batchで学習の実装もしている.)&lt;/p&gt;
+
+&lt;h1 id=&#34;test:99621a27901250e81c3c36481758f611&#34;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;Fisher&#39;s iris flower data set&lt;/code&gt; (統計の有名なデータセット) の多クラス分類 (Multi-class classification) をやってみる.&lt;/p&gt;
+
+&lt;p&gt;データセット自体は R で &lt;code&gt;iris&lt;/code&gt; とかやると出てくるもので、
+&lt;code&gt;iris dataset&lt;/code&gt; とかで検索すれば手に入る.&lt;/p&gt;
+
+&lt;p&gt;どういうデータかというと、4つのInputと1つのLabelの集まりで、Labelは3種類ある.
+そのためテストではInput Layerは4 Units、Hidden Layerは10 Units、Output Layerは3 Units、学習係数は0.001で組んだ.
+(Hidden LayerのLayer数やUnit数と学習係数は適当.)&lt;/p&gt;
+
+&lt;p&gt;今回使ったデータセットは150サンプルあるので、それを15サンプルずつの10セットに分ける.
+そのうち1セットをテストデータとして取り、残りを教師データとして学習に使用する.
+教師データでの学習の度に学習データを &lt;code&gt;test&lt;/code&gt; にかけ Error function の値をとり、
+それが一定以下になるか、指定の学習回数を経るとと学習を打ち切る.
+学習のあとにテストデータで &lt;code&gt;predict&lt;/code&gt; を行って正解数を記録する.
+それを10セット繰り返す.
+最後に正解率を出す.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defun data-sets ()
+  ...)
+
+(defun main (&amp;amp;optional (training-count 0))
+  (let* ((layers (make-layers (list (list &#39;input-layer 4)
+                                    (list &#39;hidden-layer 10 &#39;rectified-linear-unit)
+                                    (list &#39;output-layer 3 &#39;softmax))))
+         (connections (connect layers))
+         (dnn (make-instance &#39;dnn
+                             :layers layers
+                             :connections connections
+                             :learning-coefficient 0.001))
+         (data-sets (data-sets))
+         (correc-count 0)
+         (test-count 0))
+    (dolist (test-data-set data-sets)
+      (let ((train-data-set (apply #&#39;append (remove test-data-set data-sets))))
+        (loop repeat training-count
+              do (train dnn train-data-set)
+              until (&amp;lt; (test dnn train-data-set) 0.01))
+        (dolist (data test-data-set)
+          (incf test-count)
+          (let ((result (predict dnn (data-input data))))
+            (when (= (position (apply #&#39;max result) result)
+                     (data-expected data))
+              (incf correc-count))))))
+    (format t &amp;quot;Accuracy: ~,2f%~%&amp;quot; (* 100 (/ correc-count test-count)))))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;学習回数を0から10000で変えながら順に実行する.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(dolist (times (list 0 10 100 1000 10000))
+  (format t &amp;quot;TIMES: ~a~%&amp;quot; times)
+  (loop repeat 3
+        do (main times)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;結果は&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;TIMES: 0
+Accuracy: 33.33%
+Accuracy: 33.33%
+Accuracy: 33.33%
+TIMES: 10
+Accuracy: 50.00%
+Accuracy: 54.00%
+Accuracy: 60.00%
+TIMES: 100
+Accuracy: 89.33%
+Accuracy: 82.00%
+Accuracy: 86.67%
+TIMES: 1000
+Accuracy: 95.33%
+Accuracy: 97.33%
+Accuracy: 95.33%
+TIMES: 10000
+Accuracy: 97.33%
+Accuracy: 97.33%
+Accuracy: 96.67%
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちゃんと学習できてるっぽい.&lt;/p&gt;
+
+&lt;p&gt;Codeは &lt;a href=&#34;https://github.com/Rudolph-Miller/cldl&#34;&gt;CLDL&lt;/a&gt; に置いてるけど、
+まぁとくに汎用的なLibraryにするつもりは無いし参考程度に.
+(Common LispでDeep Learningしたいだけなら、もっとちゃんとしたLibraryがあるはず.)&lt;/p&gt;
+
+&lt;h1 id=&#34;todo:99621a27901250e81c3c36481758f611&#34;&gt;TODO&lt;/h1&gt;
+
+&lt;p&gt;まだ実装し残してることがあるのでリストアップする.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Convolution Layer (畳み込み層)&lt;/li&gt;
+&lt;li&gt;Pooling Layer (プーリング層)&lt;/li&gt;
+&lt;li&gt;MNISTの画像解析&lt;/li&gt;
+&lt;li&gt;Recurrent Neural Network (再帰型ニューラルネットワーク)&lt;/li&gt;
+&lt;li&gt;Autoencoder (自己符号化器)&lt;/li&gt;
+&lt;li&gt;Automatic Differentiation (自動微分)&lt;/li&gt;
+&lt;li&gt;学習係数の決定&lt;/li&gt;
+&lt;li&gt;Regularization (正則化)
+
+&lt;ul&gt;
+&lt;li&gt;Weight restriction&lt;/li&gt;
+&lt;li&gt;Weight decay&lt;/li&gt;
+&lt;li&gt;Dropout&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当分やることには困らなそう.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:99621a27901250e81c3c36481758f611&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.amazon.co.jp/gp/product/B018K6C99A/ref=as_li_tf_il?ie=UTF8&amp;amp;camp=247&amp;amp;creative=1211&amp;amp;creativeASIN=B018K6C99A&amp;amp;linkCode=as2&amp;amp;tag=rudolph-miller-22&#34;&gt;深層学習&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/cldl&#34;&gt;CLDL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
