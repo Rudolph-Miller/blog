@@ -42,7 +42,7 @@ images = ["/20160608/regexp.png"]
 5. [See Also]({{< relref "#see-also" >}})
 
 そういえば正規表現エンジン作ったことないやと思ったので作ってみた.  
-index みれば気がつくと思うけど、実際に作るとこより理論の解説が多め.
+ついでに正規表現、形式言語、オートマトンの関係の解説記事がみあたらなかったのでまとめてみた.
 
 
 # Regular Expression
@@ -469,9 +469,20 @@ Finite automaton が定義する Language の性質を調べる.
 
 ### Regular Lanugage => FA's Language
 
-任意の Regular language からその Language を accept する Finite automaton を構成する.
+任意の Regular language ($L$) からその Language を accept する Finite automaton ($M$) を構成する.
 
+- $L = \emptyset$ なら $M_{\emptyset} = (\lbrace q_0, q_1 \rbrace, \Sigma, \emptyset, q_0, \lbrace q_1 \rbrace)$ が対応する.
+    - $M_{\emptyset}$ は Final set への遷移をもたないので accept する記号列はない. つまり、空集合を accept する.
+- $\sigma \in \Sigma\ で\ L = \lbrace \sigma \rbrace$ なら $M_1 = (\lbrace q_0, q_1 \rbrace, \Sigma, \lbrace (q_0, \sigma, q_1) \rbrace, q_0, \lbrace q_1 \rbrace)$ が対応する.
+- [FA's Language]({{< relref "#fa-s-language" >}}) で述べた $L_{FA}$ の性質より、 Regular language $L_1$, $L_2$ が Finite automaton で定義可能なら、 $L_1 \cup L_2$, $L_1 \circ L_2$, $L_1^*$ も Finite automaton で定義可能. Regular language はこれらの操作のみで構成されるので、すべての Regular language について対応する Finite automaton が存在する.
 
+よって
+
+$$
+L _{RL} \subseteq L _{FA}
+$$
+
+が成立する.
 
 
 ### FA's Language => Regular Language
