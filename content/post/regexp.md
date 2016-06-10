@@ -54,7 +54,7 @@ images = ["/20160608/regexp.png"]
 
 
 そういえば正規表現エンジン作ったことないやと思ったので作ってみた.  
-正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでついでにまとめてみた.
+正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) をついでにまとめてみた.
 
 
 # Regular Expression
@@ -379,7 +379,7 @@ DFA と NFA は状態遷移が異なるだけ.
 - DFA は常にテープが1つ進むが、NFA は記号列の長さ分一気にすすんだり、 $\epsilon$ が入力と成り得る場合は進まなかったりする.
 - Non-deterministic な動作では可能なすべての状態遷移を試みる. 試みたすべての Machine configulation 中に1個でも accept な Machine configulation があれば全体で $x$ を accept とする. そうでなければ reject とする.
 
-DFA が定義する Language ($L _{DFA}$) と NFA が定義する Language ($L _{NFA}$) に差をみていく.
+DFA が定義する Language ($L _{DFA}$) と NFA が定義する Language ($L _{NFA}$) の関係をみていく.
 
 
 #### DFA => NFA
@@ -538,21 +538,20 @@ $L _{RL} \subseteq L _{FA}$ かつ $L _{FA} \subseteq L _{RL}$ より $L _{RL} =
 
 以上により、 $L _{RE} = L _{RL} = L _{FA}$ が証明された.
 
-つまり、任意の Regular expression は Finite automaton で表現され、シミュレートできる.
+つまり、任意の Regular expression は Finite automaton で表現され、それにより計算可能と証明された.
 
-Kleene algebra と Regular language の理論により、 Regular expression が 計算可能な Finite automaton の理論と結びついた.
+Kleene algebra と Regular language の理論により、 Regular expression が Finite automaton の理論と結びつき計算可能となった.
 
 この周辺分野には Pumping theorem (ポンピング補題)や、
 Finite automaton 以外の Abstract machine などがあるが、 
 それは次回にしてそろそろ当初の目的 (Regular expression engine の実装) を終わらせようと思う.
 
-まぁ正直もう実装なんてしなくてもいいんじゃないかとすら思ってる. ;p  
-Algorithm は上で紹介したので.
+まぁ正直もう実装なんてしなくてもいいんじゃないかとすら思ってる. ;p
 
 
 # Implementation
 
-任意の Regular expression が Finite automaton でシミュレートできることがわかったので、心置きなく実装できる.
+任意の Regular expression が Finite automaton で計算可能なことがわかったので、心置きなく実装できる.
 
 Regular expression engine は Regular expression と記号列を入力として、
 Regular expression に対応する Finite automaton を構築し、
@@ -820,7 +819,7 @@ Finite automaton を動作させる.
 
 # Wrap-up
 
-- Regular expression が Finite automaton でシミュレートできることを証明した.
+- Regular expression が Finite automaton で計算可能であることを証明した.
 - 実際に NFA でシミュレートを行った.
     - NFA だと計算効率が悪いから大抵の Engine は NFA => DFA に変換している.
     - 変換方法は [NFA => DFA]({{< relref "#nfa-dfa" >}}) で述べたが、実装するならもうちょっと効率的な方法で実装する. ($\epsilon$ 遷移の除去のとことか.)
