@@ -7,962 +7,8 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>&amp;copy; 2015 - 2016 Rudolph Miller</copyright>
-    <lastBuildDate>Sat, 11 Jun 2016 01:06:26 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 13 May 2016 11:48:41 +0900</lastBuildDate>
     <atom:link href="https://blog.rudolph-miller.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Create Regular Expression Engine</title>
-      <link>https://blog.rudolph-miller.com/2016/06/11/create-regexp-engine/</link>
-      <pubDate>Sat, 11 Jun 2016 01:06:26 +0900</pubDate>
-      
-      <guid>https://blog.rudolph-miller.com/2016/06/11/create-regexp-engine/</guid>
-      <description>
-
-&lt;p&gt;正規表現エンジンの作り方 (と形式言語とオートマトン).&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-expression:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Expression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#history:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;History&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#math:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Math&lt;/a&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-language-regular-expression:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language &amp;amp; Regular Expression&lt;/a&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#ring:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Ring&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#semi-ring:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Semi-ring&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#idempotent-semi-ring:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Idempotent semi-ring&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#kleene-algebra:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Kleene algebra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Language&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#pure-regular-expression:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Pure Regular Expression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-expression-regular-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Expression =&amp;gt; Regular Language&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-language-regular-expression-1:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language =&amp;gt; Regular Expression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-language-regular-expression-2:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language &amp;lt;=&amp;gt; Regular Expression&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-language-finite-automaton:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language &amp;amp; Finite Automaton&lt;/a&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#abstract-machine:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Abstract machine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#finite-automaton:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Finite automaton&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#deterministic-finite-automaton:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Deterministic Finite Automaton&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#deterministic-vs-non-deterministic:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Deterministic vs. Non-deterministic&lt;/a&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#dfa-nfa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;DFA =&amp;gt; NFA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#nfa-dfa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;NFA =&amp;gt; DFA&lt;/a&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#記号列遷移の1記号遷移化:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;記号列遷移の1記号遷移化&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#epsilon-遷移の除去:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;$\epsilon$ 遷移の除去&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#subset-construction-により-dfa-の構成:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Subset construction により DFA の構成&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#dfa-nfa-1:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;DFA &amp;lt;=&amp;gt; NFA&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#fa-s-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;FA&amp;rsquo;s Language&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-language-fa-s-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language =&amp;gt; FA&amp;rsquo;s Language&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#fa-s-language-regular-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;FA&amp;rsquo;s Language =&amp;gt; Regular Language&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#regular-language-fa-s-language-1:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language &amp;lt;=&amp;gt; FA&amp;rsquo;s Language&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#result:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Result&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#Implementation:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Implementation&lt;/a&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#ast:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;AST&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#parser:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Parser&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#fa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;FA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#nfa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;NFA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#run:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Run&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#match:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Match&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#wrap-up:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Wrap-up&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#see-also:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;そういえば正規表現エンジン作ったことないやと思ったので作ってみた.&lt;br /&gt;
-正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでついでにまとめてみた.&lt;/p&gt;
-
-&lt;h1 id=&#34;regular-expression:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Expression&lt;/h1&gt;
-
-&lt;p&gt;Regular expression (正規表現) は文字列のパターンの表現.&lt;/p&gt;
-
-&lt;p&gt;regular (正規) に深い意味はないらしい.
-というか &amp;ldquo;regular&amp;rdquo; に &amp;ldquo;正規&amp;rdquo; って訳語は違和感しかない.
-数学では &amp;ldquo;正則&amp;rdquo; が定訳なはず.&lt;/p&gt;
-
-&lt;h1 id=&#34;history:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;History&lt;/h1&gt;
-
-&lt;p&gt;1943年、Waren McCullochとWalter Pittsが
-&lt;a href=&#34;http://cns-classes.bu.edu/cn550/Readings/mcculloch-pitts-43.pdf&#34;&gt;A Logical Calculus of the Ideas Immanent in Nervous Activity&lt;/a&gt;
-で神経細胞の振る舞いを計算モデル化した Formal neurons (形式ニューロン) を提案した.&lt;br /&gt;
-Formal neurons は論理回路で言うところのORゲート、ANDゲート、NOTゲートを持っていたので任意の論理回路を表現することができた.
-(Formal neurons は記憶領域が無いため、&lt;a href=&#34;https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E5%AE%8C%E5%85%A8&#34;&gt;チューリング完全&lt;/a&gt;ではない.)&lt;br /&gt;
-さらに彼らは同論文の中で Formal neurons の独自の記法を導入した.&lt;/p&gt;
-
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160608/formal_neurons.png&#34; alt=&#34;20160608/formal_neurons.png&#34;&gt;
-
-
-&lt;p&gt;1951年、Kleeneが
-&lt;a href=&#34;https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf&#34;&gt;Representation of Events in Nerve Nets and Finite Automata&lt;/a&gt;
-で Formal neurons の表現として Regular expression を提案し、
-さらに同論文の中で Finite automaton (有限オートマトン) という計算モデルの導入を行い、
-Formal neurons が Finite automatonに変換できることを示した.&lt;/p&gt;
-
-&lt;img src=&#34;https://blog.rudolph-miller.com/images/20160608/regexp.png&#34; alt=&#34;20160608/regexp.png&#34;&gt;
-
-
-&lt;p&gt;1959年、M.O.RabinとD.Scottが
-&lt;a href=&#34;http://www.cse.chalmers.se/~coquand/AUTOMATA/rs.pdf&#34;&gt;Finite Automata and Their Decision Problems&lt;/a&gt;
-で Non-deterministic finite automaton (NFA, 非決定性有限オートマトン) を導入し、決定性と非決定性の等価性を照明した.&lt;/p&gt;
-
-&lt;p&gt;1968年、 Kenneth Thompsonが
-&lt;a href=&#34;http://www.fing.edu.uy/inco/cursos/intropln/material/p419-thompson.pdf&#34;&gt;Regular Expression Search Algorithm&lt;/a&gt;
-で正規表現を入力としてそれにマッチする文字列を検索する仕組みの提案と、その実装方法を示した.&lt;br /&gt;
-それまでの検索アルゴリズムは部分的にマッチしたルートが途中でマッチに失敗したときに Backtracking (直近の処理の分岐点に戻ること) をしていた.&lt;br /&gt;
-このアルゴリズムは直近の分岐点の保存のため多量の storage を必要とし、さらにとても遅かった.&lt;br /&gt;
-そこで記憶領域を使用しない計算モデルである NFA を使用し、それらの問題を解決した.&lt;br /&gt;
-この論文では&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Regular expression から NFA を構築する方法 (Thompson&amp;rsquo;s construction algorithm, Thompsonの構成法)&lt;/li&gt;
-&lt;li&gt;NFA を効率よくシミュレートする方法 (Thompson NFA)&lt;/li&gt;
-&lt;li&gt;シミュレーションを実行するIBM 7094 codeを直接生成する方法&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;を示した.&lt;br /&gt;
-最後のはつまり Regular expression のJIT compiler. 世界初のRegular expressionの実装の論文にも関わらず、
-JIT compilerまで実装して発表していた.&lt;/p&gt;
-
-&lt;h1 id=&#34;math:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Math&lt;/h1&gt;
-
-&lt;p&gt;Regular expression と Finite automaton の関係について Regular language を経由して述べる.&lt;/p&gt;
-
-&lt;h2 id=&#34;regular-language-regular-expression:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language &amp;amp; Regular Expression&lt;/h2&gt;
-
-&lt;p&gt;まずは Regular Language の定義 (とその前提知識の定義) と、
-Regular language と Regular Expression の関係.&lt;/p&gt;
-
-&lt;h3 id=&#34;ring:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Ring&lt;/h3&gt;
-
-&lt;p&gt;Ring (環) とは、&lt;/p&gt;
-
-&lt;p&gt;Set (集合) $R$上の加法 $+: R \times R \to R$ と乗法 $\cdot: R \times R \to R$ の組 $(R, +, \cdot)$ で、
-$(R, +)$ が Abelian group (アーベル群) で $(R, \cdot)$ が Monoid (モノイド) なもので以下の分配法則を満たすもの.&lt;/p&gt;
-
-&lt;p&gt;$$
-a, b, c \in R\ で\ a \cdot (b + c) = a \cdot b + a \cdot c \ が成立する.
-$$&lt;/p&gt;
-
-&lt;p&gt;$$
-a, b, c \in R\ で\ (a + b) \cdot c = a \cdot c + b \cdot c \ が成立する.
-$$&lt;/p&gt;
-
-&lt;p&gt;アーベル群？モノイド？ ggrks.&lt;br /&gt;
-というか環の定義ぐらいは前提として良かったかもしれない.&lt;/p&gt;
-
-&lt;h3 id=&#34;semi-ring:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Semi-ring&lt;/h3&gt;
-
-&lt;p&gt;Semi-ring (半環) は Ring で $(R, +)$ の要求をモノイドとしたもの.&lt;/p&gt;
-
-&lt;h3 id=&#34;idempotent-semi-ring:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Idempotent semi-ring&lt;/h3&gt;
-
-&lt;p&gt;Idempotent semi-ring (冪等半環) は Semi-ring の加法に以下のように冪等演算であることを要求したもの.&lt;/p&gt;
-
-&lt;p&gt;$$
-\forall a \in R,\ a + a = a
-$$&lt;/p&gt;
-
-&lt;h3 id=&#34;kleene-algebra:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Kleene algebra&lt;/h3&gt;
-
-&lt;p&gt;Kleene algebra (クリーネ代数, クリーニ代数) は Idempotent semi-ring
-に、以下の性質を持つ Kleene star $^*: R \to R$ を導入したもの.&lt;br /&gt;
-(なお、演算の優先順は $^ *$ , $\cdot$ , $+$ である.)&lt;/p&gt;
-
-&lt;p&gt;$$
-a, b \in R\ で、a \leq b \iff a + b = b\ として以下が成立する. \\
-1 + a \cdot a^* \leq a^* \\
-1 + a^* \cdot a \leq a^* \\
-a \cdot b \leq b \Rightarrow a^* \cdot b \leq b \\
-b \cdot a \leq b \Rightarrow b \cdot a^* \leq b
-$$&lt;/p&gt;
-
-&lt;p&gt;Kleene star は&lt;/p&gt;
-
-&lt;p&gt;$$
-a^* = 1 + a + a \cdot a + a \cdot a \cdot a \cdots
-$$&lt;/p&gt;
-
-&lt;p&gt;のようにも表せる.&lt;/p&gt;
-
-&lt;h3 id=&#34;language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Language&lt;/h3&gt;
-
-&lt;p&gt;$$
-\Sigma = \lbrace \sigma \mid \sigma = 文字 \rbrace
-$$&lt;/p&gt;
-
-&lt;p&gt;のように文字の Set を考える. 文字は有限なのでこれは Finite set (有限集合) となる.&lt;br /&gt;
-$\Sigma$ 上に文字列の集合 $\Sigma^*$ を考える. これは文字列の長さは無限なので Infinite set (無限集合) となる.&lt;/p&gt;
-
-&lt;p&gt;$$
-\Sigma^* = \lbrace \langle \sigma_1, \sigma_2, \cdots \rangle \mid \sigma_i \in \Sigma \cup \lbrace \epsilon \rbrace
-$$&lt;/p&gt;
-
-&lt;p&gt;ただし $\epsilon$ は空文字列を表す.&lt;/p&gt;
-
-&lt;p&gt;Formal language (形式言語) の理論において、 $\Sigma$ 上の Language (言語) とは $\Sigma^*$ の部分集合のことを指す.&lt;/p&gt;
-
-&lt;p&gt;$$
-L \subseteq \Sigma^*
-$$&lt;/p&gt;
-
-&lt;h3 id=&#34;regular-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language&lt;/h3&gt;
-
-&lt;p&gt;$\Sigma$ 上の Language $L$ に Kleene algebra を展開する.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$\emptyset \subseteq L$ ($\emptyset$ は空集合)&lt;/li&gt;
-&lt;li&gt;$\lbrace \epsilon \rbrace \subseteq L$&lt;/li&gt;
-&lt;li&gt;$\forall \sigma \in \Sigma$ について $\lbrace \sigma \rbrace \subseteq L$&lt;/li&gt;
-&lt;li&gt;$A, B \subseteq L$ について
-
-&lt;ul&gt;
-&lt;li&gt;$A \cup B \subseteq L$&lt;/li&gt;
-&lt;li&gt;$A \cdot B \subseteq L$&lt;/li&gt;
-&lt;li&gt;$A^* \subseteq L$
-
-&lt;ul&gt;
-&lt;li&gt;$A^* = \lbrace \epsilon \rbrace \cup A \cup A \cdot A \cup \cdots$&lt;/li&gt;
-&lt;li&gt;Kleene closure (クリーネ閉包) と呼ぶ.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;これらを満たす Language をRelugar language (正規言語, $L_{RL}$) と呼ぶ.&lt;/p&gt;
-
-&lt;h3 id=&#34;pure-regular-expression:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Pure Regular Expression&lt;/h3&gt;
-
-&lt;p&gt;pure な Regular expression は文字と3つの基本演算で定義される.&lt;br /&gt;
-(ここで pure といってるのは、Repular expression engine の実装依存の拡張と区別するため.)&lt;/p&gt;
-
-&lt;p&gt;3つの基本演算:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Choice (選択): &lt;code&gt;a|b&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Concatenation (連接): &lt;code&gt;ab&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Repetition (繰り返し): &lt;code&gt;a*&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;なお演算の優先順は Repetition , Concatenation , Choice である.&lt;/p&gt;
-
-&lt;p&gt;Regular expression ($E$) は次の Grammer (文法) に従う.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$\epsilon \subseteq E$&lt;/li&gt;
-&lt;li&gt;$\forall \sigma \in \Sigma\ で\ \sigma \in E$&lt;/li&gt;
-&lt;li&gt;$E_1, E_2 \subseteq E\ で\ E_1|E_2 \subseteq E$&lt;/li&gt;
-&lt;li&gt;$E_1, E_2 \subseteq E\ で\ E_1E_2 \subseteq E$&lt;/li&gt;
-&lt;li&gt;$E1 \subseteq E\ で\ E1* \subseteq E$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;regular-expression-regular-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Expression =&amp;gt; Regular Language&lt;/h3&gt;
-
-&lt;p&gt;Regular expression ($E$) が定義する $\Sigma$ 上の Language ($L(E)$)を考える.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$E = \epsilon\ なら\ L(E) = \emptyset$&lt;/li&gt;
-&lt;li&gt;$\forall \sigma \in \Sigma\ で\ E = \sigma\ なら\ L(E) = \lbrace \sigma \rbrace$&lt;/li&gt;
-&lt;li&gt;$E_1, E_2 \subseteq E\ で\ E = E_1|E_2\ なら\ L(E) = L(E_1) \cup L(E_2)$&lt;/li&gt;
-&lt;li&gt;$E_1, E_2 \subseteq E\ で\ E = E_1E_2\ なら\ L(E) = L(E_1) \cdot L(E_2)$&lt;/li&gt;
-&lt;li&gt;$E_1 \subseteq E\ で\ E = E_1*\ なら\ L(E) = L(E1)^ *$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;これが与える Language を $L_{RE}$ とすると、上の定義より $L _{RE} \subseteq L _{RL}$ がわかる.&lt;br /&gt;
-つまり、 Regular expression が与えられると必ず対応する Regular language が存在することがわかる.&lt;/p&gt;
-
-&lt;h3 id=&#34;regular-language-regular-expression-1:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language =&amp;gt; Regular Expression&lt;/h3&gt;
-
-&lt;p&gt;与えられた Regular language ($L$) から、その Language を定義する
-Regular expression ($E(L)$) の構成法を考える.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$L = \emptyset\ なら\ E(L) = E(\emptyset) = \epsilon$&lt;/li&gt;
-&lt;li&gt;$\sigma \in \Sigma\ で\ L = \lbrace \sigma \rbrace\ なら\ E(L) = E(\lbrace \sigma \rbrace) = \sigma$&lt;/li&gt;
-&lt;li&gt;$L_1, L_2 \subseteq L\ で\ L = L_1 \cup L_2\ なら\ E(L) = E(L_1)|E(L_2)$&lt;/li&gt;
-&lt;li&gt;$L_1, L_2 \subseteq L\ で\ L = L_1 \cdot L_2\ なら\ E(L) = E(L_1)E(L_2)$&lt;/li&gt;
-&lt;li&gt;$L_1 \subseteq L\ で\ L = L_1^*\ なら\ E(L) = E(L_1) *$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;とすることにより、 Regular language に対応する Regular expression を構成可能である.&lt;br /&gt;
-つまり、 $L _{RL} \subseteq L _{RE}$ .&lt;/p&gt;
-
-&lt;h3 id=&#34;regular-language-regular-expression-2:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular language &amp;lt;=&amp;gt; Regular expression&lt;/h3&gt;
-
-&lt;p&gt;$L _{RE} \subseteq L _{RL}$ かつ $L _{RL} \subseteq L _{RE}$ より $L _{RE} = L _{RL}$ .&lt;br /&gt;
-つまり、 Regular expression が定義する Language と Regular language は同じ.&lt;/p&gt;
-
-&lt;h2 id=&#34;regular-language-finite-automaton:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language &amp;amp; Finite Automaton&lt;/h2&gt;
-
-&lt;p&gt;Finite automaton の定義 (とその前提知識の定義) と、
-Regular language と Finite automaton の関係.&lt;/p&gt;
-
-&lt;h3 id=&#34;abstract-machine:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Abstract machine&lt;/h3&gt;
-
-&lt;p&gt;Abstract machine (抽象機械) は計算システムを形式的に扱うために考えられた数学的モデルで、
-計算可能性などを分析するのに思考実験で利用される.&lt;/p&gt;
-
-&lt;p&gt;この Machine は Finite control (有限制御機構) と External storage (外部記憶装置) から構成される.&lt;br /&gt;
-制御機構が有限であるとは制御機構が備えている記憶容量が有限で、有限の状態しか取り得ないことを意味する.&lt;br /&gt;
-外部記憶には形式的扱いが容易なテープが通常用いられる.&lt;/p&gt;
-
-&lt;p&gt;Abstract machineには次のような種類がある.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;種類&lt;/th&gt;
-&lt;th&gt;構成&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Finite automaton&lt;/td&gt;
-&lt;td&gt;制御機構、入力テープ&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Push down automaton&lt;/td&gt;
-&lt;td&gt;制御機構、入力テープ、制限付き作業テープ&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Turing machine&lt;/td&gt;
-&lt;td&gt;制御機構、入力テープ、作業テープ&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;制御機構はあらかじめ定義された State (状態) のいずれかをとる.&lt;br /&gt;
-この機械が取り得る状態の集合は $Q = \lbrace q_0, q_1, q_2, \cdots \rbrace$ と表される.&lt;br /&gt;
-機械は一時に一状態しか取れない.&lt;br /&gt;
-機械の動作は機械の状態と入力情報 (入力テープから読み込んだ記号) により状態を変化したり、テープを操作したりすること.&lt;br /&gt;
-機械は一定の状態になるか次状態が定義されていないため動作が継続できなくなると停止し、停止時の状態やテープ構成により様々な判定が行われる.&lt;br /&gt;
-動作が一意に決まるとき deterministic (決定的) といい、そうでない場合を non-deterministic (非決定的) という.&lt;/p&gt;
-
-&lt;p&gt;以上より Abstract machine ($M$) は次の5つの組 $M = (Q, \Sigma, \delta, q_0, F)$ で定義される.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$Q$ は有限な状態の集合.&lt;/li&gt;
-&lt;li&gt;$\Sigma$ は記号の集合.&lt;/li&gt;
-&lt;li&gt;$\delta$ は State transition function (状態遷移関数) で deterministic machine の動作 step を定義する.
-
-&lt;ul&gt;
-&lt;li&gt;Non-deterministic machine の場合は $\Delta$ で表され、 State transition relation (状態遷移関係) と呼ばれる.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;$q_0 \in Q$ は Initial state (初期状態) .&lt;/li&gt;
-&lt;li&gt;$F \subseteq Q$ は Final state set (終了状態集合) で $F$ の要素は Final state (終了状態) と呼ばれ、機械が停止した時の状態が Final state であれば、機械は入力を accept (受理) したという. そうでない場合を reject (拒否) したという.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;finite-automaton:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Finite automaton&lt;/h3&gt;
-
-&lt;p&gt;Finite automaton (FA, 有限オートマトン, Finite State Machine, FSM, 有限状態機械) は Abstract machine の一つで、制御機構と入力テープの二つから構成される. 状態遷移は現状態と入力記号の2つにより決定される. つまり、状態遷移は現状態と入力記号と次状態の3要素の組の集合として定義される.&lt;/p&gt;
-
-&lt;p&gt;deterministic な Finite automaton を Deterministic finite automaton (DFA, 決定性有限オートマトン)、 non-Deterministic なものを Non-deterministic finite automaton (NFA, 非決定性有限オートマトン) と呼ぶ.&lt;/p&gt;
-
-&lt;h3 id=&#34;deterministic-finite-automaton:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Deterministic Finite Automaton&lt;/h3&gt;
-
-&lt;p&gt;DFA は $(Q, \Sigma, \delta, q_0, F)$ により以下のように形式的に定義される.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$Q$ は有限な状態の集合.&lt;/li&gt;
-&lt;li&gt;$\Sigma$ は記号の集合.&lt;/li&gt;
-&lt;li&gt;$q, q&amp;rsquo; \in Q, \sigma \in \Sigma\ で\ \delta: (q, \sigma) \to q&amp;rsquo;$&lt;/li&gt;
-&lt;li&gt;$q_0 \in Q$ は Initial state.&lt;/li&gt;
-&lt;li&gt;$F \subseteq Q$ は Final state set.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;DFA が定義する Language は DFA が accept する記号列の集合.&lt;/p&gt;
-
-&lt;p&gt;DFA の動作は Machine configulation (動作状態) とその Machine configulation の step を与える演算子により形式的に定義できる.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;DFA ($M$) の Machine configulation ($C$) は DFA の state とテープの state で定義できる.
-
-&lt;ul&gt;
-&lt;li&gt;$q \in Q, [p, x]: Tape configulation\ で\ C = (q, [p, x])$
-
-&lt;ul&gt;
-&lt;li&gt;$[p, x]$ は Tape configulation (テープ構成) と呼び、 $x$ がそのテープの記号列で $p$ がその記号列上の現在位置. $x(p)$ で $p$ の位置の記号を表す.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;$M$ の Machine configulation の集合を $C(M)$ で表す.
-
-&lt;ul&gt;
-&lt;li&gt;$C(M) = \lbrace (q, [p, x]) \mid q \in Q, x \in \Sigma^*, 1 \leq p \leq |x| + 1 \rbrace$&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;DFA の Machine configulation の 1 step 進行を表す関係演算子を $\vdash_M: C(M) \to C(M)$ とする.
-
-&lt;ul&gt;
-&lt;li&gt;$C_1, C_2 \in C(M)\ で\ p_1 + 1 = p_2\ かつ\ \delta(q_1, x(p_1)) = q_2$ が成り立つとき $C_1 \vdash_M C_2$ と表す.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;DFA は $C_h = (q, [p, x])$ で $\delta(q, x(p))$ が未定義なときに停止する.
-
-&lt;ul&gt;
-&lt;li&gt;$C_h = (q, [|x| + 1, x])$ を Final configulation (最終状態) と呼び、テープの最後に到達した状態を表す.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;$C_i \subseteq C(M), 0 \leq i \leq n$ を一連の Machine configulation としたとき、&lt;/p&gt;
-
-&lt;p&gt;$$
-C _0 \vdash _M C _1, C _1 \vdash _M C _2, \cdots, C _{n-1} \vdash _M C _n
-$$&lt;/p&gt;
-
-&lt;p&gt;が成立するとき&lt;/p&gt;
-
-&lt;p&gt;$$
-C_0 \vdash_M^* C
-$$&lt;/p&gt;
-
-&lt;p&gt;のように表示する. この式は Computation (計算過程) を表す.&lt;/p&gt;
-
-&lt;p&gt;DFA ($M$) で入力 ($x$) について、&lt;/p&gt;
-
-&lt;p&gt;$$
-f \in F\ で\ (q_0, [1, x]) \vdash _M^* (f, [|x| + 1, x])
-$$&lt;/p&gt;
-
-&lt;p&gt;が成立するとき $M$ は $x$ を accept するという.&lt;/p&gt;
-
-&lt;h3 id=&#34;deterministic-vs-non-deterministic:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Deterministic vs. Non-deterministic&lt;/h3&gt;
-
-&lt;p&gt;決定性と非決定性.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;種類&lt;/th&gt;
-&lt;th&gt;状態遷移&lt;/th&gt;
-&lt;th&gt;入力&lt;/th&gt;
-&lt;th&gt;次状態&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;DFA&lt;/td&gt;
-&lt;td&gt;関数&lt;/td&gt;
-&lt;td&gt;現状態、1記号&lt;/td&gt;
-&lt;td&gt;1状態&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;NFA&lt;/td&gt;
-&lt;td&gt;関係&lt;/td&gt;
-&lt;td&gt;現状態、記号列($\epsilon$ を含む)&lt;/td&gt;
-&lt;td&gt;複数の状態が可能&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;DFA と NFA は状態遷移が異なるだけ.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;NFA は次状態が複数ある場合がある.&lt;/li&gt;
-&lt;li&gt;DFA は常にテープが1つ進むが、NFA は記号列の長さ分一気にすすんだり、 $\epsilon$ が入力と成り得る場合は進まなかったりする.&lt;/li&gt;
-&lt;li&gt;Non-deterministic な動作では可能なすべての状態遷移を試みる. 試みたすべての Machine configulation 中に1個でも accept な Machine configulation があれば全体で $x$ を accept とする. そうでなければ reject とする.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;DFA が定義する Language ($L _{DFA}$) と NFA が定義する Language ($L _{NFA}$) に差をみていく.&lt;/p&gt;
-
-&lt;h4 id=&#34;dfa-nfa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;DFA =&amp;gt; NFA&lt;/h4&gt;
-
-&lt;p&gt;DFA が定義する Language を考えると、NFA の定義は DFA の定義を包含しているため&lt;/p&gt;
-
-&lt;p&gt;$$
-L _{DFA} \subseteq L _{NFA}
-$$&lt;/p&gt;
-
-&lt;p&gt;が成立する.&lt;/p&gt;
-
-&lt;h4 id=&#34;nfa-dfa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;NFA =&amp;gt; DFA&lt;/h4&gt;
-
-&lt;p&gt;与えられた NFA に対して同一な Language を accept する DFA が以下の手順で構成できる.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#記号列遷移の1記号遷移化:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;記号列遷移の1記号遷移化&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#epsilon-遷移の除去:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;$\epsilon$ 遷移の除去&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#subset-construction-により-dfa-の構成:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Subset construction (部分集合構成法) により DFA の構成&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;当初の NFA を $M = (Q, \Sigma, \Delta, q_0, F)$ とし、各段階で得られる NFA をそれぞれ $M_1$, $M_2$, $M_3$ とする.&lt;/p&gt;
-
-&lt;h5 id=&#34;記号列遷移の1記号遷移化:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;記号列遷移の1記号遷移化&lt;/h5&gt;
-
-&lt;ol&gt;
-&lt;li&gt;$M_1 = (Q_1, \Sigma, \Delta_1, q_0, F)$ として、 $Q_1$, $\Delta_1$ をそれぞれ $Q$, $\Delta$ と等しくする.&lt;/li&gt;
-&lt;li&gt;$\forall (q, \sigma, q&amp;rsquo;) \in \Delta, |\sigma| \geq 1$ について
-
-&lt;ul&gt;
-&lt;li&gt;$\Delta_1$ から $(q, \sigma, q&amp;rsquo;)$ を取り除く.&lt;/li&gt;
-&lt;li&gt;$|\sigma| = k$ として新規状態 $q_1, q_2, \cdots, q_k$ を $Q_1$ に追加する.&lt;/li&gt;
-&lt;li&gt;$\Delta_1$ に遷移 $(q, \sigma(1), q_1), (q1, \sigma(2), q_2), \cdots, (q _{k-1}, \sigma(k), q&amp;rsquo;)$ を追加する.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これらを行うことによって、 $M$ と $M_1$ は同一となることは明らか.&lt;/p&gt;
-
-&lt;h5 id=&#34;epsilon-遷移の除去:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;$\epsilon$ 遷移の除去&lt;/h5&gt;
-
-&lt;ol&gt;
-&lt;li&gt;$M_2 = (Q_2, \Sigma, \Delta_2, q_0,F_2)$ として定義し $\Delta_2 = \emptyset$ とする.&lt;/li&gt;
-&lt;li&gt;$\forall q \in Q_1, \forall a \in \Sigma\ で\ (q, [1, a]) \vdash _{M_1}^* (q&amp;rsquo;, [2, a])$ を満たす $(q, a, q&amp;rsquo;)$ により $\Delta_2 = \Delta_2 \cup \lbrace (q, a, q&amp;rsquo;) \rbrace$ とする.&lt;/li&gt;
-&lt;li&gt;$Q_2$ を 2. で構築した $\Delta_2$ の下で $q_0$ から到達可能な状態の集合とする.&lt;/li&gt;
-&lt;li&gt;$F_2 = \lbrace q \mid q \in Q_2, f \in F_1, (q, [1, \epsilon]) \vdash _m^* (f, [1, \epsilon]) \rbrace$ のように $F_2$ を定義する.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これらを行うことによって、 $M_1$ と $M_2$ は同一となることは明らか.&lt;/p&gt;
-
-&lt;h5 id=&#34;subset-construction-により-dfa-の構成:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Subset construction により DFA の構成&lt;/h5&gt;
-
-&lt;p&gt;$M_3 = (Q_3, \Sigma, \delta_3, \lbrace q_0 \rbrace, F)$ とする.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;$Q_3$ は集合を要素とする集合で、 $Q_2$ の Power set (冪集合) の Subset (部分集合) .
-
-&lt;ul&gt;
-&lt;li&gt;$Q_3 \subseteq \mathcal{P}(Q_2)$&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Initial state は $\lbrace q_0 \rbrace$ .&lt;/li&gt;
-&lt;li&gt;$F_3 = \lbrace Q&amp;rsquo; \mid Q&amp;rsquo; \subseteq Q_3, Q&amp;rsquo; \cap F2 \neq \emptyset \rbrace$ とする.&lt;/li&gt;
-&lt;li&gt;$\delta_3$ を次のように構成する.
-
-&lt;ul&gt;
-&lt;li&gt;$Q_3$ のInital state $\lbrace q_0 \rbrace$ だけからなる遷移表を初期値として $\delta_3$ を構成する.&lt;/li&gt;
-&lt;li&gt;$(q_0, a_i, q&amp;rsquo;) \in \Delta_2$ に対して $\delta_3$ の遷移 $(\lbrace q_0 \rbrace, a_i, Q&amp;rsquo;)$ の遷移先 $Q&amp;rsquo;$ に $q&amp;rsquo;$ を追加する.&lt;/li&gt;
-&lt;li&gt;$Q&amp;rsquo;$ が $\delta_3$ に含まれていなければ、表に $Q&amp;rsquo;$ を追加する.&lt;/li&gt;
-&lt;li&gt;追加された $Q&amp;rsquo;$ について、 $\forall q \in Q&amp;rsquo;, \forall a_i \in \Sigma$ について $(q, a_i, q&amp;rsquo;) \in \Delta_2$ を調べる、追加する.&lt;/li&gt;
-&lt;li&gt;表に新規に追加される State が無くなれば $\delta_3$ は完成.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これらを行うことによって、 $M_2$ と $M_3$ は同一となることは明らか.&lt;/p&gt;
-
-&lt;p&gt;これら 1 - 3 の操作により、&lt;/p&gt;
-
-&lt;p&gt;$$
-L _{NFA} \subseteq L _{DFA}
-$$&lt;/p&gt;
-
-&lt;p&gt;が成立する.&lt;/p&gt;
-
-&lt;h4 id=&#34;dfa-nfa-1:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;DFA &amp;lt;=&amp;gt; NFA&lt;/h4&gt;
-
-&lt;p&gt;$L _{DFA} \subseteq L _{NFA}$ かつ $L _{NFA} \subseteq L _{DFA}$ より $L _{DFA} = L _{NFA}$ .&lt;/p&gt;
-
-&lt;h3 id=&#34;fa-s-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;FA&amp;rsquo;s Language&lt;/h3&gt;
-
-&lt;p&gt;Finite automaton が定義する Language の性質を調べる.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;2つの Finite automaton $M_1$, $M_2$ について、 $M _{\cup}$ を考える.
-
-&lt;ul&gt;
-&lt;li&gt;新たに Inital state と Final state を追加して、
-追加した Initial state から $\epsilon$ で $M_1$, $M_2$ の Initial state に遷移し、
-$M_1$, $M_2$ のすべての Final state から追加した Final state に $\epsilon$ で遷移するように構成し、
-これを $M _{\cup}$ と呼ぶ.&lt;/li&gt;
-&lt;li&gt;$M _{\cup}$ が accept する Language ($L(M _{\cup})$) は $L(M _{\cup}) = L(M_1) \cup L(M_2)$ である.
-
-&lt;ul&gt;
-&lt;li&gt;構成法よりこれが成立することは明らか.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;つまり、 $L_1, L_2 \in L _{FA}\ で\ L_1 \cup L_2 \in L _ {FA}$ が成立し、和演算について閉じている.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;2つの Finite automaton $M_1$, $M_2$ について、 $M _{\circ}$ を考える.
-
-&lt;ul&gt;
-&lt;li&gt;新たに Initial state と Final state を追加して、
-追加した Inital state から $\epsilon$ で $M_1$ の Initial state に遷移し、
-$M_1$ のすべての Final state から $M_2$ の Initial state に $\epsilon$ で遷移し、
-$M_2$ のすべての Final state から追加した Final state に $\epsilon$ で遷移するように構成し、
-これを $M _{\circ}$ と呼ぶ.&lt;/li&gt;
-&lt;li&gt;$M _{\circ}$ が accept する Language ($L(M _{\circ})$) は $L(M _{\circ}) = L(M_1) \circ L(M_2)$ である.
-
-&lt;ul&gt;
-&lt;li&gt;構成法よりこれが成立することは明らか.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;つまり、 $L_1, L_2 \in L _{FA}\ で\ L_1 \circ L_2 \in L _ {FA}$ が成立し、連結演算について閉じている.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;2つの Finite automaton $M$ について、 $M _{^*}$ を考える.
-
-&lt;ul&gt;
-&lt;li&gt;新たに Initial state と Final state を追加して、
-追加した Inital state から $\epsilon$ で $M$ の Initial state に遷移し、
-$M$ のすべての Final state から追加した Final state に $\epsilon$ で遷移し、
-追加した Inital state と Final state が互いに $\epsilon$ で遷移するように構成し、
-これを $M _{^*}$ と呼ぶ.&lt;/li&gt;
-&lt;li&gt;$M _{^*}$ が accept する Language ($L(M _{^ *})$) は $L(M _{^ *}) = L(M _1) ^ *$ である.
-
-&lt;ul&gt;
-&lt;li&gt;構成法よりこれが成立することは明らか.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;つまり、 $L \in L _{FA}\ で\ L^* \in L _ {FA}$ が成立し、 Kleene star 演算について閉じている.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;regular-language-fa-s-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language =&amp;gt; FA&amp;rsquo;s Language&lt;/h3&gt;
-
-&lt;p&gt;任意の Regular language ($L$) からその Language を accept する Finite automaton ($M$) を構成する.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$L = \emptyset$ なら $M_{\emptyset} = (\lbrace q_0, q_1 \rbrace, \Sigma, \emptyset, q_0, \lbrace q_1 \rbrace)$ が対応する.
-
-&lt;ul&gt;
-&lt;li&gt;$M_{\emptyset}$ は Final set への遷移をもたないので accept する記号列はない. つまり、空集合を accept する.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;$\sigma \in \Sigma\ で\ L = \lbrace \sigma \rbrace$ なら $M_1 = (\lbrace q_0, q_1 \rbrace, \Sigma, \lbrace (q_0, \sigma, q_1) \rbrace, q_0, \lbrace q_1 \rbrace)$ が対応する.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#fa-s-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;FA&amp;rsquo;s Language&lt;/a&gt; で述べた $L_{FA}$ の性質より、 Regular language $L_1$, $L_2$ が Finite automaton で定義可能なら、 $L_1 \cup L_2$, $L_1 \circ L_2$, $L_1^*$ も Finite automaton で定義可能. Regular language はこれらの操作のみで構成されるので、すべての Regular language について対応する Finite automaton が存在する.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;よって、&lt;/p&gt;
-
-&lt;p&gt;$$
-L _{RL} \subseteq L _{FA}
-$$&lt;/p&gt;
-
-&lt;p&gt;が成立する.&lt;/p&gt;
-
-&lt;h3 id=&#34;fa-s-language-regular-language:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;FA&amp;rsquo;s Language =&amp;gt; Regular Language&lt;/h3&gt;
-
-&lt;p&gt;Finite automaton ($M$) の accept する Language を Regular language ($L$) で表現する.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$M$ に必要であれば Initial state と Final state を一つ追加し、それぞれもとの Initial state と Final state と $\epsilon$ 遷移で接続し、 $M$ の Inital state と Final state がそれぞれ唯一つとなるようにする.&lt;/li&gt;
-&lt;li&gt;$M$ 上の $\delta$ のすべての要素 $(q, \sigma, q&amp;rsquo;)$ を Regular launguage $L = \lbrace \sigma \rbrace$ での遷移とみなし、 $(q, L, q&amp;rsquo;)$ と表記する.&lt;/li&gt;
-&lt;li&gt;$M$ 上の Initial state と Final state 以外の状態 $q$ と $q$ を経由する遷移 $p \to q \to r$ について、以下の規則を適用して $q$ を取り除く.
-
-&lt;ul&gt;
-&lt;li&gt;$\lbrace (p, L_1, q), (q, L_2, r) \rbrace$ なら $\lbrace (p, L_1 \cdot L_2, r) \rbrace$ と変換.&lt;/li&gt;
-&lt;li&gt;$\lbrace (p, L_1, q), (q, L_2, r), (q, L_3, q) \rbrace$ なら $\lbrace (p, L_1 \cdot L_3 ^* \cdot L_2, r) \rbrace$ と変換.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;$\lbrace (p, L_1, q), (p, L_2, q) \rbrace$ を $\lbrace (p, L_1 \cup L_2, q)$ と変換.&lt;/li&gt;
-&lt;li&gt;これらの変換を Initial state と Final state がそれぞれ一つだけ残るまで繰り返す. これにより構成された $(q_0, L, f)$ の $L$ がこの Finite automaton の accept する Language を表現する Regular language である.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;よって、&lt;/p&gt;
-
-&lt;p&gt;$$
-L _{FA} \subseteq L _{RL}
-$$&lt;/p&gt;
-
-&lt;p&gt;が成立する.&lt;/p&gt;
-
-&lt;h3 id=&#34;regular-language-fa-s-language-1:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Language &amp;lt;=&amp;gt; FA&amp;rsquo;s Language&lt;/h3&gt;
-
-&lt;p&gt;$L _{RL} \subseteq L _{FA}$ かつ $L _{FA} \subseteq L _{RL}$ より $L _{RL} = L _{FA}$ .&lt;br /&gt;
-よって、 Regular language と Finite automaton は対応する.&lt;/p&gt;
-
-&lt;h2 id=&#34;result:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Result&lt;/h2&gt;
-
-&lt;p&gt;以上により、 $L _{RE} = L _{RL} = L _{FA}$ が証明された.&lt;/p&gt;
-
-&lt;p&gt;つまり、任意の Regular expression は Finite automaton で表現され、シミュレートできる.&lt;/p&gt;
-
-&lt;p&gt;Kleene algebra と Regular language の理論により、 Regular expression が 計算可能な Finite automaton の理論と結びついた.&lt;/p&gt;
-
-&lt;p&gt;この周辺分野には Pumping theorem (ポンピング補題)や、
-Finite automaton 以外の Abstract machine などがあるが、
-それは次回にしてそろそろ当初の目的 (Regular expression engine の実装) を終わらせようと思う.&lt;/p&gt;
-
-&lt;p&gt;まぁ正直もう実装なんてしなくてもいいんじゃないかとすら思ってる. ;p&lt;br /&gt;
-Algorithm は上で紹介したので.&lt;/p&gt;
-
-&lt;h1 id=&#34;implementation:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Implementation&lt;/h1&gt;
-
-&lt;p&gt;任意の Regular expression が Finite automaton でシミュレートできることがわかったので、心置きなく実装できる.&lt;/p&gt;
-
-&lt;p&gt;Regular expression engine は Regular expression と記号列を入力として、
-Regular expression に対応する Finite automaton を構築し、
-その Finite automaton を記号列入力を入力テープとして動作させて、
-その結果 (accept するかどうか) で Regular expression が記号列にマッチするかどうかを判定する.&lt;/p&gt;
-
-&lt;h2 id=&#34;ast:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;AST&lt;/h2&gt;
-
-&lt;p&gt;AST の node の Base class と Choice, Concatenation, Kleene star の Node class を定義する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defclass node () ())
-
-(defclass binop (node)
-  ((left :initarg :left
-         :type node
-         :reader node-left)
-   (right :initarg :right
-          :type node
-          :reader node-right)))
-
-(defclass uniop (node)
-  ((operand :initarg :operand
-            :type node
-            :reader node-operand)))
-
-(defclass choice (binop) ())
-
-(defclass concatenation (binop) ())
-
-(defclass kleene-star (uniop) ())
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;parser:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Parser&lt;/h2&gt;
-
-&lt;p&gt;入力文字列を parse して AST を構築する.&lt;/p&gt;
-
-&lt;p&gt;Parser は &lt;a href=&#34;https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%83%E3%82%AF%E3%83%A9%E3%83%83%E3%83%88%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90&#34;&gt;Packrat parsing&lt;/a&gt; (パックラット構文解析) の Common lisp 実装である &lt;a href=&#34;http://nikodemus.github.io/esrap/&#34;&gt;Esrap&lt;/a&gt; を利用する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(use-package :esrap)
-
-(defrule chracter (not (or &amp;quot;*&amp;quot; &amp;quot;|&amp;quot;))
-  (:lambda (char) char))
-
-(defrule choice (and regexp &amp;quot;|&amp;quot; regexp)
-  (:destructure (left bar right)
-    (declare (ignore bar))
-    (make-instance &#39;choice :left left :right right)))
-
-(defrule concatenation (and regexp regexp)
-  (:destructure (left right)
-    (make-instance &#39;concatenation :left left :right right)))
-
-(defrule kleene-star (and regexp &amp;quot;*&amp;quot;)
-  (:destructure (operand star)
-    (declare (ignore star))
-    (make-instance &#39;kleene-star :operand operand)))
-
-(defrule regexp (or kleene-star choice concatenation character))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;fa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;FA&lt;/h2&gt;
-
-&lt;p&gt;Finite automaton の Class を定義する.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defclass state () ())
-
-(defclass fa ()
-  ((initial-state :type state
-                  :initarg :inital-state
-                  :reader fa-initial-state)
-   (final-state-set :type list
-                    :initarg :final-state-set
-                    :reader fa-final-state-set)
-   (transition-function-set :type list
-                            :initarg :transition-function-set
-                            :reader fa-transition-function-set)))
-
-(defclass transition-function ()
-  ((from :type state
-         :initarg :from
-         :reader transition-function-from)
-   (character :type (or character nil)
-              :initarg :character
-              :reader transition-function-character)
-   (to :type state
-       :initarg :to
-       :reader transition-function-to)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;nfa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;NFA&lt;/h2&gt;
-
-&lt;p&gt;AST を元にまずは NFA を構築する.&lt;br /&gt;
-Thompson&amp;rsquo;s construction algorithm を使う.&lt;br /&gt;
-疲れたから解説はしない. code 読めば分かる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defclass nfa (fa) ())
-
-(defgeneric ast2nfa (node))
-
-(defmethod ast2nfa ((character character))
-  (let* ((initial-state (make-instance &#39;state))
-         (final-state (make-instance &#39;state))
-         (final-state-set (list final-state))
-         (transition-function (make-instance &#39;transition-function
-                                             :from initial-state
-                                             :character character
-                                             :to final-state))
-         (transition-function-set (list transition-function)))
-    (make-instance &#39;nfa
-                   :inital-state initial-state
-                   :final-state-set final-state-set
-                   :transition-function-set transition-function-set)))
-
-(defmethod ast2nfa ((choice choice))
-  (let* ((left (ast2nfa (node-left choice)))
-         (right (ast2nfa (node-right choice)))
-         (initial-state (make-instance &#39;state))
-         (final-state (make-instance &#39;state))
-         (final-state-set (list final-state))
-         (transition-function-set
-           (append (fa-transition-function-set left)
-                   (fa-transition-function-set right)
-                   (mapcar #&#39;(lambda (state)
-                               (make-instance &#39;transition-function
-                                              :from initial-state
-                                              :character nil
-                                              :to state))
-                           (mapcar #&#39;fa-initial-state (list left right)))
-                   (mapcar #&#39;(lambda (state)
-                               (make-instance &#39;transition-function
-                                              :from state
-                                              :character nil
-                                              :to final-state))
-                           (mapcan #&#39;fa-final-state-set (list left right))))))
-    (make-instance &#39;fa
-                   :inital-state initial-state
-                   :final-state-set final-state-set
-                   :transition-function-set transition-function-set)))
-
-(defmethod ast2nfa ((concatenation concatenation))
-  (let* ((left (ast2nfa (node-left concatenation)))
-         (right (ast2nfa (node-right concatenation)))
-         (initial-state (fa-initial-state left))
-         (final-state-set (fa-final-state-set right))
-         (transition-function-set
-           (append (fa-transition-function-set left)
-                   (fa-transition-function-set right)
-                   (mapcar #&#39;(lambda (state)
-                               (make-instance &#39;transition-function
-                                              :from state
-                                              :character nil
-                                              :to (fa-initial-state right)))
-                           (fa-final-state-set left)))))
-    (make-instance &#39;fa
-                   :inital-state initial-state
-                   :final-state-set final-state-set
-                   :transition-function-set transition-function-set)))
-
-(defmethod ast2nfa ((kleene-star kleene-star))
-  (let* ((operand (ast2nfa (node-operand kleene-star)))
-         (initial-state (make-instance &#39;state))
-         (final-state (make-instance &#39;state))
-         (final-state-set (list final-state))
-         (transition-function-set
-           (append (list (make-instance &#39;transition-function
-                                        :from initial-state
-                                        :character nil
-                                        :to final-state)
-                         (make-instance &#39;transition-function
-                                        :from initial-state
-                                        :character nil
-                                        :to (fa-initial-state operand)))
-                   (mapcan #&#39;(lambda (state)
-                               (list
-                                (make-instance &#39;transition-function
-                                               :from state
-                                               :character nil
-                                               :to final-state)
-                                (make-instance &#39;transition-function
-                                               :from state
-                                               :character nil
-                                               :to (fa-initial-state operand))))
-                           (fa-final-state-set operand))
-                   (fa-transition-function-set operand))))
-    (make-instance &#39;fa
-                   :inital-state initial-state
-                   :final-state-set final-state-set
-                   :transition-function-set transition-function-set)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;run:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Run&lt;/h2&gt;
-
-&lt;p&gt;Finite automaton を動作させる.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(defun run (nfa string)
-  (let ((length (length string))
-        (j 0))
-    (labels ((accept-p (state)
-               (member state (fa-final-state-set nfa)))
-             (current-char (i)
-               (when (&amp;lt; i length)
-                 (elt string i)))
-             (reachable-states (state character)
-               (mapcar #&#39;transition-function-to
-                       (remove-if-not
-                        #&#39;(lambda (tf)
-                            (and (eq state (transition-function-from tf))
-                                 (eql character (transition-function-character tf))))
-                        (fa-transition-function-set nfa))))
-             (exec (state i)
-               (setq j i)
-               (when (accept-p state)
-                 (return-from run t))
-               (when (current-char i)
-                 (dolist (state (reachable-states state (current-char i)))
-                   (exec state (1+ i))))
-               (dolist (state (reachable-states state nil))
-                 (exec state i))))
-      (exec (fa-initial-state nfa) 0))))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;match:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Match&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(defun match (regexp string)
-  (run (ast2nfa (parse &#39;regexp regexp)) string))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;実際に実行すると、&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-common-lisp&#34;&gt;(match &amp;quot;a&amp;quot; &amp;quot;a&amp;quot;)
-=&amp;gt; T
-
-(match &amp;quot;a&amp;quot; &amp;quot;b&amp;quot;)
-=&amp;gt; NIL
-
-(match &amp;quot;a|bc&amp;quot; &amp;quot;ac&amp;quot;)
-=&amp;gt; T
-
-(match &amp;quot;a|bc&amp;quot; &amp;quot;bc&amp;quot;)
-=&amp;gt; T
-
-(match &amp;quot;a|bc&amp;quot; &amp;quot;bd&amp;quot;)
-=&amp;gt; NIL
-
-(match &amp;quot;a*b&amp;quot; &amp;quot;aaaaab&amp;quot;)
-=&amp;gt; T
-
-(match &amp;quot;a*b&amp;quot; &amp;quot;aaaaac&amp;quot;)
-=&amp;gt; T
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でちゃんとうごいてるっぽい.&lt;/p&gt;
-
-&lt;h1 id=&#34;wrap-up:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Wrap-up&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Regular expression が Finite automaton でシミュレートできることを証明した.&lt;/li&gt;
-&lt;li&gt;実際に NFA でシミュレートを行った.
-
-&lt;ul&gt;
-&lt;li&gt;NFA だと計算効率が悪いから大抵の Engine は NFA =&amp;gt; DFA に変換している.&lt;/li&gt;
-&lt;li&gt;変換方法は &lt;a href=&#34;#nfa-dfa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;NFA =&amp;gt; DFA&lt;/a&gt; で述べたが、実装するならもうちょっと効率的な方法で実装する. ($\epsilon$ 遷移の除去のとことか.)&lt;/li&gt;
-&lt;li&gt;Grouping は実装してない. 読者の宿題とする. ;p&lt;/li&gt;
-&lt;li&gt;Pure regular expression という表現をしたが、 pure かどうかを見分けるのが Pumping theorem により可能となる.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;今回は Finite automaton を構成する方法で実装するが、他にも Backtracking を利用した方法などがある.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;see-also:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;See Also&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://cns-classes.bu.edu/cn550/Readings/mcculloch-pitts-43.pdf&#34;&gt;A Logical Calculus of the Ideas Immanent in Nervous Activity&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf&#34;&gt;Representation of Events in Nerve Nets and Finite Automata&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.cse.chalmers.se/~coquand/AUTOMATA/rs.pdf&#34;&gt;Finite Automata and Their Decision Problems&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.fing.edu.uy/inco/cursos/intropln/material/p419-thompson.pdf&#34;&gt;Regular Expression Search Algorithm&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.amazon.co.jp/gp/product/0201407515/ref=as_li_ss_tl?ie=UTF8&amp;amp;camp=247&amp;amp;creative=7399&amp;amp;creativeASIN=0201407515&amp;amp;linkCode=as2&amp;amp;tag=rudolph-miller-22&#34;&gt;Introduction To Commutative Algebra (Addison-Wesley Series in Mathematics)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.amazon.co.jp/gp/product/4774172707/ref=as_li_ss_tl?ie=UTF8&amp;amp;camp=247&amp;amp;creative=7399&amp;amp;creativeASIN=4774172707&amp;amp;linkCode=as2&amp;amp;tag=rudolph-miller-22&#34;&gt;正規表現技術入門 ――最新エンジン実装と理論的背景 (WEB+DB PRESS plus)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.amazon.co.jp/gp/product/4781909906/ref=as_li_ss_tl?ie=UTF8&amp;amp;camp=247&amp;amp;creative=7399&amp;amp;creativeASIN=4781909906&amp;amp;linkCode=as2&amp;amp;tag=rudolph-miller-22&#34;&gt;形式言語とオートマトン (Information Science &amp;amp; Engineering)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
     
     <item>
       <title>Kaizen Week #3</title>
@@ -4178,6 +3224,182 @@ class CounterButton extends Component {
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;React Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux-simple-router&#34;&gt;redux-simple-router&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Redux Fetch Action</title>
+      <link>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</link>
+      <pubDate>Tue, 15 Dec 2015 12:53:17 +0900</pubDate>
+      
+      <guid>https://blog.rudolph-miller.com/2015/12/15/redux-fetch-action/</guid>
+      <description>
+
+&lt;p&gt;Redux Fetch ActionというReduxのFetch actionのutilityを作った.&lt;/p&gt;
+
+&lt;p&gt;この記事は&lt;a href=&#34;http://qiita.com/advent-calendar/2015/vdom-flux&#34;&gt;仮想DOM/Flux Advent Calendar 2015&lt;/a&gt;の15日目の記事.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#redux-fetch-action:204c7e295a840c149fff4b9b8d704763&#34;&gt;Redux Fetch Action&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#see-also:204c7e295a840c149fff4b9b8d704763&#34;&gt;See Also&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;redux-fetch-action:204c7e295a840c149fff4b9b8d704763&#34;&gt;Redux Fetch Action&lt;/h1&gt;
+
+&lt;h2 id=&#34;why:204c7e295a840c149fff4b9b8d704763&#34;&gt;Why&lt;/h2&gt;
+
+&lt;p&gt;最近&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;を使っているが、DataのFetchが似たようなAction creatorとReducerのpatternになったので、
+切り出してpublishした. (&lt;code&gt;POST&lt;/code&gt; もFetchかよって違和感はある.)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/redux-fetch-action&#34;&gt;Redux Fetch Action&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;FluxのActionには&lt;a href=&#34;https://github.com/acdlite/flux-standard-action&#34;&gt;非公式のCoding規約&lt;/a&gt;があるらしく、
+それに則るため&lt;a href=&#34;https://github.com/acdlite/redux-actions&#34;&gt;redux-actions&lt;/a&gt;をbaseとしている.&lt;/p&gt;
+
+&lt;h2 id=&#34;api:204c7e295a840c149fff4b9b8d704763&#34;&gt;API&lt;/h2&gt;
+
+&lt;p&gt;APIは &lt;code&gt;createFetchAction&lt;/code&gt; と &lt;code&gt;handleFetchAction&lt;/code&gt; がある.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;createFetchAction&lt;/code&gt; はAction creatorを返す.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const FETCH_DATA = &#39;FETCH_DATA&#39;;
+const fetchAction = createFetchAction(FETCH_DATA, &#39;/data.json&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように使用する.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;handleFetchAction&lt;/code&gt; はReducerを返す.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;
+const reducer = handleFetchAction(FETCH_DATA, {
+  request: (state = {}, action) =&amp;gt; {
+    return state;
+  },
+  receive: (state = {}, action) =&amp;gt; {
+    return action.payload;
+  },
+  error: (satet = {}, action) =&amp;gt; {
+    return state;
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように使用する.&lt;/p&gt;
+
+&lt;h2 id=&#34;example:204c7e295a840c149fff4b9b8d704763&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;二つのAPIを合わせ、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import { createStore, applyMiddleware } from &#39;redux&#39;;
+import thunk from &#39;redux-thunk&#39;;
+import { handleActions } from &#39;redux-actions&#39;;
+import { createFetchAction, handleFetchAction } from &#39;redux-fetch-action&#39;;
+import { Server }from &#39;node-static&#39;;
+import { createServer } from &#39;http&#39;;
+
+const file = new Server();
+createServer((request, response)  =&amp;gt; {
+  request.addListener(&#39;end&#39;, () =&amp;gt; {
+    file.serve(request, response);
+  }).resume();
+}).listen(8080);
+
+const FETCH1 = &#39;FETCH1&#39;;
+const FETCH2 = &#39;FETCH2&#39;;
+const FETCH3 = &#39;FETCH3&#39;;
+
+const reducer1 = handleFetchAction(FETCH1, {
+  request: (posts = [], action) =&amp;gt; {
+    console.log(&#39;REQUEST 1&#39;);
+    return posts;
+  },
+  receive: (posts = [], action) =&amp;gt; {
+    console.log(&#39;RECEIVED 1&#39;);
+    console.log(action.payload);
+    return action.payload.posts;
+  },
+  error: (posts = [], action) =&amp;gt; {
+    console.log(&#39;ERROR 1&#39;);
+    return posts;
+  }
+});
+
+const reducer2 = handleFetchAction(FETCH2, {
+  request: (posts = [], action) =&amp;gt; {
+    console.log(&#39;REQUEST 2&#39;);
+    return posts;
+  },
+  receive: (posts = [], action) =&amp;gt; {
+    console.log(&#39;RECEIVED 2&#39;);
+    console.log(action.payload);
+    return action.payload.posts;
+  },
+  error: (posts = [], action) =&amp;gt; {
+    console.log(&#39;ERROR 2&#39;);
+    return posts;
+  }
+});
+
+const reducer3 = handleFetchAction(FETCH3, {
+  request: (posts = [], action) =&amp;gt; {
+    console.log(&#39;REQUEST 3&#39;);
+    return posts;
+  },
+  receive: (posts = [], action) =&amp;gt; {
+    console.log(&#39;RECEIVED 3&#39;);
+    console.log(action.payload);
+    return action.payload.posts;
+  },
+  error: (posts = [], action) =&amp;gt; {
+    console.log(&#39;ERROR 3&#39;);
+    return posts;
+  }
+});
+
+const reducer = handleActions({
+  FETCH1: reducer1,
+  FETCH2: reducer2,
+  FETCH3: reducer3
+}, {});
+
+const store = applyMiddleware(
+  thunk
+)(createStore)(reducer);
+
+const fetchAction1 = createFetchAction(FETCH1, &#39;http://localhost:8080/data.json&#39;);
+const fetchAction2 = createFetchAction(FETCH2, &#39;http://localhost:8080/sample.html&#39;);
+const fetchAction3 = createFetchAction(FETCH3, &#39;http://localhost:8080/unknown.json&#39;);
+
+store.dispatch(fetchAction1());
+store.dispatch(fetchAction2());
+store.dispatch(fetchAction3());
+
+/*
+REQUEST 1
+REQUEST 2
+REQUEST 3
+ERROR 3
+RECEIVED 1
+{ posts:
+   [ { id: 1, text: &#39;Sample text 1&#39; },
+     { id: 2, text: &#39;Sample text 2&#39; } ] }
+RECEIVED 2
+&amp;lt;div&amp;gt;
+  sample
+&amp;lt;/div&amp;gt;
+*/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このようにFetchのhandleができる.&lt;/p&gt;
+
+&lt;h1 id=&#34;see-also:204c7e295a840c149fff4b9b8d704763&#34;&gt;See Also&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Rudolph-Miller/redux-fetch-action&#34;&gt;Redux Fetch Action&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/acdlite/redux-actions&#34;&gt;redux-actions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rackt/redux&#34;&gt;Redux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/yasuhiro-okada-aktsk/items/a14f7f37262fb6cf0bf8&#34;&gt;Redux: Actionのコーディング規約 と redux-actions&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
