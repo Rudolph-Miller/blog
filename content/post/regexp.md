@@ -25,6 +25,7 @@ images = ["/20160608/regexp.png"]
         7. [Pure Regular Expression]({{< relref "#pure-regular-expression" >}})
         8. [Regular Expression => Regular Language]({{< relref "#regular-expression-regular-language" >}})
         9. [Regular Language => Regular Expression]({{< relref "#regular-language-regular-expression-1" >}})
+        10. [Regular Language <=> Regular Expression]({{< relref "#regular-language-regular-expression-2" >}})
     2. [Regular Language & Finite Automaton]({{< relref "#regular-language-finite-automaton" >}})
         1. [Abstract machine]({{< relref "#abstract-machine" >}})
         2. [Finite automaton]({{< relref "#finite-automaton" >}})
@@ -35,6 +36,7 @@ images = ["/20160608/regexp.png"]
               1. [記号列遷移の1記号遷移化]({{< relref "#記号列遷移の1記号遷移化" >}})
               2. [$\epsilon$ 遷移の除去]({{< relref "#epsilon-遷移の除去" >}})
               3. [Subset construction により DFA の構成]({{< relref "#subset-construction-により-dfa-の構成" >}})
+          3. [DFA <=> NFA]({{< relref "#dfa-nfa-1" >}})
         5. [FA's Language]({{< relref "#fa-s-language" >}})
 4. [Implementation]({{< relref "#Implementation" >}})
 5. [See Also]({{< relref "#see-also" >}})
@@ -246,6 +248,8 @@ Regular expression ($E(L)$) の構成法を考える.
 とすることにより、 Regular language に対応する Regular expression を構成可能である.  
 つまり、 $L _{RL} \subseteq L _{RE}$ .
 
+### Regular language <=> Regular expression
+
 $L _{RE} \subseteq L _{RL}$ かつ $L _{RL} \subseteq L _{RE}$ より $L _{RE} = L _{RL}$ .  
 つまり、 Regular expression が定義する Language と Regular language は同じ.
 
@@ -359,8 +363,7 @@ DFA が定義する Language ($L _{DFA}$) と NFA が定義する Language ($L _
 
 #### DFA => NFA
 
-DFA が定義する言語
-NFA の定義は DFA の定義を包含しているため
+DFA が定義する Language を考えると、NFA の定義は DFA の定義を包含しているため
 
 $$
 L _{DFA} \subseteq L _{NFA}
@@ -425,38 +428,55 @@ $$
 L _{NFA} \subseteq L _{DFA}
 $$
 
-が成立する. よって、
+が成立する.
 
-$$
-L _{DFA} = L _{NFA}
-$$
+#### DFA <=> NFA
 
-が証明された.
+$L _{DFA} \subseteq L _{NFA}$ かつ $L _{NFA} \subseteq L _{DFA}$ より $L _{DFA} = L _{NFA}$ .
 
 
 ### FA's Language
 
-Finite automaton が定義する言語は
+Finite automaton が定義する Language の性質を調べる.
 
-加法
-
-乗法
-
-Kleene star
-
-で閉じてる
+- 2つの Finite automaton $M_1$, $M_2$ について、 $M _{\cup}$ を考える.
+    - 新たに Inital state と Final state を追加して、
+      追加した Initial state から $\epsilon$ で $M_1$, $M_2$ の Initial state に遷移し、
+      $M_1$, $M_2$ のすべての Final state から追加した Final state に $\epsilon$ で遷移するように構成し、
+      これを $M _{\cup}$ と呼ぶ.
+    - $M _{\cup}$ が accept する Language ($L(M _{\cup})$) は $L(M _{\cup}) = L(M_1) \cup L(M_2)$ である.
+        - 構成法よりこれが成立することは明らか.
+    - つまり、 $L_1, L_2 \in L _{FA}\ で\ L_1 \cup L_2 \in L _ {FA}$ が成立し、和演算について閉じている.
+- 2つの Finite automaton $M_1$, $M_2$ について、 $M _{\circ}$ を考える.
+    - 新たに Initial state と Final state を追加して、
+      追加した Inital state から $\epsilon$ で $M_1$ の Initial state に遷移し、
+      $M_1$ のすべての Final state から $M_2$ の Initial state に $\epsilon$ で遷移し、
+      $M_2$ のすべての Final state から追加した Final state に $\epsilon$ で遷移するように構成し、
+      これを $M _{\circ}$ と呼ぶ.
+    - $M _{\circ}$ が accept する Language ($L(M _{\circ})$) は $L(M _{\circ}) = L(M_1) \circ L(M_2)$ である.
+        - 構成法よりこれが成立することは明らか.
+    - つまり、 $L_1, L_2 \in L _{FA}\ で\ L_1 \circ L_2 \in L _ {FA}$ が成立し、連結演算について閉じている.
+- 2つの Finite automaton $M$ について、 $M _{^*}$ を考える.
+    - 新たに Initial state と Final state を追加して、
+      追加した Inital state から $\epsilon$ で $M$ の Initial state に遷移し、
+      $M$ のすべての Final state から追加した Final state に $\epsilon$ で遷移し、
+      追加した Inital state と Final state が互いに $\epsilon$ で遷移するように構成し、
+      これを $M _{^*}$ と呼ぶ.
+    - $M _{^*}$ が accept する Language ($L(M _{^ *})$) は $L(M _{^ *}) = L(M _1) ^ *$ である.
+        - 構成法よりこれが成立することは明らか.
+    - つまり、 $L \in L _{FA}\ で\ L^* \in L _ {FA}$ が成立し、 Kleene star 演算について閉じている.
 
 
 ### Regular Lanugage => FA's Language
 
-任意の Regular language からその言語を accept する Finite automaton を構成する.
+任意の Regular language からその Language を accept する Finite automaton を構成する.
 
-Regular expression engine 作るだけならこっちだけいっとけばいい.
+
 
 
 ### FA's Language => Regular Language
 
-Finite automaton の accept する言語を Regular language で表現する.
+Finite automaton の accept する Language を Regular language で表現する.
 
 
 よって Regular language と Finite automaton は対応する.
