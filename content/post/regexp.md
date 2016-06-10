@@ -43,10 +43,18 @@ images = ["/20160608/regexp.png"]
         8. [Regular Language <=> FA's Language]({{< relref "#regular-language-fa-s-language-1" >}})
     3. [Result]({{< relref "#result" >}})
 4. [Implementation]({{< relref "#Implementation" >}})
-5. [See Also]({{< relref "#see-also" >}})
+    1. [AST]({{< relref "#ast" >}})
+    2. [Parser]({{< relref "#parser" >}})
+    3. [FA]({{< relref "#fa" >}})
+    4. [NFA]({{< relref "#nfa" >}})
+    5. [Run]({{< relref "#run" >}})
+    6. [Match]({{< relref "#match" >}})
+5. [Wrap-up]({{< relref "#wrap-up" >}})
+6. [See Also]({{< relref "#see-also" >}})
+
 
 そういえば正規表現エンジン作ったことないやと思ったので作ってみた.  
-ついでに正規表現、形式言語、オートマトンの関係の解説記事がみあたらなかったのでまとめてみた.
+ついでに正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでまとめてみた.
 
 
 # Regular Expression
@@ -55,7 +63,7 @@ Regular expression (正規表現) は文字列のパターンの表現.
 
 regular (正規) に深い意味はないらしい.
 というか "regular" に "正規" って訳語は違和感しかない.
-数学では "正則" で統一されている (はず) .
+数学では "正則" が定訳なはず.
 
 
 # History
@@ -536,24 +544,295 @@ Kleene algebra と Regular language の理論により、 Regular expression が
 
 この周辺分野には Pumping theorem (ポンピング補題)や、
 Finite automaton 以外の Abstract machine などがあるが、 
-それは次回にしてそろそろ当初の目的 (Regular expression engine の実装) を終わらせようと思う.  
-(正直もう実装なんてしなくてもいいんじゃないかとすら思ってる. ;p  
-Regular language => Finite automaton の Language と NFA => DFA で algorithm は出尽くしてるし.)
+それは次回にしてそろそろ当初の目的 (Regular expression engine の実装) を終わらせようと思う.
+
+まぁ正直もう実装なんてしなくてもいいんじゃないかとすら思ってる. ;p  
+Algorithm は上で紹介したので.
 
 
 # Implementation
 
 任意の Regular expression が Finite automaton でシミュレートできることがわかったので、心置きなく実装できる.
 
+Regular expression engine は Regular expression と記号列を入力として、
+Regular expression に対応する Finite automaton を構築し、
+その Finite automaton を記号列入力を入力テープとして動作させて、
+その結果 (accept するかどうか) で Regular expression が記号列にマッチするかどうかを判定する.
+
+
 ## AST
 
-加法、乗法、Kleene star
+AST の node の Base class と Choice, Concatenation, Kleene star の Node class を定義する.
+
+```common-lisp
+(defclass node () ())
+
+(defclass binop (node)
+  ((left :initarg :left
+         :type node
+         :reader node-left)
+   (right :initarg :right
+          :type node
+          :reader node-right)))
+
+(defclass uniop (node)
+  ((operand :initarg :operand
+            :type node
+            :reader node-operand)))
+
+(defclass choice (binop) ())
+
+(defclass concatenation (binop) ())
+
+(defclass kleene-star (uniop) ())
+```
+
 
 ## Parser
 
+入力文字列を parse して AST を構築する.
+
+Parser は [Packrat parsing](https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%83%E3%82%AF%E3%83%A9%E3%83%83%E3%83%88%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90) (パックラット構文解析) の Common lisp 実装である [Esrap](http://nikodemus.github.io/esrap/) を利用する.
+
+```common-lisp
+(use-package :esrap)
+
+(defrule chracter (not (or "*" "|"))
+  (:lambda (char) char))
+
+(defrule choice (and regexp "|" regexp)
+  (:destructure (left bar right)
+    (declare (ignore bar))
+    (make-instance 'choice :left left :right right)))
+
+(defrule concatenation (and regexp regexp)
+  (:destructure (left right)
+    (make-instance 'concatenation :left left :right right)))
+
+(defrule kleene-star (and regexp "*")
+  (:destructure (operand star)
+    (declare (ignore star))
+    (make-instance 'kleene-star :operand operand)))
+
+(defrule regexp (or kleene-star choice concatenation character))
+```
+
+
+## FA
+
+Finite automaton の Class を定義する.
+
+```common-lisp
+(defclass state () ())
+
+(defclass fa ()
+  ((initial-state :type state
+                  :initarg :inital-state
+                  :reader fa-initial-state)
+   (final-state-set :type list
+                    :initarg :final-state-set
+                    :reader fa-final-state-set)
+   (transition-function-set :type list
+                            :initarg :transition-function-set
+                            :reader fa-transition-function-set)))
+
+(defclass transition-function ()
+  ((from :type state
+         :initarg :from
+         :reader transition-function-from)
+   (character :type (or character nil)
+              :initarg :character
+              :reader transition-function-character)
+   (to :type state
+       :initarg :to
+       :reader transition-function-to)))
+```
+
 ## NFA
 
-## DFA
+AST を元にまずは NFA を構築する.  
+Thompson's construction algorithm を使う.  
+疲れたから解説はしない. code 読めば分かる.
+
+```common-lisp
+(defclass nfa (fa) ())
+
+(defgeneric ast2nfa (node))
+
+(defmethod ast2nfa ((character character))
+  (let* ((initial-state (make-instance 'state))
+         (final-state (make-instance 'state))
+         (final-state-set (list final-state))
+         (transition-function (make-instance 'transition-function
+                                             :from initial-state
+                                             :character character
+                                             :to final-state))
+         (transition-function-set (list transition-function)))
+    (make-instance 'nfa
+                   :inital-state initial-state
+                   :final-state-set final-state-set
+                   :transition-function-set transition-function-set)))
+
+(defmethod ast2nfa ((choice choice))
+  (let* ((left (ast2nfa (node-left choice)))
+         (right (ast2nfa (node-right choice)))
+         (initial-state (make-instance 'state))
+         (final-state (make-instance 'state))
+         (final-state-set (list final-state))
+         (transition-function-set
+           (append (fa-transition-function-set left)
+                   (fa-transition-function-set right)
+                   (mapcar #'(lambda (state)
+                               (make-instance 'transition-function
+                                              :from initial-state
+                                              :character nil
+                                              :to state))
+                           (mapcar #'fa-initial-state (list left right)))
+                   (mapcar #'(lambda (state)
+                               (make-instance 'transition-function
+                                              :from state
+                                              :character nil
+                                              :to final-state))
+                           (mapcan #'fa-final-state-set (list left right))))))
+    (make-instance 'fa
+                   :inital-state initial-state
+                   :final-state-set final-state-set
+                   :transition-function-set transition-function-set)))
+
+(defmethod ast2nfa ((concatenation concatenation))
+  (let* ((left (ast2nfa (node-left concatenation)))
+         (right (ast2nfa (node-right concatenation)))
+         (initial-state (fa-initial-state left))
+         (final-state-set (fa-final-state-set right))
+         (transition-function-set
+           (append (fa-transition-function-set left)
+                   (fa-transition-function-set right)
+                   (mapcar #'(lambda (state)
+                               (make-instance 'transition-function
+                                              :from state
+                                              :character nil
+                                              :to (fa-initial-state right)))
+                           (fa-final-state-set left)))))
+    (make-instance 'fa
+                   :inital-state initial-state
+                   :final-state-set final-state-set
+                   :transition-function-set transition-function-set)))
+
+(defmethod ast2nfa ((kleene-star kleene-star))
+  (let* ((operand (ast2nfa (node-operand kleene-star)))
+         (initial-state (make-instance 'state))
+         (final-state (make-instance 'state))
+         (final-state-set (list final-state))
+         (transition-function-set
+           (append (list (make-instance 'transition-function
+                                        :from initial-state
+                                        :character nil
+                                        :to final-state)
+                         (make-instance 'transition-function
+                                        :from initial-state
+                                        :character nil
+                                        :to (fa-initial-state operand)))
+                   (mapcan #'(lambda (state)
+                               (list
+                                (make-instance 'transition-function
+                                               :from state
+                                               :character nil
+                                               :to final-state)
+                                (make-instance 'transition-function
+                                               :from state
+                                               :character nil
+                                               :to (fa-initial-state operand))))
+                           (fa-final-state-set operand))
+                   (fa-transition-function-set operand))))
+    (make-instance 'fa
+                   :inital-state initial-state
+                   :final-state-set final-state-set
+                   :transition-function-set transition-function-set)))
+```
+
+## Run
+
+Finite automaton を動作させる.
+
+```
+(defun run (nfa string)
+  (let ((length (length string))
+        (j 0))
+    (labels ((accept-p (state)
+               (member state (fa-final-state-set nfa)))
+             (current-char (i)
+               (when (< i length)
+                 (elt string i)))
+             (reachable-states (state character)
+               (mapcar #'transition-function-to
+                       (remove-if-not
+                        #'(lambda (tf)
+                            (and (eq state (transition-function-from tf))
+                                 (eql character (transition-function-character tf))))
+                        (fa-transition-function-set nfa))))
+             (exec (state i)
+               (setq j i)
+               (when (accept-p state)
+                 (return-from run t))
+               (when (current-char i)
+                 (dolist (state (reachable-states state (current-char i)))
+                   (exec state (1+ i))))
+               (dolist (state (reachable-states state nil))
+                 (exec state i))))
+      (exec (fa-initial-state nfa) 0))))
+```
+
+
+## Match
+
+```common-lisp
+(defun match (regexp string)
+  (run (ast2nfa (parse 'regexp regexp)) string))
+```
+
+実際に実行すると、
+
+```common-lisp
+(match "a" "a")
+=> T
+
+(match "a" "b")
+=> NIL
+
+(match "a|bc" "ac")
+=> T
+
+(match "a|bc" "bc")
+=> T
+
+(match "a|bc" "bd")
+=> NIL
+
+(match "a*b" "aaaaab")
+=> T
+
+(match "a*b" "aaaaac")
+=> T
+```
+
+でちゃんとうごいてるっぽい.
+
+
+# Wrap-up
+
+- Regular expression が Finite automaton でシミュレートできることを証明した.
+- 実際に NFA でシミュレートを行った.
+    - NFA だと計算効率が悪いから大抵の Engine は NFA => DFA に変換している.
+    - 変換方法は [NFA => DFA]({{< relref "#nfa-dfa" >}}) で述べたが、実装するならもうちょっと効率的な方法で実装する. ($\epsilon$ 遷移の除去のとことか.)
+- 今回は Finite automaton を構成する方法で実装するが、他にも Backtracking を利用した方法などがある.
 
 
 # See Also
+
+- [A Logical Calculus of the Ideas Immanent in Nervous Activity](http://cns-classes.bu.edu/cn550/Readings/mcculloch-pitts-43.pdf)
+- [Representation of Events in Nerve Nets and Finite Automata](https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf)
+- [Finite Automata and Their Decision Problems](http://www.cse.chalmers.se/~coquand/AUTOMATA/rs.pdf)
+- [Regular Expression Search Algorithm](http://www.fing.edu.uy/inco/cursos/intropln/material/p419-thompson.pdf)
+- [Introduction To Commutative Algebra (Addison-Wesley Series in Mathematics)](http://www.amazon.co.jp/gp/product/0201407515/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=0201407515&linkCode=as2&tag=rudolph-miller-22)
+- [正規表現技術入門 ――最新エンジン実装と理論的背景 (WEB+DB PRESS plus)](http://www.amazon.co.jp/gp/product/4774172707/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4774172707&linkCode=as2&tag=rudolph-miller-22)
+- [形式言語とオートマトン (Information Science & Engineering)](http://www.amazon.co.jp/gp/product/4781909906/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4781909906&linkCode=as2&tag=rudolph-miller-22)
