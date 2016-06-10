@@ -2,7 +2,7 @@
 Description = "正規表現エンジンの作り方 (と形式言語とオートマトン)."
 Tags = ["Common Lisp", "RegExp", "Math"]
 date = "2016-06-11T01:06:26+09:00"
-draft = false
+draft = true
 images = ["/20160608/regexp.png"]
 slug = "create-regexp-engine"
 title = "Create Regular Expression Engine"
