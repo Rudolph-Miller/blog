@@ -38,6 +38,10 @@ images = ["/20160608/regexp.png"]
               3. [Subset construction により DFA の構成]({{< relref "#subset-construction-により-dfa-の構成" >}})
           3. [DFA <=> NFA]({{< relref "#dfa-nfa-1" >}})
         5. [FA's Language]({{< relref "#fa-s-language" >}})
+        6. [Regular Language => FA's Language]({{< relref "#regular-language-fa-s-language" >}})
+        7. [FA's Language => Regular Language]({{< relref "#fa-s-language-regular-language" >}})
+        8. [Regular Language <=> FA's Language]({{< relref "#regular-language-fa-s-language-1" >}})
+    3. [Result]({{< relref "#result" >}})
 4. [Implementation]({{< relref "#Implementation" >}})
 5. [See Also]({{< relref "#see-also" >}})
 
@@ -101,7 +105,8 @@ Regular expression と Finite automaton の関係について Regular language �
 
 ## Regular Language & Regular Expression
 
-Regular Language と Regular Expression の定義と関係.
+まずは Regular Language の定義 (とその前提知識の定義) と、
+Regular language と Regular Expression の関係.
 
 
 ### Ring
@@ -199,6 +204,7 @@ $\Sigma$ 上の Language $L$ に Kleene algebra を展開する.
 
 これらを満たす Language をRelugar language (正規言語, $L_{RL}$) と呼ぶ.
 
+
 ### Pure Regular Expression
 
 pure な Regular expression は文字と3つの基本演算で定義される.  
@@ -220,6 +226,7 @@ Regular expression ($E$) は次の Grammer (文法) に従う.
 - $E_1, E_2 \subseteq E\ で\ E_1E_2 \subseteq E$
 - $E1 \subseteq E\ で\ E1* \subseteq E$
 
+
 ### Regular Expression => Regular Language
 
 Regular expression ($E$) が定義する $\Sigma$ 上の Language ($L(E)$)を考える.
@@ -228,7 +235,7 @@ Regular expression ($E$) が定義する $\Sigma$ 上の Language ($L(E)$)を考
 - $\forall \sigma \in \Sigma\ で\ E = \sigma\ なら\ L(E) = \lbrace \sigma \rbrace$
 - $E_1, E_2 \subseteq E\ で\ E = E_1|E_2\ なら\ L(E) = L(E_1) \cup L(E_2)$
 - $E_1, E_2 \subseteq E\ で\ E = E_1E_2\ なら\ L(E) = L(E_1) \cdot L(E_2)$
-- $E_1 \subseteq E\ で\ E = E1*\ なら\ L(E) = L(E1)^*$
+- $E_1 \subseteq E\ で\ E = E_1*\ なら\ L(E) = L(E1)^ *$
 
 これが与える Language を $L_{RE}$ とすると、上の定義より $L _{RE} \subseteq L _{RL}$ がわかる.  
 つまり、 Regular expression が与えられると必ず対応する Regular language が存在することがわかる.
@@ -248,6 +255,7 @@ Regular expression ($E(L)$) の構成法を考える.
 とすることにより、 Regular language に対応する Regular expression を構成可能である.  
 つまり、 $L _{RL} \subseteq L _{RE}$ .
 
+
 ### Regular language <=> Regular expression
 
 $L _{RE} \subseteq L _{RL}$ かつ $L _{RL} \subseteq L _{RE}$ より $L _{RE} = L _{RL}$ .  
@@ -255,6 +263,10 @@ $L _{RE} \subseteq L _{RL}$ かつ $L _{RL} \subseteq L _{RE}$ より $L _{RE} =
 
 
 ## Regular Language & Finite Automaton
+
+Finite automaton の定義 (とその前提知識の定義) と、
+Regular language と Finite automaton の関係.
+
 
 ### Abstract machine
 
@@ -295,6 +307,7 @@ Turing machine | 制御機構、入力テープ、作業テープ
 Finite automaton (FA, 有限オートマトン, Finite State Machine, FSM, 有限状態機械) は Abstract machine の一つで、制御機構と入力テープの二つから構成される. 状態遷移は現状態と入力記号の2つにより決定される. つまり、状態遷移は現状態と入力記号と次状態の3要素の組の集合として定義される.
 
 deterministic な Finite automaton を Deterministic finite automaton (DFA, 決定性有限オートマトン)、 non-Deterministic なものを Non-deterministic finite automaton (NFA, 非決定性有限オートマトン) と呼ぶ.
+
 
 ### Deterministic Finite Automaton
 
@@ -430,6 +443,7 @@ $$
 
 が成立する.
 
+
 #### DFA <=> NFA
 
 $L _{DFA} \subseteq L _{NFA}$ かつ $L _{NFA} \subseteq L _{DFA}$ より $L _{DFA} = L _{NFA}$ .
@@ -467,7 +481,7 @@ Finite automaton が定義する Language の性質を調べる.
     - つまり、 $L \in L _{FA}\ で\ L^* \in L _ {FA}$ が成立し、 Kleene star 演算について閉じている.
 
 
-### Regular Lanugage => FA's Language
+### Regular Language => FA's Language
 
 任意の Regular language ($L$) からその Language を accept する Finite automaton ($M$) を構成する.
 
@@ -476,7 +490,7 @@ Finite automaton が定義する Language の性質を調べる.
 - $\sigma \in \Sigma\ で\ L = \lbrace \sigma \rbrace$ なら $M_1 = (\lbrace q_0, q_1 \rbrace, \Sigma, \lbrace (q_0, \sigma, q_1) \rbrace, q_0, \lbrace q_1 \rbrace)$ が対応する.
 - [FA's Language]({{< relref "#fa-s-language" >}}) で述べた $L_{FA}$ の性質より、 Regular language $L_1$, $L_2$ が Finite automaton で定義可能なら、 $L_1 \cup L_2$, $L_1 \circ L_2$, $L_1^*$ も Finite automaton で定義可能. Regular language はこれらの操作のみで構成されるので、すべての Regular language について対応する Finite automaton が存在する.
 
-よって
+よって、
 
 $$
 L _{RL} \subseteq L _{FA}
@@ -487,21 +501,49 @@ $$
 
 ### FA's Language => Regular Language
 
-Finite automaton の accept する Language を Regular language で表現する.
+Finite automaton ($M$) の accept する Language を Regular language ($L$) で表現する.
+
+- $M$ に必要であれば Initial state と Final state を一つ追加し、それぞれもとの Initial state と Final state と $\epsilon$ 遷移で接続し、 $M$ の Inital state と Final state がそれぞれ唯一つとなるようにする.
+- $M$ 上の $\delta$ のすべての要素 $(q, \sigma, q')$ を Regular launguage $L = \lbrace \sigma \rbrace$ での遷移とみなし、 $(q, L, q')$ と表記する.
+- $M$ 上の Initial state と Final state 以外の状態 $q$ と $q$ を経由する遷移 $p \to q \to r$ について、以下の規則を適用して $q$ を取り除く.
+    - $\lbrace (p, L_1, q), (q, L_2, r) \rbrace$ なら $\lbrace (p, L_1 \cdot L_2, r) \rbrace$ と変換.
+    - $\lbrace (p, L_1, q), (q, L_2, r), (q, L_3, q) \rbrace$ なら $\lbrace (p, L_1 \cdot L_3 ^* \cdot L_2, r) \rbrace$ と変換.
+- $\lbrace (p, L_1, q), (p, L_2, q) \rbrace$ を $\lbrace (p, L_1 \cup L_2, q)$ と変換.
+- これらの変換を Initial state と Final state がそれぞれ一つだけ残るまで繰り返す. これにより構成された $(q_0, L, f)$ の $L$ がこの Finite automaton の accept する Language を表現する Regular language である.
+
+よって、
+
+$$
+L _{FA} \subseteq L _{RL}
+$$
+
+が成立する.
 
 
-よって Regular language と Finite automaton は対応する.
+### Regular Language <=> FA's Language
 
----
+$L _{RL} \subseteq L _{FA}$ かつ $L _{FA} \subseteq L _{RL}$ より $L _{RL} = L _{FA}$ .  
+よって、 Regular language と Finite automaton は対応する.
 
-このあと Pumping theorem (ポンピング補題) の説明をしたり、
-Finite automaton 以外の Abstract machine の紹介をしたりしてもいいけど、
-そろそろ当初の Regular expression engine の実装をして終わらせようと思う.  
-(正直、もう実装なんてしなくてもいいんじゃないかとすら思ってる.  
+
+## Result
+
+以上により、 $L _{RE} = L _{RL} = L _{FA}$ が証明された.
+
+つまり、任意の Regular expression は Finite automaton で表現され、シミュレートできる.
+
+Kleene algebra と Regular language の理論により、 Regular expression が 計算可能な Finite automaton の理論と結びついた.
+
+この周辺分野には Pumping theorem (ポンピング補題)や、
+Finite automaton 以外の Abstract machine などがあるが、 
+それは次回にしてそろそろ当初の目的 (Regular expression engine の実装) を終わらせようと思う.  
+(正直もう実装なんてしなくてもいいんじゃないかとすら思ってる. ;p  
 Regular language => Finite automaton の Language と NFA => DFA で algorithm は出尽くしてるし.)
 
 
 # Implementation
+
+任意の Regular expression が Finite automaton でシミュレートできることがわかったので、心置きなく実装できる.
 
 ## AST
 
