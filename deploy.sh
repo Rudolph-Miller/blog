@@ -3,6 +3,7 @@ git fetch origin gh-pages
 git reset --hard FETCH_HEAD
 git checkout gh-pages
 git merge origin/master --ff --no-edit --no-commit
+rm -rf 2015 2016 page post slide categories tags
 HUGO_ENV=production hugo
 mv public/* ./
 cp -rf public/* ./
