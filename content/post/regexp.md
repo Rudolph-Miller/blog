@@ -10,7 +10,7 @@ draft = false
 >>>>>>> origin/master
 images = ["/20160608/regexp.png"]
 slug = "create-regexp-engine"
-title = "Create Regular Expression Engine"
+title = "Regular Expression Engine (and Regular Language and Automaton)"
 +++
 
 正規表現エンジンの作り方 (と形式言語とオートマトン).
