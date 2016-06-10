@@ -81,7 +81,7 @@
 &lt;/ol&gt;
 
 &lt;p&gt;そういえば正規表現エンジン作ったことないやと思ったので作ってみた.&lt;br /&gt;
-ついでに正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでまとめてみた.&lt;/p&gt;
+正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでついでにまとめてみた.&lt;/p&gt;
 
 &lt;h1 id=&#34;regular-expression:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Regular Expression&lt;/h1&gt;
 
@@ -944,6 +944,8 @@ Thompson&amp;rsquo;s construction algorithm を使う.&lt;br /&gt;
 &lt;ul&gt;
 &lt;li&gt;NFA だと計算効率が悪いから大抵の Engine は NFA =&amp;gt; DFA に変換している.&lt;/li&gt;
 &lt;li&gt;変換方法は &lt;a href=&#34;#nfa-dfa:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;NFA =&amp;gt; DFA&lt;/a&gt; で述べたが、実装するならもうちょっと効率的な方法で実装する. ($\epsilon$ 遷移の除去のとことか.)&lt;/li&gt;
+&lt;li&gt;Grouping は実装してない. 読者の宿題とする. ;p&lt;/li&gt;
+&lt;li&gt;Pure regular expression という表現をしたが、 pure かどうかを見分けるのが Pumping theorem により可能となる.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;今回は Finite automaton を構成する方法で実装するが、他にも Backtracking を利用した方法などがある.&lt;/li&gt;
 &lt;/ul&gt;

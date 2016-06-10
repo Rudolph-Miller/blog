@@ -54,7 +54,7 @@ title = "Create Regular Expression Engine"
 
 
 そういえば正規表現エンジン作ったことないやと思ったので作ってみた.  
-ついでに正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでまとめてみた.
+正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでついでにまとめてみた.
 
 
 # Regular Expression
@@ -824,6 +824,8 @@ Finite automaton を動作させる.
 - 実際に NFA でシミュレートを行った.
     - NFA だと計算効率が悪いから大抵の Engine は NFA => DFA に変換している.
     - 変換方法は [NFA => DFA]({{< relref "#nfa-dfa" >}}) で述べたが、実装するならもうちょっと効率的な方法で実装する. ($\epsilon$ 遷移の除去のとことか.)
+    - Grouping は実装してない. 読者の宿題とする. ;p
+    - Pure regular expression という表現をしたが、 pure かどうかを見分けるのが Pumping theorem により可能となる.
 - 今回は Finite automaton を構成する方法で実装するが、他にも Backtracking を利用した方法などがある.
 
 

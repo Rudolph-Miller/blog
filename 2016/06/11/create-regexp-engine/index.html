@@ -195,7 +195,7 @@
 </ol>
 
 <p>そういえば正規表現エンジン作ったことないやと思ったので作ってみた.<br />
-ついでに正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでまとめてみた.</p>
+正規表現、形式言語、オートマトンの関係 (の数学的定義と証明) の記事がみあたらなかったのでついでにまとめてみた.</p>
 
 <h1 id="regular-expression:eace75608fd5b13965fa1c8e5f358f72">Regular Expression</h1>
 
@@ -1058,6 +1058,8 @@ Thompson&rsquo;s construction algorithm を使う.<br />
 <ul>
 <li>NFA だと計算効率が悪いから大抵の Engine は NFA =&gt; DFA に変換している.</li>
 <li>変換方法は <a href="#nfa-dfa:eace75608fd5b13965fa1c8e5f358f72">NFA =&gt; DFA</a> で述べたが、実装するならもうちょっと効率的な方法で実装する. ($\epsilon$ 遷移の除去のとことか.)</li>
+<li>Grouping は実装してない. 読者の宿題とする. ;p</li>
+<li>Pure regular expression という表現をしたが、 pure かどうかを見分けるのが Pumping theorem により可能となる.</li>
 </ul></li>
 <li>今回は Finite automaton を構成する方法で実装するが、他にも Backtracking を利用した方法などがある.</li>
 </ul>
