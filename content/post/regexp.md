@@ -14,7 +14,7 @@ title = "Create Regular Expression Engine"
 +++
 
 正規表現エンジンの作り方 (と形式言語とオートマトン).  
-数式多めなのでPCでの閲覧を推奨.
+(数式多めなのでPCでの閲覧を推奨.)
 
 
 <!--more-->
