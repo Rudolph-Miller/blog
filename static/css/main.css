@@ -137,6 +137,11 @@ a.btn-me:hover {
   content: "λ"
 }
 
+.header-social-buttons {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
 /* Footer */
 
 .global-footer {
