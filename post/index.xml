@@ -239,7 +239,9 @@ $$&lt;/p&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;これらを満たす Language をRelugar language (正規言語, $L_{RL}$) と呼ぶ.&lt;/p&gt;
+&lt;p&gt;これらを満たす Language をRelugar language (正規言語, $L&lt;em&gt;{RL}$) と呼ぶ.&lt;br /&gt;
+$L&lt;/em&gt;{RL}$ は Family of regular language (正規言語族, 正規言語の集合) を意味する.&lt;br /&gt;
+(以下でこれを &amp;ldquo;言語族&amp;rdquo; と呼ばず、単に &amp;ldquo;言語&amp;rdquo; と呼んでいるが、この style で書いてある場合それは &amp;ldquo;族&amp;rdquo; を表す.)&lt;/p&gt;
 
 &lt;h3 id=&#34;pure-regular-expression:eace75608fd5b13965fa1c8e5f358f72&#34;&gt;Pure Regular Expression&lt;/h3&gt;
 
