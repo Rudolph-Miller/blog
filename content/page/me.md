@@ -8,9 +8,15 @@ slug = "me"
 +++
 
 1. [Bio]({{< relref "#bio" >}})
-2. [Social]({{< relref "#social" >}})
-3. [Works]({{< relref "#works" >}})
-4. [Media]({{< relref "#media" >}})
+2. [Projects]({{< relref "#projects" >}})
+    1. [サムライト株式会社]({{< relref "#サムライト株式会社" >}})
+    2. [Kaizen Platform, Inc.]({{< relref "#kaizen-platform-inc" >}})
+3. [Social]({{< relref "#social" >}})
+4. [Works]({{< relref "#works" >}})
+5. [Media]({{< relref "#media" >}})
+
+HN: Rudolph Miller  
+本名: 河西 智哉
 
 Software Engineer in Tokyo, Japan.
 
