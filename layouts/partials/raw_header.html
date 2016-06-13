@@ -9,6 +9,7 @@
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@Rudolph_Miller" />
+  <meta name="twitter:image" content='{{ "/images/logo.png" | absURL }}' />
 
   <meta property="og:site_name" content="{{ .Site.Title }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
@@ -22,11 +23,9 @@
     {{ if ge $imageLen 0 }}
       {{ with .Params.images }}{{ range first 5 . }}
         <meta property="og:image" content='{{ (print "images" .) | absURL }}' />
-        <meta name="twitter:image" content='{{ (print "images" .) | absURL }}' />
       {{ end }}{{ end }}
     {{ else }}
       <meta property="og:image" content='{{ "/images/logo.png" | absURL }}' />
-      <meta name="twitter:image" content='{{ "/images/logo.png" | absURL }}' />
     {{ end }}
   {{ end }}
   {{ if .IsPage }}
