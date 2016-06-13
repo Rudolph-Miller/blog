@@ -13,6 +13,7 @@
   <meta property="og:site_name" content="{{ .Site.Title }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
   {{ with .Description }}
+  <meta name="description" content="{{ . }}" />
   <meta property="og:description" content="{{ . }}" />
   <meta name="twitter:description" content="{{ . }}" />
   {{ end }}
@@ -47,9 +48,6 @@
   <title>
     {{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}
   </title>
-  {{ with .Description }}
-  <meta name="description" content="{{ . }}" />
-  {{ end }}
 
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/main.css" />
