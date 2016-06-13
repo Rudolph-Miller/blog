@@ -1,13 +1,8 @@
 +++
 Description = "正規表現エンジンの作り方 (と形式言語とオートマトン)."
 Tags = ["Common Lisp", "RegExp", "Math"]
-<<<<<<< HEAD
-date = "2016-06-11T01:06:26+09:00"
-draft = true
-=======
 date = "2016-06-11T08:01:45+09:00"
 draft = false
->>>>>>> origin/master
 images = ["/20160608/regexp.png"]
 slug = "create-regexp-engine"
 title = "Create Regular Expression Engine"
