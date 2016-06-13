@@ -4,7 +4,7 @@ git reset --hard FETCH_HEAD
 git checkout gh-pages
 git merge origin/master --ff --no-edit --no-commit
 rm -rf 2015 2016 page post slide categories tags
-HUGO_ENV=production hugo
+HUGO_ENV=production hugo || exit 1;
 mv public/* ./
 cp -rf public/* ./
 rm -rf highlight-lisp/.git
