@@ -212,7 +212,9 @@ $\Sigma$ 上の Language $L$ に Kleene algebra を展開する.
         - $A^* = \lbrace \epsilon \rbrace \cup A \cup A \cdot A \cup \cdots$
         - Kleene closure (クリーネ閉包) と呼ぶ.
 
-これらを満たす Language をRelugar language (正規言語, $L_{RL}$) と呼ぶ.
+これらを満たす Language をRelugar language (正規言語, $L_{RL}$) と呼ぶ.  
+$L_{RL}$ は Family of regular language (正規言語族, 正規言語の集合) を意味する.  
+(以下でこれを "言語族" と呼ばず、単に "言語" と呼んでいるが、この style で書いてある場合それは "族" を表す.)
 
 
 ### Pure Regular Expression
