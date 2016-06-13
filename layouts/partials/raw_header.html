@@ -3,23 +3,29 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="{{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}" />
   {{ with .Site.Params.themecolor }}
   <meta name="theme-color" content="{{ . }}" />
   {{ end }}
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@Rudolph_Miller" />
+
   <meta property="og:site_name" content="{{ .Site.Title }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
   {{ with .Description }}
   <meta property="og:description" content="{{ . }}" />
+  <meta name="twitter:description" content="{{ . }}" />
   {{ end }}
   {{ if .Params.images }}
     {{ $imageLen := len .Params.images }}
     {{ if ge $imageLen 0 }}
       {{ with .Params.images }}{{ range first 5 . }}
         <meta property="og:image" content='{{ (print "images" .) | absURL }}' />
+        <meta name="twitter:image" content='{{ (print "images" .) | absURL }}' />
       {{ end }}{{ end }}
     {{ else }}
       <meta property="og:image" content='{{ "/images/logo.png" | absURL }}' />
+      <meta name="twitter:image" content='{{ "/images/logo.png" | absURL }}' />
     {{ end }}
   {{ end }}
   {{ if .IsPage }}
@@ -35,6 +41,9 @@
   <meta property="og:type" content="website" />
   {{ end }}
 
+
+  <meta name="twitter:title" content="{{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}" />
+  <meta property="og:title" content="{{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}" />
   <title>
     {{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}
   </title>
