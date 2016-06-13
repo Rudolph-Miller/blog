@@ -12,19 +12,15 @@
   {{ with .Description }}
   <meta property="og:description" content="{{ . }}" />
   {{ end }}
-  {{ $withImage := false }}
   {{ if .Params.images }}
     {{ $imageLen := len .Params.images }}
     {{ if ge $imageLen 0 }}
-      {{ $withImage := true }}
+      {{ with .Params.images }}{{ range first 5 . }}
+        <meta property="og:image" content='{{ (print "images" .) | absURL }}' />
+      {{ end }}{{ end }}
+    {{ else }}
+      <meta property="og:image" content='{{ "/images/logo.png" | absURL }}' />
     {{ end }}
-  {{ end }}
-  {{ if $withImage }}
-  {{ with .Params.images }}{{ range first 5 . }}
-  <meta property="og:image" content='{{ (print "images" .) | absURL }}' />
-  {{ end }}{{ end }}
-  {{ else }}
-  <meta property="og:image" content='{{ "/images/logo.png" | absURL }}' />
   {{ end }}
   {{ if .IsPage }}
   <meta property="og:type" content="article" />
