@@ -7,4 +7,8 @@ images = []
 title = "block chain"
 +++
 
+Bitcoin の基盤技術の Block-chain について.
+
+Bitcoin の論文の要約.
+
 [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf)
