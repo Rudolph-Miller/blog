@@ -5,7 +5,7 @@ main {
 
 /* Body */
 
-body {
+body#body {
   margin: 0;
   font-family: serif;
   color: #555;
