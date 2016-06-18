@@ -6,6 +6,7 @@ main {
 /* Body */
 
 body {
+  margin: 0;
   font-family: serif;
   color: #555;
   font-size: 17px;
