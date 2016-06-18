@@ -113,7 +113,7 @@ class App extends Component {
 render(<App />, document.getElementById('app'));
 ```
 
-{{% image "20160104/example.png" %}}
+{{% image "/20160104/example.png" %}}
 
 こんな感じにComponentに `props` を渡すだけ.
 

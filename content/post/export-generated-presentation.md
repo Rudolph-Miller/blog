@@ -27,7 +27,7 @@ HTML Slideで困るのがSlideの共有だ.
 を発表した際、共有のために `iframe` でこのSlideを埋め込んだ
 [Blog post]({{< relref "post/tech-talk-about-lisp.md" >}}) を作り共有していた.
 
-{{% image "20160213/share_lisp_1.gif" %}}
+{{% image "/20160213/share_lisp_1.gif" %}}
 
 今更ながらふと、PhantomJSなどでScreenshotを撮り、それをPDFに変換し、
 Speaker Deck や SlideShare にuploadして共有できないかと考えた.

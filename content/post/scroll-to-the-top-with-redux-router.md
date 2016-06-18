@@ -113,7 +113,7 @@ class Root extends Component {
 render(<Root />, document.getElementById('app'));
 ```
 
-{{% image "20160125/scroll_step1.gif" %}}
+{{% image "/20160125/scroll_step1.gif" %}}
 
 上のGIFの通り、このままだと `Link` での遷移時にScrollが元の位置のままだ.  
 本来なら、遷移したらScrollを最上部にもっていくべきだろう.
@@ -161,7 +161,7 @@ const reducer = combineReducers({
 
 だけ.
 
-{{% image "20160125/scroll_step2.gif" %}}
+{{% image "/20160125/scroll_step2.gif" %}}
 
 
 ## pushState

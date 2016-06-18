@@ -20,12 +20,12 @@ Twitterのshare buttonにlist balloonを追加する.
 
 Blogなどに埋め込まれているTwitterのshareボタンだが、以前は上にBalloonでTweet数が表示されていた.
 
-{{% image "20160124/previous_twitter.png" %}}
+{{% image "/20160124/previous_twitter.png" %}}
 
 それがTwitter内部でのCassandraの廃止に付随して、昨年末なくなった.  
 (参照: [持続的なプラットフォームのための難しい決断](https://blog.twitter.com/ja/2015/buttons))
 
-{{% image "20160124/new_twitter.png" %}}
+{{% image "/20160124/new_twitter.png" %}}
 
 Twitter、 はてなブックマーク、Facebook、Google+のshareボタンがBalloon付きでならんでいたのだが、TwitterのshareボタンだけがBalloonが無くなり、統一感が失われた.
 違和感を感じつつも放置していたのだが、最近あるBlogでTwittenのshareボタンの上にBalloonで `list` と表示し、
@@ -54,7 +54,7 @@ Twitter、 はてなブックマーク、Facebook、Google+のshareボタンがB
 
 以前は一つ目のHTML codeの `a` tagの `data-conut="vertical"` によりTweet数のBalloon付きでshareボタンが表示されていたが、今はこのように表示される.
 
-{{% image "20160124/new_twitter.png" %}}
+{{% image "/20160124/new_twitter.png" %}}
 
 とりあえず、Balloonを表示する.  
 BalloonはCSSで一つの `span` とその `::before` と `::after` を使って描けるので、とりあえず一つ `span` を追加する.
@@ -66,7 +66,7 @@ BalloonはCSSで一つの `span` とその `::before` と `::after` を使って
  </div>
 ```
 
-{{% image "20160124/step1.png" %}}
+{{% image "/20160124/step1.png" %}}
 
 これにBalloonを描くようCSSを当てる.
 
@@ -116,7 +116,7 @@ BalloonはCSSで一つの `span` とその `::before` と `::after` を使って
 }
 ```
 
-{{% image "20160124/step2.png" %}}
+{{% image "/20160124/step2.png" %}}
 
 (下の吹き出しの大きさの変更は `:before` と `:after` の `bottom`, `margin-left`, `border-width` をsynchronouslyに変更する.)
 
@@ -147,7 +147,7 @@ BalloonはCSSで一つの `span` とその `::before` と `::after` を使って
 }
 ```
 
-{{% image "20160124/step3.png" %}}
+{{% image "/20160124/step3.png" %}}
 
 見た目はこれで完成.  
 あとはLinkだが、このBlogは[Hugo](https://gohugo.io/)を使っているので、

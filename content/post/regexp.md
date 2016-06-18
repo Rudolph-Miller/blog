@@ -77,7 +77,7 @@ Formal neurons は論理回路で言うところのORゲート、ANDゲート、
 (Formal neurons は記憶領域が無いため、[チューリング完全](https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E5%AE%8C%E5%85%A8)ではない.)  
 さらに彼らは同論文の中で Formal neurons の独自の記法を導入した.
 
-{{% image "20160608/formal_neurons.png" %}}
+{{% image "/20160608/formal_neurons.png" %}}
 
 1951年、Kleeneが
 [Representation of Events in Nerve Nets and Finite Automata](https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM704.pdf)
@@ -85,7 +85,7 @@ Formal neurons は論理回路で言うところのORゲート、ANDゲート、
 さらに同論文の中で Finite automaton (有限オートマトン) という計算モデルの導入を行い、
 Formal neurons が Finite automatonに変換できることを示した.
 
-{{% image "20160608/regexp.png" %}}
+{{% image "/20160608/regexp.png" %}}
 
 1959年、M.O.RabinとD.Scottが
 [Finite Automata and Their Decision Problems](http://www.cse.chalmers.se/~coquand/AUTOMATA/rs.pdf)

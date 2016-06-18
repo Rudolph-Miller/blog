@@ -43,18 +43,18 @@ Sign upからdomainの登録は迷わないと思うので割愛.
 今回した設定は `SSL`, `HSTS`, `Subdomain`.
 基本的にはCloudFlareの管理画面のDomain毎のOverviewの上のMenuから入って設定する.
 
-{{% image "20160129/menu.png" %}}
+{{% image "/20160129/menu.png" %}}
 
 
 ### SSL
 
 SSLの設定は上のMenuの `Crypto`
 
-{{% image "20160129/crypto.png" %}}
+{{% image "/20160129/crypto.png" %}}
 
 から行う.
 
-{{% image "20160129/ssl.png" %}}
+{{% image "/20160129/ssl.png" %}}
 
 SSLの設定は `Off`, `Flexible`, `Full`, `Strict` と選べる.
 
@@ -87,36 +87,36 @@ __次回以降__なので初回はHTTPでRequestし、その次からHTTPSを強
 
 HSTSの設定は `SSL` 同様に上のMenuの `Crypto`
 
-{{% image "20160129/crypto.png" %}}
+{{% image "/20160129/crypto.png" %}}
 
 から行う.
 
-{{% image "20160129/hsts.png" %}}
+{{% image "/20160129/hsts.png" %}}
 
 
 ### Subdomain
 
 Subdomainの設定は上のMenuの `DNS`
 
-{{% image "20160129/dns.png" %}}
+{{% image "/20160129/dns.png" %}}
 
 から行う.
 
 今回はSubdomainが *blog.rudolph-miller.com* でGitHub PagesのDomainが *rudolph-miller.github.io* なので、
 
-{{% image "20160129/dns_input.png" %}}
+{{% image "/20160129/dns_input.png" %}}
 
 こんな感じに `CNAME` を登録し、
 
-{{% image "20160129/dns_status.png" %}}
+{{% image "/20160129/dns_status.png" %}}
 
 `Status` を
 
-{{% image "20160129/not_penetrating.png" %}}
+{{% image "/20160129/not_penetrating.png" %}}
 
 から
 
-{{% image "20160129/penetrating.png" %}}
+{{% image "/20160129/penetrating.png" %}}
 
 にClickで変更すると完了.
 

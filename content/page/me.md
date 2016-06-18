@@ -25,10 +25,10 @@ Software Engineer in Tokyo, Japan.
 プライベートでは最近はCompiler作りやらなんやら.
 
 <span class="author-avatar">
-  {{< image "logo.png" >}}
+  {{< image "/logo.png" >}}
 </div>
 <span class="author-avatar">
-  {{< image "me.png" >}}
+  {{< image "/me.png" >}}
 </div>
 
 # Bio
