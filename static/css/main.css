@@ -8,6 +8,7 @@ main {
 body {
   font-family: 'Roboto', 'Noto Sans JP', sans-serif;
   color: #555;
+  font-size: 17px;
 }
 
 /* Header */
