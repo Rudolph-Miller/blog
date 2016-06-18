@@ -23,3 +23,8 @@ title = "hugo with gcs and fastly"
     - goapp のinstall
     - app.yml
     - goapp deploy
+- CircleCIからGAEにdeploy.
+    - https://circleci.com/docs/google-auth/
+    - circle.ymlの紹介.
+
+ほんとは fastly 使いたかったけど、独自ドメイン && SSL が有料だったので、やめた.
