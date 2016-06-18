@@ -1,12 +1,10 @@
-general:
-  branches:
-    ignore:
-      - gh-pages
+machine:
+  environment:
+    GAE_GO_SDK_VERSION: 1.9.24
 
 dependencies:
   pre:
     - go get -v github.com/spf13/hugo
-    - sudo apt-get install optipng
 
 checkout:
   post:
@@ -15,12 +13,17 @@ checkout:
 
 test:
   override:
-    - hugo
+    - PBCD_ENV=production hugo
 
 deployment:
-  deployment:
-     branch: master
-     commands:
-       - git config --global user.name "Rudolph-Miller"
-       - git config --global user.email "chopsticks.tk.ppfm@gmail.com"
-       - sh deploy.sh
+  production:
+    branch: production
+    commands:
+      - echo $GCLOUD_SERVICE_KEY | base64 --decode > ${HOME}/gcloud-service-key.json
+      - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+      - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+      - sudo /opt/google-cloud-sdk/bin/gcloud config set project $GCLOUD_PROJECT
+      - curl -o $HOME/go_appengine_${GAE_GO_SDK_VERSION}.zip https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${GAE_GO_SDK_VERSION}.zip
+      - unzip -q -d $HOME $HOME/go_appengine_${GAE_GO_SDK_VERSION}.zip
+      - optipng -i 1 public/images/**/*.png
+      - goapp deploy
