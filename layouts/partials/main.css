@@ -53,11 +53,19 @@ body#body {
   font-size: 20px;
   line-height: 30px;
   transition: color,border-color 0.1s linear;
+  position: relative;
 }
 
 .header-text .sns-links a:hover {
   border-color: rgba(255, 255, 255, 1.0);
   color: rgba(255, 255, 255, 1.0);
+}
+
+.header-text .sns-links a i {
+  position: absolute;
+  top: 50%;
+  margin-top: -9px;
+  margin-left: -9px;
 }
 
 .header-text h1 {
@@ -107,7 +115,7 @@ a.btn-back {
 
 .header-me {
   position: relative;
-  top: -4px;
+  top: -10px;
   display: inline-block;
 }
 
@@ -118,7 +126,7 @@ a.btn-back {
 
 a.btn-me {
   display: inline-block;
-  padding: 4px 16px;
+  padding: 6px 16px 4px;
   border: 1px solid rgba(255, 255, 255, 1.0);
   border-radius: 16px;
   background-color: rgba(0, 0, 0, 0.1);
@@ -171,10 +179,15 @@ a.btn-me:hover {
   text-decoration: none;
   font-size: 13px;
   transition: color,border-color 0.1s linear;
+  position: relative;
 }
 
 .global-footer .sns-links a i {
   vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+  margin-left: -5.5px;
 }
 
 .global-footer .sns-links a:hover {
