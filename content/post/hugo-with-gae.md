@@ -28,3 +28,7 @@ title = "hugo with gcs and fastly"
     - circle.ymlの紹介.
 
 ほんとは fastly 使いたかったけど、独自ドメイン && SSL が有料だったので、やめた.
+
+
+http://blog.youyo.info/post/2015/10/23/publish-hugo-in-gae/
+http://qiita.com/kyokomi/items/84af37e9774faf9072ed
