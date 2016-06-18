@@ -1,5 +1,5 @@
 +++
-Description = "WIP"
+Description = "Hugo を GAE で独自ドメイン & SSL で運用"
 Tags = ["WIP"]
 date = "2016-06-18T14:09:02+09:00"
 draft = true
@@ -7,7 +7,12 @@ images = []
 title = "hugo with gcs and fastly"
 +++
 
-そろそろ Kloudsec に飽きてきたのでなにか別のに移行しようかと.
+この Blog は
+[Kloundsec for SSL with Custom Domain on GitHub Pages]({{< relref "post/kloudsec-for-using-ssl-with-custom-domain-on-gh-pages.md" >}})
+で紹介した、 Kloudsec を使用していたが、飽きてきたので Google App Engine (GAE) に移行したので、
+Hugo & 独自ドメイン & SSL を GAE で運用する方法を紹介する.
+
+<!--more-->
 
 これまでの構成図
 
