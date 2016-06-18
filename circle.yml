@@ -16,8 +16,8 @@ test:
     - PBCD_ENV=production hugo
 
 deployment:
-  production:
-    branch: production
+  deployment:
+    branch: master
     commands:
       - echo $GCLOUD_SERVICE_KEY | base64 --decode > ${HOME}/gcloud-service-key.json
       - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
