@@ -11,7 +11,7 @@
     <a href="{{ if $pag.HasPrev }}{{ $pag.Prev.URL }}{{ end }}" aria-label="Previous"><span aria-hidden="true" class="fa fa-angle-left"></span></a>
     </li>
     {{ with $pag }}
-      <li class="active"><a href="{{ .URL }}">{{ .PageNumber }}</a></li>
+      <li class="active current"><a href="{{ .URL }}">{{ .PageNumber }}</a></li>
     {{ end }}
     <li {{ if not $pag.HasNext }} class="disabled" {{ end }}>
       <a href="{{ if $pag.HasNext }} {{ $pag.Next.URL }} {{ end }}" aria-label="Next"><span aria-hidden="true" class="fa fa-angle-right"></span></a>

@@ -408,7 +408,7 @@ article header h2 {
   padding: 0;
 }
 
-.pagination li {
+.pagination span {
   width: 32px;
   height: 32px;
   line-height: 32px;
@@ -424,20 +424,25 @@ article header h2 {
   color: #fff;
 }
 
-.pagination li:hover {
+.pagination span:hover {
   background-color: #337ab7;
 }
 
-.pagination li.active {
+.pagination li.current {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 3px;
   background-color: #337ab7;
 }
 
-.pagination li.active a {
+.pagination li.current a {
   color: #fff;
 }
 
-.pagination li.disabled {
+.pagination li.disabled a span {
   background-color: inherit !important;
+  cursor: not-allowed;
 }
 
 .pagination li.disabled a {
