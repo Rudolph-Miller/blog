@@ -158,8 +158,8 @@ body#body {
   border-radius: 16px;
 }
 
-a.btn-header {
-  padding: 7px 16px;
+a.btn-subscribe {
+  padding: 5px 16px;
   border: 1px solid rgba(255, 255, 255, 1.0);
   border-radius: 3px;
   color: rgba(255, 255, 255, 1.0);
@@ -167,15 +167,12 @@ a.btn-header {
   font-weight: 300;
   font-size: 13px;
   transition: color,background-color 0.1s linear;
+  margin-left: 20px;
 }
 
-a.btn-header:hover {
+a.btn-subscribe:hover {
   background-color: rgba(255, 255, 255, 1.0);
   color: rgba(0, 0, 0, 1.0);
-}
-
-a.btn-subscribe {
-  margin-left: 20px;
 }
 
 @media (max-width: 658px) {
