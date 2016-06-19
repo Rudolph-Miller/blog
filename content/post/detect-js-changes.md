@@ -7,7 +7,7 @@ slug = "detect-js-changes"
 title = "detect-js-changes"
 +++
 
-[detect-js-changes](https://github.com/Rudolph-Miller/detect-js-changes)という業務Toolを作ってKaizenの業務をKAIZENした話.
+detect-js-changes という業務Toolを作ってKaizenの業務をKAIZENした話.
 
 <!--more-->
 
@@ -59,7 +59,7 @@ Depoly (基本は週2回) 毎にこれを誰かが実行している.
 
 # detect-js-changes
 
-この面倒くささを解消するために作ったのが `detect-js-changes` だ.
+この面倒くささを解消するために作ったのが [detect-js-changes](https://github.com/Rudolph-Miller/detect-js-changes) だ.
 
 ```sh
 $ go get github.com/Rudolph-Miller/detect-js-changes

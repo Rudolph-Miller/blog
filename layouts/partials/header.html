@@ -2,12 +2,10 @@
 <body id='body'>
   <header class="global-header">
     <section class="header-text">
-      <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
-      {{ with .Site.Params.subtitle }}
-      <div class="tag-line">
-        {{ . }}
-      </div>
-      {{ end }}
+      <span>
+        <a href="{{ .Site.BaseURL }}"><img src="/images/logo.png"></a>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+      </span>
       <div class="header-center">
         <span class="header-me">
           <a href="/page/me" class="btn-me">
@@ -18,18 +16,12 @@
           {{ partial "link.html" . }}
         </span>
       </div>
-      {{ if ne .URL "/" }}
-      <a href="{{ .Site.BaseURL }}" class="btn-header btn-back hidden-xs">
-        <i class="fa fa-angle-left"></i>
-        &nbsp;Home
-      </a>
-      {{ end }}
       {{ with .RSSLink }}
-      <a href="{{ . }}" class="btn-header btn-subscribe hidden-xs">
+      <a href="{{ . }}" class="btn-header btn-subscribe">
         <i class="fa fa-rss"></i>
         &nbsp;Subscribe
       </a>
       {{ end }}
     </section>
   </header>
-  <main class="container">
+  <main>

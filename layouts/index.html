@@ -2,10 +2,10 @@
 <div class="article-list">
   {{ $paginator := .Paginate (where .Site.Pages "Section" "post") 5 }}
   {{ range $index, $page := $paginator.Pages }}
-  {{ if ne $index 0 }}
-  <hr/>
-  {{ end }}
-  {{ .Render "li" }}
+    {{ if ne $index 0 }}
+    <hr/>
+    {{ end }}
+    {{ .Render "li" }}
   {{ end }}
   {{ template "partials/pagination.html" . }}
 </div>

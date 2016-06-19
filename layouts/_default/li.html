@@ -1,28 +1,25 @@
-<article>
-  <header>
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    <div class="post-meta clearfix">
-      <div class="post-date pull-left">
-        Posted on
-        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
-          {{ .Date.Format "Jan 2, 2006" }}
-        </time>
-      </div>
-      {{ with .Params.tags }}
-      <div class="post-tags pull-right">
-        {{ range . }}
-        <span class="post-tag small"><a href="/tags/{{ . | urlize }}">#{{ . }}</a></span>
+<a href="{{ .RelPermalink }}">
+  <article>
+    <header>
+      <h2>{{ .Title }}</h2>
+      <div class="post-meta">
+        <div class="post-date">
+          Posted on
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+            {{ .Date.Format "Jan 2, 2006" }}
+          </time>
+        </div>
+        {{ with .Params.tags }}
+        <div class="post-tags">
+          {{ range . }}
+          <span class="post-tag small"><span>#{{ . }}</span></span>
+          {{ end }}
+        </div>
         {{ end }}
       </div>
-      {{ end }}
+    </header>
+    <div>
+      {{ .Summary }}
     </div>
-  </header>
-  <div>
-    {{ .Summary }}
-  </div>
-  <footer>
-    <ul class="pager">
-      <li class="next"><a href="{{ .RelPermalink }}">Read more &raquo;</a></li>
-    </ul>
-  </footer>
-</article>
+  </article>
+</a>

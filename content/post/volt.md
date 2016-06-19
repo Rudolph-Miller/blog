@@ -7,7 +7,7 @@ slug = "volt"
 title = "Volt - Isomorphic in Ruby"
 +++
 
-Isomorphic in RubyなFramework [Volt](https://github.com/voltrb/volt/)を紹介.
+Isomorphic in Ruby な Framework の Volt を紹介.
 
 <!--more-->
 
@@ -18,7 +18,7 @@ __Features__
 - Reactive Data Bindings
 - Components
 
-VoltはClient, Server共にRubyで記述する__Isomorphic__で__Reactive__なWeb Application Frameworkで上のような特徴を持つ. 
+[Volt](https://github.com/voltrb/volt/) はClient, Server共にRubyで記述する__Isomorphic__で__Reactive__なWeb Application Frameworkで上のような特徴を持つ. 
 
 
 1. [Getting Started]({{< relref "#getting-started" >}})
