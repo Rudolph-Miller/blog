@@ -3,8 +3,9 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <link rel="alternate" hreflang="ja" href="{{ .Permalink }}">
   {{ with .Site.Params.themecolor }}
-  <meta name="theme-color" content="{{ . }}" />
+    <meta name="theme-color" content="{{ . }}" />
   {{ end }}
 
   <meta name="twitter:card" content="summary" />
@@ -14,9 +15,9 @@
   <meta property="og:site_name" content="{{ .Site.Title }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
   {{ with .Description }}
-  <meta name="description" content="{{ . }}" />
-  <meta property="og:description" content="{{ . }}" />
-  <meta name="twitter:description" content="{{ . }}" />
+    <meta name="description" content="{{ . }}" />
+    <meta property="og:description" content="{{ . }}" />
+    <meta name="twitter:description" content="{{ . }}" />
   {{ end }}
   {{ if .Params.images }}
     {{ $imageLen := len .Params.images }}
