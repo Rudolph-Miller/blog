@@ -536,3 +536,32 @@ code.has-jax {
   border-radius: 50px;
   display: inline-block;
 }
+
+/* Table */
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse; collapse;
+  border-spacing: 0;
+  display: table;
+  margin: 10px 0 20px;
+  border: 1px solid #ddd;
+}
+
+th {
+  text-align: left;
+  border-top: 0;
+  border-bottom: 2px solid #ddd;
+  vertical-align: bottom;
+  padding: 8px;
+}
+
+td {
+  vertical-align: top;
+  padding: 8px;
+}
+
+table>tbody>tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
