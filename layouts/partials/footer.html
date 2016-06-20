@@ -1,67 +1,14 @@
-  </main>
-  <footer class="global-footer">
-    <span class="copyright-note">
-      {{ .Site.Copyright | safeHTML }}
-    </span>
-    {{ partial "link.html" . }}
-  </footer>
-
-  <script type="text/javascript">
-(function() {
-  function loadCss(href) {
-    var head = document.getElementsByTagName('head')[0];
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = href;
-    link.async = 'async';
-    head.appendChild(link);
-  }
-
-  loadCss('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css');
-  loadCss('/css/github.css');
-  loadCss('/highlight-lisp/themes/github.min.css');
-})();
-  </script>
-
-  <script type="text/javascript" src="/js/highlight.pack.js"></script>
-  <script type="text/javascript" src="/highlight-lisp/highlight-lisp.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad();
-    HighlightLisp.highlight_auto({className: "language-common-lisp"});
-    HighlightLisp.highlight_auto({className: "language-Common-Lisp"});
-  </script>
-
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\[','\]']],
-        processEscapes: true,
-        processEnvironments: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      // Fix <code> tags after MathJax finishes running. This is a
-      // hack to overcome a shortcoming of Markdown. Discussion at
-      // https://github.com/mojombo/jekyll/issues/199
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  {{ partial "gif.html" . }}
-  {{ partial "ga.html" . }}
-  {{ with .Site.Params.mixpanel_api_key }}
-  <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
-  for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-  mixpanel.init("{{ . }}");</script><!-- end Mixpanel -->
-  {{ end }}
-</body>
+    </main>
+    <footer class="global-footer">
+      <span class="copyright-note">
+        {{ .Site.Copyright | safeHTML }}
+      </span>
+      {{ partial "link.html" . }}
+    </footer>
+    {{ partial "loadcss.html" . }}
+    {{ partial "highlight.html" . }}
+    {{ partial "mathjax.html" . }}
+    {{ partial "gif.html" . }}
+    {{ partial "ga.html" . }}
+  </body>
 </html>

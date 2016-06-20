@@ -1,0 +1,17 @@
+<script type="text/javascript">
+(function() {
+  function loadCss(href) {
+    var head = document.getElementsByTagName('head')[0];
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = href;
+    link.async = 'async';
+    head.appendChild(link);
+  }
+
+  loadCss('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css');
+  loadCss('/css/github.css');
+  loadCss('/highlight-lisp/themes/github.min.css');
+})();
+</script>

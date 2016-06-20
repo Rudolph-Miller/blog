@@ -1,0 +1,7 @@
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Rudolph_Miller" />
+<meta name="twitter:image" content='{{ "/images/logo.png" | absURL }}' />
+<meta name="twitter:title" content="{{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}" />
+{{ with .Description }}
+  <meta name="twitter:description" content="{{ . }}" />
+{{ end  }}

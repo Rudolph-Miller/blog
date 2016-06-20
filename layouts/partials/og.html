@@ -1,0 +1,31 @@
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+{{ with .Description }}
+  <meta property="og:description" content="{{ . }}" />
+{{ end }}
+
+{{ if .Params.images }}
+  {{ $imageLen := len .Params.images }}
+  {{ if ge $imageLen 0 }}
+    {{ with .Params.images }}{{ range first 5 . }}
+      <meta property="og:image" content='{{ (print "images" .) | absURL }}' />
+    {{ end }}{{ end }}
+  {{ else }}
+    <meta property="og:image" content='{{ "/images/logo.png" | absURL }}' />
+  {{ end }}
+{{ end }}
+
+{{ if .IsPage }}
+  <meta property="og:type" content="article" />
+  {{ with .Site.Params.facebook }}
+    <meta property="og:article:author" content="https://facebook.com/{{ . }}" />
+  {{ end }}
+  <meta property="og:article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
+  {{ range .Params.tags }}
+    <meta property="og:article:tag" content="{{ . }}" />
+  {{ end }}
+{{ else }}
+  <meta property="og:type" content="website" />
+{{ end }}
+
+<meta property="og:title" content="{{ if ne .URL "/" }}{{ .Title }} - {{ end }}{{ .Site.Title }}" />
