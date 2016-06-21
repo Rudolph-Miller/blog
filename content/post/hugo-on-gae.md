@@ -28,7 +28,12 @@ Hugo & 独自ドメイン & SSL を GAE で運用する方法を紹介する.
 - GAE 作成.
     - goapp のinstall
     - app.yml
+        - static files only.
     - goapp deploy
+    - 課金体系.
+        - どれぐらいかかりそうか.
+    - SSL対応.
+        - Let's encrypt.
 - CircleCIからGAEにdeploy.
     - https://circleci.com/docs/google-auth/
     - circle.ymlの紹介.
