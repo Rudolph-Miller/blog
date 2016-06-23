@@ -11,10 +11,10 @@ slug = "me"
 2. [Projects]({{< relref "#projects" >}})
     1. [サムライト株式会社]({{< relref "#サムライト株式会社" >}})
     2. [Kaizen Platform, Inc.]({{< relref "#kaizen-platform-inc" >}})
-3. [Social]({{< relref "#social" >}})
-4. [Works]({{< relref "#works" >}})
-5. [Media]({{< relref "#media" >}})
-6. [Languages]({{< relref "#languages" >}})
+3. [Works]({{< relref "#works" >}})
+4. [Languages]({{< relref "#languages" >}})
+5. [Social]({{< relref "#social" >}})
+6. [Media]({{< relref "#media" >}})
 
 HN: [Rudolph Miller](https://www.google.co.jp/search?q=Rudolph+Miller)  
 本名: [河西 智哉](https://www.google.co.jp/search?q=河西+智哉)  
@@ -109,14 +109,6 @@ Software Engineer in Tokyo, Japan.
     - On-boardig flowを設計することにより、Userがカンタンに改善活動を始められるようにする.
     - 合わせて全体のUX設計を見直す.
 
-# Social
-
-- [Twitter](https://twitter.com/Rudolph_Miller)
-- [GitHub](https://github.com/Rudolph-Miller)
-- [LinkedIn](https://www.linkedin.com/in/tomoya-kawanishi-1ab963b7)
-- [Facebook](https://www.facebook.com/chopsticks.tk.ppfm)
-
-
 # Works
 
 - [Clipper](https://github.com/Rudolph-Miller/clipper)
@@ -144,11 +136,6 @@ Software Engineer in Tokyo, Japan.
     - [Blog - detect-js-changes]({{< relref "post/detect-js-changes.md" >}})
 
 
-# Media
-
-- [好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築](http://type.jp/et/log/article/somewrite_cto)
-
-
 # Languages
 
 - 日本語:
@@ -157,3 +144,16 @@ Software Engineer in Tokyo, Japan.
 - 英語:
     - 日常会話レベル
         - 2009/09/10 - 2010/02/05: カナダのバンクーバー付近に留学.
+
+
+# Social
+
+- [Twitter](https://twitter.com/Rudolph_Miller)
+- [GitHub](https://github.com/Rudolph-Miller)
+- [LinkedIn](https://www.linkedin.com/in/tomoya-kawanishi-1ab963b7)
+- [Facebook](https://www.facebook.com/chopsticks.tk.ppfm)
+
+
+# Media
+
+- [好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築](http://type.jp/et/log/article/somewrite_cto)
