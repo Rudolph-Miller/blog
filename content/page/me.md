@@ -14,15 +14,17 @@ slug = "me"
 3. [Social]({{< relref "#social" >}})
 4. [Works]({{< relref "#works" >}})
 5. [Media]({{< relref "#media" >}})
+6. [Languages]({{< relref "#languages" >}})
 
-HN: Rudolph Miller  
-本名: 河西 智哉
+HN: [Rudolph Miller](https://www.google.co.jp/search?q=Rudolph+Miller)  
+本名: [河西 智哉](https://www.google.co.jp/search?q=河西+智哉)  
+Email: [chopsticks.tk.ppfm@gmail.com](mailto:chopsticks.tk.ppfm@gmail.com)
 
 Software Engineer in Tokyo, Japan.
 
-大学では代数的整数論にはまる.  
-現在はKaizen Platform, Inc.でTech leadを務める.  
-プライベートでは最近はCompiler作りやらなんやら.
+大学では代数的整数論.  
+現在はKaizen Platform, Inc.でTech lead.  
+プライベートでは最近はCompiler作り等.
 
 <span class="author-avatar">
   {{< image "/logo.png" >}}
@@ -112,6 +114,7 @@ Software Engineer in Tokyo, Japan.
 - [Twitter](https://twitter.com/Rudolph_Miller)
 - [GitHub](https://github.com/Rudolph-Miller)
 - [LinkedIn](https://www.linkedin.com/in/tomoya-kawanishi-1ab963b7)
+- [Facebook](https://www.facebook.com/chopsticks.tk.ppfm)
 
 
 # Works
@@ -140,6 +143,17 @@ Software Engineer in Tokyo, Japan.
     - Go製.
     - [Blog - detect-js-changes]({{< relref "post/detect-js-changes.md" >}})
 
+
 # Media
 
 - [好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築](http://type.jp/et/log/article/somewrite_cto)
+
+
+# Languages
+
+- 日本語:
+    - 関西弁: ネイティブ
+    - 標準語: ビジネス上級レベル
+- 英語:
+    - 日常会話レベル
+        - 2009/09/10 - 2010/02/05: カナダのバンクーバー付近に留学.
