@@ -1,5 +1,5 @@
 main {
-  max-width: 738px;
+  max-width: 850px;
   margin-left: auto;
   margin-right: auto;
   word-wrap: break-word;
@@ -8,7 +8,6 @@ main {
 
 @media (min-width: 768px) {
   main {
-    width: 738px;
     padding: 20px 15px;
   }
 }
@@ -286,8 +285,14 @@ a.btn-me:hover {
 }
 
 article {
-  padding: 5px 15px;
+  padding: 5px 30px;
   border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  article {
+    padding: 5px 15px;
+  }
 }
 
 article section img {
@@ -308,7 +313,7 @@ main>article {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   main>article {
     margin: 20px 10px;
   }
@@ -564,4 +569,48 @@ td {
 
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
+}
+
+/* Heading links */
+
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+}
+
+.heading-link {
+  display: none;
+  position: absolute;
+  font-size: 17px;
+  margin-left: -30px;
+  width: 21px;
+  height: 25px;
+  padding-top: 9px;
+  padding-left: 9px;
+  top: 50%;
+  margin-top: -17px;
+  color: #777;
+}
+
+.heading-link:hover {
+  color: #337ab7;
+}
+
+h1:hover .heading-link,
+h2:hover .heading-link,
+h3:hover .heading-link,
+h4:hover .heading-link,
+h5:hover .heading-link,
+h6:hover .heading-link {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  h1:hover .heading-link,
+  h2:hover .heading-link,
+  h3:hover .heading-link,
+  h4:hover .heading-link,
+  h5:hover .heading-link,
+  h6:hover .heading-link {
+    display: none;
+  }
 }
