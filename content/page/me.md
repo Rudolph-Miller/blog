@@ -3,7 +3,7 @@ Description = "About me"
 Tags = []
 date = "2015-08-11T07:32:04+09:00"
 draft = false
-title = "Abount me"
+title = "About me"
 slug = "me"
 +++
 
