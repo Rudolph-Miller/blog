@@ -11,7 +11,7 @@ Hugo & 独自ドメイン & SSL を GAE で運用する方法を紹介する.
 
 <!--more-->
 
-この Blog は Kloudsec を使用していたが、飽きてきたので Google App Engine (GAE) に移行した.
+この Blog は Kloudsec を使用していたが、飽きてきたの (と遅いの) で Google App Engine (GAE) に移行した.
 
 [Kloundsec for SSL with Custom Domain on GitHub Pages]({{< relref "post/kloudsec-for-using-ssl-with-custom-domain-on-gh-pages.md" >}})
 
