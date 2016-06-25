@@ -88,7 +88,7 @@ Software Engineer in Tokyo, Japan.
           - 設計が理想的かどうかだけでなく、納期や実現したい価値の程度に対して妥当な設計規模に収まっているかについても判断する.
         - コード品質が維持できているか.
       - [Tech Lead（TL/テックリード）の役割 - サンフランシスコではたらくソフトウェアエンジニア](http://d.hatena.ne.jp/higepon/20150806/1438844046) からProject leaderの役割を引いたもの.
-- 週の半分をリモートワーク.
+- 週の半分ほどをリモートワーク.
 - Web application "Kaizen Platform"のserver-sideの設計・開発.
     - Ruby
     - Ruby on Rails
