@@ -614,3 +614,11 @@ h6:hover .heading-link {
     display: none;
   }
 }
+
+/* icon */
+
+.globe-icon {
+  width: 15px;
+  display: inline-block;
+  margin: 0;
+}
