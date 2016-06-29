@@ -7,7 +7,7 @@ title = "About me"
 slug = "me"
 +++
 
-[Japanese]({{< relref "page/me.md" >}})
+[<font class="fa fa-globe"></font> 日本語]({{< relref "page/me.md" >}})
 
 1. [Bio]({{< relref "#bio" >}})
 2. [Projects]({{< relref "#projects" >}})
