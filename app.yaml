@@ -49,6 +49,11 @@ handlers:
   static_files: public/\1
   upload: public/(.*\.(bmp|gif|ico|jpeg|jpg|png))
 
+- url: /(.*\.(svg|svgz))
+  mime_type: image/svg+xml
+  static_files: public/\1
+  upload: public/(.*\.(svg|svgz))
+
 - url: /.well-known/acme-challenge/H6DJSB1AjG6YNituUF38z9cXTHl8VsDrcN595WsjaOQ
   static_files: lets_encrypt.txt
   upload: lets_encrypt.txt
