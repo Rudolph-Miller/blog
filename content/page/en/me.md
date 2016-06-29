@@ -25,7 +25,7 @@ Email: [chopsticks.tk.ppfm@gmail.com](mailto:chopsticks.tk.ppfm@gmail.com)
 Software Engineer in Tokyo, Japan.
 
 Studied Algebraic Number Theory at Kyoto Univ..  
-Work as Tech Lead at Kaizen Platform, Inc.  
+Work as Tech lead for Kaizen Platform, Inc.  
 Am into making compiler.
 
 <span class="author-avatar">
@@ -37,14 +37,14 @@ Am into making compiler.
 
 # Bio
 
-- 2011/04/01 京都大学法学部に入学.
-- 2012/04/01 京都大学総合人間学部 数理情報学科に転学部.
-- 2014/03/31 京都大学法学部を中退.
-- 2014/05/01 サムライト株式会社に参画.
-- 2014/11/01 サムライト株式会社でCTOに就任.
-- 2015/08/31 サムライト株式会社を退職.
-- 2015/09/01 Kaizen Platform, Inc.に参画. (Application Engineer)
-- 2016/03/01 Kaizen Platform, Inc.でTech leadに就任.
+- 2011/04/01 Enter Kyoto Univ. (Faculty of Law)
+- 2012/04/01 Transfer to Kyoto Univ. (Faculty of Integrated Human Studies)
+- 2014/03/31 Dropout Kyoto Univ.
+- 2014/05/01 Start work for Somewrite, Inc.
+- 2014/11/01 Be CTO in Somewrite, Inc.
+- 2015/08/31 Leave Somewrite, Inc.
+- 2015/09/01 Start work for Kaizen Platform, Inc.  (Application Engineer)
+- 2016/03/01 Be Tech lead in Kaizen Platform, Inc.
 
 # Projects
 
