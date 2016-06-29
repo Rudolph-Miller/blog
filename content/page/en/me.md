@@ -82,38 +82,34 @@ Am into making compiler.
 
 ## Kaizen Platform, Inc.
 
-- Web siteのOptimizing platform.
+- Optimizing platform for Web site.
 - Application Engineer.
-    - 2016/03/01からTech lead.
-      - 担当システムの技術デザイン、採用技術について責任を負う.
-        - 正しい設計が行われているか.
-        - その設計は過剰ではないか / 抽象化の程度は良いバランスを保っているか.
-          - 設計が理想的かどうかだけでなく、納期や実現したい価値の程度に対して妥当な設計規模に収まっているかについても判断する.
-        - コードの品質が維持できているか.
-            - コードレビュー.
-            - 適切なテストが書かれているか.
-      - 早い時期に問題になりそうな技術コンポーネントを特定・対処する.
-      - [Tech Lead（TL/テックリード）の役割 - サンフランシスコではたらくソフトウェアエンジニア](http://d.hatena.ne.jp/higepon/20150806/1438844046) からProject leaderの役割を引いたもの.
-- 週の半分ほどをリモートワーク.
-- Web application "Kaizen Platform"のserver-sideの設計・開発.
+    - Be Tech lead from 2016/03/01.
+      - Responsibilities for Tech lead:
+        - Technical decisions.
+            - Designs.
+            - Measure the design is too complex or not, the design is good abstract or not.
+            - Quality of codes.
+                - Code review.
+                - Enough tests.
+- Remort working. (sometimes)
+- Develop web application "Kaizen Platform".
     - Ruby
     - Ruby on Rails
-- Web application "Kaizen Platform"のfront-endの設計・開発.
     - CoffeeScript
     - Angular.js
-- A/B test coreのJavaScript programの設計・開発.
+- Develop core application for A/B test.
     - CoffeeScript
-- A/B test coreのログ取得・解析 programの設計・開発.
+- Develop logging application for A/B test.
     - CoffeeScript
     - Koa
-- A/B testデザイン案作成 GUI editorの設計・開発.
+- Develop GUI editor to create variations for A/B test
     - CoffeeScript
-- Ruby on Railsのupgrade.
+- Upgrade Ruby on Rails.
     - 3.2 -> 4.2
-    - UpgradeにおけるApplicationの変更を担当.
-- UI/UX見直しProjectのPM (Product Manager).
-    - On-boardig flowを設計することにより、Userがカンタンに改善活動を始められるようにする.
-    - 合わせて全体のUX設計を見直す.
+- Product Manager for renewal UI/UX project.
+    - Re-design UX/Customer Journey.
+
 
 # Works
 
