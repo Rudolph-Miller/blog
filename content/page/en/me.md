@@ -48,15 +48,15 @@ Am into making compiler.
 
 # Projects
 
-## サムライト株式会社
+## Somewrite, Inc.
 
 - Native AD Network.
-- Native AD Networkの0からの構築.
-    - 最高で 40k req/min.
-- インフラの設計、構築.
-    - ADの急なrequest増加に耐えうるインフラを構築.
-    - "Configuration as Code" を採用.
-    - 使用技術:
+- Build Native AD Network from scratch.
+    - 40k req/min at most.
+- Develop infrastructure.
+    - Develop infrastructure with high scalability.
+    - "Configuration as Code".
+    - Technology:
         - AWS
             - EC2
             - RDS
@@ -69,14 +69,16 @@ Am into making compiler.
         - Ansible
         - Docker
         - Itamae
-- 管理 Applicationの設計、実装.
-    - DB設計.
-    - 初期はRuby on Railsで構築. 後に、Caveman2 (Common LispのWeb application framework) でreplace.
-    - 後半はFront-endのFrameworkとしてReact.jsを採用.
-- 配信 Applicationの設計、実装.
-    - 初期はNode.js (http モジュールを使用.) で構築. 後に、Caveman2 (Common LispのWeb application framework) でreplace.
-- 採用活動を行う.
-- リモートワーク.
+- Develop managing application.
+    - Design database scheme.
+    - Ruby on Rails.
+        - Replace with Caveman2 (Web application framework in Common Lisp) later.
+    - React.js.
+- Develop delivering ads application.
+    - Node.js.
+        - Replace with Caveman2 (Web application framework in Common Lisp) later.
+- Recruiting.
+- Remort working.
 
 ## Kaizen Platform, Inc.
 
