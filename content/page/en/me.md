@@ -7,11 +7,11 @@ title = "About me"
 slug = "me"
 +++
 
-[English]({{< relref "page/en/me.md" >}})
+[Japanese]({{< relref "page/me.md" >}})
 
 1. [Bio]({{< relref "#bio" >}})
 2. [Projects]({{< relref "#projects" >}})
-    1. [サムライト株式会社]({{< relref "#サムライト株式会社" >}})
+    1. [Somewrite, Inc.]({{< relref "#somewrite-inc" >}})
     2. [Kaizen Platform, Inc.]({{< relref "#kaizen-platform-inc" >}})
 3. [Works]({{< relref "#works" >}})
 4. [Languages]({{< relref "#languages" >}})
@@ -19,14 +19,14 @@ slug = "me"
 6. [Media]({{< relref "#media" >}})
 
 HN: [Rudolph Miller](https://www.google.co.jp/search?q=Rudolph+Miller)  
-本名: [河西 智哉](https://www.google.co.jp/search?q=河西+智哉)  
+Real name: [Tomoya KAWANISHI](https://www.google.co.jp/search?q=tomoya+kawanishi)  
 Email: [chopsticks.tk.ppfm@gmail.com](mailto:chopsticks.tk.ppfm@gmail.com)
 
 Software Engineer in Tokyo, Japan.
 
-大学では代数的整数論.  
-現在はKaizen Platform, Inc.でTech lead.  
-プライベートでは最近はCompiler作り等.
+Studied Algebraic Number Theory at Kyoto Univ..  
+Work as Tech Lead at Kaizen Platform, Inc.  
+Am into making compiler.
 
 <span class="author-avatar">
   {{< image "/logo.png" >}}
