@@ -114,38 +114,37 @@ Am into making compiler.
 # Works
 
 - [Clipper](https://github.com/Rudolph-Miller/clipper)
-    - Ruby on Railsの[Paperclip](https://github.com/thoughtbot/paperclip)のCommon Lispでの簡易実装.
-    - [Blog - Clipper]({{< relref "post/clipper.md" >}})
+    - [Paperclip](https://github.com/thoughtbot/paperclip) in Common Lisp.
+    - [Blog - Clipper]({{< relref "post/clipper.md" >}}) (Japanese)
 - [React Sortable Table](https://github.com/Rudolph-Miller/react-sortable-table)
 - [React Simple Tab](https://github.com/Rudolph-Miller/react-simple-tab)
 - [Cl-Gists](https://github.com/Rudolph-Miller/cl-gists)
-    - GitHubのGistsの[API](https://developer.github.com/v3/gists/)のCommon Lisp wrapper.
+    - Common Lisp wrapper for GitHub's Gists [API](https://developer.github.com/v3/gists/).
 - [Cl-Annot-Prove](https://github.com/Rudolph-Miller/cl-annot-prove)
 - [Jonathan](https://github.com/Rudolph-Miller/jonathan)
-    - Common Lisp最速のJSON serializer/deserializer.
+    - The fastest JSON serializer/deserializer in Common Lisp.
 - [Elb-Log](https://github.com/Rudolph-Miller/elb-log)
 - [Dyna](https://github.com/Rudolph-Miller/dyna)
-    - DynamoDBのCommon Lisp wrapper.
-    - SimpleなAPIのwrappingだけではなく、ORM interfaceも実装.
+    - Common Lisp wrapper for DynamoDB.
+    - Have not just simple wrapper, but ORM interface.
 - [Dockerfile-Clack](https://github.com/Rudolph-Miller/dockerfile-clack)
-    - Common LispのWeb application environmentであるClack上に作られたWeb applicationをDocker上で動かすためのBase docker image.
-    - [Blog - Docker image for Clack Application]({{< relref "post/dockerfile-clack.md" >}})
+    - Base docker image for Clack (web application environment in Common Lisp).
+    - [Blog - Docker image for Clack Application]({{< relref "post/dockerfile-clack.md" >}}) (Japanese)
 - [Integral-Rest](https://github.com/Rudolph-Miller/integral-rest)
-    - [Blog - Integral-Rest]({{< relref "post/integral-rest.md" >}})
+    - [Blog - Integral-Rest]({{< relref "post/integral-rest.md" >}}) (Japanese)
 - [Detect JS Changes](https://github.com/Rudolph-Miller/detect-js-changes)
-    - minifiedな複数のJS fileのdeploy前後の差分を確認するTool.
-    - Go製.
-    - [Blog - detect-js-changes]({{< relref "post/detect-js-changes.md" >}})
+    - Detect diffs of minified JS files.
+    - Go.
+    - [Blog - detect-js-changes]({{< relref "post/detect-js-changes.md" >}}) (Japanese)
 
 
 # Languages
 
-- 日本語:
-    - 関西弁: ネイティブ
-    - 標準語: ビジネス上級レベル
-- 英語:
-    - 日常会話レベル
-        - 2009/09/10 - 2010/02/05: カナダのバンクーバー付近に留学.
+- Japanese:
+    - Native.
+- English:
+    - Daily conversation level.
+        - 2009/09/10 - 2010/02/05: In a nearby city of Vancouver, Canada.
 
 
 # Social
@@ -158,4 +157,4 @@ Am into making compiler.
 
 # Media
 
-- [好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築](http://type.jp/et/log/article/somewrite_cto)
+- [好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築](http://type.jp/et/log/article/somewrite_cto) (Japanese)
