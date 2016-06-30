@@ -161,3 +161,4 @@ Software Engineer in Tokyo, Japan.
 # Media
 
 - [好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築](http://type.jp/et/log/article/somewrite_cto)
+- [エンジニアで年収４ケタってどうやったらなれるの？稼いでる人に聞いてきた](https://codeiq.jp/magazine/2016/06/42239/)
