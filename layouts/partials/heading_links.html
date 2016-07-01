@@ -7,22 +7,24 @@
   }
 
   var headings = [];
-  var mainSection = document.getElementsByTagName('main')[0]
-    .getElementsByTagName('section')[0];
-  for(var i=0; i<headingTags.length; i++) {
-    var headingTag = headingTags[i];
-    var elements = mainSection.getElementsByTagName(headingTag)
-    var array = Array.prototype.slice.call(elements);
-    headings = headings.concat(array);
-  }
+  var main = document.getElementsByTagName('main')[0]
+  var mainSection = main && main.getElementsByTagName('section')[0];
+  if (mainSection) {
+    for(var i=0; i<headingTags.length; i++) {
+      var headingTag = headingTags[i];
+      var elements = mainSection.getElementsByTagName(headingTag)
+      var array = Array.prototype.slice.call(elements);
+      headings = headings.concat(array);
+    }
 
-  for (var i=0; i<headings.length; i++) {
-    var heading = headings[i];
-    var icon = document.createElement('a');
-    icon.innerHTML = '<i class="fa fa-link"></i>';
-    icon.href = '#' + heading.id;
-    icon.className = HEADING_LINK_CLASS_NAME;
-    heading.insertBefore(icon, heading.firstChild);
+    for (var i=0; i<headings.length; i++) {
+      var heading = headings[i];
+      var icon = document.createElement('a');
+      icon.innerHTML = '<i class="fa fa-link"></i>';
+      icon.href = '#' + heading.id;
+      icon.className = HEADING_LINK_CLASS_NAME;
+      heading.insertBefore(icon, heading.firstChild);
+    }
   }
 })();
 </script>
