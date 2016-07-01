@@ -76,6 +76,7 @@ Software Engineer in Tokyo, Japan.
 - 配信 Applicationの設計、実装.
     - 初期はNode.js (http モジュールを使用.) で構築. 後に、Caveman2 (Common LispのWeb application framework) でreplace.
 - 採用活動を行う.
+- Slack.
 - リモートワーク.
 
 ## Kaizen Platform, Inc.
@@ -92,6 +93,7 @@ Software Engineer in Tokyo, Japan.
             - 適切なテストが書かれているか.
       - 早い時期に問題になりそうな技術コンポーネントを特定・対処する.
       - [Tech Lead（TL/テックリード）の役割 - サンフランシスコではたらくソフトウェアエンジニア](http://d.hatena.ne.jp/higepon/20150806/1438844046) からProject leaderの役割を引いたもの.
+- Slack.
 - 週の半分ほどをリモートワーク.
 - Web application "Kaizen Platform"のserver-sideの設計・開発.
     - Ruby

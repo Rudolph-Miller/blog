@@ -78,6 +78,7 @@ Am into making compiler.
     - Node.js.
         - Replace with Caveman2 (Web application framework in Common Lisp) later.
 - Recruiting.
+- Slack.
 - Remort working.
 
 ## Kaizen Platform, Inc.
@@ -92,6 +93,7 @@ Am into making compiler.
             - Quality of codes.
                 - Code review.
                 - Enough tests.
+- Slack.
 - Remort working. (sometimes)
 - Develop web application "Kaizen Platform".
     - Ruby
