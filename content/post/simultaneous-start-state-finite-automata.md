@@ -18,3 +18,4 @@ http://sssslide.com/www.slideshare.net/sinya8282/ss-12170832
 https://www.jstage.jst.go.jp/article/jssst/30/2/30_2_191/_pdf
 http://www.is.titech.ac.jp/~sassa/papers-written/6A-2-shinya-sassa-regexp-JSSST11.pdf
 
+- 並列な計算をAutomatonで表現ではなく、Automatonを並列に実行.
