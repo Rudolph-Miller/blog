@@ -30,14 +30,13 @@ string -> Reader -> (decoded)  Reader -> []byte -> string
 package main
 
 import (
-	"fmt"
 	"golang.org/x/text/encoding/japanese"
 	"golang.org/x/text/transform"
 	"io/ioutil"
 	"strings"
 )
 
-func shift_jis_to_utf8(str string) (string, error) {
+func shiftJIS2UTF8(str string) (string, error) {
 	strReader := strings.NewReader(str)
 	decodedReader := transform.NewReader(strReader, japanese.ShiftJIS.NewDecoder())
 	decoded, err := ioutil.ReadAll(decodedReader)
