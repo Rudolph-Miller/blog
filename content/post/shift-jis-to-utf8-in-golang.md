@@ -11,3 +11,6 @@ slug = "shift-jis-to-utf-8-in-go"
 Go で Shift_JIS を UTF-8 に変換.
 
 <!--more-->
+
+Go で HTML の scraper を書いていると、
+scraper を書くと毎回だが Shift_JIS の conversion が必要になったので、メモとして残す.
