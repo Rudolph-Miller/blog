@@ -13,7 +13,7 @@ checkout:
 
 test:
   override:
-    - PBCD_ENV=production hugo
+    - HUGO_ENV=production hugo
 
 deployment:
   deployment:
