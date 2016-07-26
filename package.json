@@ -1,0 +1,23 @@
+{
+  "name": "blog.rudolph-miller",
+  "private": true,
+  "scripts": {
+    "lint": "textlint content/**/*.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rudolph-Miller/blog.git"
+  },
+  "author": "Rudolph Miller",
+  "homepage": "https://blog.rudolph-miller.com",
+  "devDependencies": {
+    "textlint": "^7.1.0",
+    "textlint-rule-ja-no-abusage": "^1.1.1",
+    "textlint-rule-max-kanji-continuous-len": "^1.1.0",
+    "textlint-rule-max-ten": "^2.0.1",
+    "textlint-rule-no-double-negative-ja": "^1.0.4",
+    "textlint-rule-no-dropping-the-ra": "^1.0.3",
+    "textlint-rule-no-hankaku-kana": "^1.0.1",
+    "textlint-rule-no-mix-dearu-desumasu": "^3.0.2"
+  }
+}

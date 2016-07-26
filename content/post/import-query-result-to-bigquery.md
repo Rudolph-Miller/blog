@@ -23,7 +23,7 @@ title = "Import Query Result to BigQuery"
 これを実施・運用する上で困ったのが、UserのPVなどをplotする際に社内のUserかどうかがBigQueryに格納しているDataだけでは判別がつかないことだった.  
 (社内UserのIDリストを `user_id NOT IN (...)` に貼り付けるという__真心こもったOperation__が行われていた.)
 
-Kaizen Platformでは数ヶ月に一度 `Kaizen Week` の名で、日頃のプロジェクトを一時停止して、積みタスクや、リファクタリング、新しいツールの試験・導入などの時間を確保しようという試みがあり、ちょうど今週がその `Kaizen Week` だったので、ここを改善しようと思った.
+Kaizen Platformでは数ヶ月に一度 `Kaizen Week` という日頃のプロジェクトを一時停止して、積みタスクや、リファクタリング、新しいツールの試験・導入などの時間を確保しようという試みがある. ちょうど今週がその `Kaizen Week` だったので、ここを改善しようと思った.
 
 解決策としては2通り考えられる.
 一つがLogにUserの属性を埋め込む方法、もう一つはBigQuery外部のDatabase (今回は社内のMySQL) からUserの属性を参照する方法だが、今回は二つ目の方法をとることにした.
@@ -45,7 +45,7 @@ Kaizen Platformでは数ヶ月に一度 `Kaizen Week` の名で、日頃のプ�
 - Configulation fileのExtensionを `liquid` にすると[Liquid Template Engine](http://liquidmarkup.org/)が使用できる.
   - `env` によって外部から値を差し込むことが可能.
 
-だったので、Scriptの中で特定の場所にあるSQL fileをとってきて、その情報で `env` を差し替えることにより、QueryそれぞれでConfigulation fileを作成する必要がなく、Embulkで上の目標が達成できそうだったので、Embulkを採用することにした.
+であり、Scriptの中で特定の場所にあるSQL fileをとってきてその情報で `env` を差し替えることによりQueryそれぞれでConfigulation fileを作成する必要がなく、Embulkで上の目標が達成できそうだったのでEmbulkを採用することにした.
 
 
 ## Do it

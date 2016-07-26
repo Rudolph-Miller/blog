@@ -134,11 +134,11 @@ E(W) = - \sum _{n=1}^{N} \sum _{k=1}^{K} d _{nk} \log y _{nk} \tag{7}
 $$
 
 を使用する.
-ここで $W$ はネットワークの全体の重みをまとめた行列で (3) によりBiasもここに入る、
-$n$ はTrainig dataにおけるTraining sampleの番号、
-$K$ はOutput LayerのUnit数、
-$k$ はOutput LayerのUnit番号、
-$d _{nk}$ は n 番目のTraining sampleの k 番目のUnitの目標値、
+ここで $W$ はネットワークの全体の重みをまとめた行列で (3) によりBiasもここに入る.
+$n$ はTrainig dataにおけるTraining sampleの番号.
+$K$ はOutput LayerのUnit数.
+$k$ はOutput LayerのUnit番号.
+$d _{nk}$ は n 番目のTraining sampleの k 番目のUnitの目標値.
 $y _{nk}$ は n 番目のTraining sampleの k 番目のUnitのOutput.
 
 今回はMulti-class classificationなので、 $d _{nk}$ は

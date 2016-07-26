@@ -361,7 +361,7 @@ func main() {
 ---
 
 
-__業務KAIZEN! ╭( ･ㅂ･)و__
+__業務KAIZEN! ╭( ・ㅂ・)و__
 
 
 # See Also

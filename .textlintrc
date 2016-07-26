@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "no-mix-dearu-desumasu": true,
+    "no-hankaku-kana": true,
+    "no-dropping-the-ra": true,
+    "max-ten": {
+      max: 5
+    },
+    "max-kanji-continuous-len": {
+      max: 10
+    },
+    "no-double-negative-ja": true,
+    "ja-no-abusage": true
+  }
+}
