@@ -4,6 +4,14 @@ runtime: go
 api_version: go1
 threadsafe: true
 
+skip_files:
+  - ^(.*/)?#.*#$
+  - ^(.*/)?.*~$
+  - ^(.*/)?.*\.py[co]$
+  - ^(.*/)?.*/RCS/.*$
+  - ^(.*/)?\..*$
+  - ^node_modules/.*$
+
 handlers:
 - url: /(.*\.css)
   mime_type: text/css
