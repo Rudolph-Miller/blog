@@ -11,6 +11,7 @@ skip_files:
   - ^(.*/)?.*/RCS/.*$
   - ^(.*/)?\..*$
   - ^node_modules/.*$
+  - ^.git/.*$
 
 handlers:
 - url: /(.*\.css)
