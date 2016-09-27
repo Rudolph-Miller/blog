@@ -20,7 +20,7 @@ slug = "me"
 
 HN: [Rudolph Miller](https://www.google.co.jp/search?q=Rudolph+Miller)  
 本名: [河西 智哉](https://www.google.co.jp/search?q=河西+智哉)  
-Email: [chopsticks.tk.ppfm@gmail.com](mailto:chopsticks.tk.ppfm@gmail.com)
+Email: [me@rudolph-miller.com](mailto:me@rudolph-miller.com)
 
 Software Engineer in Tokyo, Japan.
 

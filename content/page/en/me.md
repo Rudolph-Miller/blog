@@ -20,7 +20,7 @@ slug = "me"
 
 HN: [Rudolph Miller](https://www.google.co.jp/search?q=Rudolph+Miller)  
 Real name: [Tomoya KAWANISHI](https://www.google.co.jp/search?q=tomoya+kawanishi)  
-Email: [chopsticks.tk.ppfm@gmail.com](mailto:chopsticks.tk.ppfm@gmail.com)
+Email: [me@rudolph-miller.com](mailto:me@rudolph-miller.com)
 
 Software Engineer in Tokyo, Japan.
 
