@@ -24,9 +24,7 @@ Email: [me@rudolph-miller.com](mailto:me@rudolph-miller.com)
 
 Software Engineer in Tokyo, Japan.
 
-大学では代数的整数論.  
-現在はKaizen Platform, Inc.でTech lead.  
-プライベートでは最近はCompiler作り等.
+現在は無所属.
 
 <span class="author-avatar">
   {{< image "/logo.png" >}}
@@ -43,8 +41,10 @@ Software Engineer in Tokyo, Japan.
 - 2014/05/01 サムライト株式会社に参画.
 - 2014/11/01 サムライト株式会社でCTOに就任.
 - 2015/08/31 サムライト株式会社を退職.
-- 2015/09/01 Kaizen Platform, Inc.に参画. (Application Engineer)
-- 2016/03/01 Kaizen Platform, Inc.でTech leadに就任.
+- 2015/09/01 Kaizen Platform, Inc. に参画. (Application Engineer)
+- 2016/03/01 Kaizen Platform, Inc. でTech leadに就任.
+- 2016/10/31 Kaizen Platform, Inc. を退職.
+- 2016/11/01 無所属.
 
 # Projects
 

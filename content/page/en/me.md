@@ -45,6 +45,7 @@ Am into making compiler.
 - 2015/08/31 Leave Somewrite, Inc.
 - 2015/09/01 Start work for Kaizen Platform, Inc.  (Application Engineer)
 - 2016/03/01 Be Tech lead in Kaizen Platform, Inc.
+- 2016/10/31 Leave Kaizen Platform, Inc.
 
 # Projects
 
