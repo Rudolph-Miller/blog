@@ -13,6 +13,7 @@ slug = "me"
 2. [Projects]({{< relref "#projects" >}})
     1. [サムライト株式会社]({{< relref "#サムライト株式会社" >}})
     2. [Kaizen Platform, Inc.]({{< relref "#kaizen-platform-inc" >}})
+    3. [無所属]({{< relref "#無所属" >}})
 3. [Works]({{< relref "#works" >}})
 4. [Languages]({{< relref "#languages" >}})
 5. [Social]({{< relref "#social" >}})
@@ -25,6 +26,7 @@ Email: [me@rudolph-miller.com](mailto:me@rudolph-miller.com)
 Software Engineer in Tokyo, Japan.
 
 現在は無所属.
+[SEEED](https://thepedia.co/article/1769/) 始動.
 
 <span class="author-avatar">
   {{< image "/logo.png" >}}
@@ -115,6 +117,12 @@ Software Engineer in Tokyo, Japan.
     - On-boardig flowを設計することにより、Userがカンタンに改善活動を始められるようにする.
     - 合わせて全体のUX設計を見直す.
 
+
+## 無所属
+
+- [ANRI 佐俣アンリ氏 x 元Kaizen Platform 河西智哉氏 x フリークアウト/イグニス 佐藤裕介氏がタッグを組む、インキュベーションプロジェクト「SEEED」始動](https://thepedia.co/article/1769/)
+
+
 # Works
 
 - [Clipper](https://github.com/Rudolph-Miller/clipper)
@@ -164,3 +172,4 @@ Software Engineer in Tokyo, Japan.
 
 - [好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築](http://type.jp/et/log/article/somewrite_cto)
 - [エンジニアで年収４ケタってどうやったらなれるの？稼いでる人に聞いてきた](https://codeiq.jp/magazine/2016/06/42239/)
+- [ANRI 佐俣アンリ氏 x 元Kaizen Platform 河西智哉氏 x フリークアウト/イグニス 佐藤裕介氏がタッグを組む、インキュベーションプロジェクト「SEEED」始動](https://thepedia.co/article/1769/)
