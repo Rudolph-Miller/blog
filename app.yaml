@@ -63,7 +63,7 @@ handlers:
   static_files: public/\1
   upload: public/(.*\.(svg|svgz))
 
-- url: /.well-known/acme-challenge/H6DJSB1AjG6YNituUF38z9cXTHl8VsDrcN595WsjaOQ
+- url: /.well-known/acme-challenge/Dfa_TdHVHQvchw7ATqgjUyfJA96rPXum0zhF-lmUPTg
   static_files: lets_encrypt.txt
   upload: lets_encrypt.txt
 
