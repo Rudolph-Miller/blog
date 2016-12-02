@@ -1,11 +1,11 @@
 +++
 Description = "Roswell & Slimv の環境構築の備忘録"
 Tags = ["Common Lisp", "Roswell", "Slimv"]
-date = "2016-12-02T21:20:02+09:00"
-draft = true
+date = "2016-12-02T22:47:58+09:00"
+draft = false
 images = ["/20161202/slimv.png"]
-title = "[備忘録] Roswell & Slimv の環境構築"
 slug = "roswell-and-slimv"
+title = "[備忘録] Roswell & Slimv の環境構築"
 +++
 
 Roswell & Slimv の環境構築の備忘録.  
