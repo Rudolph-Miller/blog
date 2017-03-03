@@ -172,4 +172,5 @@ Software Engineer in Tokyo, Japan.
 
 - [好きなCommon Lispで新しいWeb開発を～京大中退、22歳のサムライトCTOが取り組んだシステム再構築](http://type.jp/et/log/article/somewrite_cto)
 - [エンジニアで年収４ケタってどうやったらなれるの？稼いでる人に聞いてきた](https://codeiq.jp/magazine/2016/06/42239/)
+- [ヨッピーさん＆河西君が伊藤直也さんに公開質問！年収・ストックオプション・時間の使い方の話etc.](https://codeiq.jp/magazine/2016/11/47140/)
 - [ANRI 佐俣アンリ氏 x 元Kaizen Platform 河西智哉氏 x フリークアウト/イグニス 佐藤裕介氏がタッグを組む、インキュベーションプロジェクト「SEEED」始動](https://thepedia.co/article/1769/)
