@@ -159,10 +159,10 @@ Kleene algebra (クリーネ代数, クリーニ代数) は Idempotent semi-ring
 (なお、演算の優先順は $^ *$ , $\cdot$ , $+$ である.)
 
 $$
-a, b \in R\ で、a \leq b \iff a + b = b\ として以下が成立する. \\\
-1 + a \cdot a^* \leq a^* \\\
-1 + a^* \cdot a \leq a^* \\\
-a \cdot b \leq b \Rightarrow a^* \cdot b \leq b \\\
+a, b \in R\ で、a \leq b \iff a + b = b\ として以下が成立する. \\\cr
+1 + a \cdot a^* \leq a^* \\\cr
+1 + a^* \cdot a \leq a^* \\\cr
+a \cdot b \leq b \Rightarrow a^* \cdot b \leq b \\\cr
 b \cdot a \leq b \Rightarrow b \cdot a^* \leq b
 $$
 
