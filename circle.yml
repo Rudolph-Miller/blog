@@ -4,7 +4,7 @@ machine:
     GOROOT: "/home/ubuntu/go"
     PATH: "/home/ubuntu/go/bin:$PATH"
   node:
-    version: 4.0.0
+    version: v4.2.2
 
 dependencies:
   cache_directories:
