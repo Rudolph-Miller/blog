@@ -390,7 +390,8 @@ article header h2 {
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 15px 0px;
-  display: flex;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .social-button {
