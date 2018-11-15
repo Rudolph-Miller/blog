@@ -21,9 +21,7 @@ dependencies:
       else
         cp -rp ~/.go/$GOVERSION ~/go;
       fi
-    - go get -v github.com/kardianos/govendor
-    - govendor get github.com/gohugoio/hugo
-    - go install github.com/gohugoio/hugo
+    - sudo apt-get update && sudo apt-get install -y hugo
 
 checkout:
   post:
