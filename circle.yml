@@ -20,6 +20,7 @@ dependencies:
       else
         cp -rp ~/.go/$GOVERSION ~/go;
       fi
+    - go get -v github.com/tdewolff/minify/v2
     - go get -v github.com/gohugoio/hugo
 
 checkout:
