@@ -2,7 +2,8 @@ machine:
   environment:
     GAE_GO_SDK_VERSION: 1.9.38
     GOROOT: "/home/ubuntu/go"
-    PATH: "/home/ubuntu/go/bin:$PATH"
+    GOPATH: "/home/ubuntu/go_workspace"
+    PATH: "/home/ubuntu/go_workspace/bin:/home/ubuntu/go/bin:$PATH"
   node:
     version: v4.2.2
 
@@ -20,8 +21,9 @@ dependencies:
       else
         cp -rp ~/.go/$GOVERSION ~/go;
       fi
-    - go get -v github.com/tdewolff/minify/v2
-    - go get -v github.com/gohugoio/hugo
+    - go get -v github.com/kardianos/govendor
+    - govendor get github.com/gohugoio/hugo
+    - go install github.com/gohugoio/hugo
 
 checkout:
   post:
